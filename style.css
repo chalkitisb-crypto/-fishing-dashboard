@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #071923;
+    color: white;
+}
+
+.app {
+    max-width: 430px;
+    margin: auto;
+    padding: 20px;
+    padding-bottom: 90px;
+}
+
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+header p {
+    margin: 5px;
+    opacity: 0.8;
+}
+
+
+/* Fishing Score */
+
+.score {
+    background: linear-gradient(145deg, #0d3348, #092331);
+    border-radius: 25px;
+    padding: 25px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.score h2 {
+    margin: 0;
+}
+
+.number {
+    font-size: 70px;
+    font-weight: bold;
+    color: #36d399;
+}
+
+
+/* Cards */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+
+.card {
+    background: #102b3a;
+    border-radius: 20px;
+    padding: 15px;
+    min-height: 100px;
+}
+
+
+.card h3 {
+    font-size: 16px;
+    margin-top: 0;
+}
+
+
+.card p {
+    font-size: 15px;
+    opacity: 0.85;
+}
+
+
+
+/* Sections */
+
+section {
+    background: #102b3a;
+    margin-top: 20px;
+    padding: 18px;
+    border-radius: 20px;
+}
+
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+.tags span {
+    background: #17465d;
+    padding: 8px 12px;
+    border-radius: 20px;
+}
+
+
+
+/* Bottom Navigation */
+
+nav {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    width: 90%;
+    max-width: 400px;
+
+    background: #102b3a;
+    border-radius: 25px;
+
+    display: flex;
+    justify-content: space-around;
+
+    padding: 12px;
+}
+
+
+nav button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 22px;
+}
