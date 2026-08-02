@@ -1,1238 +1,311 @@
-<!DOCTYPE html>
-<html lang="el">
-<head>
+from pathlib import Path
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+path = Path("/mnt/data/index.html")
 
-    <title>Fishing Dashboard</title>
+html = path.read_text(encoding="utf-8")
 
-    <link rel="stylesheet" href="style.css">
+old = '''        <article class="panel cloud-panel widget" data-widget="cloud-cover">
 
-    <link rel="stylesheet" 
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+          <div class="section-title">
 
-</head>
+            <i class="fa-solid fa-cloud"></i>
 
+            <span>ΝΕΦΟΚΑΛΥΨΗ (%) – ΑΝΑ ΩΡΑ</span>
 
-<body>
+          </div>
 
+          <div class="hourly-strip cloud-strip">
 
-<div class="app-container">
+            <article class="hour-cell">
 
+              <time>08:00</time>
 
-<!-- ================= HEADER ================= -->
+              <i class="fa-solid fa-cloud-sun weather-hour-icon sun-cloud"></i>
 
+              <strong>5%</strong>
 
-<header class="app-header">
+              <span class="mini-bar"><i style="width:5%"></i></span>
 
+            </article>
 
-    <div class="location">
+            <article class="hour-cell">
 
-        <i class="fa-solid fa-location-dot"></i>
+              <time>09:00</time>
 
-        <div>
+              <i class="fa-solid fa-cloud-sun weather-hour-icon sun-cloud"></i>
 
-            <h1>Κάλυμνος</h1>
+              <strong>10%</strong>
 
-            <p>Αιγαίο Πέλαγος</p>
+              <span class="mini-bar"><i style="width:10%"></i></span>
 
-        </div>
+            </article>
 
-    </div>
+            <article class="hour-cell">
 
+              <time>10:00</time>
 
+              <i class="fa-solid fa-cloud-sun weather-hour-icon sun-cloud"></i>
 
-    <button class="icon-button">
+              <strong>15%</strong>
 
-        <i class="fa-solid fa-gear"></i>
+              <span class="mini-bar"><i style="width:15%"></i></span>
 
-    </button>
+            </article>
 
+            <article class="hour-cell">
 
-</header>
+              <time>11:00</time>
 
+              <i class="fa-solid fa-cloud weather-hour-icon"></i>
 
+              <strong>20%</strong>
 
+              <span class="mini-bar"><i style="width:20%"></i></span>
 
+            </article>
 
-<!-- ================= TOP SUMMARY ================= -->
+            <article class="hour-cell">
 
+              <time>12:00</time>
 
-<section class="card summary-card widget" data-widget="summary">
+              <i class="fa-solid fa-cloud weather-hour-icon"></i>
 
+              <strong>25%</strong>
 
-    <div class="weather-main">
+              <span class="mini-bar"><i style="width:25%"></i></span>
 
+            </article>
 
-        <div class="weather-icon">
+            <article class="hour-cell">
 
-            <i class="fa-solid fa-sun"></i>
+              <time>13:00</time>
 
-        </div>
+              <i class="fa-solid fa-cloud weather-hour-icon"></i>
 
+              <strong>30%</strong>
 
-        <div>
+              <span class="mini-bar"><i style="width:30%"></i></span>
 
-            <h2>28°C</h2>
+            </article>
 
-            <p>Καθαρός ουρανός</p>
+            <article class="hour-cell">
 
-        </div>
+              <time>14:00</time>
 
+              <i class="fa-solid fa-cloud weather-hour-icon"></i>
 
-    </div>
+              <strong>35%</strong>
 
+              <span class="mini-bar"><i style="width:35%"></i></span>
 
+            </article>
 
-    <div class="summary-grid">
+            <article class="hour-cell">
 
+              <time>15:00</time>
 
-        <div>
+              <i class="fa-solid fa-cloud weather-hour-icon"></i>
 
-            <span>Άνεμος</span>
+              <strong>45%</strong>
 
-            <strong>ΒΔ 4 Bf</strong>
+              <span class="mini-bar"><i style="width:45%"></i></span>
 
-        </div>
+            </article>
 
+            <article class="hour-cell">
 
+              <time>16:00</time>
 
-        <div>
+              <i class="fa-solid fa-cloud weather-hour-icon"></i>
 
-            <span>Πίεση</span>
+              <strong>50%</strong>
 
-            <strong>1015 hPa</strong>
+              <span class="mini-bar"><i style="width:50%"></i></span>
 
-        </div>
+            </article>
 
+            <article class="hour-cell">
 
+              <time>17:00</time>
 
-        <div>
+              <i class="fa-solid fa-cloud weather-hour-icon"></i>
 
-            <span>Θάλασσα</span>
+              <strong>40%</strong>
 
-            <strong>0.6 m</strong>
+              <span class="mini-bar"><i style="width:40%"></i></span>
 
-        </div>
+            </article>
 
+            <article class="hour-cell">
 
-    </div>
+              <time>18:00</time>
 
+              <i class="fa-solid fa-cloud weather-hour-icon"></i>
 
+              <strong>30%</strong>
 
-</section>
+              <span class="mini-bar"><i style="width:30%"></i></span>
 
+            </article>
 
+          </div>
 
+        </article>'''
 
+new = '''        <article class="panel cloud-panel widget" data-widget="hourly-conditions">
 
+          <div class="section-title">
 
+            <i class="fa-solid fa-cloud-sun"></i>
 
-<!-- ================= FISHING SCORE ================= -->
+            <span>ΣΥΝΘΗΚΕΣ ΚΑΙΡΟΥ – ΑΝΑ ΩΡΑ</span>
 
+          </div>
 
-<section class="card widget draggable" data-widget="fishing-score">
+          <div class="hourly-strip cloud-strip">
 
+            <article class="hour-cell">
 
-<div class="card-header">
+              <time>08:00</time>
 
+              <i class="fa-solid fa-sun weather-hour-icon sun-cloud"></i>
 
-    <h3>
+              <strong>Ηλιοφάνεια</strong>
 
-        <i class="fa-solid fa-fish"></i>
+              <small>22°C</small>
 
-        Fishing Score
+            </article>
 
-    </h3>
+            <article class="hour-cell">
 
+              <time>09:00</time>
 
-</div>
+              <i class="fa-solid fa-sun weather-hour-icon sun-cloud"></i>
 
+              <strong>Ηλιοφάνεια</strong>
 
+              <small>23°C</small>
 
-<div class="score-area">
+            </article>
 
+            <article class="hour-cell">
 
-    <div class="score-circle">
+              <time>10:00</time>
 
-        <span>82</span>
+              <i class="fa-solid fa-cloud-sun weather-hour-icon sun-cloud"></i>
 
-        <small>/100</small>
+              <strong>Αραιή συννεφιά</strong>
 
-    </div>
+              <small>24°C</small>
 
+            </article>
 
+            <article class="hour-cell">
 
-    <div class="score-text">
+              <time>11:00</time>
 
+              <i class="fa-solid fa-cloud-sun weather-hour-icon sun-cloud"></i>
 
-        <h4>Πολύ καλή ημέρα</h4>
+              <strong>Αραιή συννεφιά</strong>
 
+              <small>25°C</small>
 
-        <p>
-            Ιδανικές συνθήκες για ψάρεμα
-        </p>
+            </article>
 
+            <article class="hour-cell">
 
-    </div>
+              <time>12:00</time>
 
+              <i class="fa-solid fa-cloud weather-hour-icon"></i>
 
-</div>
+              <strong>Συννεφιά</strong>
 
+              <small>25°C</small>
 
+            </article>
 
-</section>
+            <article class="hour-cell">
 
+              <time>13:00</time>
 
+              <i class="fa-solid fa-cloud weather-hour-icon"></i>
 
+              <strong>Συννεφιά</strong>
 
+              <small>26°C</small>
 
+            </article>
 
+            <article class="hour-cell">
 
-<!-- ================= ALERTS ================= -->
+              <time>14:00</time>
 
+              <i class="fa-solid fa-cloud-sun weather-hour-icon sun-cloud"></i>
 
-<section class="card widget draggable" data-widget="alerts">
+              <strong>Αραιή συννεφιά</strong>
 
+              <small>26°C</small>
 
-<div class="card-header">
+            </article>
 
+            <article class="hour-cell">
 
-<h3>
+              <time>15:00</time>
 
-<i class="fa-solid fa-bell"></i>
+              <i class="fa-solid fa-cloud-sun weather-hour-icon sun-cloud"></i>
 
-Fishing Alerts
+              <strong>Αραιή συννεφιά</strong>
 
-</h3>
+              <small>25°C</small>
 
+            </article>
 
-</div>
+            <article class="hour-cell">
 
+              <time>16:00</time>
 
+              <i class="fa-solid fa-cloud weather-hour-icon"></i>
 
-<div class="alert">
+              <strong>Συννεφιά</strong>
 
+              <small>24°C</small>
 
-<i class="fa-solid fa-check"></i>
+            </article>
 
+            <article class="hour-cell">
 
-<div>
+              <time>17:00</time>
 
-<strong>06:30 - 09:00</strong>
+              <i class="fa-solid fa-cloud weather-hour-icon"></i>
 
-<p>
-Υψηλή δραστηριότητα ψαριών
-</p>
+              <strong>Συννεφιά</strong>
 
-</div>
+              <small>23°C</small>
 
+            </article>
 
-</div>
+            <article class="hour-cell">
 
+              <time>18:00</time>
 
+              <i class="fa-solid fa-cloud-sun weather-hour-icon sun-cloud"></i>
 
+              <strong>Αραιή συννεφιά</strong>
 
-<div class="alert">
+              <small>22°C</small>
 
+            </article>
 
-<i class="fa-solid fa-moon"></i>
+          </div>
 
+        </article>'''
 
-<div>
+if old not in html:
 
-<strong>19:45 - 21:15</strong>
+    raise ValueError("Δεν βρέθηκε η παλιά ενότητα νεφοκάλυψης στο αρχείο.")
 
-<p>
-Καλό solunar παράθυρο
-</p>
+html = html.replace(old, new)
 
-</div>
+path.write_text(html, encoding="utf-8")
 
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- ================= HOURLY CONDITIONS ================= -->
-
-
-<section class="card widget draggable" data-widget="hourly">
-
-
-<div class="card-header">
-
-
-<h3>
-
-<i class="fa-solid fa-clock"></i>
-
-Ωριαίες Συνθήκες
-
-</h3>
-
-
-</div>
-
-
-
-
-<div class="hourly-container">
-
-
-
-<div class="hour-card">
-
-<span>18:00</span>
-
-<i class="fa-solid fa-sun"></i>
-
-<strong>28°</strong>
-
-<small>ΒΔ 4Bf</small>
-
-</div>
-
-
-
-
-<div class="hour-card">
-
-<span>19:00</span>
-
-<i class="fa-solid fa-cloud-sun"></i>
-
-<strong>27°</strong>
-
-<small>ΒΔ 3Bf</small>
-
-</div>
-
-
-
-
-<div class="hour-card">
-
-<span>20:00</span>
-
-<i class="fa-solid fa-moon"></i>
-
-<strong>25°</strong>
-
-<small>Δ 2Bf</small>
-
-</div>
-
-
-
-
-<div class="hour-card">
-
-<span>21:00</span>
-
-<i class="fa-solid fa-moon"></i>
-
-<strong>24°</strong>
-
-<small>ΝΔ 2Bf</small>
-
-</div>
-
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- ================= WIND ================= -->
-
-
-<section class="card widget draggable" data-widget="wind">
-
-
-<div class="card-header">
-
-
-<h3>
-
-<i class="fa-solid fa-wind"></i>
-
-Άνεμος
-
-</h3>
-
-
-</div>
-
-
-
-
-<div class="wind-box">
-
-
-<div class="compass">
-
-
-<span>Β</span>
-
-<div class="direction-arrow">
-↑
-</div>
-
-<span>Ν</span>
-
-
-</div>
-
-
-
-
-<div class="wind-info">
-
-
-<h2>ΒΔ</h2>
-
-<strong>
-18 km/h
-</strong>
-
-
-<p>
-4 Beaufort
-</p>
-
-
-</div>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-<!-- ================= PRESSURE ================= -->
-
-
-<section class="card widget draggable" data-widget="pressure">
-
-
-<div class="card-header">
-
-
-<h3>
-
-<i class="fa-solid fa-gauge-high"></i>
-
-Βαρομετρική Πίεση
-
-</h3>
-
-
-</div>
-
-
-
-<div class="pressure-number">
-
-
-<strong>
-1015 hPa
-</strong>
-
-
-<span>
-Σταθερή
-</span>
-
-
-</div>
-
-
-
-<div class="chart-box">
-
-
-<svg viewBox="0 0 300 120">
-
-
-<polyline points="
-0,80 
-40,70 
-80,75 
-120,55 
-160,60 
-200,45 
-240,50 
-300,35
-"/>
-
-
-</svg>
-
-
-</div>
-
-
-
-</section>
-<!-- ================= SEA CONDITIONS ================= -->
-
-
-<section class="card widget draggable" data-widget="sea">
-
-
-<div class="card-header">
-
-<h3>
-
-<i class="fa-solid fa-water"></i>
-
-Συνθήκες Θάλασσας
-
-</h3>
-
-</div>
-
-
-
-<div class="sea-grid">
-
-
-<div>
-
-<span>Κύματα</span>
-
-<strong>0.6 m</strong>
-
-</div>
-
-
-
-<div>
-
-<span>Περίοδος</span>
-
-<strong>5 sec</strong>
-
-</div>
-
-
-
-<div>
-
-<span>Θερμοκρασία</span>
-
-<strong>24°C</strong>
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<!-- ================= WAVES ================= -->
-
-
-<section class="card widget draggable" data-widget="waves">
-
-
-<div class="card-header">
-
-
-<h3>
-
-<i class="fa-solid fa-wave-square"></i>
-
-Κύματα
-
-</h3>
-
-
-</div>
-
-
-
-<div class="wave-chart">
-
-
-<svg viewBox="0 0 300 120">
-
-
-<path d="
-M0 70
-Q40 30 80 70
-T160 70
-T240 55
-T300 70
-"/>
-
-
-</svg>
-
-
-</div>
-
-
-
-<div class="wave-details">
-
-<span>
-Ύψος: 0.6m
-</span>
-
-
-<span>
-Διεύθυνση: ΒΔ
-</span>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- ================= TIDES ================= -->
-
-
-<section class="card widget draggable" data-widget="tides">
-
-
-<div class="card-header">
-
-
-<h3>
-
-<i class="fa-solid fa-arrows-up-down"></i>
-
-Παλίρροιες
-
-</h3>
-
-
-</div>
-
-
-
-<div class="tide-chart">
-
-
-<svg viewBox="0 0 300 120">
-
-
-<path d="
-M0 80
-C40 20 80 20 120 80
-C170 130 230 100 300 40
-"/>
-
-
-</svg>
-
-
-</div>
-
-
-
-<div class="tide-info">
-
-
-<div>
-
-<span>Υψηλή</span>
-
-<strong>14:20</strong>
-
-</div>
-
-
-
-<div>
-
-<span>Χαμηλή</span>
-
-<strong>21:35</strong>
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- ================= CURRENTS ================= -->
-
-
-<section class="card widget draggable" data-widget="currents">
-
-
-<div class="card-header">
-
-
-<h3>
-
-<i class="fa-solid fa-arrows-rotate"></i>
-
-Ρεύματα
-
-</h3>
-
-
-</div>
-
-
-
-
-<div class="current-box">
-
-
-<div class="current-icon">
-
-→
-
-</div>
-
-
-
-<div>
-
-<strong>
-1.2 knots
-</strong>
-
-
-<p>
-Ανατολικό ρεύμα
-</p>
-
-
-</div>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- ================= MOON ================= -->
-
-
-<section class="card widget draggable" data-widget="moon">
-
-
-<div class="card-header">
-
-
-<h3>
-
-<i class="fa-solid fa-moon"></i>
-
-Σελήνη
-
-</h3>
-
-
-</div>
-
-
-
-<div class="moon-box">
-
-
-<div class="moon-icon">
-
-🌔
-
-</div>
-
-
-
-<div>
-
-<strong>
-72%
-</strong>
-
-
-<p>
-Αυξανόμενο φεγγάρι
-</p>
-
-
-</div>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- ================= SOLUNAR ================= -->
-
-
-<section class="card widget draggable" data-widget="solunar">
-
-
-<div class="card-header">
-
-
-<h3>
-
-<i class="fa-solid fa-star"></i>
-
-Solunar
-
-</h3>
-
-
-</div>
-
-
-
-
-<div class="solunar-list">
-
-
-<div>
-
-<span>Ανατολή</span>
-
-<strong>06:42</strong>
-
-</div>
-
-
-
-<div class="active">
-
-<span>Major Activity</span>
-
-<strong>19:45 - 21:15</strong>
-
-</div>
-
-
-
-<div>
-
-<span>Δύση</span>
-
-<strong>20:18</strong>
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- ================= FISH ACTIVITY ================= -->
-
-
-<section class="card widget draggable" data-widget="fish-activity">
-
-
-<div class="card-header">
-
-
-<h3>
-
-<i class="fa-solid fa-fish"></i>
-
-Fish Activity
-
-</h3>
-
-
-</div>
-
-
-
-<div class="activity">
-
-
-<div class="activity-bar">
-
-<span></span>
-
-</div>
-
-
-<strong>
-Υψηλή δραστηριότητα
-</strong>
-
-
-<p>
-Κατάλληλες συνθήκες για τσιπούρα και σαργό
-</p>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- ================= TECHNIQUE ================= -->
-
-
-<section class="card widget draggable" data-widget="technique">
-
-
-<div class="card-header">
-
-
-<h3>
-
-<i class="fa-solid fa-rod-fishing"></i>
-
-Τεχνική
-
-</h3>
-
-
-</div>
-
-
-
-<div class="techniques">
-
-
-<button>
-🎣 Spinning
-</button>
-
-
-<button>
-🐟 LRF
-</button>
-
-
-<button>
-🌊 Shore Jigging
-</button>
-
-
-<button>
-⚓ Slow Pitch
-</button>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- ================= LOGBOOK ================= -->
-
-
-<section class="card widget draggable" data-widget="logbook">
-
-
-<div class="card-header">
-
-
-<h3>
-
-<i class="fa-solid fa-book"></i>
-
-Fishing Logbook
-
-</h3>
-
-
-</div>
-
-
-
-<div class="log-item">
-
-
-<div>
-
-<strong>
-02/08/2026
-</strong>
-
-
-<p>
-Σαργός - Spinning
-</p>
-
-
-</div>
-
-
-<span>
-⭐ 4/5
-</span>
-
-
-</div>
-
-
-
-<button class="add-button">
-
-+ Νέα Καταγραφή
-
-</button>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- ================= SPOTS ================= -->
-
-
-<section class="card widget draggable" data-widget="spots">
-
-
-<div class="card-header">
-
-
-<h3>
-
-<i class="fa-solid fa-map-location-dot"></i>
-
-Fishing Spots
-
-</h3>
-
-
-</div>
-
-
-
-<div class="spot-item">
-
-
-<div>
-
-<strong>
-Βραχώδης Κόλπος
-</strong>
-
-
-<p>
-LRF / Spinning
-</p>
-
-
-</div>
-
-
-
-<button>
-
-<i class="fa-solid fa-location-arrow"></i>
-
-</button>
-
-
-</div>
-
-
-
-<button class="add-button">
-
-+ Νέο Spot
-
-</button>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- ================= BOTTOM NAVIGATION ================= -->
-
-
-<nav class="bottom-navigation">
-
-
-<button class="active">
-
-<i class="fa-solid fa-house"></i>
-
-<span>
-Home
-</span>
-
-</button>
-
-
-
-<button>
-
-<i class="fa-solid fa-cloud-sun"></i>
-
-<span>
-Καιρός
-</span>
-
-</button>
-
-
-
-<button>
-
-<i class="fa-solid fa-fish"></i>
-
-<span>
-Ψάρεμα
-</span>
-
-</button>
-
-
-
-<button>
-
-<i class="fa-solid fa-book"></i>
-
-<span>
-Log
-</span>
-
-</button>
-
-
-
-<button>
-
-<i class="fa-solid fa-user"></i>
-
-<span>
-Προφίλ
-</span>
-
-</button>
-
-
-</nav>
-
-
-
-</div>
-
-
-
-<script src="app.js"></script>
-
-
-</body>
-
-</html>
+print(path)
