@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="el">
-
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-<title>Fishing Dashboard</title>
+    <title>Fishing Dashboard</title>
 
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
-<link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 
@@ -18,37 +18,36 @@
 <body>
 
 
-<div class="app">
+<div class="app-container">
+
+
+<!-- ================= HEADER ================= -->
+
+
+<header class="app-header">
+
+
+    <div class="location">
+
+        <i class="fa-solid fa-location-dot"></i>
+
+        <div>
+
+            <h1>Κάλυμνος</h1>
+
+            <p>Αιγαίο Πέλαγος</p>
+
+        </div>
+
+    </div>
 
 
 
-<!-- HEADER -->
+    <button class="icon-button">
 
-<header class="header">
+        <i class="fa-solid fa-gear"></i>
 
-
-<div>
-
-<p class="date">
-2 Αυγούστου 2026
-</p>
-
-
-<h1>
-🎣 Fishing Dashboard
-</h1>
-
-
-<p class="location">
-📍 Κάλυμνος
-</p>
-
-</div>
-
-
-<div class="profile">
-⚙️
-</div>
+    </button>
 
 
 </header>
@@ -57,71 +56,645 @@
 
 
 
-
-<!-- SCORE -->
-
-<section class="score-card">
+<!-- ================= TOP SUMMARY ================= -->
 
 
-<div class="score-header">
+<section class="card summary-card widget" data-widget="summary">
+
+
+    <div class="weather-main">
+
+
+        <div class="weather-icon">
+
+            <i class="fa-solid fa-sun"></i>
+
+        </div>
+
+
+        <div>
+
+            <h2>28°C</h2>
+
+            <p>Καθαρός ουρανός</p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="summary-grid">
+
+
+        <div>
+
+            <span>Άνεμος</span>
+
+            <strong>ΒΔ 4 Bf</strong>
+
+        </div>
+
+
+
+        <div>
+
+            <span>Πίεση</span>
+
+            <strong>1015 hPa</strong>
+
+        </div>
+
+
+
+        <div>
+
+            <span>Θάλασσα</span>
+
+            <strong>0.6 m</strong>
+
+        </div>
+
+
+    </div>
+
+
+
+</section>
+
+
+
+
+
+
+
+<!-- ================= FISHING SCORE ================= -->
+
+
+<section class="card widget draggable" data-widget="fishing-score">
+
+
+<div class="card-header">
+
+
+    <h3>
+
+        <i class="fa-solid fa-fish"></i>
+
+        Fishing Score
+
+    </h3>
+
+
+</div>
+
+
+
+<div class="score-area">
+
+
+    <div class="score-circle">
+
+        <span>82</span>
+
+        <small>/100</small>
+
+    </div>
+
+
+
+    <div class="score-text">
+
+
+        <h4>Πολύ καλή ημέρα</h4>
+
+
+        <p>
+            Ιδανικές συνθήκες για ψάρεμα
+        </p>
+
+
+    </div>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+<!-- ================= ALERTS ================= -->
+
+
+<section class="card widget draggable" data-widget="alerts">
+
+
+<div class="card-header">
+
+
+<h3>
+
+<i class="fa-solid fa-bell"></i>
+
+Fishing Alerts
+
+</h3>
+
+
+</div>
+
+
+
+<div class="alert">
+
+
+<i class="fa-solid fa-check"></i>
+
 
 <div>
 
+<strong>06:30 - 09:00</strong>
+
+<p>
+Υψηλή δραστηριότητα ψαριών
+</p>
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="alert">
+
+
+<i class="fa-solid fa-moon"></i>
+
+
+<div>
+
+<strong>19:45 - 21:15</strong>
+
+<p>
+Καλό solunar παράθυρο
+</p>
+
+</div>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ================= HOURLY CONDITIONS ================= -->
+
+
+<section class="card widget draggable" data-widget="hourly">
+
+
+<div class="card-header">
+
+
+<h3>
+
+<i class="fa-solid fa-clock"></i>
+
+Ωριαίες Συνθήκες
+
+</h3>
+
+
+</div>
+
+
+
+
+<div class="hourly-container">
+
+
+
+<div class="hour-card">
+
+<span>18:00</span>
+
+<i class="fa-solid fa-sun"></i>
+
+<strong>28°</strong>
+
+<small>ΒΔ 4Bf</small>
+
+</div>
+
+
+
+
+<div class="hour-card">
+
+<span>19:00</span>
+
+<i class="fa-solid fa-cloud-sun"></i>
+
+<strong>27°</strong>
+
+<small>ΒΔ 3Bf</small>
+
+</div>
+
+
+
+
+<div class="hour-card">
+
+<span>20:00</span>
+
+<i class="fa-solid fa-moon"></i>
+
+<strong>25°</strong>
+
+<small>Δ 2Bf</small>
+
+</div>
+
+
+
+
+<div class="hour-card">
+
+<span>21:00</span>
+
+<i class="fa-solid fa-moon"></i>
+
+<strong>24°</strong>
+
+<small>ΝΔ 2Bf</small>
+
+</div>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ================= WIND ================= -->
+
+
+<section class="card widget draggable" data-widget="wind">
+
+
+<div class="card-header">
+
+
+<h3>
+
+<i class="fa-solid fa-wind"></i>
+
+Άνεμος
+
+</h3>
+
+
+</div>
+
+
+
+
+<div class="wind-box">
+
+
+<div class="compass">
+
+
+<span>Β</span>
+
+<div class="direction-arrow">
+↑
+</div>
+
+<span>Ν</span>
+
+
+</div>
+
+
+
+
+<div class="wind-info">
+
+
+<h2>ΒΔ</h2>
+
+<strong>
+18 km/h
+</strong>
+
+
+<p>
+4 Beaufort
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+<!-- ================= PRESSURE ================= -->
+
+
+<section class="card widget draggable" data-widget="pressure">
+
+
+<div class="card-header">
+
+
+<h3>
+
+<i class="fa-solid fa-gauge-high"></i>
+
+Βαρομετρική Πίεση
+
+</h3>
+
+
+</div>
+
+
+
+<div class="pressure-number">
+
+
+<strong>
+1015 hPa
+</strong>
+
+
 <span>
-Σήμερα
+Σταθερή
 </span>
 
 
-<h2>
-Fishing Score
-</h2>
-
-</div>
-
-
-<div class="condition">
-Εξαιρετικές Συνθήκες
-</div>
-
-
 </div>
 
 
 
+<div class="chart-box">
 
-<div class="score-main">
+
+<svg viewBox="0 0 300 120">
 
 
-<div class="circle-score">
+<polyline points="
+0,80 
+40,70 
+80,75 
+120,55 
+160,60 
+200,45 
+240,50 
+300,35
+"/>
 
-87
+
+</svg>
+
 
 </div>
 
 
 
-<div class="quick-info">
+</section>
+<!-- ================= SEA CONDITIONS ================= -->
+
+
+<section class="card widget draggable" data-widget="sea">
+
+
+<div class="card-header">
+
+<h3>
+
+<i class="fa-solid fa-water"></i>
+
+Συνθήκες Θάλασσας
+
+</h3>
+
+</div>
+
+
+
+<div class="sea-grid">
 
 
 <div>
-🌬️ ΒΔ 2 Bf
+
+<span>Κύματα</span>
+
+<strong>0.6 m</strong>
+
 </div>
+
 
 
 <div>
-🎈 1018 hPa
+
+<span>Περίοδος</span>
+
+<strong>5 sec</strong>
+
 </div>
+
 
 
 <div>
-🌙 82%
+
+<span>Θερμοκρασία</span>
+
+<strong>24°C</strong>
+
 </div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- ================= WAVES ================= -->
+
+
+<section class="card widget draggable" data-widget="waves">
+
+
+<div class="card-header">
+
+
+<h3>
+
+<i class="fa-solid fa-wave-square"></i>
+
+Κύματα
+
+</h3>
+
+
+</div>
+
+
+
+<div class="wave-chart">
+
+
+<svg viewBox="0 0 300 120">
+
+
+<path d="
+M0 70
+Q40 30 80 70
+T160 70
+T240 55
+T300 70
+"/>
+
+
+</svg>
+
+
+</div>
+
+
+
+<div class="wave-details">
+
+<span>
+Ύψος: 0.6m
+</span>
+
+
+<span>
+Διεύθυνση: ΒΔ
+</span>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ================= TIDES ================= -->
+
+
+<section class="card widget draggable" data-widget="tides">
+
+
+<div class="card-header">
+
+
+<h3>
+
+<i class="fa-solid fa-arrows-up-down"></i>
+
+Παλίρροιες
+
+</h3>
+
+
+</div>
+
+
+
+<div class="tide-chart">
+
+
+<svg viewBox="0 0 300 120">
+
+
+<path d="
+M0 80
+C40 20 80 20 120 80
+C170 130 230 100 300 40
+"/>
+
+
+</svg>
+
+
+</div>
+
+
+
+<div class="tide-info">
 
 
 <div>
-🌊 0.35 m
+
+<span>Υψηλή</span>
+
+<strong>14:20</strong>
+
 </div>
 
+
+
+<div>
+
+<span>Χαμηλή</span>
+
+<strong>21:35</strong>
 
 </div>
 
@@ -138,120 +711,148 @@ Fishing Score
 
 
 
-<!-- CONDITIONS -->
+
+<!-- ================= CURRENTS ================= -->
 
 
-<section class="section">
+<section class="card widget draggable" data-widget="currents">
 
 
-<h2>
-🌦️ Συνθήκες
-</h2>
+<div class="card-header">
 
-
-
-<div class="condition-grid">
-
-
-
-<div class="condition-card">
 
 <h3>
-🌬️ Άνεμος
+
+<i class="fa-solid fa-arrows-rotate"></i>
+
+Ρεύματα
+
 </h3>
 
-<strong>
-ΒΔ 2 Bf
-</strong>
-
-
-<div class="chart">
 
 </div>
 
 
+
+
+<div class="current-box">
+
+
+<div class="current-icon">
+
+→
+
+</div>
+
+
+
+<div>
+
+<strong>
+1.2 knots
+</strong>
+
+
 <p>
-Σταθερός όλη μέρα
+Ανατολικό ρεύμα
 </p>
 
 
 </div>
 
 
+</div>
 
 
 
-<div class="condition-card">
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ================= MOON ================= -->
+
+
+<section class="card widget draggable" data-widget="moon">
+
+
+<div class="card-header">
+
 
 <h3>
-🎈 Βαρομετρική Πίεση
+
+<i class="fa-solid fa-moon"></i>
+
+Σελήνη
+
 </h3>
 
-
-<strong>
-1018 hPa
-</strong>
-
-
-<div class="chart pressure">
 
 </div>
 
 
+
+<div class="moon-box">
+
+
+<div class="moon-icon">
+
+🌔
+
+</div>
+
+
+
+<div>
+
+<strong>
+72%
+</strong>
+
+
 <p>
-Σταθερή τάση
+Αυξανόμενο φεγγάρι
 </p>
 
 
 </div>
 
 
-
-
-
-<div class="condition-card">
-
-<h3>
-🌊 Συνθήκες Θάλασσας
-</h3>
-
-
-<strong>
-0.35 m
-</strong>
-
-
-<div class="chart wave">
-
-</div>
-
-
-<p>
-Ήρεμη θάλασσα
-</p>
-
-
 </div>
 
 
 
+</section>
 
 
-<div class="condition-card">
+
+
+
+
+
+
+
+<!-- ================= SOLUNAR ================= -->
+
+
+<section class="card widget draggable" data-widget="solunar">
+
+
+<div class="card-header">
+
 
 <h3>
-🌙 Σελήνη
+
+<i class="fa-solid fa-star"></i>
+
+Solunar
+
 </h3>
-
-
-<strong>
-82%
-</strong>
-
-
-<p>
-Αύξουσα
-</p>
 
 
 </div>
@@ -259,46 +860,34 @@ Fishing Score
 
 
 
-
-<div class="condition-card">
-
-<h3>
-🧭 Ρεύματα
-</h3>
+<div class="solunar-list">
 
 
-<strong>
-0.4 kn
-</strong>
+<div>
 
+<span>Ανατολή</span>
 
-<p>
-↗ Ανατολικά
-</p>
-
+<strong>06:42</strong>
 
 </div>
 
 
 
+<div class="active">
+
+<span>Major Activity</span>
+
+<strong>19:45 - 21:15</strong>
+
+</div>
 
 
-<div class="condition-card">
 
-<h3>
-🌊 Παλίρροια
-</h3>
+<div>
 
+<span>Δύση</span>
 
-<strong>
-08:10
-</strong>
-
-
-<p>
-Άμπωτη 14:42
-</p>
-
+<strong>20:18</strong>
 
 </div>
 
@@ -314,94 +903,108 @@ Fishing Score
 
 
 
-<!-- TECHNIQUE -->
 
 
-<section class="section">
+<!-- ================= FISH ACTIVITY ================= -->
 
 
-<h2>
-🎣 Τεχνική
-</h2>
+<section class="card widget draggable" data-widget="fish-activity">
+
+
+<div class="card-header">
+
+
+<h3>
+
+<i class="fa-solid fa-fish"></i>
+
+Fish Activity
+
+</h3>
+
+
+</div>
+
+
+
+<div class="activity">
+
+
+<div class="activity-bar">
+
+<span></span>
+
+</div>
+
+
+<strong>
+Υψηλή δραστηριότητα
+</strong>
+
+
+<p>
+Κατάλληλες συνθήκες για τσιπούρα και σαργό
+</p>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ================= TECHNIQUE ================= -->
+
+
+<section class="card widget draggable" data-widget="technique">
+
+
+<div class="card-header">
+
+
+<h3>
+
+<i class="fa-solid fa-rod-fishing"></i>
+
+Τεχνική
+
+</h3>
+
+
+</div>
+
 
 
 <div class="techniques">
 
 
-<button class="active">
-LRF
+<button>
+🎣 Spinning
 </button>
 
 
 <button>
-Spinning
+🐟 LRF
 </button>
 
 
 <button>
-Shore Jigging
+🌊 Shore Jigging
 </button>
 
 
 <button>
-Εγγλέζικο
+⚓ Slow Pitch
 </button>
 
-
-</div>
-
-
-
-<div class="selected-tech">
-
-🎯 Επιλεγμένη:
-<b>
-LRF
-</b>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<!-- ALERTS -->
-
-
-<section class="section">
-
-
-<h2>
-⚠️ Fishing Alerts
-</h2>
-
-
-
-<div class="alert green">
-
-🟢 Ιδανικός άνεμος για LRF
-
-</div>
-
-
-
-<div class="alert green">
-
-🟢 Σταθερή βαρομετρική πίεση
-
-</div>
-
-
-
-<div class="alert yellow">
-
-🟡 Το κύμα ανεβαίνει το απόγευμα
 
 </div>
 
@@ -416,31 +1019,62 @@ LRF
 
 
 
-<!-- CALENDAR -->
+
+<!-- ================= LOGBOOK ================= -->
 
 
-<section class="section">
+<section class="card widget draggable" data-widget="logbook">
 
 
-<h2>
-📖 Ημερολόγιο Ψαρέματος
-</h2>
+<div class="card-header">
 
 
-<div class="module">
+<h3>
+
+<i class="fa-solid fa-book"></i>
+
+Fishing Logbook
+
+</h3>
+
+
+</div>
+
+
+
+<div class="log-item">
+
+
+<div>
+
+<strong>
+02/08/2026
+</strong>
 
 
 <p>
-Κατέγραψε τις εξορμήσεις σου
+Σαργός - Spinning
 </p>
 
 
-<button>
-+ Νέα Εξόρμηση
-</button>
+</div>
+
+
+<span>
+⭐ 4/5
+</span>
 
 
 </div>
+
+
+
+<button class="add-button">
+
++ Νέα Καταγραφή
+
+</button>
+
 
 
 </section>
@@ -451,32 +1085,66 @@ LRF
 
 
 
-<!-- SPOTS -->
 
 
-<section class="section">
+<!-- ================= SPOTS ================= -->
 
 
-<h2>
-📍 Fishing Spots
-</h2>
+<section class="card widget draggable" data-widget="spots">
+
+
+<div class="card-header">
+
+
+<h3>
+
+<i class="fa-solid fa-map-location-dot"></i>
+
+Fishing Spots
+
+</h3>
+
+
+</div>
 
 
 
-<div class="module">
+<div class="spot-item">
+
+
+<div>
+
+<strong>
+Βραχώδης Κόλπος
+</strong>
 
 
 <p>
-Αποθηκευμένα σημεία ψαρέματος
+LRF / Spinning
 </p>
 
 
+</div>
+
+
+
 <button>
+
+<i class="fa-solid fa-location-arrow"></i>
+
+</button>
+
+
+</div>
+
+
+
+<button class="add-button">
+
 + Νέο Spot
+
 </button>
 
-
-</div>
 
 
 </section>
@@ -487,34 +1155,70 @@ LRF
 
 
 
-<!-- MENU -->
 
 
-<nav class="menu">
+<!-- ================= BOTTOM NAVIGATION ================= -->
 
 
-<button>
-🏠
+<nav class="bottom-navigation">
+
+
+<button class="active">
+
+<i class="fa-solid fa-house"></i>
+
+<span>
+Home
+</span>
+
 </button>
 
 
+
 <button>
-🌦️
+
+<i class="fa-solid fa-cloud-sun"></i>
+
+<span>
+Καιρός
+</span>
+
 </button>
 
 
+
 <button>
-📖
+
+<i class="fa-solid fa-fish"></i>
+
+<span>
+Ψάρεμα
+</span>
+
 </button>
 
 
+
 <button>
-📍
+
+<i class="fa-solid fa-book"></i>
+
+<span>
+Log
+</span>
+
 </button>
 
 
+
 <button>
-⚙️
+
+<i class="fa-solid fa-user"></i>
+
+<span>
+Προφίλ
+</span>
+
 </button>
 
 
@@ -522,14 +1226,13 @@ LRF
 
 
 
-
 </div>
+
 
 
 <script src="app.js"></script>
 
 
 </body>
-
 
 </html>
