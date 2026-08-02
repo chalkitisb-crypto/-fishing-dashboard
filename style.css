@@ -255,7 +255,7 @@ border:
 }
 
 
-/* Cards */
+/* ---------- CARDS V2 ---------- */
 
 .grid {
 
@@ -265,7 +265,7 @@ border:
 
     gap:14px;
 
-    margin-top:20px;
+    margin-top:22px;
 
 }
 
@@ -275,18 +275,44 @@ border:
 
     background:
 
-    rgba(255,255,255,.08);
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,.12),
+        rgba(255,255,255,.05)
+    );
 
-    backdrop-filter:blur(15px);
 
-    border-radius:22px;
+    backdrop-filter:blur(18px);
+
+
+    border-radius:26px;
+
 
     padding:18px;
 
-    min-height:120px;
+
+    min-height:145px;
+
 
     border:
-    1px solid rgba(255,255,255,.1);
+
+    1px solid rgba(255,255,255,.12);
+
+
+    box-shadow:
+
+    0 15px 35px rgba(0,0,0,.25);
+
+
+}
+
+
+
+.card-icon {
+
+    font-size:28px;
+
+    margin-bottom:12px;
 
 }
 
@@ -294,18 +320,39 @@ border:
 
 .card h3 {
 
-    margin-top:0;
+    margin:0 0 8px;
 
-    font-size:17px;
+    font-size:16px;
+
+    font-weight:600;
+
+    opacity:.85;
 
 }
 
 
+
+.card strong {
+
+    display:block;
+
+    font-size:25px;
+
+    font-weight:700;
+
+    margin-bottom:6px;
+
+}
+
+
+
 .card p {
 
-    font-size:15px;
+    margin:0;
 
-    opacity:.85;
+    font-size:13px;
+
+    opacity:.65;
 
 }
 
