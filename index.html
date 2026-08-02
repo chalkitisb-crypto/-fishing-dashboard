@@ -1,311 +1,125 @@
-from pathlib import Path
-
-path = Path("/mnt/data/index.html")
-
-html = path.read_text(encoding="utf-8")
-
-old = '''        <article class="panel cloud-panel widget" data-widget="cloud-cover">
-
-          <div class="section-title">
-
-            <i class="fa-solid fa-cloud"></i>
-
-            <span>ΝΕΦΟΚΑΛΥΨΗ (%) – ΑΝΑ ΩΡΑ</span>
-
-          </div>
-
-          <div class="hourly-strip cloud-strip">
-
-            <article class="hour-cell">
-
-              <time>08:00</time>
-
-              <i class="fa-solid fa-cloud-sun weather-hour-icon sun-cloud"></i>
-
-              <strong>5%</strong>
-
-              <span class="mini-bar"><i style="width:5%"></i></span>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>09:00</time>
-
-              <i class="fa-solid fa-cloud-sun weather-hour-icon sun-cloud"></i>
-
-              <strong>10%</strong>
-
-              <span class="mini-bar"><i style="width:10%"></i></span>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>10:00</time>
-
-              <i class="fa-solid fa-cloud-sun weather-hour-icon sun-cloud"></i>
-
-              <strong>15%</strong>
-
-              <span class="mini-bar"><i style="width:15%"></i></span>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>11:00</time>
-
-              <i class="fa-solid fa-cloud weather-hour-icon"></i>
-
-              <strong>20%</strong>
-
-              <span class="mini-bar"><i style="width:20%"></i></span>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>12:00</time>
-
-              <i class="fa-solid fa-cloud weather-hour-icon"></i>
-
-              <strong>25%</strong>
-
-              <span class="mini-bar"><i style="width:25%"></i></span>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>13:00</time>
-
-              <i class="fa-solid fa-cloud weather-hour-icon"></i>
-
-              <strong>30%</strong>
-
-              <span class="mini-bar"><i style="width:30%"></i></span>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>14:00</time>
-
-              <i class="fa-solid fa-cloud weather-hour-icon"></i>
-
-              <strong>35%</strong>
-
-              <span class="mini-bar"><i style="width:35%"></i></span>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>15:00</time>
-
-              <i class="fa-solid fa-cloud weather-hour-icon"></i>
-
-              <strong>45%</strong>
-
-              <span class="mini-bar"><i style="width:45%"></i></span>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>16:00</time>
-
-              <i class="fa-solid fa-cloud weather-hour-icon"></i>
-
-              <strong>50%</strong>
-
-              <span class="mini-bar"><i style="width:50%"></i></span>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>17:00</time>
-
-              <i class="fa-solid fa-cloud weather-hour-icon"></i>
-
-              <strong>40%</strong>
-
-              <span class="mini-bar"><i style="width:40%"></i></span>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>18:00</time>
-
-              <i class="fa-solid fa-cloud weather-hour-icon"></i>
-
-              <strong>30%</strong>
-
-              <span class="mini-bar"><i style="width:30%"></i></span>
-
-            </article>
-
-          </div>
-
-        </article>'''
-
-new = '''        <article class="panel cloud-panel widget" data-widget="hourly-conditions">
-
-          <div class="section-title">
-
-            <i class="fa-solid fa-cloud-sun"></i>
-
-            <span>ΣΥΝΘΗΚΕΣ ΚΑΙΡΟΥ – ΑΝΑ ΩΡΑ</span>
-
-          </div>
-
-          <div class="hourly-strip cloud-strip">
-
-            <article class="hour-cell">
-
-              <time>08:00</time>
-
-              <i class="fa-solid fa-sun weather-hour-icon sun-cloud"></i>
-
-              <strong>Ηλιοφάνεια</strong>
-
-              <small>22°C</small>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>09:00</time>
-
-              <i class="fa-solid fa-sun weather-hour-icon sun-cloud"></i>
-
-              <strong>Ηλιοφάνεια</strong>
-
-              <small>23°C</small>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>10:00</time>
-
-              <i class="fa-solid fa-cloud-sun weather-hour-icon sun-cloud"></i>
-
-              <strong>Αραιή συννεφιά</strong>
-
-              <small>24°C</small>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>11:00</time>
-
-              <i class="fa-solid fa-cloud-sun weather-hour-icon sun-cloud"></i>
-
-              <strong>Αραιή συννεφιά</strong>
-
-              <small>25°C</small>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>12:00</time>
-
-              <i class="fa-solid fa-cloud weather-hour-icon"></i>
-
-              <strong>Συννεφιά</strong>
-
-              <small>25°C</small>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>13:00</time>
-
-              <i class="fa-solid fa-cloud weather-hour-icon"></i>
-
-              <strong>Συννεφιά</strong>
-
-              <small>26°C</small>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>14:00</time>
-
-              <i class="fa-solid fa-cloud-sun weather-hour-icon sun-cloud"></i>
-
-              <strong>Αραιή συννεφιά</strong>
-
-              <small>26°C</small>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>15:00</time>
-
-              <i class="fa-solid fa-cloud-sun weather-hour-icon sun-cloud"></i>
-
-              <strong>Αραιή συννεφιά</strong>
-
-              <small>25°C</small>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>16:00</time>
-
-              <i class="fa-solid fa-cloud weather-hour-icon"></i>
-
-              <strong>Συννεφιά</strong>
-
-              <small>24°C</small>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>17:00</time>
-
-              <i class="fa-solid fa-cloud weather-hour-icon"></i>
-
-              <strong>Συννεφιά</strong>
-
-              <small>23°C</small>
-
-            </article>
-
-            <article class="hour-cell">
-
-              <time>18:00</time>
-
-              <i class="fa-solid fa-cloud-sun weather-hour-icon sun-cloud"></i>
-
-              <strong>Αραιή συννεφιά</strong>
-
-              <small>22°C</small>
-
-            </article>
-
-          </div>
-
-        </article>'''
-
-if old not in html:
-
-    raise ValueError("Δεν βρέθηκε η παλιά ενότητα νεφοκάλυψης στο αρχείο.")
-
-html = html.replace(old, new)
-
-path.write_text(html, encoding="utf-8")
-
-print(path)
+07:32
+100%
+
+FISHING DASHBOARD
+
+ΚΑΛΥΜΝΟΣ, ΕΛΛΑΔΑ
+  
+ΤΕΤΑΡΤΗ
+29
+ΜΑΪΟΥ 2024
+
+ΗΛΙΟΦΑΝΕΙΑ
+22° C
+Αίθριος ουρανός
+Αισθητή θερμ. 22°C
+Υγρασία 56%
+Πιθανότητα βροχής 0%
+UV Δείκτης 6 ΥΨΗΛΟΣ
+ΑΝΕΜΟΣ (ΜΠΟΦΟΡ) – ΑΝΑ ΩΡΑ
+08:00 ΒΑ 2 8 km/h
+09:00 ΒΑ 2 10 km/h
+10:00 ΒΑ 3 13 km/h
+11:00 Β 3 16 km/h
+12:00 Β 4 18 km/h
+13:00 ΒΔ 4 19 km/h
+14:00 ΒΔ 4 17 km/h
+15:00 ΒΔ 3 15 km/h
+16:00 Β 3 13 km/h
+17:00 Β 2 10 km/h
+18:00 ΒΑ 2 8 km/h
+ΒΑΡΟΜΕΤΡΙΚΗ ΠΙΕΣΗ (hPa) – ΑΝΑ ΩΡΑ
+
+1016
+1017
+1018
+1019
+1020
+1021
+1020
+1019
+1018
+1017
+1016
+08:00 09:00 10:00 11:00 12:00 13:00 14:00 15:00 16:00 17:00 18:00
+ΤΩΡΑ 1019 hPa Σταθερή
+ΦΑΣΗ ΣΕΛΗΝΗΣ
+72% Waxing Gibbous
+Ανατολή 13:28
+Δύση 01:02
+ΣΥΝΘΗΚΕΣ ΚΑΙΡΟΥ – ΑΝΑ ΩΡΑ
+08:00 Ηλιοφάνεια 22°C
+09:00 Ηλιοφάνεια 23°C
+10:00 Αραιή συννεφιά 24°C
+11:00 Αραιή συννεφιά 25°C
+12:00 Συννεφιά 25°C
+13:00 Συννεφιά 26°C
+14:00 Αραιή συννεφιά 26°C
+15:00 Αραιή συννεφιά 25°C
+16:00 Συννεφιά 24°C
+17:00 Συννεφιά 23°C
+18:00 Αραιή συννεφιά 22°C
+ΡΕΥΜΑΤΑ (ΤΑΧΥΤΗΤΑ & ΔΙΕΥΘΥΝΣΗ) – ΑΝΑ ΩΡΑ
+08:00 ΝΑ 0.3 kn
+09:00 ΝΑ 0.4 kn
+10:00 Α 0.4 kn
+11:00 Α 0.5 kn
+12:00 Α 0.6 kn
+13:00 ΔΝΔ 0.7 kn
+14:00 Δ 0.7 kn
+15:00 Δ 0.6 kn
+16:00 ΝΔ 0.5 kn
+17:00 ΝΔ 0.4 kn
+18:00 Ν 0.3 kn
+ΠΑΛΙΡΡΟΙΕΣ (m) – ΑΝΑ ΩΡΑ
+ΕΠΟΜΕΝΗ
+ΠΛΗΜΜΥΡΙΔΑ 11:40 +0.82 m
+
+05:15
++0.78 m
+11:40
+-0.32 m
+17:55
++0.85 m
+23:59
+-0.28 m
+00:00 03:00 06:00 09:00 12:00 15:00 18:00 21:00 24:00
+ΕΠΟΜΕΝΗ
+ΑΜΠΩΤΗ 17:55 -0.32 m
+ΘΕΡΜΟΚΡΑΣΙΕΣ
+Αέρας 22°c
+Νερού 19°c
+ΚΥΜΑΤΑ
+Ύψος 0.4 m
+Περίοδος 4.8 s
+Διεύθυνση ΒΑ
+SOLUNAR (ΚΑΛΥΤΕΡΕΣ ΩΡΕΣ)
+Major 05:45 – 07:45 18:10 – 20:10
+Minor 11:30 – 13:00 23:10 – 00:30
+FISHING SCORE
+
+
+85 /100
+ΕΞΑΙΡΕΤΙΚΕΣ ΣΥΝΘΗΚΕΣ
+FISH ACTIVITY
+
+ΥΨΗΛΗ
+ΣελήνηΚΑΛΗ
+ΠίεσηΙΔΑΝΙΚΗ
+ΡεύματαΚΑΛΑ
+ΠαλίρροιαΠΟΛΥ ΚΑΛΗ
+ΚύματαΙΔΑΝΙΚΑ
+FISHING ALERTS
+
+Ιδανικές συνθήκες για spinning το πρωί και το απόγευμα.
+Αυξάνεται ο άνεμος μετά τις 14:00.
+Προσοχή στα ρεύματα μετά τις 16:00.
+UV υψηλός – χρησιμοποιήστε αντηλιακό.
+DASHBOARD   ΧΑΡΤΗΣ   SPOTS   ΗΜΕΡΟΛΟΓΙΟ   ΡΥΘΜΙΣΕΙΣ
+CHOOSE YOUR TECHNIQUE
+
+ 
+SPINNING Excellent   
+LRF Very Good   
+ΕΓΓΛΕΖΙΚΟ Good   
+SHORE JIGGING Good
