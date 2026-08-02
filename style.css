@@ -1476,3 +1476,554 @@ svg {
     transition-duration: .01ms !important;
   }
 }
+
+/* =====================================================================
+   FINAL REFERENCE OVERRIDES
+   Συμβατό με το τελευταίο index.html και την κλάση reference-layout-v3
+   ===================================================================== */
+
+.reference-layout-v3 {
+  --fd-gap: 7px;
+  --fd-panel-radius: 16px;
+  --fd-panel-line: rgba(30, 143, 216, .48);
+  --fd-panel-line-strong: rgba(51, 178, 255, .72);
+  --fd-panel-bg-top: rgba(11, 24, 40, .97);
+  --fd-panel-bg-bottom: rgba(4, 12, 22, .99);
+  --fd-inner-line: rgba(40, 137, 197, .22);
+}
+
+.reference-layout-v3 .dashboard-content {
+  padding: 8px 8px calc(18px + env(safe-area-inset-bottom));
+}
+
+.reference-layout-v3 .panel,
+.reference-layout-v3 .technique-card {
+  border-radius: var(--fd-panel-radius);
+  border-color: var(--fd-panel-line);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(36, 127, 188, .055), transparent 38%),
+    linear-gradient(180deg, var(--fd-panel-bg-top), var(--fd-panel-bg-bottom));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .025),
+    inset 0 0 16px rgba(20, 103, 159, .025),
+    0 8px 22px rgba(0, 0, 0, .29);
+}
+
+.reference-layout-v3 .hero-grid,
+.reference-layout-v3 .moon-cloud-grid,
+.reference-layout-v3 .triple-grid,
+.reference-layout-v3 .score-grid,
+.reference-layout-v3 .technique-grid {
+  gap: var(--fd-gap);
+}
+
+.reference-layout-v3 .full-width-panel,
+.reference-layout-v3 .pressure-panel,
+.reference-layout-v3 .tide-panel,
+.reference-layout-v3 .moon-cloud-grid,
+.reference-layout-v3 .triple-grid,
+.reference-layout-v3 .score-grid,
+.reference-layout-v3 .technique-section,
+.reference-layout-v3 .bottom-navigation {
+  margin-top: var(--fd-gap);
+}
+
+/* ========================= HEADER ========================= */
+
+.reference-layout-v3 .top-header {
+  min-height: 74px;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  gap: 9px;
+  padding: 8px 11px 10px;
+  background:
+    linear-gradient(180deg, rgba(9, 22, 36, .99), rgba(3, 10, 18, .99));
+  border-bottom-color: rgba(37, 139, 205, .44);
+}
+
+.reference-layout-v3 .brand-line h1 {
+  font-size: 14px;
+  letter-spacing: .64px;
+}
+
+.reference-layout-v3 .brand-fish {
+  width: 31px;
+  filter: drop-shadow(0 0 5px rgba(70, 201, 255, .30));
+}
+
+.reference-layout-v3 .location-line {
+  margin-top: 5px;
+  font-size: 8.5px;
+  letter-spacing: .48px;
+}
+
+.reference-layout-v3 .header-actions {
+  display: grid;
+  grid-template-columns: 32px 32px;
+  gap: 6px;
+}
+
+.reference-layout-v3 .header-action {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 8px;
+  border: 1px solid rgba(46, 148, 211, .49);
+  background:
+    radial-gradient(circle at 38% 25%, rgba(83, 177, 232, .14), transparent 42%),
+    linear-gradient(180deg, #0c2134 0%, #06121f 100%);
+  color: #cbefff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .035),
+    inset 0 0 12px rgba(37, 143, 206, .07),
+    0 5px 12px rgba(0, 0, 0, .24);
+}
+
+.reference-layout-v3 .header-action svg,
+.reference-layout-v3 .header-control-icon {
+  width: 17px;
+  height: 17px;
+  display: block;
+}
+
+.reference-layout-v3 .favorite-button.is-favorite,
+.reference-layout-v3 .header-action.is-favorite {
+  color: #ffd64a;
+  border-color: rgba(255, 211, 66, .66);
+  box-shadow:
+    inset 0 0 12px rgba(255, 205, 52, .08),
+    0 0 9px rgba(255, 205, 52, .10);
+}
+
+/* ========================= TOP CARDS ========================= */
+
+.reference-layout-v3 .hero-grid {
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.reference-layout-v3 .date-card {
+  grid-column: 1;
+  min-height: 160px;
+  padding: 11px 7px;
+}
+
+.reference-layout-v3 .date-number {
+  margin-top: 8px;
+  font-size: 49px;
+}
+
+.reference-layout-v3 .date-month {
+  font-size: 8px;
+}
+
+.reference-layout-v3 .weather-card {
+  grid-column: 2;
+  min-height: 160px;
+  position: relative;
+  padding: 7px 101px 8px 8px;
+}
+
+.reference-layout-v3 .weather-main {
+  min-height: 102px;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 2px;
+}
+
+.reference-layout-v3 .sun-wrap {
+  min-width: 90px;
+  min-height: 94px;
+}
+
+.reference-layout-v3 .premium-sun,
+.reference-layout-v3 .sun-icon {
+  width: 94px;
+  height: 94px;
+  animation: none !important;
+  filter:
+    drop-shadow(0 0 7px rgba(255, 194, 47, .47))
+    drop-shadow(0 0 17px rgba(255, 129, 0, .14));
+}
+
+.reference-layout-v3 .premium-sun *,
+.reference-layout-v3 .sun-rays {
+  animation: none !important;
+}
+
+.reference-layout-v3 .weather-label {
+  font-size: 8.7px;
+}
+
+.reference-layout-v3 .temperature-value {
+  font-size: 41px;
+}
+
+.reference-layout-v3 .temperature-unit {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.reference-layout-v3 .weather-description {
+  font-size: 8.5px;
+}
+
+.reference-layout-v3 .weather-metrics {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 96px;
+  margin: 0;
+  padding: 9px 7px;
+  border-top: 0;
+  border-left: 1px solid rgba(38, 139, 205, .31);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  background:
+    linear-gradient(180deg, rgba(9, 24, 40, .86), rgba(4, 14, 25, .95));
+}
+
+.reference-layout-v3 .weather-metric {
+  display: block;
+  font-size: 6.2px;
+}
+
+.reference-layout-v3 .weather-metric span {
+  display: flex;
+  line-height: 1.15;
+}
+
+.reference-layout-v3 .weather-metric strong {
+  display: block;
+  margin-top: 2px;
+  padding-left: 12px;
+  font-size: 7.3px;
+}
+
+/* ========================= TITLES / ROWS ========================= */
+
+.reference-layout-v3 .section-title {
+  min-height: 27px;
+  padding: 6px 9px;
+  font-size: 8.1px;
+  letter-spacing: .40px;
+}
+
+.reference-layout-v3 .hourly-strip {
+  grid-auto-columns: minmax(47px, 1fr);
+}
+
+.reference-layout-v3 .hour-cell {
+  min-height: 80px;
+  padding: 6px 4px 5px;
+}
+
+.reference-layout-v3 .hour-cell time {
+  font-size: 7px;
+}
+
+.reference-layout-v3 .hour-cell strong {
+  font-size: 9px;
+}
+
+.reference-layout-v3 .hour-cell small,
+.reference-layout-v3 .hour-cell > span {
+  font-size: 6.2px;
+}
+
+/* ========================= WIND COLORS ========================= */
+
+.reference-layout-v3 .wind-arrow,
+.reference-layout-v3 .current-arrow {
+  font-size: 15px;
+  filter: none;
+}
+
+.reference-layout-v3 .wind-strip .hour-cell:nth-child(1) .wind-arrow,
+.reference-layout-v3 .wind-strip .hour-cell:nth-child(2) .wind-arrow {
+  color: #49d4ff !important;
+}
+
+.reference-layout-v3 .wind-strip .hour-cell:nth-child(3) .wind-arrow,
+.reference-layout-v3 .wind-strip .hour-cell:nth-child(4) .wind-arrow {
+  color: #35c3f7 !important;
+}
+
+.reference-layout-v3 .wind-strip .hour-cell:nth-child(5) .wind-arrow,
+.reference-layout-v3 .wind-strip .hour-cell:nth-child(6) .wind-arrow,
+.reference-layout-v3 .wind-strip .hour-cell:nth-child(7) .wind-arrow {
+  color: #168ed9 !important;
+}
+
+.reference-layout-v3 .wind-strip .hour-cell:nth-child(8) .wind-arrow,
+.reference-layout-v3 .wind-strip .hour-cell:nth-child(9) .wind-arrow {
+  color: #259fdd !important;
+}
+
+.reference-layout-v3 .wind-strip .hour-cell:nth-child(10) .wind-arrow,
+.reference-layout-v3 .wind-strip .hour-cell:nth-child(11) .wind-arrow {
+  color: #46caf6 !important;
+}
+
+/* ========================= CURRENT COLORS ========================= */
+
+.reference-layout-v3 .current-strip .hour-cell:nth-child(-n+5) .current-arrow {
+  color: #41df76 !important;
+}
+
+.reference-layout-v3 .current-strip .hour-cell:nth-child(6) .current-arrow,
+.reference-layout-v3 .current-strip .hour-cell:nth-child(7) .current-arrow,
+.reference-layout-v3 .current-strip .hour-cell:nth-child(8) .current-arrow {
+  color: #ff9b28 !important;
+}
+
+.reference-layout-v3 .current-strip .hour-cell:nth-child(n+9) .current-arrow {
+  color: #b8df2a !important;
+}
+
+/* ========================= PRESSURE / MOON ========================= */
+
+.reference-layout-v3 .pressure-panel {
+  grid-template-columns: minmax(0, 1fr) 72px;
+}
+
+.reference-layout-v3 .pressure-now strong {
+  font-size: 21px;
+}
+
+.reference-layout-v3 .moon-cloud-grid {
+  grid-template-columns: 126px minmax(0, 1fr);
+}
+
+.reference-layout-v3 .moon-panel {
+  min-height: 142px;
+}
+
+.reference-layout-v3 .premium-moon {
+  width: 78px;
+}
+
+.reference-layout-v3 .cloud-strip .hour-cell {
+  min-height: 103px;
+}
+
+/* ========================= TIDES ========================= */
+
+.reference-layout-v3 .tide-layout {
+  grid-template-columns: 68px minmax(0, 1fr) 68px;
+}
+
+.reference-layout-v3 .tide-side {
+  padding: 8px 4px;
+}
+
+.reference-layout-v3 .tide-side strong {
+  font-size: 9px;
+}
+
+/* ========================= COMPACT METRIC CARDS ========================= */
+
+.reference-layout-v3 .triple-grid {
+  grid-template-columns: .84fr .96fr 1.20fr;
+}
+
+.reference-layout-v3 .temperature-cells,
+.reference-layout-v3 .waves-cells,
+.reference-layout-v3 .solunar-columns {
+  padding: 8px;
+}
+
+.reference-layout-v3 .temperature-cells strong {
+  font-size: 17px;
+}
+
+.reference-layout-v3 .waves-cells strong {
+  font-size: 12px;
+}
+
+/* ========================= SCORE / ACTIVITY / ALERTS ========================= */
+
+.reference-layout-v3 .score-grid {
+  grid-template-columns: .92fr .92fr 1.16fr;
+}
+
+.reference-layout-v3 .score-panel,
+.reference-layout-v3 .activity-panel,
+.reference-layout-v3 .alerts-panel {
+  min-height: 176px;
+  padding: 8px;
+}
+
+.reference-layout-v3 .score-gauge {
+  min-height: 112px;
+}
+
+.reference-layout-v3 .premium-gauge,
+.reference-layout-v3 .score-gauge svg {
+  max-width: 205px;
+}
+
+.reference-layout-v3 .score-number strong {
+  font-size: 26px;
+}
+
+.reference-layout-v3 .premium-fish {
+  width: 70px;
+  flex-basis: 70px;
+  filter:
+    drop-shadow(0 0 5px rgba(50, 183, 255, .22))
+    drop-shadow(0 0 12px rgba(0, 93, 180, .12));
+}
+
+/* ========================= TECHNIQUES ========================= */
+
+.reference-layout-v3 .technique-section {
+  padding-bottom: 0;
+}
+
+.reference-layout-v3 .technique-heading {
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+
+.reference-layout-v3 .technique-card {
+  min-height: 112px;
+  padding: 7px 4px 9px;
+}
+
+.reference-layout-v3 .technique-icon {
+  min-height: 66px;
+}
+
+.reference-layout-v3 .technique-svg,
+.reference-layout-v3 .technique-icon svg {
+  width: 76px;
+  height: 66px;
+  filter:
+    drop-shadow(0 0 4px rgba(39, 176, 255, .22))
+    drop-shadow(0 0 9px rgba(0, 103, 186, .09));
+}
+
+/* ========================= NAVIGATION LAST ========================= */
+
+.reference-layout-v3 .bottom-navigation {
+  order: 999;
+  position: relative;
+  margin-top: 8px;
+  min-height: 54px;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(8, 19, 31, .985), rgba(3, 10, 18, .995));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .02),
+    0 9px 22px rgba(0, 0, 0, .28);
+}
+
+.reference-layout-v3 .nav-item {
+  min-height: 54px;
+  font-size: 5.6px;
+}
+
+.reference-layout-v3 .nav-item i {
+  font-size: 13px;
+}
+
+/* ========================= EDIT MODE ========================= */
+
+.reference-layout-v3 .widget.fd-editable,
+.reference-layout-v3 .widget.is-editing {
+  outline: 1px dashed rgba(76, 198, 255, .76);
+  outline-offset: 2px;
+}
+
+.reference-layout-v3 .fd-drop-target {
+  box-shadow:
+    0 0 0 2px rgba(55, 186, 255, .72),
+    0 8px 22px rgba(0, 0, 0, .29);
+}
+
+/* ========================= SMALLER IPHONES ========================= */
+
+@media (max-width: 390px) {
+  .reference-layout-v3 .top-header {
+    grid-template-columns: 32px minmax(0, 1fr) auto;
+    padding-inline: 9px;
+  }
+
+  .reference-layout-v3 .brand-line h1 {
+    font-size: 12.5px;
+  }
+
+  .reference-layout-v3 .hero-grid {
+    grid-template-columns: 78px minmax(0, 1fr);
+  }
+
+  .reference-layout-v3 .weather-card {
+    padding-right: 91px;
+  }
+
+  .reference-layout-v3 .weather-metrics {
+    width: 87px;
+  }
+
+  .reference-layout-v3 .weather-main {
+    grid-template-columns: 84px minmax(0, 1fr);
+  }
+
+  .reference-layout-v3 .premium-sun,
+  .reference-layout-v3 .sun-icon {
+    width: 85px;
+    height: 85px;
+  }
+
+  .reference-layout-v3 .temperature-value {
+    font-size: 38px;
+  }
+
+  .reference-layout-v3 .moon-cloud-grid {
+    grid-template-columns: 118px minmax(0, 1fr);
+  }
+
+  .reference-layout-v3 .triple-grid {
+    grid-template-columns: .82fr .98fr 1.2fr;
+  }
+
+  .reference-layout-v3 .score-grid {
+    grid-template-columns: .9fr .9fr 1.2fr;
+  }
+}
+
+@media (max-width: 350px) {
+  .reference-layout-v3 .hero-grid,
+  .reference-layout-v3 .moon-cloud-grid,
+  .reference-layout-v3 .triple-grid,
+  .reference-layout-v3 .score-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reference-layout-v3 .date-card,
+  .reference-layout-v3 .weather-card {
+    grid-column: 1;
+  }
+
+  .reference-layout-v3 .weather-card {
+    padding-right: 8px;
+  }
+
+  .reference-layout-v3 .weather-metrics {
+    position: static;
+    width: auto;
+    margin-top: 6px;
+    padding: 7px 0 0;
+    border-left: 0;
+    border-top: 1px solid rgba(30, 121, 184, .25);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: transparent;
+  }
+
+  .reference-layout-v3 .technique-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
