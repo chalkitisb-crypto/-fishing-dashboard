@@ -23,14 +23,14 @@
 
 <header class="top-header">
 
-<div class="header-left">
+<div>
 
 <p class="date">
 31 Ιουλίου 2026
 </p>
 
 <h1>
-Fishing Dashboard
+🎣 Fishing Dashboard
 </h1>
 
 <p class="location">
@@ -40,9 +40,10 @@ Fishing Dashboard
 </div>
 
 
-<div class="profile-btn">
-🎣
-</div>
+<button class="profile-btn">
+⚙️
+</button>
+
 
 </header>
 
@@ -50,7 +51,9 @@ Fishing Dashboard
 
 
 
-<!-- SCORE -->
+
+<!-- MAIN SCORE -->
+
 
 <section class="hero-card">
 
@@ -72,12 +75,11 @@ Fishing Score
 
 
 <div class="status">
-Εξαιρετικές Συνθήκες
+Εξαιρετικές
 </div>
 
 
 </div>
-
 
 
 
@@ -87,7 +89,7 @@ Fishing Score
 
 <div class="score-ring">
 
-<div class="score-value">
+<div id="score">
 87
 </div>
 
@@ -104,6 +106,11 @@ Fishing Score
 
 
 <div class="info-chip">
+🌊 0.35 m
+</div>
+
+
+<div class="info-chip">
 🎈 1018 hPa
 </div>
 
@@ -113,111 +120,21 @@ Fishing Score
 </div>
 
 
-<div class="info-chip">
-🌊 0.35 m
 </div>
 
 
 </div>
 
 
-</div>
 
 
 
+<div class="recommendation" id="recommendation">
 
-
-
-
-<!-- SCORE ANALYSIS -->
-
-<div class="score-analysis">
-
-
-<h3>
-📊 Ανάλυση Συνθηκών
-</h3>
-
-
-
-<div class="score-row">
-
-<span>
-🌬️ Άνεμος
-</span>
-
-<strong>
-20/20
-</strong>
+🟢 Ιδανικές συνθήκες για LRF
 
 </div>
 
-
-<div class="score-row">
-
-<span>
-🎈 Πίεση
-</span>
-
-<strong>
-18/20
-</strong>
-
-</div>
-
-
-
-<div class="score-row">
-
-<span>
-🌙 Σελήνη
-</span>
-
-<strong>
-16/20
-</strong>
-
-</div>
-
-
-
-<div class="score-row">
-
-<span>
-🌊 Θάλασσα
-</span>
-
-<strong>
-18/20
-</strong>
-
-</div>
-
-
-
-<div class="score-row">
-
-<span>
-🧭 Ρεύματα
-</span>
-
-<strong>
-15/20
-</strong>
-
-</div>
-
-
-
-
-<div class="score-message">
-
-🟢 Ιδανικές συνθήκες για LRF & Spinning
-
-</div>
-
-
-</div>
 
 
 </section>
@@ -228,17 +145,22 @@ Fishing Score
 
 
 
+<!-- CONDITIONS -->
 
-<!-- WEATHER -->
+
+<h2 class="section-title">
+🌦️ Συνθήκες
+</h2>
+
 
 <div class="grid">
 
 
 <div class="card">
 
-<div class="card-icon">
+<span>
 🌬️
-</div>
+</span>
 
 <h3>
 Άνεμος
@@ -258,9 +180,9 @@ Fishing Score
 
 <div class="card">
 
-<div class="card-icon">
+<span>
 🌊
-</div>
+</span>
 
 <h3>
 Συνθήκες Θάλασσας
@@ -271,19 +193,18 @@ Fishing Score
 </strong>
 
 <p>
-Ήρεμη θάλασσα
+Ήρεμη
 </p>
 
 </div>
 
 
 
-
 <div class="card">
 
-<div class="card-icon">
+<span>
 🎈
-</div>
+</span>
 
 <h3>
 Πίεση
@@ -301,12 +222,11 @@ Fishing Score
 
 
 
-
 <div class="card">
 
-<div class="card-icon">
+<span>
 🌙
-</div>
+</span>
 
 <h3>
 Σελήνη
@@ -324,12 +244,11 @@ Fishing Score
 
 
 
-
 <div class="card">
 
-<div class="card-icon">
+<span>
 🧭
-</div>
+</span>
 
 <h3>
 Ρεύματα
@@ -340,19 +259,18 @@ Fishing Score
 </strong>
 
 <p>
-Κατεύθυνση ↗
+↗ Ανατολικά
 </p>
 
 </div>
 
 
 
-
 <div class="card">
 
-<div class="card-icon">
+<span>
 🌊
-</div>
+</span>
 
 <h3>
 Παλίρροια
@@ -380,7 +298,8 @@ Fishing Score
 
 <!-- HOURLY -->
 
-<section class="timeline-section">
+
+<section class="panel">
 
 
 <h2>
@@ -388,84 +307,70 @@ Fishing Score
 </h2>
 
 
-<div class="timeline">
+<div class="hours">
 
 
-<div class="hour-card active-hour">
+<div class="hour active">
 
-<h3>
+<b>
 08:00
-</h3>
+</b>
 
 <p>
-🌬️ ΒΔ 2 Bf
+🌬️ 2 Bf
 </p>
 
 <p>
-🌊 0.3 m
+🌊 0.3m
 </p>
 
 <p>
-🎈 1018 hPa
+🟢 Άριστη
 </p>
-
-<span>
-🟢 Πολύ καλή ώρα
-</span>
 
 </div>
 
 
 
+<div class="hour">
 
-<div class="hour-card">
-
-<h3>
-09:00
-</h3>
-
-<p>
-🌬️ ΒΔ 2 Bf
-</p>
-
-<p>
-🌊 0.35 m
-</p>
-
-<p>
-🎈 1018 hPa
-</p>
-
-<span>
-🟢 Καλή ώρα
-</span>
-
-</div>
-
-
-
-
-<div class="hour-card">
-
-<h3>
+<b>
 10:00
-</h3>
+</b>
 
 <p>
-🌬️ ΒΔ 3 Bf
+🌬️ 3 Bf
 </p>
 
 <p>
-🌊 0.5 m
+🌊 0.5m
 </p>
 
 <p>
-🎈 1017 hPa
+🟡 Καλή
 </p>
 
-<span>
+</div>
+
+
+
+<div class="hour">
+
+<b>
+12:00
+</b>
+
+<p>
+🌬️ 4 Bf
+</p>
+
+<p>
+🌊 0.8m
+</p>
+
+<p>
 🟡 Μέτρια
-</span>
+</p>
 
 </div>
 
@@ -474,8 +379,6 @@ Fishing Score
 
 
 </section>
-
-
 
 
 
@@ -485,48 +388,47 @@ Fishing Score
 
 <!-- TECHNIQUES -->
 
-<section class="tech-section">
+
+<section class="panel">
 
 
 <h2>
-🎣 Επιλογή Τεχνικής
+🎣 Τεχνική
 </h2>
 
 
 
-<div class="tech-buttons">
+<div class="techniques">
 
 
-<button class="tech active">
+<button class="tech active" data-tech="LRF">
 LRF
 </button>
 
 
-<button class="tech">
+<button class="tech" data-tech="Spinning">
 Spinning
 </button>
 
 
-<button class="tech">
+<button class="tech" data-tech="Shore Jigging">
 Shore Jigging
 </button>
 
 
-<button class="tech">
+<button class="tech" data-tech="Εγγλέζικο">
 Εγγλέζικο
 </button>
-
 
 
 </div>
 
 
 
-<div class="selected-tech">
-
+<div class="selected">
 
 🎯 Επιλεγμένη:
-<strong>
+<strong id="selectedTech">
 LRF
 </strong>
 
@@ -534,8 +436,8 @@ LRF
 <br>
 
 
-Fishing Score:
-<strong>
+Score:
+<strong id="techScore">
 92
 </strong>
 
@@ -543,8 +445,8 @@ Fishing Score:
 </div>
 
 
-</section>
 
+</section>
 
 
 
@@ -556,7 +458,7 @@ Fishing Score:
 <!-- ALERTS -->
 
 
-<section class="alerts">
+<section class="panel">
 
 
 <h2>
@@ -564,47 +466,62 @@ Fishing Score:
 </h2>
 
 
-
-<div class="alert-item">
-
-<span>
-🟢
-</span>
-
-<p>
-Ιδανικός άνεμος για LRF
-</p>
-
+<div class="alert">
+🟢 Κατάλληλος άνεμος
 </div>
 
 
-
-<div class="alert-item">
-
-<span>
-🟢
-</span>
-
-<p>
-Σταθερή πίεση
-</p>
-
+<div class="alert">
+🟢 Σταθερή πίεση
 </div>
 
 
-
-<div class="alert-item">
-
-<span>
-🟢
-</span>
-
-<p>
-Καλή δραστηριότητα ψαριών
-</p>
-
+<div class="alert">
+🟢 Καλή δραστηριότητα
 </div>
 
+
+</section>
+
+
+
+
+
+
+
+<!-- FUTURE MODULES -->
+
+
+<section class="panel">
+
+
+<h2>
+📖 Ημερολόγιο Ψαρέματος
+</h2>
+
+
+<p>
+Καταγραφή εξορμήσεων, ψαριών και σημείων.
+</p>
+
+
+</section>
+
+
+
+
+
+<section class="panel">
+
+
+<h2>
+📍 Fishing Spots
+</h2>
+
+
+<p>
+Αποθηκευμένα σημεία ψαρέματος.
+</p>
 
 
 </section>
@@ -616,74 +533,31 @@ Fishing Score:
 
 
 
-<!-- NAV -->
-
-<nav class="bottom-nav">
+<!-- NAVIGATION -->
 
 
-<div class="nav-item active">
+<nav>
 
-<span>
+
+<button>
 🏠
-</span>
+</button>
 
-<small>
-Home
-</small>
-
-</div>
-
-
-<div class="nav-item">
-
-<span>
+<button>
 📍
-</span>
+</button>
 
-<small>
-Spots
-</small>
-
-</div>
-
-
-<div class="nav-item">
-
-<span>
+<button>
 📖
-</span>
+</button>
 
-<small>
-Logbook
-</small>
-
-</div>
-
-
-<div class="nav-item">
-
-<span>
+<button>
 📊
-</span>
+</button>
 
-<small>
-Stats
-</small>
-
-</div>
-
-
-<div class="nav-item">
-
-<span>
+<button>
 ⚙️
-</span>
-
-<small>
-Settings
-</small>
-
-</div>
+</button>
 
 
 </nav>
@@ -693,7 +567,9 @@ Settings
 </div>
 
 
+
 <script src="app.js"></script>
+
 
 </body>
 
