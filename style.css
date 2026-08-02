@@ -1,6 +1,6 @@
 * {
-    box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
 }
 
 
@@ -33,7 +33,7 @@ body {
 
 
 
-/* ---------- HEADER ---------- */
+/* HEADER */
 
 
 .top-header {
@@ -58,8 +58,6 @@ body {
 
     font-weight:700;
 
-    letter-spacing:-1px;
-
 }
 
 
@@ -79,8 +77,6 @@ body {
 .location {
 
     margin:6px 0 0;
-
-    font-size:15px;
 
     opacity:.8;
 
@@ -109,9 +105,6 @@ body {
     linear-gradient(145deg,#1a5978,#0a2230);
 
 
-    border:1px solid rgba(255,255,255,.1);
-
-
     box-shadow:
     0 12px 30px rgba(0,0,0,.35);
 
@@ -121,7 +114,7 @@ body {
 
 
 
-/* ---------- FISHING SCORE ---------- */
+/* FISHING SCORE */
 
 
 .hero-card {
@@ -129,9 +122,7 @@ body {
     background:
     linear-gradient(145deg,#12384d,#071923);
 
-
     border-radius:32px;
-
 
     padding:24px;
 
@@ -153,8 +144,6 @@ body {
 
     justify-content:space-between;
 
-    align-items:flex-start;
-
 }
 
 
@@ -162,8 +151,6 @@ body {
 .hero-label {
 
     margin:0;
-
-    font-size:14px;
 
     opacity:.65;
 
@@ -175,8 +162,6 @@ body {
 
     margin:5px 0 0;
 
-    font-size:22px;
-
 }
 
 
@@ -186,15 +171,11 @@ body {
     background:
     rgba(40,215,160,.15);
 
-
     color:#28d7a0;
-
 
     padding:8px 12px;
 
-
     border-radius:20px;
-
 
     font-size:12px;
 
@@ -222,15 +203,14 @@ body {
 
     height:145px;
 
-
     border-radius:50%;
 
 
     display:flex;
 
-    align-items:center;
-
     justify-content:center;
+
+    align-items:center;
 
 
     background:
@@ -239,10 +219,6 @@ body {
 
     border:
     8px solid #28d7a0;
-
-
-    box-shadow:
-    0 0 30px rgba(40,215,160,.35);
 
 }
 
@@ -275,17 +251,11 @@ body {
     background:
     rgba(255,255,255,.08);
 
-
     padding:9px 14px;
-
 
     border-radius:18px;
 
-
     font-size:14px;
-
-
-    backdrop-filter:blur(10px);
 
 }
 
@@ -293,7 +263,7 @@ body {
 
 
 
-/* ---------- WEATHER CARDS ---------- */
+/* WEATHER CARDS */
 
 
 .grid {
@@ -303,7 +273,6 @@ body {
     grid-template-columns:1fr 1fr;
 
     gap:14px;
-
 
     margin-top:22px;
 
@@ -315,12 +284,7 @@ body {
 
 
     background:
-
-    linear-gradient(
-    145deg,
-    rgba(255,255,255,.12),
-    rgba(255,255,255,.05)
-    );
+    rgba(255,255,255,.08);
 
 
     backdrop-filter:blur(18px);
@@ -336,13 +300,7 @@ body {
 
 
     border:
-
     1px solid rgba(255,255,255,.12);
-
-
-    box-shadow:
-
-    0 15px 35px rgba(0,0,0,.25);
 
 }
 
@@ -352,15 +310,11 @@ body {
 
     font-size:28px;
 
-    margin-bottom:12px;
-
 }
 
 
 
 .card h3 {
-
-    margin:0 0 8px;
 
     font-size:16px;
 
@@ -376,17 +330,11 @@ body {
 
     font-size:25px;
 
-    margin-bottom:6px;
-
 }
 
 
 
 .card p {
-
-    margin:0;
-
-    font-size:13px;
 
     opacity:.65;
 
@@ -396,21 +344,18 @@ body {
 
 
 
-/* ---------- SECTIONS ---------- */
+
+/* HOURLY TIMELINE */
 
 
-section:not(.hero-card) {
+.timeline-section {
+
 
     margin-top:22px;
 
 
     background:
-
-    linear-gradient(
-    145deg,
-    rgba(255,255,255,.10),
-    rgba(255,255,255,.05)
-    );
+    rgba(255,255,255,.08);
 
 
     backdrop-filter:blur(18px);
@@ -422,20 +367,73 @@ section:not(.hero-card) {
     padding:22px;
 
 
-    border:
-
-    1px solid rgba(255,255,255,.1);
+}
 
 
-    box-shadow:
 
-    0 15px 35px rgba(0,0,0,.25);
+.timeline-section h2 {
+
+    margin-top:0;
 
 }
 
 
 
-section h2 {
+
+
+.timeline {
+
+
+    display:flex;
+
+
+    gap:12px;
+
+
+    overflow-x:auto;
+
+
+    padding-bottom:5px;
+
+
+}
+
+
+
+.timeline::-webkit-scrollbar {
+
+    display:none;
+
+}
+
+
+
+.hour-card {
+
+
+    min-width:150px;
+
+
+    background:
+
+    rgba(255,255,255,.08);
+
+
+    border-radius:22px;
+
+
+    padding:16px;
+
+
+    border:
+
+    1px solid rgba(255,255,255,.1);
+
+}
+
+
+
+.hour-card h3 {
 
     margin-top:0;
 
@@ -445,9 +443,72 @@ section h2 {
 
 
 
+.hour-card p {
+
+    margin:8px 0;
+
+    font-size:14px;
+
+}
 
 
-/* ---------- TECHNIQUES ---------- */
+
+.hour-card span {
+
+    font-size:13px;
+
+}
+
+
+
+.active-hour {
+
+
+    border:
+
+    2px solid #28d7a0;
+
+
+    background:
+
+    rgba(40,215,160,.12);
+
+}
+
+
+
+
+
+/* TECHNIQUES & ALERTS */
+
+
+section:not(.hero-card) {
+
+    margin-top:22px;
+
+}
+
+
+
+.tech-section,
+.alerts {
+
+
+    background:
+    rgba(255,255,255,.08);
+
+
+    backdrop-filter:blur(18px);
+
+
+    border-radius:28px;
+
+
+    padding:22px;
+
+
+}
+
 
 
 .tags {
@@ -468,18 +529,8 @@ section h2 {
 
     border-radius:22px;
 
-
     background:
-
     rgba(255,255,255,.08);
-
-
-    border:
-
-    1px solid rgba(255,255,255,.12);
-
-
-    font-size:14px;
 
 }
 
@@ -489,15 +540,10 @@ section h2 {
 
     background:#0c526c;
 
-    border-color:#28d7a0;
+    border:1px solid #28d7a0;
 
 }
 
-
-
-
-
-/* ---------- ALERTS ---------- */
 
 
 .alert-item {
@@ -506,12 +552,7 @@ section h2 {
 
     align-items:center;
 
-
     gap:12px;
-
-
-    padding:12px 0;
-
 
     border-bottom:
 
@@ -523,25 +564,7 @@ section h2 {
 
 .alert-item:last-child {
 
-    border-bottom:0;
-
-}
-
-
-
-.alert-item span {
-
-    font-size:20px;
-
-}
-
-
-
-.alert-item p {
-
-    margin:0;
-
-    font-size:15px;
+    border:0;
 
 }
 
@@ -549,10 +572,11 @@ section h2 {
 
 
 
-/* ---------- IOS BOTTOM NAV ---------- */
+/* IOS NAVIGATION */
 
 
 .bottom-nav {
+
 
     position:fixed;
 
@@ -566,10 +590,12 @@ section h2 {
     transform:translateX(-50%);
 
 
+
     width:92%;
 
 
     max-width:410px;
+
 
 
     background:
@@ -577,13 +603,17 @@ section h2 {
     rgba(10,35,48,.85);
 
 
+
     backdrop-filter:blur(25px);
+
 
 
     border-radius:30px;
 
 
+
     padding:10px 8px;
+
 
 
     display:flex;
@@ -592,25 +622,23 @@ section h2 {
     justify-content:space-around;
 
 
-    align-items:center;
-
 
     border:
 
     1px solid rgba(255,255,255,.12);
 
-
-    box-shadow:
-
-    0 15px 40px rgba(0,0,0,.45);
-
 }
 
 
 
-
-
 .nav-item {
+
+
+    width:60px;
+
+
+    height:55px;
+
 
     display:flex;
 
@@ -624,26 +652,10 @@ section h2 {
     justify-content:center;
 
 
-    gap:3px;
-
-
-    width:60px;
-
-
-    height:55px;
-
-
-    border-radius:18px;
-
-
-    color:white;
-
-
     opacity:.55;
 
+
 }
-
-
 
 
 
@@ -665,19 +677,8 @@ section h2 {
 
 .nav-item.active {
 
-    background:
-
-    rgba(40,215,160,.15);
-
-
     color:#28d7a0;
 
-
     opacity:1;
-
-
-    box-shadow:
-
-    0 0 20px rgba(40,215,160,.25);
 
 }
