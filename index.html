@@ -9,6 +9,7 @@
 <title>Fishing Dashboard</title>
 
 <link rel="stylesheet" href="style.css">
+
 <link rel="manifest" href="manifest.json">
 
 </head>
@@ -16,22 +17,27 @@
 
 <body>
 
+
 <div class="app">
+
 
 
 <!-- HEADER -->
 
-<header class="top-header">
+<header class="header">
+
 
 <div>
 
 <p class="date">
-31 Ιουλίου 2026
+2 Αυγούστου 2026
 </p>
+
 
 <h1>
 🎣 Fishing Dashboard
 </h1>
+
 
 <p class="location">
 📍 Κάλυμνος
@@ -40,9 +46,9 @@
 </div>
 
 
-<button class="profile-btn">
+<div class="profile">
 ⚙️
-</button>
+</div>
 
 
 </header>
@@ -52,20 +58,19 @@
 
 
 
-<!-- MAIN SCORE -->
+<!-- SCORE -->
+
+<section class="score-card">
 
 
-<section class="hero-card">
-
-
-<div class="hero-top">
-
+<div class="score-header">
 
 <div>
 
-<p class="hero-label">
+<span>
 Σήμερα
-</p>
+</span>
+
 
 <h2>
 Fishing Score
@@ -74,8 +79,8 @@ Fishing Score
 </div>
 
 
-<div class="status">
-Εξαιρετικές
+<div class="condition">
+Εξαιρετικές Συνθήκες
 </div>
 
 
@@ -84,60 +89,48 @@ Fishing Score
 
 
 
-<div class="hero-content">
+<div class="score-main">
 
 
-<div class="score-ring">
+<div class="circle-score">
 
-<div id="score">
 87
-</div>
 
 </div>
 
 
 
-<div class="hero-info">
+<div class="quick-info">
 
 
-<div class="info-chip">
+<div>
 🌬️ ΒΔ 2 Bf
 </div>
 
 
-<div class="info-chip">
-🌊 0.35 m
-</div>
-
-
-<div class="info-chip">
+<div>
 🎈 1018 hPa
 </div>
 
 
-<div class="info-chip">
+<div>
 🌙 82%
 </div>
 
 
+<div>
+🌊 0.35 m
 </div>
 
 
 </div>
 
 
-
-
-
-<div class="recommendation" id="recommendation">
-
-🟢 Ιδανικές συνθήκες για LRF
-
 </div>
-
 
 
 </section>
+
 
 
 
@@ -148,229 +141,164 @@ Fishing Score
 <!-- CONDITIONS -->
 
 
-<h2 class="section-title">
+<section class="section">
+
+
+<h2>
 🌦️ Συνθήκες
 </h2>
 
 
-<div class="grid">
+
+<div class="condition-grid">
 
 
-<div class="card">
 
-<span>
-🌬️
-</span>
+<div class="condition-card">
 
 <h3>
-Άνεμος
+🌬️ Άνεμος
 </h3>
 
 <strong>
 ΒΔ 2 Bf
 </strong>
 
+
+<div class="chart">
+
+</div>
+
+
 <p>
-Σταθερός
+Σταθερός όλη μέρα
 </p>
+
 
 </div>
 
 
 
-<div class="card">
 
-<span>
-🌊
-</span>
+
+<div class="condition-card">
 
 <h3>
-Συνθήκες Θάλασσας
+🎈 Βαρομετρική Πίεση
 </h3>
+
+
+<strong>
+1018 hPa
+</strong>
+
+
+<div class="chart pressure">
+
+</div>
+
+
+<p>
+Σταθερή τάση
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="condition-card">
+
+<h3>
+🌊 Συνθήκες Θάλασσας
+</h3>
+
 
 <strong>
 0.35 m
 </strong>
 
+
+<div class="chart wave">
+
+</div>
+
+
 <p>
-Ήρεμη
+Ήρεμη θάλασσα
 </p>
+
 
 </div>
 
 
 
-<div class="card">
 
-<span>
-🎈
-</span>
+
+<div class="condition-card">
 
 <h3>
-Πίεση
+🌙 Σελήνη
 </h3>
 
-<strong>
-1018
-</strong>
-
-<p>
-Σταθερή
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<span>
-🌙
-</span>
-
-<h3>
-Σελήνη
-</h3>
 
 <strong>
 82%
 </strong>
 
+
 <p>
-Φωτεινότητα
+Αύξουσα
 </p>
+
 
 </div>
 
 
 
-<div class="card">
 
-<span>
-🧭
-</span>
+
+<div class="condition-card">
 
 <h3>
-Ρεύματα
+🧭 Ρεύματα
 </h3>
+
 
 <strong>
 0.4 kn
 </strong>
 
+
 <p>
 ↗ Ανατολικά
 </p>
+
 
 </div>
 
 
 
-<div class="card">
 
-<span>
-🌊
-</span>
+
+<div class="condition-card">
 
 <h3>
-Παλίρροια
+🌊 Παλίρροια
 </h3>
+
 
 <strong>
 08:10
 </strong>
 
+
 <p>
 Άμπωτη 14:42
 </p>
 
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-<!-- HOURLY -->
-
-
-<section class="panel">
-
-
-<h2>
-⏱️ Ωριαίες Συνθήκες
-</h2>
-
-
-<div class="hours">
-
-
-<div class="hour active">
-
-<b>
-08:00
-</b>
-
-<p>
-🌬️ 2 Bf
-</p>
-
-<p>
-🌊 0.3m
-</p>
-
-<p>
-🟢 Άριστη
-</p>
-
-</div>
-
-
-
-<div class="hour">
-
-<b>
-10:00
-</b>
-
-<p>
-🌬️ 3 Bf
-</p>
-
-<p>
-🌊 0.5m
-</p>
-
-<p>
-🟡 Καλή
-</p>
-
-</div>
-
-
-
-<div class="hour">
-
-<b>
-12:00
-</b>
-
-<p>
-🌬️ 4 Bf
-</p>
-
-<p>
-🌊 0.8m
-</p>
-
-<p>
-🟡 Μέτρια
-</p>
 
 </div>
 
@@ -386,10 +314,10 @@ Fishing Score
 
 
 
-<!-- TECHNIQUES -->
+<!-- TECHNIQUE -->
 
 
-<section class="panel">
+<section class="section">
 
 
 <h2>
@@ -397,26 +325,25 @@ Fishing Score
 </h2>
 
 
-
 <div class="techniques">
 
 
-<button class="tech active" data-tech="LRF">
+<button class="active">
 LRF
 </button>
 
 
-<button class="tech" data-tech="Spinning">
+<button>
 Spinning
 </button>
 
 
-<button class="tech" data-tech="Shore Jigging">
+<button>
 Shore Jigging
 </button>
 
 
-<button class="tech" data-tech="Εγγλέζικο">
+<button>
 Εγγλέζικο
 </button>
 
@@ -425,29 +352,18 @@ Shore Jigging
 
 
 
-<div class="selected">
+<div class="selected-tech">
 
 🎯 Επιλεγμένη:
-<strong id="selectedTech">
+<b>
 LRF
-</strong>
-
-
-<br>
-
-
-Score:
-<strong id="techScore">
-92
-</strong>
+</b>
 
 
 </div>
 
 
-
 </section>
-
 
 
 
@@ -458,27 +374,37 @@ Score:
 <!-- ALERTS -->
 
 
-<section class="panel">
+<section class="section">
 
 
 <h2>
-⚠ Fishing Alerts
+⚠️ Fishing Alerts
 </h2>
 
 
-<div class="alert">
-🟢 Κατάλληλος άνεμος
+
+<div class="alert green">
+
+🟢 Ιδανικός άνεμος για LRF
+
 </div>
 
 
-<div class="alert">
-🟢 Σταθερή πίεση
+
+<div class="alert green">
+
+🟢 Σταθερή βαρομετρική πίεση
+
 </div>
 
 
-<div class="alert">
-🟢 Καλή δραστηριότητα
+
+<div class="alert yellow">
+
+🟡 Το κύμα ανεβαίνει το απόγευμα
+
 </div>
+
 
 
 </section>
@@ -489,10 +415,11 @@ Score:
 
 
 
-<!-- FUTURE MODULES -->
+
+<!-- CALENDAR -->
 
 
-<section class="panel">
+<section class="section">
 
 
 <h2>
@@ -500,9 +427,20 @@ Score:
 </h2>
 
 
+<div class="module">
+
+
 <p>
-Καταγραφή εξορμήσεων, ψαριών και σημείων.
+Κατέγραψε τις εξορμήσεις σου
 </p>
+
+
+<button>
++ Νέα Εξόρμηση
+</button>
+
+
+</div>
 
 
 </section>
@@ -511,7 +449,12 @@ Score:
 
 
 
-<section class="panel">
+
+
+<!-- SPOTS -->
+
+
+<section class="section">
 
 
 <h2>
@@ -519,9 +462,21 @@ Score:
 </h2>
 
 
+
+<div class="module">
+
+
 <p>
-Αποθηκευμένα σημεία ψαρέματος.
+Αποθηκευμένα σημεία ψαρέματος
 </p>
+
+
+<button>
++ Νέο Spot
+</button>
+
+
+</div>
 
 
 </section>
@@ -532,28 +487,31 @@ Score:
 
 
 
+<!-- MENU -->
 
-<!-- NAVIGATION -->
 
-
-<nav>
+<nav class="menu">
 
 
 <button>
 🏠
 </button>
 
+
 <button>
-📍
+🌦️
 </button>
+
 
 <button>
 📖
 </button>
 
+
 <button>
-📊
+📍
 </button>
+
 
 <button>
 ⚙️
@@ -564,13 +522,14 @@ Score:
 
 
 
-</div>
 
+</div>
 
 
 <script src="app.js"></script>
 
 
 </body>
+
 
 </html>
