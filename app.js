@@ -1,16 +1,15 @@
 // Fishing Dashboard
-// Main Application Logic
+// Main Logic
 
 
-const fishingData = {
-
+const fishingProfiles = {
 
     "LRF": {
 
         score:92,
 
-        message:
-        "🟢 Ιδανικές συνθήκες για LRF - ήρεμη θάλασσα και χαμηλός άνεμος"
+        alert:
+        "🟢 Ιδανικός άνεμος και ήρεμη θάλασσα για LRF"
 
     },
 
@@ -19,8 +18,8 @@ const fishingData = {
 
         score:87,
 
-        message:
-        "🟢 Πολύ καλές συνθήκες για Spinning - καλό ρεύμα και σταθερή πίεση"
+        alert:
+        "🟢 Καλές συνθήκες για Spinning - ενεργά σημεία με ρεύμα"
 
     },
 
@@ -29,8 +28,8 @@ const fishingData = {
 
         score:78,
 
-        message:
-        "🟡 Καλές αλλά όχι ιδανικές συνθήκες - χρειάζεται περισσότερο κύμα"
+        alert:
+        "🟡 Μέτριες συνθήκες - καλύτερα με περισσότερο κύμα"
 
     },
 
@@ -39,11 +38,10 @@ const fishingData = {
 
         score:90,
 
-        message:
-        "🟢 Εξαιρετικές συνθήκες για Εγγλέζικο - καθαρά νερά"
+        alert:
+        "🟢 Εξαιρετικές συνθήκες για Εγγλέζικο"
 
     }
-
 
 };
 
@@ -51,17 +49,23 @@ const fishingData = {
 
 
 
-const techButtons = document.querySelectorAll(".tech");
-
-const score = document.getElementById("score");
-
-const selectedTech = document.getElementById("selectedTech");
-
-const techScore = document.getElementById("techScore");
-
-const recommendation = document.getElementById("recommendation");
+const techniqueButtons =
+document.querySelectorAll(".techniques button");
 
 
+
+const scoreNumber =
+document.querySelector(".circle-score");
+
+
+
+const selectedTechnique =
+document.querySelector(".selected-tech");
+
+
+
+const alertBox =
+document.querySelector(".green");
 
 
 
@@ -69,40 +73,37 @@ const recommendation = document.getElementById("recommendation");
 
 // Load saved technique
 
-let savedTechnique = localStorage.getItem("fishingTechnique");
+let currentTechnique =
+localStorage.getItem("technique") || "LRF";
 
 
 
-if(savedTechnique && fishingData[savedTechnique]) {
-
-    updateTechnique(savedTechnique);
-
-}
-
+updateDashboard(currentTechnique);
 
 
 
 
 
 
+// Buttons
 
-// Technique selection
 
-
-techButtons.forEach(button => {
+techniqueButtons.forEach(button => {
 
 
     button.addEventListener("click",()=>{
 
 
-        const technique = button.dataset.tech;
+        const technique =
+        button.innerText;
 
 
-        updateTechnique(technique);
+        updateDashboard(technique);
+
 
 
         localStorage.setItem(
-            "fishingTechnique",
+            "technique",
             technique
         );
 
@@ -119,11 +120,12 @@ techButtons.forEach(button => {
 
 
 
+function updateDashboard(technique){
 
-function updateTechnique(technique) {
 
+    const data =
+    fishingProfiles[technique];
 
-    const data = fishingData[technique];
 
 
     if(!data) return;
@@ -135,28 +137,44 @@ function updateTechnique(technique) {
     // Score
 
 
-    score.innerText = data.score;
+    if(scoreNumber){
+
+        scoreNumber.innerText =
+        data.score;
+
+    }
+
+
 
 
 
     // Selected technique
 
 
-    selectedTech.innerText = technique;
+    if(selectedTechnique){
+
+        selectedTechnique.innerHTML =
+
+        `
+        🎯 Επιλεγμένη:
+        <b>${technique}</b>
+        `;
+
+    }
 
 
 
-    // Technique score
 
 
-    techScore.innerText = data.score;
+    // Alert
 
 
+    if(alertBox){
 
-    // Message
+        alertBox.innerText =
+        data.alert;
 
-
-    recommendation.innerText = data.message;
+    }
 
 
 
@@ -165,14 +183,14 @@ function updateTechnique(technique) {
     // Active button
 
 
-    techButtons.forEach(button=>{
+    techniqueButtons.forEach(button=>{
 
 
         button.classList.remove("active");
 
 
 
-        if(button.dataset.tech === technique){
+        if(button.innerText === technique){
 
             button.classList.add("active");
 
@@ -180,7 +198,6 @@ function updateTechnique(technique) {
 
 
     });
-
 
 
 }
@@ -192,14 +209,38 @@ function updateTechnique(technique) {
 
 
 
-// Simple startup animation
+// Demo dynamic conditions
 
 
-window.addEventListener("load",()=>{
+const pressureTrend =
+document.querySelector(".pressure");
 
 
-    document.querySelector(".hero-card")
-    .style.opacity="1";
+
+if(pressureTrend){
+
+    pressureTrend.style.height =
+    "45px";
+
+}
+
+
+
+
+
+
+
+// Future modules placeholders
+
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+
+console.log(
+"Fishing Dashboard Loaded"
+);
 
 
 });
