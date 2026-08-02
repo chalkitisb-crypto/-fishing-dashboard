@@ -9,7 +9,7 @@ body {
     margin:0;
 
     background:
-    radial-gradient(circle at top,#12445c,#06131c 65%);
+    radial-gradient(circle at top,#0e4a63,#06131c 65%);
 
     color:white;
 
@@ -36,7 +36,7 @@ body {
 /* HEADER */
 
 
-.top-header {
+.header {
 
     display:flex;
 
@@ -54,7 +54,7 @@ body {
 
     margin:0;
 
-    font-size:14px;
+    font-size:13px;
 
     opacity:.6;
 
@@ -62,7 +62,7 @@ body {
 
 
 
-.top-header h1 {
+.header h1 {
 
     margin:5px 0;
 
@@ -76,13 +76,13 @@ body {
 
     margin:0;
 
-    opacity:.8;
+    opacity:.75;
 
 }
 
 
 
-.profile-btn {
+.profile {
 
     width:55px;
 
@@ -90,15 +90,18 @@ body {
 
     border-radius:18px;
 
-    border:0;
+    display:flex;
 
-    font-size:24px;
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:25px;
+
 
     background:
 
-    linear-gradient(145deg,#1b5978,#092332);
-
-    color:white;
+    linear-gradient(145deg,#15506b,#081f2b);
 
 }
 
@@ -107,16 +110,16 @@ body {
 
 
 
+/* SCORE CARD */
 
-/* HERO */
 
-
-.hero-card {
+.score-card {
 
 
     background:
 
-    linear-gradient(145deg,#12384d,#071923);
+    linear-gradient(145deg,#12394e,#071923);
+
 
 
     border-radius:32px;
@@ -127,14 +130,14 @@ body {
 
     box-shadow:
 
-    0 20px 50px rgba(0,0,0,.45);
+    0 20px 45px rgba(0,0,0,.45);
 
 
 }
 
 
 
-.hero-top {
+.score-header {
 
     display:flex;
 
@@ -144,9 +147,7 @@ body {
 
 
 
-.hero-label {
-
-    margin:0;
+.score-header span {
 
     opacity:.6;
 
@@ -154,7 +155,7 @@ body {
 
 
 
-.hero-top h2 {
+.score-header h2 {
 
     margin:5px 0;
 
@@ -162,11 +163,13 @@ body {
 
 
 
-.status {
+.condition {
+
 
     background:
 
     rgba(40,215,160,.15);
+
 
 
     color:#28d7a0;
@@ -180,11 +183,12 @@ body {
 
     font-size:12px;
 
+
 }
 
 
 
-.hero-content {
+.score-main {
 
 
     display:flex;
@@ -203,25 +207,26 @@ body {
 
 
 
-.score-ring {
+.circle-score {
 
 
-    width:145px;
+    width:150px;
 
 
-    height:145px;
+    height:150px;
 
 
     border-radius:50%;
 
 
+
     display:flex;
 
 
-    align-items:center;
-
-
     justify-content:center;
+
+
+    align-items:center;
 
 
 
@@ -240,29 +245,30 @@ body {
 
     background:
 
-    radial-gradient(circle,#0c2634,#071923);
-
+    radial-gradient(circle,#092633,#06131c);
 
 
 }
 
 
 
+.quick-info {
 
-
-.hero-info {
 
     display:flex;
 
+
     flex-direction:column;
 
+
     gap:10px;
+
 
 }
 
 
 
-.info-chip {
+.quick-info div {
 
 
     background:
@@ -271,7 +277,7 @@ body {
 
 
 
-    padding:10px 14px;
+    padding:10px;
 
 
     border-radius:18px;
@@ -284,28 +290,43 @@ body {
 
 
 
-.recommendation {
+
+
+
+/* SECTIONS */
+
+
+.section {
 
 
     margin-top:22px;
 
 
-    padding:14px;
-
-
-    border-radius:20px;
-
-
     background:
 
-    rgba(40,215,160,.12);
+    rgba(255,255,255,.08);
 
 
 
-    color:#28d7a0;
+    backdrop-filter:blur(18px);
 
 
-    text-align:center;
+
+    border-radius:28px;
+
+
+
+    padding:22px;
+
+
+}
+
+
+
+.section h2 {
+
+
+    margin-top:0;
 
 
 }
@@ -316,24 +337,11 @@ body {
 
 
 
-/* TITLES */
+
+/* CONDITIONS */
 
 
-.section-title {
-
-    margin-top:25px;
-
-}
-
-
-
-
-
-
-/* CARDS */
-
-
-.grid {
+.condition-grid {
 
 
     display:grid;
@@ -349,47 +357,33 @@ body {
 
 
 
-.card {
+.condition-card {
 
 
     background:
 
-    rgba(255,255,255,.08);
+    rgba(255,255,255,.07);
 
 
 
-    border-radius:25px;
+    border-radius:22px;
 
 
-    padding:18px;
+    padding:16px;
 
 
 
-    min-height:140px;
-
-
-    backdrop-filter:blur(15px);
-
+    min-height:160px;
 
 
 }
 
 
 
-.card span {
+.condition-card h3 {
 
 
-    font-size:28px;
-
-
-}
-
-
-
-.card h3 {
-
-
-    font-size:16px;
+    font-size:15px;
 
 
     opacity:.8;
@@ -399,68 +393,29 @@ body {
 
 
 
-.card strong {
+.condition-card strong {
 
 
     display:block;
 
 
-    font-size:25px;
+    font-size:24px;
+
+
+    margin:10px 0;
 
 
 }
 
 
 
-.card p {
+.condition-card p {
 
 
-    opacity:.6;
+    font-size:13px;
 
 
-}
-
-
-
-
-
-
-
-
-/* PANELS */
-
-
-.panel {
-
-
-    margin-top:22px;
-
-
-    padding:22px;
-
-
-    border-radius:28px;
-
-
-
-    background:
-
-    rgba(255,255,255,.08);
-
-
-
-    backdrop-filter:blur(18px);
-
-
-
-}
-
-
-
-.panel h2 {
-
-
-    margin-top:0;
+    opacity:.65;
 
 
 }
@@ -470,66 +425,48 @@ body {
 
 
 
-/* HOURS */
+
+/* CHART PLACEHOLDER */
 
 
-.hours {
+.chart {
 
 
-    display:flex;
+    height:35px;
 
 
-    gap:12px;
-
-
-    overflow-x:auto;
-
-
-}
+    margin:12px 0;
 
 
 
-.hours::-webkit-scrollbar {
-
-
-    display:none;
-
-
-}
-
-
-
-.hour {
-
-
-    min-width:140px;
-
-
-    background:
-
-    rgba(255,255,255,.08);
-
-
-
-    border-radius:20px;
-
-
-    padding:15px;
-
-
-}
-
-
-
-.hour.active {
-
-
-    border:
+    border-bottom:
 
     2px solid #28d7a0;
 
 
 }
+
+
+
+.pressure {
+
+
+    border-bottom-color:#ffd166;
+
+
+}
+
+
+
+.wave {
+
+
+    border-bottom-color:#5ec8ff;
+
+
+}
+
+
 
 
 
@@ -555,7 +492,10 @@ body {
 
 
 
-.tech {
+.techniques button {
+
+
+    border:0;
 
 
     padding:11px 16px;
@@ -564,12 +504,10 @@ body {
     border-radius:22px;
 
 
-    border:1px solid rgba(255,255,255,.15);
-
 
     background:
 
-    rgba(255,255,255,.08);
+    rgba(255,255,255,.1);
 
 
 
@@ -580,23 +518,25 @@ body {
 
 
 
-.tech.active {
+.techniques .active {
 
 
     background:#0c526c;
 
 
-    border-color:#28d7a0;
+    border:
+
+    1px solid #28d7a0;
 
 
 }
 
 
 
-.selected {
+.selected-tech {
 
 
-    margin-top:20px;
+    margin-top:18px;
 
 
     padding:15px;
@@ -629,24 +569,91 @@ body {
 .alert {
 
 
-    padding:12px 0;
+    padding:14px;
 
 
-    border-bottom:
+    margin-bottom:10px;
 
-    1px solid rgba(255,255,255,.1);
+
+    border-radius:18px;
 
 
 }
 
 
 
-.alert:last-child {
+.green {
+
+
+    background:
+
+    rgba(40,215,160,.12);
+
+
+}
+
+
+
+.yellow {
+
+
+    background:
+
+    rgba(255,209,102,.15);
+
+
+}
+
+
+
+
+
+
+
+
+/* MODULES */
+
+
+.module {
+
+
+    background:
+
+    rgba(255,255,255,.06);
+
+
+
+    padding:18px;
+
+
+    border-radius:20px;
+
+
+}
+
+
+
+.module button {
+
+
+    margin-top:10px;
+
+
+    padding:12px 18px;
+
+
+    border-radius:20px;
 
 
     border:0;
 
 
+    background:#0c526c;
+
+
+    color:white;
+
+
 }
 
 
@@ -656,10 +663,10 @@ body {
 
 
 
-/* NAVIGATION */
+/* BOTTOM MENU */
 
 
-nav {
+.menu {
 
 
     position:fixed;
@@ -682,14 +689,13 @@ nav {
 
 
 
-    display:flex;
+    background:
+
+    rgba(8,30,42,.85);
 
 
-    justify-content:space-around;
 
-
-
-    padding:12px;
+    backdrop-filter:blur(20px);
 
 
 
@@ -697,20 +703,21 @@ nav {
 
 
 
-    background:
-
-    rgba(10,35,48,.85);
+    padding:12px;
 
 
 
-    backdrop-filter:blur(20px);
+    display:flex;
+
+
+    justify-content:space-around;
 
 
 }
 
 
 
-nav button {
+.menu button {
 
 
     background:none;
