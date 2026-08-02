@@ -1,14 +1,16 @@
-// Fishing Dashboard V1
+// Fishing Dashboard
+// Main Application Logic
 
 
-const techniques = {
+const fishingData = {
 
 
     "LRF": {
 
         score:92,
 
-        message:"🟢 Ιδανικές συνθήκες για LRF - ήρεμη θάλασσα και χαμηλός άνεμος"
+        message:
+        "🟢 Ιδανικές συνθήκες για LRF - ήρεμη θάλασσα και χαμηλός άνεμος"
 
     },
 
@@ -17,7 +19,8 @@ const techniques = {
 
         score:87,
 
-        message:"🟢 Πολύ καλές συνθήκες για Spinning - καλό ρεύμα και σταθερή πίεση"
+        message:
+        "🟢 Πολύ καλές συνθήκες για Spinning - καλό ρεύμα και σταθερή πίεση"
 
     },
 
@@ -26,7 +29,8 @@ const techniques = {
 
         score:78,
 
-        message:"🟡 Μέτριες συνθήκες - χρειάζεται περισσότερο κύμα"
+        message:
+        "🟡 Καλές αλλά όχι ιδανικές συνθήκες - χρειάζεται περισσότερο κύμα"
 
     },
 
@@ -35,7 +39,8 @@ const techniques = {
 
         score:90,
 
-        message:"🟢 Εξαιρετικές συνθήκες για Εγγλέζικο - καθαρή θάλασσα"
+        message:
+        "🟢 Εξαιρετικές συνθήκες για Εγγλέζικο - καθαρά νερά"
 
     }
 
@@ -46,92 +51,155 @@ const techniques = {
 
 
 
+const techButtons = document.querySelectorAll(".tech");
 
-const buttons = document.querySelectorAll(".tech");
+const score = document.getElementById("score");
 
-const scoreNumber = document.querySelector(".score-value");
+const selectedTech = document.getElementById("selectedTech");
 
-const selectedTech = document.querySelector(".selected-tech");
+const techScore = document.getElementById("techScore");
 
-const messageBox = document.querySelector(".score-message");
-
-
-
+const recommendation = document.getElementById("recommendation");
 
 
 
-buttons.forEach(button => {
+
+
+
+
+// Load saved technique
+
+let savedTechnique = localStorage.getItem("fishingTechnique");
+
+
+
+if(savedTechnique && fishingData[savedTechnique]) {
+
+    updateTechnique(savedTechnique);
+
+}
+
+
+
+
+
+
+
+
+// Technique selection
+
+
+techButtons.forEach(button => {
 
 
     button.addEventListener("click",()=>{
 
 
-        const techName = button.innerText;
+        const technique = button.dataset.tech;
 
 
-        const data = techniques[techName];
+        updateTechnique(technique);
 
 
-
-        if(!data) return;
-
-
-
-
-
-        // αλλαγή ενεργού κουμπιού
-
-
-        buttons.forEach(btn=>{
-
-            btn.classList.remove("active");
-
-        });
-
-
-        button.classList.add("active");
-
-
-
-
-
-
-        // αλλαγή score
-
-
-        scoreNumber.innerText = data.score;
-
-
-
-
-
-        // αλλαγή τεχνικής
-
-
-        selectedTech.innerHTML =
-
-        `
-        🎯 Επιλεγμένη:
-        <strong>${techName}</strong>
-
-        <br>
-
-        Fishing Score:
-        <strong>${data.score}</strong>
-        `;
-
-
-
-
-
-        // αλλαγή μηνύματος
-
-
-        messageBox.innerText = data.message;
-
+        localStorage.setItem(
+            "fishingTechnique",
+            technique
+        );
 
 
     });
+
+
+});
+
+
+
+
+
+
+
+
+
+function updateTechnique(technique) {
+
+
+    const data = fishingData[technique];
+
+
+    if(!data) return;
+
+
+
+
+
+    // Score
+
+
+    score.innerText = data.score;
+
+
+
+    // Selected technique
+
+
+    selectedTech.innerText = technique;
+
+
+
+    // Technique score
+
+
+    techScore.innerText = data.score;
+
+
+
+    // Message
+
+
+    recommendation.innerText = data.message;
+
+
+
+
+
+    // Active button
+
+
+    techButtons.forEach(button=>{
+
+
+        button.classList.remove("active");
+
+
+
+        if(button.dataset.tech === technique){
+
+            button.classList.add("active");
+
+        }
+
+
+    });
+
+
+
+}
+
+
+
+
+
+
+
+
+// Simple startup animation
+
+
+window.addEventListener("load",()=>{
+
+
+    document.querySelector(".hero-card")
+    .style.opacity="1";
 
 
 });
