@@ -2290,3 +2290,892 @@ body.reference-layout-v3 .technique-card.selected {
     radial-gradient(circle at 30% 25%, rgba(41, 162, 230, .13), transparent 42%),
     linear-gradient(180deg, rgba(8, 26, 39, .99), rgba(2, 10, 17, .995));
 }
+
+/* ===== FINAL MASTER PIXEL-PERFECT STEP 1 — START =====
+   External CSS correction layer for index.html v4.3.1.
+   Purpose: restore the approved proportions, spacing, typography,
+   borders and responsive behaviour without changing app.js.
+   ================================================================ */
+
+body.reference-layout-v3 {
+  --fm-shell-width: 430px;
+  --fm-gap: 6px;
+  --fm-radius: 12px;
+  --fm-border: rgba(31, 151, 224, .76);
+  --fm-inner-border: rgba(29, 121, 181, .34);
+  --fm-panel-top: #071726;
+  --fm-panel-bottom: #01070d;
+  --fm-text: #ffffff;
+  --fm-muted: #ffffff;
+  --fm-cyan: #35c8ff;
+  --fm-blue: #168fff;
+  --fm-green: #77df00;
+  --fm-lime: #b7e11a;
+  --fm-yellow: #ffd31f;
+  --fm-orange: #ff9320;
+  --fm-red: #ff4437;
+  background:
+    radial-gradient(circle at 50% -5%, rgba(0, 104, 181, .15), transparent 32%),
+    linear-gradient(180deg, #020812 0%, #01050b 54%, #000307 100%) !important;
+  color: var(--fm-text) !important;
+}
+
+body.reference-layout-v3 .app-shell {
+  width: min(100%, var(--fm-shell-width)) !important;
+  max-width: var(--fm-shell-width) !important;
+  min-height: 100vh !important;
+  margin-inline: auto !important;
+  overflow: hidden !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(0, 91, 160, .10), transparent 27%),
+    linear-gradient(180deg, #020812 0%, #01050a 100%) !important;
+}
+
+body.reference-layout-v3 .dashboard-content {
+  padding: 6px 6px calc(8px + env(safe-area-inset-bottom)) !important;
+}
+
+body.reference-layout-v3 .panel,
+body.reference-layout-v3 .technique-card,
+body.reference-layout-v3 .bottom-navigation {
+  border: 1px solid var(--fm-border) !important;
+  border-radius: var(--fm-radius) !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(29, 115, 175, .055), transparent 42%),
+    linear-gradient(180deg, rgba(7, 23, 38, .99), rgba(1, 7, 13, .995)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .025),
+    0 0 0 1px rgba(0, 67, 110, .14),
+    0 6px 16px rgba(0, 0, 0, .42) !important;
+}
+
+body.reference-layout-v3 .section-title {
+  min-height: 28px !important;
+  padding: 6px 9px !important;
+  border-bottom: 1px solid var(--fm-inner-border) !important;
+  color: #fff !important;
+  font-size: 9px !important;
+  font-weight: 900 !important;
+  letter-spacing: .12em !important;
+  line-height: 1.1 !important;
+}
+
+body.reference-layout-v3 .section-title i,
+body.reference-layout-v3 .section-title svg {
+  color: var(--fm-cyan) !important;
+}
+
+/* ---------------- HEADER ---------------- */
+
+body.reference-layout-v3 .top-header.final-master-header {
+  min-height: 82px !important;
+  display: grid !important;
+  grid-template-columns: 44px minmax(0, 1fr) 92px !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 7px 7px 8px !important;
+  border-bottom: 1px solid rgba(37, 148, 216, .52) !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(0, 108, 189, .11), transparent 52%),
+    linear-gradient(180deg, #020b14 0%, #00060c 100%) !important;
+}
+
+body.reference-layout-v3 .menu-button,
+body.reference-layout-v3 .header-action {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  min-height: 42px !important;
+  padding: 0 !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(48, 177, 247, .70) !important;
+}
+
+body.reference-layout-v3 .header-actions {
+  width: 92px !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, 42px) !important;
+  gap: 7px !important;
+}
+
+body.reference-layout-v3 .header-brand-lockup.brand-area {
+  min-width: 0 !important;
+  display: grid !important;
+  grid-template-columns: 86px minmax(0, 1fr) 86px !important;
+  align-items: center !important;
+  gap: 2px !important;
+}
+
+body.reference-layout-v3 .fm-approved-header-fish,
+body.reference-layout-v3 .header-fish-asset.brand-fish {
+  width: 86px !important;
+  height: 54px !important;
+  max-width: 86px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  filter:
+    drop-shadow(0 0 4px rgba(53, 200, 255, .20))
+    drop-shadow(0 3px 6px rgba(0, 0, 0, .65)) !important;
+}
+
+body.reference-layout-v3 .header-brand-title {
+  min-width: 0 !important;
+  text-align: center !important;
+}
+
+body.reference-layout-v3 .header-brand-title .fishing-word,
+body.reference-layout-v3 .header-brand-title .dashboard-word {
+  display: inline !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+  letter-spacing: .105em !important;
+  white-space: nowrap !important;
+}
+
+body.reference-layout-v3 .location-line {
+  justify-content: center !important;
+  margin-top: 7px !important;
+  color: #fff !important;
+  font-size: 8px !important;
+  font-weight: 800 !important;
+  letter-spacing: .17em !important;
+  white-space: nowrap !important;
+}
+
+/* ---------------- HERO / TOP CARD ---------------- */
+
+body.reference-layout-v3 .hero-composite {
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+body.reference-layout-v3 .hero-composite .hero-grid {
+  min-height: 172px !important;
+  height: 172px !important;
+  display: grid !important;
+  grid-template-columns: 112px minmax(0, 1fr) !important;
+  gap: 0 !important;
+}
+
+body.reference-layout-v3 .hero-composite .date-card,
+body.reference-layout-v3 .hero-composite .weather-card {
+  height: 172px !important;
+  min-height: 172px !important;
+  overflow: hidden !important;
+}
+
+body.reference-layout-v3 .date-card {
+  padding: 13px 7px 9px !important;
+  border-right: 1px solid var(--fm-inner-border) !important;
+}
+
+body.reference-layout-v3 .date-number {
+  margin-top: 10px !important;
+  font-size: 64px !important;
+  line-height: .9 !important;
+}
+
+body.reference-layout-v3 .date-month {
+  margin-top: 10px !important;
+  color: #fff !important;
+  font-size: 10px !important;
+  line-height: 1.45 !important;
+}
+
+body.reference-layout-v3 .weather-card {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 142px !important;
+  padding: 0 !important;
+}
+
+body.reference-layout-v3 .weather-main {
+  min-width: 0 !important;
+  height: 172px !important;
+  display: grid !important;
+  grid-template-columns: 56% 44% !important;
+  align-items: stretch !important;
+}
+
+body.reference-layout-v3 .sun-wrap {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 172px !important;
+  min-height: 172px !important;
+  overflow: hidden !important;
+}
+
+body.reference-layout-v3 .fm-approved-weather-scene,
+body.reference-layout-v3 .premium-weather-scene {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  filter: none !important;
+}
+
+body.reference-layout-v3 .weather-copy {
+  min-width: 0 !important;
+  padding: 20px 7px 10px 12px !important;
+  overflow: hidden !important;
+}
+
+body.reference-layout-v3 .weather-label {
+  color: #fff !important;
+  font-size: 10px !important;
+  letter-spacing: .11em !important;
+}
+
+body.reference-layout-v3 .temperature-row {
+  margin-top: 3px !important;
+}
+
+body.reference-layout-v3 .temperature-value {
+  font-size: 56px !important;
+  line-height: .95 !important;
+}
+
+body.reference-layout-v3 .temperature-unit {
+  margin-top: 7px !important;
+  font-size: 19px !important;
+}
+
+body.reference-layout-v3 .weather-description {
+  margin-top: 8px !important;
+  color: #fff !important;
+  font-size: 9px !important;
+  line-height: 1.25 !important;
+}
+
+body.reference-layout-v3 .weather-metrics {
+  position: static !important;
+  inset: auto !important;
+  width: 142px !important;
+  height: 172px !important;
+  margin: 0 !important;
+  padding: 9px 8px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  border: 0 !important;
+  border-left: 1px solid var(--fm-inner-border) !important;
+  overflow: hidden !important;
+}
+
+body.reference-layout-v3 .weather-metric {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 4px !important;
+  color: #fff !important;
+  font-size: 7.5px !important;
+  line-height: 1.15 !important;
+}
+
+body.reference-layout-v3 .weather-metric span {
+  display: inline-flex !important;
+  min-width: 0 !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+body.reference-layout-v3 .weather-metric strong {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #fff !important;
+  font-size: 8px !important;
+  white-space: nowrap !important;
+}
+
+body.reference-layout-v3 .hero-hourly-title {
+  height: 25px !important;
+  min-height: 25px !important;
+}
+
+body.reference-layout-v3 .cloud-strip {
+  height: 121px !important;
+  min-width: 100% !important;
+  grid-auto-columns: calc(100% / 7) !important;
+  overflow-x: auto !important;
+}
+
+body.reference-layout-v3 .weather-hour-cell {
+  min-height: 121px !important;
+  height: 121px !important;
+  padding: 8px 4px 6px !important;
+}
+
+body.reference-layout-v3 .weather-hour-cell time {
+  color: #fff !important;
+  font-size: 8px !important;
+}
+
+body.reference-layout-v3 .premium-hour-icon,
+body.reference-layout-v3 .weather-hour-icon {
+  width: 34px !important;
+  height: 34px !important;
+  margin: 6px 0 4px !important;
+}
+
+body.reference-layout-v3 .weather-hour-cell strong {
+  max-width: 66px !important;
+  min-height: 28px !important;
+  color: #fff !important;
+  font-size: 8px !important;
+  line-height: 1.18 !important;
+}
+
+body.reference-layout-v3 .weather-hour-cell > span {
+  margin-top: 5px !important;
+  color: #fff !important;
+  font-size: 8px !important;
+}
+
+/* ---------------- WIND / PRESSURE ---------------- */
+
+body.reference-layout-v3 .wind-pressure-row {
+  height: 205px !important;
+  display: grid !important;
+  grid-template-columns: 42% minmax(0, 58%) !important;
+  gap: var(--fm-gap) !important;
+  margin-top: var(--fm-gap) !important;
+}
+
+body.reference-layout-v3 .wind-pressure-row > .panel {
+  height: 205px !important;
+  min-height: 205px !important;
+}
+
+body.reference-layout-v3 .wind-strip {
+  height: 176px !important;
+  min-width: 100% !important;
+}
+
+body.reference-layout-v3 .wind-hour-cell {
+  height: 176px !important;
+  min-height: 176px !important;
+  padding: 10px 3px 6px !important;
+}
+
+body.reference-layout-v3 .direction-arrow {
+  width: 24px !important;
+  height: 24px !important;
+  margin: 7px 0 4px !important;
+}
+
+body.reference-layout-v3 .wind-hour-cell time,
+body.reference-layout-v3 .wind-dir,
+body.reference-layout-v3 .wind-hour-cell strong,
+body.reference-layout-v3 .wind-hour-cell small {
+  color: #fff !important;
+}
+
+body.reference-layout-v3 .wind-dir {
+  font-size: 8px !important;
+}
+
+body.reference-layout-v3 .wind-hour-cell strong {
+  margin-top: 4px !important;
+  font-size: 9px !important;
+}
+
+body.reference-layout-v3 .wind-hour-cell small {
+  margin-top: 5px !important;
+  font-size: 7px !important;
+}
+
+body.reference-layout-v3 .pressure-panel {
+  height: 205px !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 88px !important;
+}
+
+body.reference-layout-v3 .pressure-main {
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+body.reference-layout-v3 .pressure-chart {
+  height: 132px !important;
+}
+
+body.reference-layout-v3 .pressure-values text {
+  font-size: 10px !important;
+}
+
+body.reference-layout-v3 .pressure-times {
+  color: #fff !important;
+  font-size: 7px !important;
+}
+
+body.reference-layout-v3 .pressure-now {
+  width: 88px !important;
+  min-width: 88px !important;
+  overflow: hidden !important;
+}
+
+body.reference-layout-v3 .pressure-now > span {
+  color: #fff !important;
+  font-size: 7px !important;
+}
+
+body.reference-layout-v3 .pressure-now strong {
+  font-size: 31px !important;
+}
+
+body.reference-layout-v3 .pressure-now small {
+  color: #fff !important;
+  font-size: 12px !important;
+}
+
+body.reference-layout-v3 .pressure-now em {
+  margin-top: 7px !important;
+  font-size: 8px !important;
+}
+
+/* ---------------- MOON / CURRENTS ---------------- */
+
+body.reference-layout-v3 .moon-current-row {
+  height: 173px !important;
+  display: grid !important;
+  grid-template-columns: 30% minmax(0, 70%) !important;
+  gap: var(--fm-gap) !important;
+  margin-top: var(--fm-gap) !important;
+}
+
+body.reference-layout-v3 .moon-current-row > .panel {
+  height: 173px !important;
+  min-height: 173px !important;
+}
+
+body.reference-layout-v3 .moon-main {
+  height: 101px !important;
+  display: grid !important;
+  grid-template-columns: 92px minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 5px !important;
+  padding: 5px 7px !important;
+  overflow: hidden !important;
+}
+
+body.reference-layout-v3 .moon-visual,
+body.reference-layout-v3 .fm-approved-moon,
+body.reference-layout-v3 .premium-moon {
+  width: 88px !important;
+  height: 88px !important;
+  min-width: 88px !important;
+  max-width: 88px !important;
+}
+
+body.reference-layout-v3 .moon-copy {
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+body.reference-layout-v3 .moon-copy strong {
+  font-size: 34px !important;
+  line-height: 1 !important;
+}
+
+body.reference-layout-v3 .moon-copy span {
+  margin-top: 7px !important;
+  color: #fff !important;
+  font-size: 8px !important;
+  line-height: 1.2 !important;
+}
+
+body.reference-layout-v3 .moon-times {
+  height: 43px !important;
+}
+
+body.reference-layout-v3 .moon-times > div {
+  min-width: 0 !important;
+  padding: 4px 5px !important;
+}
+
+body.reference-layout-v3 .moon-times svg {
+  width: 28px !important;
+  height: 28px !important;
+}
+
+body.reference-layout-v3 .moon-times span {
+  color: #fff !important;
+  font-size: 7px !important;
+}
+
+body.reference-layout-v3 .moon-times strong {
+  color: #fff !important;
+  font-size: 9px !important;
+}
+
+body.reference-layout-v3 .current-strip {
+  height: 144px !important;
+  min-width: 100% !important;
+}
+
+body.reference-layout-v3 .currents-hour-cell {
+  height: 144px !important;
+  min-height: 144px !important;
+  padding: 11px 4px 6px !important;
+}
+
+body.reference-layout-v3 .currents-hour-cell time,
+body.reference-layout-v3 .currents-hour-cell strong,
+body.reference-layout-v3 .currents-hour-cell small {
+  color: #fff !important;
+}
+
+body.reference-layout-v3 .currents-hour-cell strong {
+  font-size: 9px !important;
+}
+
+body.reference-layout-v3 .currents-hour-cell small {
+  margin-top: 6px !important;
+  font-size: 8px !important;
+}
+
+/* ---------------- SEA / TIDES ---------------- */
+
+body.reference-layout-v3 .sea-tide-row {
+  height: 180px !important;
+  display: grid !important;
+  grid-template-columns: 30% minmax(0, 70%) !important;
+  gap: var(--fm-gap) !important;
+  margin-top: var(--fm-gap) !important;
+}
+
+body.reference-layout-v3 .sea-tide-row > .panel {
+  height: 180px !important;
+  min-height: 180px !important;
+}
+
+body.reference-layout-v3 .sea-condition-list {
+  height: 151px !important;
+  padding: 9px 11px !important;
+}
+
+body.reference-layout-v3 .sea-condition-list > div {
+  color: #fff !important;
+  font-size: 8px !important;
+}
+
+body.reference-layout-v3 .sea-condition-list strong {
+  color: #fff !important;
+  font-size: 8.5px !important;
+}
+
+body.reference-layout-v3 .tide-layout {
+  height: 151px !important;
+  display: grid !important;
+  grid-template-columns: 77px minmax(0, 1fr) 77px !important;
+}
+
+body.reference-layout-v3 .tide-side {
+  min-width: 0 !important;
+  padding: 7px 3px !important;
+  overflow: hidden !important;
+}
+
+body.reference-layout-v3 .tide-side > span {
+  color: #fff !important;
+  font-size: 7px !important;
+}
+
+body.reference-layout-v3 .tide-side strong {
+  font-size: 14px !important;
+}
+
+body.reference-layout-v3 .tide-side small {
+  font-size: 10px !important;
+}
+
+body.reference-layout-v3 .tide-chart {
+  height: 116px !important;
+}
+
+body.reference-layout-v3 .tide-labels text {
+  font-size: 9px !important;
+}
+
+body.reference-layout-v3 .tide-times {
+  color: #fff !important;
+  font-size: 6px !important;
+}
+
+/* ---------------- BEST TIMES ---------------- */
+
+body.reference-layout-v3 .best-times-panel {
+  height: 46px !important;
+  min-height: 46px !important;
+  margin-top: var(--fm-gap) !important;
+}
+
+body.reference-layout-v3 .best-times-strip {
+  height: 44px !important;
+  display: grid !important;
+  grid-template-columns: 154px minmax(0, 1fr) !important;
+}
+
+body.reference-layout-v3 .best-times-panel .section-title {
+  height: 44px !important;
+  min-height: 44px !important;
+  font-size: 8px !important;
+}
+
+body.reference-layout-v3 .best-times-content {
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+body.reference-layout-v3 .best-times-content strong {
+  font-size: 8px !important;
+  white-space: nowrap !important;
+}
+
+/* ---------------- SCORE / ACTIVITY ---------------- */
+
+body.reference-layout-v3 .score-activity-row {
+  height: 235px !important;
+  display: grid !important;
+  grid-template-columns: 40% minmax(0, 60%) !important;
+  gap: var(--fm-gap) !important;
+  margin-top: var(--fm-gap) !important;
+}
+
+body.reference-layout-v3 .score-activity-row > .panel {
+  height: 235px !important;
+  min-height: 235px !important;
+}
+
+body.reference-layout-v3 .score-panel,
+body.reference-layout-v3 .activity-panel {
+  padding: 8px !important;
+  overflow: hidden !important;
+}
+
+body.reference-layout-v3 .fm-approved-card-overlay {
+  inset: 2px !important;
+  width: calc(100% - 4px) !important;
+  height: calc(100% - 4px) !important;
+  border-radius: 10px !important;
+  object-fit: fill !important;
+}
+
+body.reference-layout-v3 .score-panel h2,
+body.reference-layout-v3 .activity-panel h2 {
+  font-size: 10px !important;
+}
+
+body.reference-layout-v3 .activity-composite {
+  height: 217px !important;
+  display: grid !important;
+  grid-template-columns: 53% minmax(0, 47%) !important;
+  grid-template-rows: 18px minmax(0, 1fr) !important;
+  padding: 8px !important;
+}
+
+body.reference-layout-v3 .activity-list > div {
+  min-height: 34px !important;
+  color: #fff !important;
+  font-size: 8px !important;
+}
+
+body.reference-layout-v3 .activity-list strong {
+  font-size: 8px !important;
+}
+
+/* ---------------- ALERTS ---------------- */
+
+body.reference-layout-v3 .alerts-panel {
+  height: 116px !important;
+  min-height: 116px !important;
+  margin-top: var(--fm-gap) !important;
+  padding: 8px 10px !important;
+}
+
+body.reference-layout-v3 .alerts-panel h2 {
+  height: 16px !important;
+  color: #fff !important;
+  font-size: 10px !important;
+}
+
+body.reference-layout-v3 .alert-list {
+  height: 84px !important;
+  margin-top: 4px !important;
+  gap: 0 !important;
+}
+
+body.reference-layout-v3 .alert-list li {
+  min-height: 21px !important;
+  grid-template-columns: 7px 24px minmax(0, 1fr) 8px !important;
+  gap: 6px !important;
+  color: #fff !important;
+  font-size: 7px !important;
+  line-height: 1.15 !important;
+}
+
+/* ---------------- TECHNIQUES ---------------- */
+
+body.reference-layout-v3 .technique-section {
+  height: 128px !important;
+  min-height: 128px !important;
+  margin-top: var(--fm-gap) !important;
+  padding-bottom: 0 !important;
+}
+
+body.reference-layout-v3 .technique-heading {
+  height: 20px !important;
+  margin: 0 !important;
+}
+
+body.reference-layout-v3 .technique-heading h2 {
+  font-size: 7px !important;
+}
+
+body.reference-layout-v3 .technique-grid.technique-scroll {
+  height: 108px !important;
+  display: grid !important;
+  grid-auto-flow: column !important;
+  grid-auto-columns: calc((100% - 18px) / 4) !important;
+  grid-template-columns: none !important;
+  gap: 6px !important;
+  overflow-x: auto !important;
+  overscroll-behavior-inline: contain !important;
+  scrollbar-width: none !important;
+}
+
+body.reference-layout-v3 .technique-card {
+  width: auto !important;
+  min-width: 0 !important;
+  height: 108px !important;
+  min-height: 108px !important;
+  padding: 4px !important;
+  overflow: hidden !important;
+}
+
+body.reference-layout-v3 .fm-approved-technique-overlay {
+  inset: 1px !important;
+  width: calc(100% - 2px) !important;
+  height: calc(100% - 2px) !important;
+  object-fit: fill !important;
+}
+
+/* ---------------- BOTTOM NAVIGATION ---------------- */
+
+body.reference-layout-v3 .bottom-navigation {
+  height: 56px !important;
+  min-height: 56px !important;
+  margin-top: var(--fm-gap) !important;
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+}
+
+body.reference-layout-v3 .nav-item {
+  min-width: 0 !important;
+  height: 54px !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  color: #fff !important;
+  font-size: 6px !important;
+  line-height: 1 !important;
+}
+
+body.reference-layout-v3 .nav-item i {
+  font-size: 15px !important;
+}
+
+/* ---------------- UNIFIED TEXT INTENSITY ---------------- */
+
+body.reference-layout-v3 .panel,
+body.reference-layout-v3 .panel *,
+body.reference-layout-v3 .technique-section *,
+body.reference-layout-v3 .bottom-navigation * {
+  -webkit-font-smoothing: antialiased;
+}
+
+body.reference-layout-v3 .hour-cell,
+body.reference-layout-v3 .hour-cell time,
+body.reference-layout-v3 .hour-cell strong,
+body.reference-layout-v3 .hour-cell small,
+body.reference-layout-v3 .hour-cell span,
+body.reference-layout-v3 .activity-list,
+body.reference-layout-v3 .alert-list,
+body.reference-layout-v3 .nav-item,
+body.reference-layout-v3 .weather-description,
+body.reference-layout-v3 .moon-copy span,
+body.reference-layout-v3 .sea-condition-list,
+body.reference-layout-v3 .chart-times {
+  color: #fff !important;
+}
+
+/* ---------------- TABLET / IPAD VIEW ----------------
+   Preserve the same iPhone composition, but make it readable on a wide iPad
+   browser without changing internal proportions. */
+
+@media (min-width: 700px) {
+  body.reference-layout-v3 .app-shell {
+    width: 430px !important;
+    max-width: 430px !important;
+    transform: none !important;
+  }
+}
+
+/* ---------------- SMALL IPHONES ---------------- */
+
+@media (max-width: 390px) {
+  body.reference-layout-v3 .top-header.final-master-header {
+    grid-template-columns: 39px minmax(0, 1fr) 84px !important;
+    padding-inline: 6px !important;
+  }
+
+  body.reference-layout-v3 .menu-button,
+  body.reference-layout-v3 .header-action {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+  }
+
+  body.reference-layout-v3 .header-actions {
+    width: 84px !important;
+    grid-template-columns: repeat(2, 38px) !important;
+  }
+
+  body.reference-layout-v3 .header-brand-lockup.brand-area {
+    grid-template-columns: 70px minmax(0, 1fr) 70px !important;
+  }
+
+  body.reference-layout-v3 .fm-approved-header-fish,
+  body.reference-layout-v3 .header-fish-asset.brand-fish {
+    width: 70px !important;
+    height: 46px !important;
+  }
+
+  body.reference-layout-v3 .header-brand-title .fishing-word,
+  body.reference-layout-v3 .header-brand-title .dashboard-word {
+    font-size: 13px !important;
+  }
+
+  body.reference-layout-v3 .location-line {
+    font-size: 7px !important;
+  }
+
+  body.reference-layout-v3 .hero-composite .hero-grid {
+    grid-template-columns: 98px minmax(0, 1fr) !important;
+  }
+
+  body.reference-layout-v3 .weather-card {
+    grid-template-columns: minmax(0, 1fr) 124px !important;
+  }
+
+  body.reference-layout-v3 .weather-metrics {
+    width: 124px !important;
+  }
+
+  body.reference-layout-v3 .temperature-value {
+    font-size: 48px !important;
+  }
+}
+
+/* ===== FINAL MASTER PIXEL-PERFECT STEP 1 — END ===== */
