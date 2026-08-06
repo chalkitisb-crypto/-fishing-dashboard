@@ -2736,3 +2736,237 @@ body.reference-layout-v3 .activity-fish-photo {
 body.reference-layout-v3 .panel {
   overflow: hidden;
 }
+
+/* =========================================================
+   FIX B2 — header title not clipped + techniques photos
+========================================================= */
+body.reference-layout-v3 .header-fish-asset.brand-fish {
+  width: 68px !important;
+  height: 42px !important;
+  object-fit: contain !important;
+}
+body.reference-layout-v3 .header-brand-lockup.brand-area {
+  grid-template-columns: 68px minmax(0, 1fr) 68px !important;
+  gap: 4px !important;
+}
+body.reference-layout-v3 .header-brand-center {
+  min-width: 0;
+  overflow: visible;
+}
+body.reference-layout-v3 .header-brand-title {
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  font-size: 12.5px !important;
+  letter-spacing: 0.02em;
+}
+body.reference-layout-v3 .header-brand-title .fishing-word,
+body.reference-layout-v3 .header-brand-title .dashboard-word {
+  font-size: 12.5px !important;
+  display: inline !important;
+}
+
+/* Techniques: force photo visible */
+body.reference-layout-v3 .technique-icon {
+  height: 56px !important;
+  min-height: 56px !important;
+  display: block !important;
+  background: #0b1520 !important;
+}
+body.reference-layout-v3 .technique-photo {
+  width: 100% !important;
+  height: 56px !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  opacity: 1 !important;
+  display: block !important;
+  visibility: visible !important;
+}
+body.reference-layout-v3 .technique-card > strong {
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================================================
+   MASTER FIX ALL — single consolidated visual pass
+   Overrides all previous partial fixes
+========================================================= */
+
+/* HEADER: balanced fish + full title visible */
+body.reference-layout-v3 header.top-header.final-master-header .header-brand-lockup.brand-area {
+  grid-template-columns: 70px minmax(120px, 1fr) 70px !important;
+  gap: 6px !important;
+  align-items: center !important;
+  width: 100%;
+}
+body.reference-layout-v3 header.top-header.final-master-header .header-fish-asset.brand-fish {
+  width: 70px !important;
+  height: 44px !important;
+  max-width: 70px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.55));
+}
+body.reference-layout-v3 header.top-header.final-master-header .header-brand-center {
+  min-width: 0 !important;
+  overflow: visible !important;
+  text-align: center;
+}
+body.reference-layout-v3 header.top-header.final-master-header .header-brand-title {
+  white-space: nowrap !important;
+  overflow: visible !important;
+  font-size: 11.5px !important;
+  letter-spacing: 0.04em !important;
+}
+body.reference-layout-v3 header.top-header.final-master-header .header-brand-title .fishing-word,
+body.reference-layout-v3 header.top-header.final-master-header .header-brand-title .dashboard-word {
+  font-size: 11.5px !important;
+  display: inline !important;
+}
+body.reference-layout-v3 header.top-header.final-master-header .location-line {
+  font-size: 8px !important;
+  white-space: nowrap;
+}
+
+/* MOON: image left, text right, no overlap */
+body.reference-layout-v3 .moon-panel .moon-main {
+  height: auto !important;
+  min-height: 80px !important;
+  padding: 8px !important;
+  display: grid !important;
+  grid-template-columns: 76px 1fr !important;
+  column-gap: 12px !important;
+  align-items: center !important;
+}
+body.reference-layout-v3 .moon-panel .moon-visual {
+  width: 76px !important;
+  height: 76px !important;
+  border-radius: 50%;
+  overflow: hidden !important;
+  flex-shrink: 0;
+}
+body.reference-layout-v3 .moon-panel .master-moon-photo,
+body.reference-layout-v3 .moon-panel img.premium-moon {
+  width: 76px !important;
+  height: 76px !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  display: block !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy {
+  min-width: 0 !important;
+  overflow: visible !important;
+  padding: 0 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy strong#moon-illumination,
+body.reference-layout-v3 .moon-panel .moon-copy strong {
+  font-size: 28px !important;
+  line-height: 1 !important;
+  color: #ffffff !important;
+  display: block !important;
+  white-space: nowrap !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy span {
+  font-size: 10px !important;
+  line-height: 1.25 !important;
+  margin-top: 5px !important;
+  color: #dceaf4 !important;
+  display: block !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times {
+  height: 30px !important;
+  margin-top: 2px;
+}
+
+/* SCORE: rod overlay + readable 85 */
+body.reference-layout-v3 .score-panel {
+  min-height: 170px !important;
+  position: relative;
+}
+body.reference-layout-v3 .score-panel .score-gauge {
+  height: 128px !important;
+  position: relative !important;
+}
+body.reference-layout-v3 .score-panel .premium-gauge {
+  height: 128px !important;
+  width: 100% !important;
+}
+body.reference-layout-v3 .score-panel #score-rod-indicator {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+body.reference-layout-v3 .score-panel .score-rod-photo {
+  position: absolute !important;
+  right: 0 !important;
+  bottom: 4% !important;
+  width: 55% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  object-position: right bottom !important;
+  z-index: 3 !important;
+  pointer-events: none !important;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,.45));
+}
+body.reference-layout-v3 .score-panel .score-number {
+  z-index: 6 !important;
+  left: 0 !important;
+  right: 30% !important;
+  transform: translateY(-55%) !important;
+}
+body.reference-layout-v3 .score-panel .score-number strong {
+  font-size: 40px !important;
+  color: #6ed000 !important;
+  text-shadow: 0 0 12px rgba(110,208,0,.35) !important;
+}
+
+/* FISH ACTIVITY */
+body.reference-layout-v3 .activity-panel .activity-fish-photo {
+  width: 100% !important;
+  height: 92px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+/* TECHNIQUES: photo strip + labels */
+body.reference-layout-v3 .technique-card {
+  padding: 4px 4px 6px !important;
+}
+body.reference-layout-v3 .technique-card .technique-icon {
+  display: block !important;
+  height: 58px !important;
+  min-height: 58px !important;
+  margin-bottom: 4px !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  background: #081018 !important;
+}
+body.reference-layout-v3 .technique-card .technique-photo {
+  display: block !important;
+  width: 100% !important;
+  height: 58px !important;
+  object-fit: cover !important;
+  object-position: center 35% !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+body.reference-layout-v3 .technique-card > strong {
+  display: block !important;
+  text-align: center !important;
+  font-size: 8px !important;
+  margin-top: 1px !important;
+}
+body.reference-layout-v3 .technique-card .technique-stars {
+  justify-content: center !important;
+  margin: 2px 0 !important;
+}
+body.reference-layout-v3 .technique-card .technique-rating-label {
+  display: block !important;
+  text-align: center !important;
+  font-size: 7.5px !important;
+}
+
+/* BEST HOURS labels color */
+body.reference-layout-v3 .best-times-content strong {
+  color: #ffc24a !important;
+  font-weight: 800 !important;
+}
