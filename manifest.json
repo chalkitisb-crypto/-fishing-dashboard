@@ -1,0 +1,19 @@
+{
+  "name": "Fishing Dashboard — Κάλυμνος",
+  "short_name": "Fishing Dashboard",
+  "description": "Premium fishing intelligence dashboard for shore fishing in Kalymnos, Greece",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#01050b",
+  "theme_color": "#020712",
+  "orientation": "portrait-primary",
+  "lang": "el",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23020712' width='100' height='100' rx='20'/%3E%3Ctext y='62' x='50' text-anchor='middle' font-size='48'%3E🎣%3C/text%3E%3C/svg%3E",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
