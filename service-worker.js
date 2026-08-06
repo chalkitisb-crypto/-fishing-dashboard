@@ -1,73 +1,38 @@
-const CACHE_NAME = "fishing-dashboard-v0.1";
-
-const FILES_TO_CACHE = [
-    "./",
-    "./index.html",
-    "./style.css",
-    "./app.js",
-    "./manifest.json"
+/* Fishing Dashboard — minimal service worker (v9)
+   Cache-first for static assets. Safe no-op fallback if offline.
+*/
+const CACHE_NAME = "fishing-dashboard-v9.0.0";
+const ASSETS = [
+  "./",
+  "./index.html",
+  "./style.css",
+  "./app.js",
+  "./manifest.json"
 ];
 
-
-// Εγκατάσταση Service Worker
-
-self.addEventListener("install", event => {
-
-    event.waitUntil(
-
-        caches.open(CACHE_NAME)
-        .then(cache => {
-            return cache.addAll(FILES_TO_CACHE);
-        })
-
-    );
-
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)).then(() => self.skipWaiting())
+  );
 });
 
-
-
-// Άνοιγμα εφαρμογής
-
-self.addEventListener("fetch", event => {
-
-    event.respondWith(
-
-        caches.match(event.request)
-        .then(response => {
-
-            return response || fetch(event.request);
-
-        })
-
-    );
-
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
+    ).then(() => self.clients.claim())
+  );
 });
 
-
-
-// Καθαρισμός παλιών εκδόσεων
-
-self.addEventListener("activate", event => {
-
-    event.waitUntil(
-
-        caches.keys()
-        .then(keys => {
-
-            return Promise.all(
-
-                keys.map(key => {
-
-                    if (key !== CACHE_NAME) {
-                        return caches.delete(key);
-                    }
-
-                })
-
-            );
-
-        })
-
-    );
-
+self.addEventListener("fetch", (event) => {
+  if (event.request.method !== "GET") return;
+  event.respondWith(
+    caches.match(event.request).then((cached) => {
+      return cached || fetch(event.request).then((response) => {
+        const copy = response.clone();
+        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+        return response;
+      }).catch(() => cached);
+    })
+  );
 });
