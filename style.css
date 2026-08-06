@@ -2357,3 +2357,121 @@ body.reference-layout-v3 .technique-card[aria-pressed="true"] {
     0 0 12px rgba(15, 145, 220, .16),
     inset 0 0 18px rgba(0, 114, 190, .06);
 }
+
+/* =========================================================
+   MASTER PHOTO ASSETS — visual parity pass
+========================================================= */
+body.reference-layout-v3 .header-fish-asset.brand-fish {
+  width: 72px;
+  height: 48px;
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.55));
+}
+
+body.reference-layout-v3 .header-brand-lockup.brand-area {
+  grid-template-columns: 72px minmax(0, 1fr) 72px;
+}
+
+body.reference-layout-v3 .master-moon-photo,
+body.reference-layout-v3 .premium-moon.master-moon-photo {
+  width: 78px;
+  height: 78px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 2px rgba(22, 140, 255, .55),
+    0 0 14px rgba(255, 180, 40, .35),
+    0 4px 12px rgba(0,0,0,.5);
+}
+
+body.reference-layout-v3 .moon-visual {
+  display: grid;
+  place-items: center;
+}
+
+body.reference-layout-v3 .activity-fish-photo,
+body.reference-layout-v3 img.activity-fish-svg {
+  width: 100%;
+  height: 78px;
+  object-fit: contain;
+  object-position: center bottom;
+  filter:
+    drop-shadow(0 0 8px rgba(50, 183, 255, .35))
+    drop-shadow(0 3px 8px rgba(0, 0, 0, .55));
+}
+
+body.reference-layout-v3 .technique-photo {
+  width: 100%;
+  height: 52px;
+  object-fit: cover;
+  object-position: center 40%;
+  border-radius: 6px;
+  display: block;
+}
+
+body.reference-layout-v3 .technique-icon {
+  display: block;
+  width: 100%;
+  height: 54px;
+  overflow: hidden;
+  border-radius: 6px;
+  margin-bottom: 2px;
+}
+
+body.reference-layout-v3 .technique-card {
+  padding-top: 5px;
+}
+
+/* Score gauge — taller so rod/reel is visible like Master */
+body.reference-layout-v3 .score-panel {
+  min-height: 148px;
+}
+
+body.reference-layout-v3 .score-gauge {
+  height: 110px;
+  margin-top: 2px;
+}
+
+body.reference-layout-v3 .premium-gauge {
+  height: 110px;
+  width: 100%;
+}
+
+body.reference-layout-v3 .score-number strong {
+  font-size: 34px;
+  color: #71cf00;
+  text-shadow: 0 0 12px rgba(113, 207, 0, .35);
+}
+
+body.reference-layout-v3 #score-rod-indicator {
+  transform-box: view-box;
+  transform-origin: 150px 170px;
+  transform: rotate(63deg);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.45));
+}
+
+/* Pressure Master yellow points + line glow */
+body.reference-layout-v3 .pressure-points circle {
+  fill: #ffd331 !important;
+  stroke: #ffe9a0 !important;
+  filter: drop-shadow(0 0 4px rgba(255, 211, 49, .85));
+}
+
+body.reference-layout-v3 .pressure-line {
+  stroke: #ffd331 !important;
+  stroke-width: 3;
+  filter: drop-shadow(0 0 6px rgba(255, 211, 49, .55));
+}
+
+body.reference-layout-v3 .pressure-area {
+  fill: rgba(255, 211, 49, .18) !important;
+}
+
+/* Best hours Master labels color */
+body.reference-layout-v3 .best-times-content strong {
+  
+  color: #ffc24a;
+  font-weight: 800;
+  letter-spacing: .04em;
+}

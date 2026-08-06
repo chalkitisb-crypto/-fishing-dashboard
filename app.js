@@ -1095,9 +1095,13 @@
   }
 
   function renderBestTimes(data) {
-    setText("#best-time-morning", data.bestTimes.morning);
-    setText("#best-time-evening", data.bestTimes.evening);
-    setText("#best-time-night", data.bestTimes.night);
+    // Master format: ΠΡΩΙ / ΑΠΟΓΕΥΜΑ / ΝΥΧΤΑ labels
+    const m = data.bestTimes.morning || "";
+    const e = data.bestTimes.evening || "";
+    const n = data.bestTimes.night || "";
+    setText("#best-time-morning", m.startsWith("ΠΡΩΙ") ? m : `ΠΡΩΙ ${m}`);
+    setText("#best-time-evening", e.startsWith("ΑΠΟΓΕΥΜΑ") ? e : `ΑΠΟΓΕΥΜΑ ${e}`);
+    setText("#best-time-night", n.startsWith("ΝΥΧΤΑ") ? n : `ΝΥΧΤΑ ${n}`);
   }
 
   function renderStars(container, rating) {

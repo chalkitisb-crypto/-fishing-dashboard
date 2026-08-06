@@ -693,10 +693,7 @@
      </i>
     </button>
     <div class="header-brand-lockup brand-area">
-     <svg aria-label="Μαγιάτικο" class="header-fish-asset header-fish-left brand-fish" role="img" viewbox="0 0 190 90">
-      <use href="#header-fish-left">
-      </use>
-     </svg>
+     <img alt="Μαγιάτικο" class="header-fish-asset header-fish-left brand-fish" src="assets/header/fish_left.png"/>
      <div class="header-brand-center">
       <h1 class="header-brand-title">
        <span class="fishing-word">
@@ -714,10 +711,7 @@
        </span>
       </div>
      </div>
-     <svg aria-label="Θαλάσσιο ψάρι" class="header-fish-asset header-fish-right brand-fish" role="img" viewbox="0 0 190 90">
-      <use href="#header-fish-right">
-      </use>
-     </svg>
+     <img alt="Θαλάσσιο ψάρι" class="header-fish-asset header-fish-right brand-fish" src="assets/header/fish_right.png"/>
     </div>
     <div class="header-actions">
      <button aria-label="Αγαπημένα" aria-pressed="false" class="header-action favorite-button" type="button">
@@ -1246,21 +1240,19 @@
          <polyline class="pressure-line" id="pressure-line" data-chart-line="pressure" data-chart-line="pressure" filter="url(#pressureGlow)" id="pressure-line" points="58,83 165,83 272,83 379,83 486,83 593,83 700,83">
          </polyline>
          <g class="pressure-points" data-chart-points="pressure" id="pressure-points">
-          <circle cx="58" cy="83" data-point-index="0" fill="#07101d" r="8" stroke="#ffffff" stroke-width="3">
+          <circle cx="58" cy="83" data-point-index="0" fill="#ffd331" r="7" stroke="#ffe9a0" stroke-width="2" filter="url(#pressureGlow)">
           </circle>
-          <circle cx="58" cy="83" data-point-index="0-inner" fill="#ffd331" r="4" stroke="#ffd331" stroke-width="1">
+          <circle cx="165" cy="83" data-point-index="1" fill="#ffd331" r="7" stroke="#ffe9a0" stroke-width="2" filter="url(#pressureGlow)">
           </circle>
-          <circle cx="165" cy="83" data-point-index="1" r="5">
+          <circle cx="272" cy="83" data-point-index="2" fill="#ffd331" r="7" stroke="#ffe9a0" stroke-width="2" filter="url(#pressureGlow)">
           </circle>
-          <circle cx="272" cy="83" data-point-index="2" r="5">
+          <circle cx="379" cy="83" data-point-index="3" fill="#ffd331" r="7" stroke="#ffe9a0" stroke-width="2" filter="url(#pressureGlow)">
           </circle>
-          <circle cx="379" cy="83" data-point-index="3" r="5">
+          <circle cx="486" cy="83" data-point-index="4" fill="#ffd331" r="7" stroke="#ffe9a0" stroke-width="2" filter="url(#pressureGlow)">
           </circle>
-          <circle cx="486" cy="83" data-point-index="4" r="5">
+          <circle cx="593" cy="83" data-point-index="5" fill="#ffd331" r="7" stroke="#ffe9a0" stroke-width="2" filter="url(#pressureGlow)">
           </circle>
-          <circle cx="593" cy="83" data-point-index="5" r="5">
-          </circle>
-          <circle cx="700" cy="83" data-point-index="6" r="5">
+          <circle cx="700" cy="83" data-point-index="6" fill="#ffd331" r="7" stroke="#ffe9a0" stroke-width="2" filter="url(#pressureGlow)">
           </circle>
          </g>
          <g class="pressure-values" data-chart-values="pressure" id="pressure-values">
@@ -1340,44 +1332,7 @@
       </div>
       <div class="moon-main">
        <div class="moon-visual" data-field="moon.visual" data-illumination="72" data-phase="waxing-gibbous" id="moon-visual">
-        <svg aria-label="Αύξουσα Αμφίκυρτη Σελήνη 72%" class="premium-moon" role="img" viewbox="0 0 130 130">
-         <defs>
-          <clippath id="moon-clip">
-           <circle cx="65" cy="65" r="50">
-           </circle>
-          </clippath>
-          <filter height="140%" id="moon-texture" width="140%" x="-20%" y="-20%">
-           <feturbulence basefrequency=".08" numoctaves="3" result="noise" seed="8" type="fractalNoise">
-           </feturbulence>
-           <fecolormatrix in="noise" result="gray" type="saturate" values="0">
-           </fecolormatrix>
-           <feblend in="SourceGraphic" in2="gray" mode="multiply">
-           </feblend>
-          </filter>
-         </defs>
-         <circle cx="65" cy="65" fill="#05101b" r="54" stroke="#168cff" stroke-width="2">
-         </circle>
-         <circle cx="65" cy="65" fill="url(#fd-moon-gold)" filter="url(#moon-texture)" r="50">
-         </circle>
-         <g clip-path="url(#moon-clip)" opacity=".55">
-          <circle cx="45" cy="39" fill="#6e4610" r="8">
-          </circle>
-          <circle cx="80" cy="45" fill="#7b4e10" r="6">
-          </circle>
-          <circle cx="54" cy="74" fill="#68410d" r="11">
-          </circle>
-          <circle cx="86" cy="82" fill="#8c5c18" r="8">
-          </circle>
-          <circle cx="36" cy="90" fill="#7c5116" r="5">
-          </circle>
-          <circle cx="73" cy="103" fill="#5d390c" r="4">
-          </circle>
-          <path d="M28 58c20 12 45 13 76 2M38 97c20-8 38-8 56-1" fill="none" opacity=".32" stroke="#f2d578" stroke-width="1.2">
-          </path>
-         </g>
-         <ellipse cx="26" cy="65" data-moon-shadow="" fill="#020712" id="moon-shadow" opacity=".92" rx="18" ry="50">
-         </ellipse>
-        </svg>
+        <img alt="Αύξουσα Αμφίκυρτη Σελήνη 72%" class="premium-moon master-moon-photo" src="assets/moon/moon_sphere.png"/>
        </div>
        <div class="moon-copy">
         <strong data-field="moon.illumination" id="moon-illumination">
@@ -1870,40 +1825,7 @@
        FISH ACTIVITY
       </h2>
       <div class="activity-art">
-       <svg aria-label="Ψάρι δραστηριότητας με μπλε φυσαλίδες" class="activity-fish-svg" role="img" viewbox="0 0 330 180">
-        <g>
-         <circle class="bubble" cx="28" cy="24" r="7">
-         </circle>
-         <circle class="bubble" cx="52" cy="13" r="5">
-         </circle>
-         <circle class="bubble" cx="79" cy="28" r="8">
-         </circle>
-         <circle class="bubble" cx="114" cy="11" r="4">
-         </circle>
-         <circle class="bubble" cx="148" cy="24" r="7">
-         </circle>
-         <circle class="bubble" cx="182" cy="9" r="5">
-         </circle>
-         <circle class="bubble" cx="216" cy="26" r="8">
-         </circle>
-         <circle class="bubble" cx="252" cy="12" r="5">
-         </circle>
-         <circle class="bubble" cx="289" cy="31" r="8">
-         </circle>
-         <circle class="bubble" cx="313" cy="15" r="4">
-         </circle>
-         <circle class="bubble" cx="18" cy="72" r="5">
-         </circle>
-         <circle class="bubble" cx="307" cy="78" r="7">
-         </circle>
-         <circle class="bubble" cx="26" cy="132" r="7">
-         </circle>
-         <circle class="bubble" cx="301" cy="139" r="5">
-         </circle>
-        </g>
-        <use href="#activity-fish">
-        </use>
-       </svg>
+       <img alt="Ψάρι δραστηριότητας" class="activity-fish-svg activity-fish-photo" src="assets/activity/fish_only.png"/>
        <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="85" class="activity-spectrum" data-activity="85" id="fish-activity-meter" role="meter" style="--activity-percent:85%">
         <span>
         </span>
@@ -2077,10 +1999,7 @@
      <div aria-label="Τεχνικές ψαρέματος" class="technique-grid technique-scroll" id="technique-track" data-scroll-axis="horizontal" data-extensible="true" role="list">
       <button aria-pressed="true" class="technique-card selected" data-rating="5" data-technique="spinning" role="listitem" type="button">
        <span class="technique-icon">
-        <svg aria-hidden="true" class="technique-svg" viewbox="0 0 220 120">
-         <use href="#lure-spinning">
-         </use>
-        </svg>
+        <img alt="" class="technique-photo" src="assets/techniques/spinning.png"/>
        </span>
        <strong>
         SPINNING
@@ -2105,10 +2024,7 @@
       </button>
       <button aria-pressed="false" class="technique-card" data-rating="4" data-technique="lrf" role="listitem" type="button">
        <span class="technique-icon">
-        <svg aria-hidden="true" class="technique-svg" viewbox="0 0 220 120">
-         <use href="#lure-lrf">
-         </use>
-        </svg>
+        <img alt="" class="technique-photo" src="assets/techniques/lrf.png"/>
        </span>
        <strong>
         LRF
@@ -2133,10 +2049,7 @@
       </button>
       <button aria-pressed="false" class="technique-card" data-rating="3" data-technique="english" role="listitem" type="button">
        <span class="technique-icon">
-        <svg aria-hidden="true" class="technique-svg" viewbox="0 0 220 120">
-         <use href="#lure-float">
-         </use>
-        </svg>
+        <img alt="" class="technique-photo" src="assets/techniques/english.png"/>
        </span>
        <strong>
         ΕΓΓΛΕΖΙΚΟ
@@ -2161,10 +2074,7 @@
       </button>
       <button aria-pressed="false" class="technique-card" data-rating="3" data-technique="shore-jigging" role="listitem" type="button">
        <span class="technique-icon">
-        <svg aria-hidden="true" class="technique-svg" viewbox="0 0 220 120">
-         <use href="#lure-shore-jig">
-         </use>
-        </svg>
+        <img alt="" class="technique-photo" src="assets/techniques/shore_jig.png"/>
        </span>
        <strong>
         SHORE JIGGING
