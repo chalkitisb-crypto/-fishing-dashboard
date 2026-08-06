@@ -3225,3 +3225,141 @@ body.reference-layout-v3 .weather-side-metrics i,
 body.reference-layout-v3 .metric-row i {
   opacity: 0.95;
 }
+
+/* =========================================================
+   MASTER 100% PUSH — extracted assets + full cards
+========================================================= */
+
+/* Sun scene photo instead of SVG */
+body.reference-layout-v3 .premium-sun-photo,
+body.reference-layout-v3 img.premium-weather-scene {
+  width: 100% !important;
+  height: 72px !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 8px !important;
+  display: block !important;
+}
+
+/* Score: Master card photo primary */
+body.reference-layout-v3 .score-panel {
+  min-height: 148px !important;
+  max-height: none !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  padding: 4px !important;
+}
+body.reference-layout-v3 .score-panel > h2 {
+  display: none !important; /* title is in master photo */
+}
+body.reference-layout-v3 .score-master-photo {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 140px !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+body.reference-layout-v3 .score-panel .score-gauge,
+body.reference-layout-v3 .score-panel .score-caption,
+body.reference-layout-v3 .score-panel .score-stars,
+body.reference-layout-v3 .score-panel .score-rod-photo {
+  display: none !important; /* master photo includes all */
+}
+
+/* Techniques: full Master cards */
+body.reference-layout-v3 .technique-grid.technique-scroll {
+  display: flex !important;
+  gap: 6px !important;
+  justify-content: space-between !important;
+  overflow-x: auto !important;
+  padding: 2px 0 4px !important;
+}
+body.reference-layout-v3 .technique-card {
+  flex: 1 1 0 !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .technique-card .technique-icon {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  background: transparent !important;
+}
+body.reference-layout-v3 .technique-card .technique-photo {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 110px !important;
+  max-height: 130px !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+  border-radius: 10px !important;
+  display: block !important;
+}
+/* Labels already in Master card image */
+body.reference-layout-v3 .technique-card > strong,
+body.reference-layout-v3 .technique-card .technique-stars,
+body.reference-layout-v3 .technique-card .technique-rating-label,
+body.reference-layout-v3 .technique-card .technique-dot {
+  display: none !important;
+}
+
+/* Header fish from Master */
+body.reference-layout-v3 .top-header .header-fish-asset.brand-fish {
+  width: 64px !important;
+  height: 40px !important;
+  object-fit: contain !important;
+}
+body.reference-layout-v3 .top-header .header-brand-lockup.brand-area {
+  grid-template-columns: 64px minmax(0, 1fr) 64px !important;
+}
+body.reference-layout-v3 .top-header .header-brand-title {
+  font-size: 11px !important;
+  white-space: nowrap !important;
+}
+
+/* Moon */
+body.reference-layout-v3 .moon-panel .moon-main {
+  min-height: 78px !important;
+  grid-template-columns: 70px 1fr !important;
+  gap: 10px !important;
+}
+body.reference-layout-v3 .moon-panel .master-moon-photo {
+  width: 70px !important;
+  height: 70px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy strong {
+  font-size: 24px !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy span {
+  font-size: 9px !important;
+  white-space: normal !important;
+}
+
+/* Activity fish */
+body.reference-layout-v3 .activity-fish-photo {
+  height: 88px !important;
+  object-fit: contain !important;
+}
+
+/* Score activity row height for master score card */
+body.reference-layout-v3 .score-activity-row {
+  height: auto !important;
+  min-height: 148px !important;
+}
+body.reference-layout-v3 .score-activity-row > .panel {
+  height: auto !important;
+  min-height: 148px !important;
+}

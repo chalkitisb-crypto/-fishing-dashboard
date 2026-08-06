@@ -751,84 +751,7 @@
       <article aria-label="Τρέχουσες καιρικές συνθήκες" class="weather-card widget" data-live-widget="weather" data-size="wide" data-widget="weather">
        <div class="weather-main">
         <div class="sun-wrap" data-condition="clear-day" data-field="weather.visual" id="weather-visual">
-         <svg aria-label="Ηλιοφάνεια πάνω από τη θάλασσα" class="premium-weather-scene premium-sun" role="img" viewbox="0 0 330 150">
-          <defs>
-           <lineargradient id="hero-sky" x1="0%" x2="0%" y1="0%" y2="100%">
-            <stop offset="0%" stop-color="#04162b">
-            </stop>
-            <stop offset="48%" stop-color="#09365a">
-            </stop>
-            <stop offset="100%" stop-color="#03111f">
-            </stop>
-           </lineargradient>
-           <lineargradient id="hero-mountain" x1="0%" x2="100%" y1="0%" y2="100%">
-            <stop offset="0%" stop-color="#476777">
-            </stop>
-            <stop offset="100%" stop-color="#07111a">
-            </stop>
-           </lineargradient>
-           <lineargradient id="hero-reflection" x1="0%" x2="0%" y1="0%" y2="100%">
-            <stop offset="0%" stop-color="#ffd858" stop-opacity=".8">
-            </stop>
-            <stop offset="100%" stop-color="#ffc738" stop-opacity="0">
-            </stop>
-           </lineargradient>
-           <filter height="260%" id="hero-sun-glow" width="260%" x="-80%" y="-80%">
-            <fegaussianblur result="blur" stddeviation="6">
-            </fegaussianblur>
-            <femerge>
-             <femergenode in="blur">
-             </femergenode>
-             <femergenode in="SourceGraphic">
-             </femergenode>
-            </femerge>
-           </filter>
-          </defs>
-          <rect fill="url(#hero-sky)" height="150" width="330" x="0" y="0">
-          </rect>
-          <g opacity=".82">
-           <path d="M0 104 38 79 73 98 111 68 144 97 187 76 230 99 276 72 330 104V124H0Z" fill="url(#hero-mountain)">
-           </path>
-           <path d="M7 104 42 87 73 104 112 81 145 105 188 89 230 106 278 84 326 106" fill="none" stroke="#b4d8e7" stroke-opacity=".55" stroke-width="2">
-           </path>
-          </g>
-          <rect fill="url(#fd-sea)" height="39" width="330" x="0" y="111">
-          </rect>
-          <g stroke="#4bb6e5" stroke-opacity=".45" stroke-width="1">
-           <path d="M0 120c32-7 62 7 94 0s63 6 95 0 63 7 95 0 31-1 46 1">
-           </path>
-           <path d="M0 132c32-7 62 7 94 0s63 6 95 0 63 7 95 0 31-1 46 1">
-           </path>
-           <path d="M0 143c32-7 62 7 94 0s63 6 95 0 63 7 95 0 31-1 46 1">
-           </path>
-          </g>
-          <ellipse cx="151" cy="125" fill="url(#hero-reflection)" opacity=".45" rx="37" ry="24">
-          </ellipse>
-          <g filter="url(#hero-sun-glow)">
-           <g stroke="#ffc137" stroke-linecap="round">
-            <line stroke-width="3" x1="151" x2="151" y1="4" y2="22">
-            </line>
-            <line stroke-width="3" x1="151" x2="151" y1="88" y2="106">
-            </line>
-            <line stroke-width="3" x1="101" x2="119" y1="55" y2="55">
-            </line>
-            <line stroke-width="3" x1="183" x2="201" y1="55" y2="55">
-            </line>
-            <line stroke-width="2.6" x1="115" x2="128" y1="19" y2="32">
-            </line>
-            <line stroke-width="2.6" x1="174" x2="187" y1="78" y2="91">
-            </line>
-            <line stroke-width="2.6" x1="115" x2="128" y1="91" y2="78">
-            </line>
-            <line stroke-width="2.6" x1="174" x2="187" y1="32" y2="19">
-            </line>
-           </g>
-           <circle cx="151" cy="55" fill="url(#fd-sun-disc)" r="31" stroke="#ffd263" stroke-width="1.5">
-           </circle>
-           <circle cx="151" cy="55" fill="none" r="36" stroke="#ffb21d" stroke-opacity=".25" stroke-width="4">
-           </circle>
-          </g>
-         </svg>
+         <img alt="Ηλιοφάνεια" class="premium-weather-scene premium-sun-photo" src="sun_scene.png"/>
         </div>
         <div class="weather-copy">
          <div class="weather-label" data-field="weather.label" id="weather-condition-label">
@@ -1721,6 +1644,7 @@
       <h2>
        FISHING SCORE
       </h2>
+      <img alt="Fishing Score 85" class="score-master-photo" src="score_master_card.png"/>
       <div aria-label="Fishing Score 85" aria-valuemax="100" aria-valuemin="0" aria-valuenow="85" class="score-gauge" data-score="85" id="fishing-score-gauge" role="meter">
        <svg aria-hidden="true" class="premium-gauge" role="img" viewbox="0 0 300 205">
         <defs>
@@ -2000,7 +1924,7 @@
      <div aria-label="Τεχνικές ψαρέματος" class="technique-grid technique-scroll" id="technique-track" data-scroll-axis="horizontal" data-extensible="true" role="list">
       <button aria-pressed="true" class="technique-card selected" data-rating="5" data-technique="spinning" role="listitem" type="button">
        <span class="technique-icon">
-        <img alt="" class="technique-photo" src="spinning.png"/>
+        <img alt="" class="technique-photo" src="tech_card_spinning.png"/>
        </span>
        <strong>
         SPINNING
@@ -2025,7 +1949,7 @@
       </button>
       <button aria-pressed="false" class="technique-card" data-rating="4" data-technique="lrf" role="listitem" type="button">
        <span class="technique-icon">
-        <img alt="" class="technique-photo" src="lrf.png"/>
+        <img alt="" class="technique-photo" src="tech_card_lrf.png"/>
        </span>
        <strong>
         LRF
@@ -2050,7 +1974,7 @@
       </button>
       <button aria-pressed="false" class="technique-card" data-rating="3" data-technique="english" role="listitem" type="button">
        <span class="technique-icon">
-        <img alt="" class="technique-photo" src="english.png"/>
+        <img alt="" class="technique-photo" src="tech_card_english.png"/>
        </span>
        <strong>
         ΕΓΓΛΕΖΙΚΟ
@@ -2075,7 +1999,7 @@
       </button>
       <button aria-pressed="false" class="technique-card" data-rating="3" data-technique="shore-jigging" role="listitem" type="button">
        <span class="technique-icon">
-        <img alt="" class="technique-photo" src="shore_jig.png"/>
+        <img alt="" class="technique-photo" src="tech_card_shore_jig.png"/>
        </span>
        <strong>
         SHORE JIGGING
