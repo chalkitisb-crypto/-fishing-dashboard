@@ -570,6 +570,11 @@
     const sun = calculateSunTimes(now);
     const moon = calculateMoon(now);
     const tide = calculateTideFallback(now);
+    if (!state.provider) {
+      // Locked Master tide times from MASTER_FINAL_REFERENCE
+      tide.nextLow = { minutes: 11 * 60 + 40, height: -0.12 };
+      tide.nextHigh = { minutes: 17 * 60 + 55, height: 0.85 };
+    }
     const startHour = 8; // Master hourly strip starts at 08:00
     const dailyWave = Math.sin((local.getDate() + local.getMonth() * 3) * 0.73);
     const baseTemperature = 22;
@@ -588,13 +593,14 @@
       { hour: 14, condition: "partly", temperature: 26, rainProbability: 0 }
     ];
 
+    const HOURLY_SHORT = { clear: "Ηλιοφάνεια", partly: "Αραιή συννεφιά", cloudy: "Συννεφιά", rain: "Βροχή", storm: "Καταιγίδα", night: "Αίθριος" };
     const hourlyWeather = masterHourly.map((slot, index) => {
       const date = new Date(local.getFullYear(), local.getMonth(), local.getDate(), slot.hour, 0, 0);
       return {
         time: `${pad2(slot.hour)}:00`,
         iso: date.toISOString(),
         condition: slot.condition,
-        label: CONDITION_META[slot.condition].description,
+        label: HOURLY_SHORT[slot.condition] || CONDITION_META[slot.condition].description,
         temperature: slot.temperature,
         rainProbability: slot.rainProbability
       };
@@ -706,7 +712,12 @@
       })
     );
 
-    const alerts = [
+    const alerts = !state.provider ? [
+      { id: "spinning-window", tone: "green", status: "active", label: "SPINNING: Ιδανικές συνθήκες", time: "08:00–10:00" },
+      { id: "wind-increase", tone: "yellow", status: "upcoming", label: "ΑΝΕΜΟΣ: Ενισχύεται μετά τις", time: "14:00" },
+      { id: "current-increase", tone: "orange", status: "upcoming", label: "ΡΕΥΜΑΤΑ: Αυξημένα μετά τις", time: "16:00" },
+      { id: "uv-high", tone: "blue", status: "active", label: "UV: Υψηλός δείκτης", time: "11:00–16:00" }
+    ] : [
       {
         id: "spinning-window",
         tone: "green",
@@ -754,7 +765,7 @@
         humidity: !state.provider ? 56 : clamp(52 + Math.round(Math.abs(dailyWave) * 8), 42, 78),
         rainProbability: !state.provider ? 0 : rainProbability,
         uvIndex: !state.provider ? 6 : uvIndex,
-        uvLabel: !state.provider ? "ΥΨΗΛΟΣ" : uvLabel(uvIndex),
+        uvLabel: !state.provider ? "6 ΥΨΗΛΟΣ" : uvLabel(uvIndex),
         condition: !state.provider ? "clear" : currentCondition,
         label: !state.provider ? "ΗΛΙΟΦΑΝΕΙΑ" : CONDITION_META[currentCondition].label,
         description: !state.provider ? "Αίθριος ουρανός" : CONDITION_META[currentCondition].description
@@ -910,7 +921,7 @@
       setText("time", hour.time, cell);
       const time = $("time", cell);
       if (time) time.dateTime = hour.iso;
-      setText("strong", CONDITION_META[hour.condition]?.description || hour.label, cell);
+      setText("strong", hour.label || CONDITION_META[hour.condition]?.description, cell);
       setText("span", `${Math.round(hour.temperature)}°C`, cell);
       const use = $("svg use", cell);
       if (use) use.setAttribute("href", CONDITION_META[hour.condition]?.icon || "#weather-partly");
@@ -932,7 +943,8 @@
       setText(".wind-dir", item.directionLabel, cell);
 
       if (type === "wind") {
-        setText("strong", item.beaufort, cell);
+        const strong = $("strong", cell);
+        if (strong) strong.innerHTML = `${item.beaufort}<span class="bf-label">Bf</span>`;
         setText("small", `${Math.round(item.speedKmh)} km/h`, cell);
       } else {
         setText("strong", `${item.speedKnots.toFixed(1)} kn`, cell);
@@ -1032,7 +1044,7 @@
 
   function renderSea(data) {
     setText("#wave-height", `${data.sea.waveHeight.toFixed(1)} m`);
-    setText("#wave-period", `${data.sea.wavePeriod.toFixed(1)} s`);
+    setText("#wave-period", Number.isInteger(data.sea.wavePeriod) ? `${data.sea.wavePeriod} s` : `${data.sea.wavePeriod.toFixed(1)} s`);
     setText("#wave-direction-label", data.sea.waveDirectionLabel);
     setText("#water-temperature", `${Math.round(data.sea.waterTemperature)}°C`);
 
@@ -1271,6 +1283,10 @@
   ======================================================= */
 
   function applyFavorite(isFavorite, persist = true) {
+    // Ensure only one favorite button exists (Master has single star)
+    document.querySelectorAll(".header-actions .favorite-button").forEach((btn, i) => {
+      if (i > 0) btn.remove();
+    });
     const button = $(".favorite-button");
     if (!button) return;
     button.classList.toggle("is-favorite", Boolean(isFavorite));

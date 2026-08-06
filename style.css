@@ -4043,3 +4043,245 @@ body.reference-layout-v3 .score-activity-row {
 body.reference-layout-v3 .score-activity-row > .panel {
   min-height: 160px !important;
 }
+
+/* =========================================================
+   FULL ANALYSIS FIX — all Master gaps
+========================================================= */
+
+/* Header: fish faces + single star */
+body.reference-layout-v3 .top-header.final-master-header {
+  display: grid !important;
+  grid-template-columns: 32px minmax(0, 1fr) 68px !important;
+  gap: 4px !important;
+  align-items: center !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .top-header .header-brand-lockup.brand-area {
+  grid-template-columns: 78px minmax(0, 1fr) 78px !important;
+  gap: 2px !important;
+}
+body.reference-layout-v3 .top-header .header-fish-asset.brand-fish {
+  width: 78px !important;
+  height: 48px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+body.reference-layout-v3 .top-header .header-brand-title {
+  font-size: 10px !important;
+  white-space: nowrap !important;
+}
+body.reference-layout-v3 .top-header .header-actions {
+  display: flex !important;
+  gap: 4px !important;
+}
+body.reference-layout-v3 .top-header .header-actions .favorite-button ~ .favorite-button {
+  display: none !important;
+}
+
+/* Yellow sunrise/sunset icons in hero metrics */
+body.reference-layout-v3 .weather-metrics .weather-metric:nth-child(5),
+body.reference-layout-v3 .weather-metrics .weather-metric:nth-child(6) {
+  color: #ffc24a !important;
+}
+body.reference-layout-v3 .weather-metrics .weather-metric:nth-child(5) svg,
+body.reference-layout-v3 .weather-metrics .weather-metric:nth-child(6) svg {
+  color: #ffc24a !important;
+}
+body.reference-layout-v3 .weather-metrics .weather-metric:nth-child(5) svg *,
+body.reference-layout-v3 .weather-metrics .weather-metric:nth-child(6) svg * {
+  stroke: #ffc24a !important;
+}
+
+/* UV metric emphasize */
+body.reference-layout-v3 .uv-metric strong,
+body.reference-layout-v3 #weather-uv {
+  color: #ff4d4d !important;
+  font-weight: 800 !important;
+}
+
+/* Sun scene */
+body.reference-layout-v3 img.premium-sun-photo {
+  height: 84px !important;
+  object-fit: cover !important;
+  object-position: center 50% !important;
+  border-radius: 8px !important;
+}
+
+/* Hourly weather: show temps */
+body.reference-layout-v3 .weather-hour-cell span[data-field*="temperature"],
+body.reference-layout-v3 .weather-hour-cell > span:last-child {
+  display: block !important;
+  font-size: 8px !important;
+  color: #b8d4e8 !important;
+  margin-top: 2px !important;
+}
+body.reference-layout-v3 .weather-hour-cell strong {
+  font-size: 7.5px !important;
+  line-height: 1.15 !important;
+  white-space: normal !important;
+  max-height: 2.4em !important;
+  overflow: hidden !important;
+}
+
+/* Wind Bf label */
+body.reference-layout-v3 .wind-hour-cell strong {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  line-height: 1.05 !important;
+  font-size: 12px !important;
+}
+body.reference-layout-v3 .wind-hour-cell strong .bf-label {
+  display: block !important;
+  font-size: 7px !important;
+  font-weight: 600 !important;
+  color: #8eb4c8 !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* Moon times: two clean columns */
+body.reference-layout-v3 .moon-panel {
+  min-height: 128px !important;
+  overflow: visible !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+body.reference-layout-v3 .moon-panel .moon-main {
+  flex: 1 1 auto !important;
+  min-height: 72px !important;
+  grid-template-columns: 70px 1fr !important;
+  gap: 8px !important;
+  padding: 6px 8px 4px !important;
+  align-items: center !important;
+}
+body.reference-layout-v3 .moon-panel .master-moon-photo {
+  width: 70px !important;
+  height: 70px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy strong {
+  font-size: 24px !important;
+  line-height: 1 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy span {
+  font-size: 9px !important;
+  line-height: 1.25 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 6px !important;
+  flex: 0 0 34px !important;
+  height: 34px !important;
+  min-height: 34px !important;
+  padding: 4px 8px 6px !important;
+  border-top: 1px solid rgba(90, 150, 190, 0.28) !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times > div {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 1px !important;
+  min-width: 0 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times > div > svg {
+  display: none !important; /* use text row cleaner */
+}
+body.reference-layout-v3 .moon-panel .moon-times > div {
+  display: grid !important;
+  grid-template-columns: 12px 1fr !important;
+  grid-template-rows: auto auto !important;
+  column-gap: 4px !important;
+  row-gap: 0 !important;
+  align-items: center !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times > div > svg {
+  display: block !important;
+  grid-row: 1 / span 2 !important;
+  width: 12px !important;
+  height: 12px !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times span {
+  font-size: 6.5px !important;
+  color: #9ec5d8 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times strong {
+  font-size: 10px !important;
+  color: #fff !important;
+  line-height: 1.1 !important;
+  white-space: nowrap !important;
+}
+
+/* Fish activity clean */
+body.reference-layout-v3 .activity-fish-photo {
+  height: 70px !important;
+  object-fit: contain !important;
+}
+body.reference-layout-v3 .activity-spectrum {
+  display: flex !important;
+  height: 7px !important;
+  margin-top: 6px !important;
+  border-radius: 4px !important;
+  overflow: visible !important;
+  position: relative !important;
+}
+body.reference-layout-v3 .activity-spectrum span {
+  flex: 1 !important;
+  height: 100% !important;
+}
+body.reference-layout-v3 .activity-spectrum-marker {
+  position: absolute !important;
+  top: -3px !important;
+  width: 3px !important;
+  height: 13px !important;
+  background: #fff !important;
+  border-radius: 2px !important;
+  left: var(--activity-percent, 85%) !important;
+  transform: translateX(-50%) !important;
+}
+
+/* Score master card with stars */
+body.reference-layout-v3 .score-master-photo {
+  width: 100% !important;
+  max-height: 160px !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+body.reference-layout-v3 .score-panel > h2,
+body.reference-layout-v3 .score-panel .score-gauge,
+body.reference-layout-v3 .score-panel .score-caption,
+body.reference-layout-v3 .score-panel .score-stars,
+body.reference-layout-v3 .score-panel .score-rod-photo {
+  display: none !important;
+}
+body.reference-layout-v3 .score-activity-row {
+  min-height: 165px !important;
+  height: auto !important;
+}
+body.reference-layout-v3 .score-activity-row > .panel {
+  min-height: 165px !important;
+  height: auto !important;
+}
+
+/* Techniques keep full cards */
+body.reference-layout-v3 .technique-card .technique-icon {
+  height: 135px !important;
+  min-height: 135px !important;
+}
+body.reference-layout-v3 .technique-card .technique-photo {
+  height: 135px !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+}
+body.reference-layout-v3 .technique-card > strong,
+body.reference-layout-v3 .technique-card .technique-stars,
+body.reference-layout-v3 .technique-card .technique-rating-label,
+body.reference-layout-v3 .technique-card .technique-dot {
+  display: none !important;
+}
