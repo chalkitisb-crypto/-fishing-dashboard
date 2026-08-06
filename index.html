@@ -1,151 +1,2907 @@
+<!DOCTYPE html>
+<!--
+ FISHING DASHBOARD — FINAL MASTER v9
+ Version: 9.0.0
+ Baseline: GitHub main/index.html (2750 displayed lines / 574 KB)
+ Visual authority: Fishing-Dashboard-OFFICIAL-FINAL-MASTER-2026-08-05.png
+ Method:
+ - retained the established class names, selectors and app.js integration points;
+ - preserved the existing widget model, navigation, favorite, refresh and layout hooks;
+ - replaced only the obsolete visual/structural blocks required by the locked Final Master;
+ - added stable IDs and data hooks for the new dynamic app.js;
+ - removed the artificial status bar;
+ - kept the bottom navigation after the fishing-technique strip.
+ Note:
+ - old repeated ASSET MAP comments and static base64 screenshots are not used as UI logic;
+ - approved graphics are represented as editable SVG/HTML so live data can update them.
+-->
+<html lang="el">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+  <meta content="#020712" name="theme-color"/>
+  <meta content="yes" name="apple-mobile-web-app-capable"/>
+  <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+  <meta content="telephone=no" name="format-detection"/>
+  <meta content="dark" name="color-scheme"/>
 
+  <meta content="8.0.0" name="fishing-dashboard-version"/>
+  <meta content="final-master-v8-foundation" name="fishing-dashboard-build"/>
+  <meta content="Fishing-Dashboard-OFFICIAL-FINAL-MASTER-2026-08-05.png" name="fishing-dashboard-visual-master"/>
+  <title>
+   Fishing Dashboard — Κάλυμνος
+  </title>
+  <link crossorigin="" href="https://cdnjs.cloudflare.com" rel="preconnect"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+  <link href="style.css?v=9.0.0" rel="stylesheet"/>
+  <link href="manifest.json" rel="manifest"/>
+  <style id="master-graphic-upgrade">
 
-FISHING
-DASHBOARD
-ΚΑΛΥΜΝΟΣ, ΕΛΛΑΔΑ
+    /* Original master compatibility aliases */
+    .premium-photo-asset,
+    .premium-technique-photo {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+    }
 
+    .premium-sun-photo,
+    .premium-moon-photo,
+    .premium-gauge-photo,
+    .premium-fish-photo {
+      mix-blend-mode: screen;
+    }
 
-ΚΥΡΙΑΚΗ
-2
-ΑΥΓΟΥΣΤΟΥ 
-2026
+   .fd-symbol-library {
+      position: absolute;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .header-fish-asset {
+      width: 92px;
+      height: auto;
+      overflow: visible;
+    }
+    .header-brand-center {
+      min-width: 0;
+      text-align: center;
+    }
+    .header-brand-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: .34em;
+      white-space: nowrap;
+    }
+    .header-brand-title .fishing-word {
+      color: #f8fbff;
+    }
+    .header-brand-title .dashboard-word {
+      color: #168cff;
+    }
+    .final-master-header {
+      grid-template-columns: 34px minmax(0, 1fr) auto;
+    }
+    .header-brand-lockup {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr) 92px;
+      align-items: center;
+      gap: 4px;
+      min-width: 0;
+    }
+    .hero-composite {
+      overflow: hidden;
+    }
+    .hero-composite .hero-grid {
+      margin: 0;
+    }
+    .hero-composite .date-card,
+    .hero-composite .weather-card {
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background: transparent;
+    }
+    .hero-hourly-title {
+      border-top: 1px solid rgba(22, 131, 207, .32);
+    }
+    .premium-weather-scene {
+      width: 100%;
+      height: 112px;
+      display: block;
+      overflow: visible;
+    }
+    .premium-hour-icon {
+      width: 29px;
+      height: 29px;
+      margin: 6px 0 3px;
+      overflow: visible;
+    }
+    .direction-arrow {
+      width: 25px;
+      height: 25px;
+      color: #35c8ff;
+      transform: rotate(var(--direction-deg, 0deg));
+      transform-origin: center;
+    }
+    .wind-pressure-row,
+    .moon-current-row,
+    .sea-tide-row,
+    .score-activity-row {
+      display: grid;
+      gap: var(--panel-gap, 8px);
+      margin-top: var(--panel-gap, 8px);
+    }
+    .wind-pressure-row {
+      grid-template-columns: .83fr 1.17fr;
+    }
+    .moon-current-row {
+      grid-template-columns: .58fr 1.42fr;
+    }
+    .sea-tide-row {
+      grid-template-columns: .58fr 1.42fr;
+    }
+    .score-activity-row {
+      grid-template-columns: .78fr 1.22fr;
+    }
+    .activity-composite {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 8px;
+    }
+    .activity-composite h2 {
+      grid-column: 1 / -1;
+    }
+    .activity-art {
+      min-width: 0;
+      padding-right: 8px;
+      border-right: 1px solid rgba(37, 113, 162, .2);
+    }
+    .activity-factors {
+      min-width: 0;
+      padding-left: 8px;
+    }
+    .activity-fish-svg {
+      width: 100%;
+      max-height: 130px;
+      overflow: visible;
+      filter: drop-shadow(0 0 8px rgba(50,183,255,.32));
+    }
+    .bubble {
+      fill: #168cff;
+      stroke: #8ce7ff;
+      stroke-width: 1;
+      opacity: .88;
+    }
+    .activity-spectrum {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 3px;
+      margin-top: 7px;
+    }
+    .activity-spectrum span {
+      height: 9px;
+      border-radius: 2px;
+    }
+    .activity-spectrum span:nth-child(1) { background: #ff5d4a; }
+    .activity-spectrum span:nth-child(2) { background: #ff8a22; }
+    .activity-spectrum span:nth-child(3) { background: #ffd331; }
+    .activity-spectrum span:nth-child(4) { background: #b7e11a; }
+    .activity-spectrum span:nth-child(5) { background: #20d66b; }
+    .activity-spectrum-marker {
+      position: absolute;
+      top: -3px;
+      left: var(--activity-percent, 85%);
+      width: 3px;
+      height: 15px;
+      border-radius: 2px;
+      background: #fff;
+      box-shadow: 0 0 6px rgba(255,255,255,.7);
+      transform: translateX(-50%);
+    }
+    .activity-scale {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3px;
+      color: #fff;
+      font-size: 7px;
+      font-weight: 800;
+    }
+    .activity-verdict {
+      margin-top: 3px;
+      color: #f8fbff;
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: .5px;
+      text-align: center;
+    }
+    .best-times-strip {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      padding: 7px 10px;
+    }
+    .best-times-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 10px;
+      color: #ffd331;
+      font-size: 8px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .best-times-content strong {
+      color: #ffd331;
+    }
+    .best-times-separator {
+      color: #ffb328;
+    }
+    .score-gauge .premium-gauge {
+      width: 100%;
+      min-height: 150px;
+      overflow: visible;
+    }
+    .score-stars,
+    .technique-stars {
+      display: flex;
+      justify-content: center;
+      gap: 3px;
+      color: #b7e11a;
+    }
+    .score-stars .empty,
+    .technique-stars .empty {
+      color: #34424d;
+    }
+    .technique-scroll {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(122px, 1fr);
+      grid-template-columns: none;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .technique-scroll::-webkit-scrollbar {
+      display: none;
+    }
+    .technique-stars {
+      margin-top: 3px;
+      font-size: 7px;
+    }
+    .technique-rating-label {
+      display: block;
+      margin-top: 2px;
+      color: #7fe000;
+      font-size: 6.6px;
+      text-align: center;
+    }
+    .technique-card[data-rating="4"] .technique-rating-label {
+      color: #35c8ff;
+    }
+    .technique-card[data-rating="3"] .technique-rating-label {
+      color: #7fe000;
+    }
+    .alerts-panel {
+      margin-top: var(--panel-gap, 8px);
+    }
+    .alert-list li {
+      grid-template-columns: 12px 22px 1fr 10px;
+      align-items: center;
+    }
+    .alert-symbol {
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+    }
+    .alert-chevron {
+      color: #f8fbff;
+      font-size: 8px;
+    }
+    .bottom-navigation {
+      margin-top: var(--panel-gap, 8px);
+    }
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0 0 0 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+    @media (max-width: 390px) {
+      .header-brand-lockup {
+        grid-template-columns: 74px minmax(0, 1fr) 74px;
+      }
+      .header-fish-asset {
+        width: 74px;
+      }
+      .header-brand-title {
+        font-size: 12px;
+      }
+    }
+    @media (max-width: 350px) {
+      .wind-pressure-row,
+      .moon-current-row,
+      .sea-tide-row,
+      .score-activity-row {
+        grid-template-columns: 1fr;
+      }
+      .activity-composite {
+        grid-template-columns: 1fr;
+      }
+      .activity-art {
+        padding-right: 0;
+        border-right: 0;
+      }
+      .activity-factors {
+        padding-left: 0;
+      }
+      .best-times-strip {
+        grid-template-columns: 1fr;
+      }
+      .best-times-content {
+        margin-top: 6px;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+ </head>
+ <body class="reference-layout-v3">
+  <svg aria-hidden="true" class="fd-symbol-library" focusable="false" height="0" width="0">
+   <defs>
+    <lineargradient id="fd-fish-blue-body" x1="0%" x2="100%" y1="0%" y2="100%">
+     <stop offset="0%" stop-color="#f3fbff">
+     </stop>
+     <stop offset="18%" stop-color="#b4dce8">
+     </stop>
+     <stop offset="45%" stop-color="#3b8caf">
+     </stop>
+     <stop offset="72%" stop-color="#145a80">
+     </stop>
+     <stop offset="100%" stop-color="#082b43">
+     </stop>
+    </lineargradient>
+    <lineargradient id="fd-fish-gold" x1="0%" x2="100%" y1="0%" y2="0%">
+     <stop offset="0%" stop-color="#fff0a2">
+     </stop>
+     <stop offset="38%" stop-color="#c89b3d">
+     </stop>
+     <stop offset="72%" stop-color="#72521c">
+     </stop>
+     <stop offset="100%" stop-color="#2a2f2d">
+     </stop>
+    </lineargradient>
+    <lineargradient id="fd-fin-blue" x1="0%" x2="100%" y1="0%" y2="100%">
+     <stop offset="0%" stop-color="#8ee4ff">
+     </stop>
+     <stop offset="100%" stop-color="#0b578c">
+     </stop>
+    </lineargradient>
+    <radialgradient cx="42%" cy="38%" id="fd-sun-disc" r="65%">
+     <stop offset="0%" stop-color="#fff6bd">
+     </stop>
+     <stop offset="28%" stop-color="#ffd653">
+     </stop>
+     <stop offset="68%" stop-color="#f39b09">
+     </stop>
+     <stop offset="100%" stop-color="#b95b00">
+     </stop>
+    </radialgradient>
+    <radialgradient cx="50%" cy="50%" id="fd-sun-glow" r="50%">
+     <stop offset="0%" stop-color="#ffcc3b" stop-opacity=".68">
+     </stop>
+     <stop offset="62%" stop-color="#f98e00" stop-opacity=".22">
+     </stop>
+     <stop offset="100%" stop-color="#f98e00" stop-opacity="0">
+     </stop>
+    </radialgradient>
+    <lineargradient id="fd-cloud" x1="0%" x2="0%" y1="0%" y2="100%">
+     <stop offset="0%" stop-color="#ffffff">
+     </stop>
+     <stop offset="52%" stop-color="#d8e3ea">
+     </stop>
+     <stop offset="100%" stop-color="#788c9a">
+     </stop>
+    </lineargradient>
+    <lineargradient id="fd-sea" x1="0%" x2="0%" y1="0%" y2="100%">
+     <stop offset="0%" stop-color="#0c5d8a">
+     </stop>
+     <stop offset="100%" stop-color="#021526">
+     </stop>
+    </lineargradient>
+    <radialgradient cx="37%" cy="31%" id="fd-moon-gold" r="72%">
+     <stop offset="0%" stop-color="#fff3aa">
+     </stop>
+     <stop offset="34%" stop-color="#d9ad43">
+     </stop>
+     <stop offset="72%" stop-color="#8e5c13">
+     </stop>
+     <stop offset="100%" stop-color="#3a2204">
+     </stop>
+    </radialgradient>
+    <lineargradient id="fd-score-gradient" x1="0%" x2="100%" y1="100%" y2="0%">
+     <stop offset="0%" stop-color="#ff3526">
+     </stop>
+     <stop offset="24%" stop-color="#ff8a00">
+     </stop>
+     <stop offset="50%" stop-color="#ffe12d">
+     </stop>
+     <stop offset="72%" stop-color="#9de119">
+     </stop>
+     <stop offset="100%" stop-color="#08c85b">
+     </stop>
+    </lineargradient>
+    <filter height="200%" id="fd-blue-glow" width="200%" x="-50%" y="-50%">
+     <fegaussianblur result="blur" stddeviation="2.2">
+     </fegaussianblur>
+     <femerge>
+      <femergenode in="blur">
+      </femergenode>
+      <femergenode in="SourceGraphic">
+      </femergenode>
+     </femerge>
+    </filter>
+    <filter height="200%" id="fd-gold-glow" width="200%" x="-50%" y="-50%">
+     <fegaussianblur result="blur" stddeviation="2.8">
+     </fegaussianblur>
+     <femerge>
+      <femergenode in="blur">
+      </femergenode>
+      <femergenode in="SourceGraphic">
+      </femergenode>
+     </femerge>
+    </filter>
+    <filter height="200%" id="fd-green-glow" width="200%" x="-50%" y="-50%">
+     <fegaussianblur result="blur" stddeviation="2.1">
+     </fegaussianblur>
+     <femerge>
+      <femergenode in="blur">
+      </femergenode>
+      <femergenode in="SourceGraphic">
+      </femergenode>
+     </femerge>
+    </filter>
+    <symbol id="header-fish-left" viewbox="0 0 190 90">
+     <path d="M17 45C42 14 90 6 135 22c17 6 31 15 42 27-13 15-29 25-47 30C85 92 41 78 17 45Z" fill="url(#fd-fish-blue-body)" stroke="#d8f7ff" stroke-width="2.2">
+     </path>
+     <path d="M169 48 188 18c-4 20-4 42 0 61Z" fill="url(#fd-fin-blue)" stroke="#87ddfa" stroke-width="2">
+     </path>
+     <path d="M85 18 112 1c7 8 12 17 15 28Z" fill="#d0a74a" stroke="#f7d887" stroke-width="1.7">
+     </path>
+     <path d="M88 72 113 88c8-7 13-16 15-28Z" fill="#94702f" stroke="#e4bc61" stroke-width="1.7">
+     </path>
+     <path d="M30 48c28 4 64 1 103-22" fill="none" opacity=".9" stroke="#273a42" stroke-width="5">
+     </path>
+     <path d="M47 27c24-10 51-12 78-4M46 64c27 10 55 9 82-3" fill="none" opacity=".55" stroke="#f7e3a3" stroke-width="1.5">
+     </path>
+     <circle cx="49" cy="35" fill="#02080d" r="5.2" stroke="#f7ffff" stroke-width="1.7">
+     </circle>
+     <circle cx="47.7" cy="33.7" fill="#ffffff" r="1.3">
+     </circle>
+     <path d="M22 48c9 5 20 5 31 0" fill="none" stroke="#03121d" stroke-width="2.2">
+     </path>
+     <path d="M132 29c11 5 21 12 30 21-9 10-20 17-33 22" fill="none" opacity=".72" stroke="#e3be5e" stroke-width="2.1">
+     </path>
+    </symbol>
+    <symbol id="header-fish-right" viewbox="0 0 190 90">
+     <g transform="translate(190 0) scale(-1 1)">
+      <path d="M17 45C42 14 90 6 135 22c17 6 31 15 42 27-13 15-29 25-47 30C85 92 41 78 17 45Z" fill="url(#fd-fish-blue-body)" stroke="#d8f7ff" stroke-width="2.2">
+      </path>
+      <path d="M169 48 188 18c-4 20-4 42 0 61Z" fill="url(#fd-fin-blue)" stroke="#87ddfa" stroke-width="2">
+      </path>
+      <path d="M85 18 112 1c7 8 12 17 15 28Z" fill="#d0a74a" stroke="#f7d887" stroke-width="1.7">
+      </path>
+      <path d="M88 72 113 88c8-7 13-16 15-28Z" fill="#94702f" stroke="#e4bc61" stroke-width="1.7">
+      </path>
+      <path d="M30 48c28 4 64 1 103-22" fill="none" opacity=".9" stroke="#273a42" stroke-width="5">
+      </path>
+      <path d="M47 27c24-10 51-12 78-4M46 64c27 10 55 9 82-3" fill="none" opacity=".55" stroke="#f7e3a3" stroke-width="1.5">
+      </path>
+      <circle cx="49" cy="35" fill="#02080d" r="5.2" stroke="#f7ffff" stroke-width="1.7">
+      </circle>
+      <circle cx="47.7" cy="33.7" fill="#ffffff" r="1.3">
+      </circle>
+      <path d="M22 48c9 5 20 5 31 0" fill="none" stroke="#03121d" stroke-width="2.2">
+      </path>
+      <path d="M132 29c11 5 21 12 30 21-9 10-20 17-33 22" fill="none" opacity=".72" stroke="#e3be5e" stroke-width="2.1">
+      </path>
+     </g>
+    </symbol>
+    <symbol id="weather-sun" viewbox="0 0 64 64">
+     <circle cx="32" cy="32" fill="url(#fd-sun-glow)" r="25">
+     </circle>
+     <g stroke="#ffc12f" stroke-linecap="round" stroke-width="3.4">
+      <line x1="32" x2="32" y1="2" y2="10">
+      </line>
+      <line x1="32" x2="32" y1="54" y2="62">
+      </line>
+      <line x1="2" x2="10" y1="32" y2="32">
+      </line>
+      <line x1="54" x2="62" y1="32" y2="32">
+      </line>
+      <line x1="11" x2="17" y1="11" y2="17">
+      </line>
+      <line x1="47" x2="53" y1="47" y2="53">
+      </line>
+      <line x1="11" x2="17" y1="53" y2="47">
+      </line>
+      <line x1="47" x2="53" y1="17" y2="11">
+      </line>
+     </g>
+     <circle cx="32" cy="32" fill="url(#fd-sun-disc)" r="16" stroke="#efaa1d" stroke-width="1.4">
+     </circle>
+    </symbol>
+    <symbol id="weather-partly" viewbox="0 0 64 64">
+     <circle cx="24" cy="23" fill="url(#fd-sun-disc)" r="14" stroke="#f1b121" stroke-width="1">
+     </circle>
+     <g stroke="#ffc12f" stroke-linecap="round" stroke-width="2">
+      <line x1="24" x2="24" y1="3" y2="8">
+      </line>
+      <line x1="5" x2="10" y1="23" y2="23">
+      </line>
+      <line x1="10" x2="14" y1="9" y2="13">
+      </line>
+     </g>
+     <path d="M13 48c0-8 6-14 14-14 3-9 11-14 20-11 7 2 11 7 13 13 7 0 12 6 12 13 0 8-6 14-14 14H27c-8 0-14-6-14-15Z" fill="url(#fd-cloud)" stroke="#f6fcff" stroke-width="1.2" transform="translate(-6 -3) scale(.95)">
+     </path>
+    </symbol>
+    <symbol id="weather-cloud" viewbox="0 0 64 64">
+     <path d="M4 43c0-9 7-16 16-16 3-11 13-17 24-14 8 2 14 9 15 17 8 1 14 7 14 15 0 9-7 16-16 16H20C11 61 4 54 4 43Z" fill="url(#fd-cloud)" stroke="#f6fcff" stroke-width="1.3" transform="translate(-5 -4) scale(.95)">
+     </path>
+    </symbol>
+    <symbol id="direction-arrow" viewbox="0 0 48 48">
+     <path d="M42 6 8 21l14 5 5 14Z" fill="currentColor">
+     </path>
+     <path d="m22 26 20-20" fill="none" stroke="#ffffff" stroke-opacity=".48" stroke-width="1.2">
+     </path>
+    </symbol>
+    <symbol id="sunrise-icon" viewbox="0 0 48 48">
+     <path d="M7 35h34" stroke="currentColor" stroke-linecap="round" stroke-width="2.5">
+     </path>
+     <path d="M14 35a10 10 0 0 1 20 0" fill="none" stroke="currentColor" stroke-width="2.5">
+     </path>
+     <path d="M24 6v11m0-11-5 5m5-5 5 5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+     </path>
+     <path d="M9 23 5 20m34 3 4-3M14 14l-3-4m23 4 3-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2">
+     </path>
+    </symbol>
+    <symbol id="sunset-icon" viewbox="0 0 48 48">
+     <path d="M7 35h34" stroke="currentColor" stroke-linecap="round" stroke-width="2.5">
+     </path>
+     <path d="M14 35a10 10 0 0 1 20 0" fill="none" stroke="currentColor" stroke-width="2.5">
+     </path>
+     <path d="M24 6v11m0 0-5-5m5 5 5-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+     </path>
+     <path d="M9 23 5 20m34 3 4-3M14 14l-3-4m23 4 3-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2">
+     </path>
+    </symbol>
+    <symbol id="moon-rise-icon" viewbox="0 0 48 48">
+     <path d="M23 7a14 14 0 1 0 13 20A12 12 0 1 1 23 7Z" fill="#dba436" stroke="#ffd96e" stroke-width="1.2">
+     </path>
+     <path d="M5 39h38M24 41V26m0 0-6 6m6-6 6 6" fill="none" stroke="#ffd331" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4">
+     </path>
+    </symbol>
+    <symbol id="moon-set-icon" viewbox="0 0 48 48">
+     <path d="M23 7a14 14 0 1 0 13 20A12 12 0 1 1 23 7Z" fill="#dba436" stroke="#ffd96e" stroke-width="1.2">
+     </path>
+     <path d="M5 39h38M24 26v15m0 0-6-6m6 6 6-6" fill="none" stroke="#ffd331" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4">
+     </path>
+    </symbol>
+    <symbol id="activity-fish" viewbox="0 0 330 180">
+     <path d="M24 91C66 36 145 22 217 54c23 10 42 25 56 43-16 20-37 35-61 44-72 26-149 8-188-50Z" fill="url(#fd-fish-gold)" stroke="#e9d6a0" stroke-width="3">
+     </path>
+     <path d="M267 96 326 38c-12 39-12 82 0 121Z" fill="#7d6330" stroke="#e5c66e" stroke-width="3">
+     </path>
+     <path d="M135 47 171 4c18 19 26 39 26 61Z" fill="#6b552b" stroke="#d9b65c" stroke-width="2.4">
+     </path>
+     <path d="M141 139 179 176c16-19 23-38 21-58Z" fill="#665127" stroke="#d9b65c" stroke-width="2.4">
+     </path>
+     <path d="M128 111c26 15 55 17 86 5-27 29-57 42-88 34Z" fill="#4b3a1d" stroke="#c4a558" stroke-width="1.6">
+     </path>
+     <path d="M45 96c16 7 31 7 47-1" fill="none" stroke="#2a2114" stroke-width="4">
+     </path>
+     <circle cx="68" cy="71" fill="#070a0d" r="8" stroke="#fff6d6" stroke-width="2.5">
+     </circle>
+     <circle cx="66" cy="68.5" fill="#ffffff" r="2">
+     </circle>
+     <path d="M85 55c34-17 79-18 118-5M81 123c42 21 87 20 130-1" fill="none" stroke="#fff2c0" stroke-opacity=".45" stroke-width="2.6">
+     </path>
+     <g fill="none" opacity=".78" stroke="#b7984a" stroke-width="1.4">
+      <path d="M94 63c10 9 10 20 0 30">
+      </path>
+      <path d="M111 57c11 12 11 27 0 41">
+      </path>
+      <path d="M129 53c11 15 11 32 0 49">
+      </path>
+      <path d="M148 51c12 17 12 36 0 55">
+      </path>
+      <path d="M168 51c12 18 12 38 0 58">
+      </path>
+      <path d="M189 55c11 18 11 36 0 54">
+      </path>
+      <path d="M210 62c10 16 10 31 0 46">
+      </path>
+     </g>
+    </symbol>
+    <symbol id="lure-spinning" viewbox="0 0 220 120">
+     <path d="M18 63C51 32 126 28 184 52c-41 41-120 47-166 11Z" fill="url(#fd-fish-blue-body)" stroke="#e9fbff" stroke-width="3">
+     </path>
+     <path d="M179 53 213 38 199 63 214 83Z" fill="#1876a6" stroke="#b9efff" stroke-width="2.4">
+     </path>
+     <path d="M39 49c36-14 82-15 122-4" fill="none" stroke="#f5d755" stroke-width="4">
+     </path>
+     <circle cx="160" cy="49" fill="#050b10" r="5" stroke="#ffffff" stroke-width="1.7">
+     </circle>
+     <path d="M64 79v25m0 0-10-10m10 10 10-10M142 77v26m0 0-10-10m10 10 10-10" fill="none" stroke="#d8f7ff" stroke-linecap="round" stroke-width="2.8">
+     </path>
+    </symbol>
+    <symbol id="lure-lrf" viewbox="0 0 220 120">
+     <path d="M26 66C60 39 125 35 172 57c-37 32-101 37-146 9Z" fill="#b4d837" stroke="#edffb0" stroke-width="3">
+     </path>
+     <path d="M170 58 209 43 194 67 209 86Z" fill="#4d9b22" stroke="#d7ff9c" stroke-width="2.4">
+     </path>
+     <path d="M48 52c31-10 71-11 104-3" fill="none" stroke="#fff356" stroke-width="4">
+     </path>
+     <circle cx="151" cy="53" fill="#071009" r="4.8" stroke="#fff" stroke-width="1.7">
+     </circle>
+     <path d="M71 80v24m0 0-9-9m9 9 9-9M136 78v24m0 0-9-9m9 9 9-9" fill="none" stroke="#d8f7ff" stroke-linecap="round" stroke-width="2.8">
+     </path>
+    </symbol>
+    <symbol id="lure-float" viewbox="0 0 220 120">
+     <path d="M110 10v95" stroke="#eff9ff" stroke-linecap="round" stroke-width="5">
+     </path>
+     <rect fill="#ff3f2d" height="32" rx="9" stroke="#ffd5cf" stroke-width="2" width="18" x="101" y="22">
+     </rect>
+     <rect fill="#ffd331" height="26" rx="8" stroke="#fff0a1" stroke-width="2" width="18" x="101" y="54">
+     </rect>
+     <rect fill="#f6fbff" height="22" rx="8" stroke="#c2efff" stroke-width="2" width="16" x="102" y="80">
+     </rect>
+     <path d="M47 105c35-9 91-9 126 0" fill="none" opacity=".8" stroke="#35c8ff" stroke-width="3">
+     </path>
+    </symbol>
+    <symbol id="lure-shore-jig" viewbox="0 0 220 120">
+     <path d="M46 76c41-45 82-62 127-51-17 48-59 77-127 51Z" fill="#f5319b" stroke="#ffd6f0" stroke-width="3">
+     </path>
+     <path d="M62 67c31-26 61-38 91-36" fill="none" opacity=".7" stroke="#fff3fb" stroke-width="4">
+     </path>
+     <path d="M55 80 35 96m136-68 20-14" fill="none" stroke="#dff8ff" stroke-linecap="round" stroke-width="3">
+     </path>
+     <circle cx="154" cy="35" fill="#fff6b6" r="5" stroke="#fff" stroke-width="1.5">
+     </circle>
+     <path d="M34 96c-9 1-13 8-10 15m168-97c9-2 14 4 13 12" fill="none" stroke="#c8efff" stroke-linecap="round" stroke-width="2.6">
+     </path>
+    </symbol>
+   </defs>
+  </svg>
+  <div class="app-shell">
+   <header aria-label="Κεφαλίδα Fishing Dashboard" class="top-header final-master-header">
+    <button aria-label="Μενού διάταξης" aria-pressed="false" class="header-action menu-button" type="button">
+     <i aria-hidden="true" class="fa-solid fa-bars">
+     </i>
+    </button>
+    <div class="header-brand-lockup brand-area">
+     <svg aria-label="Μαγιάτικο" class="header-fish-asset header-fish-left brand-fish" role="img" viewbox="0 0 190 90">
+      <use href="#header-fish-left">
+      </use>
+     </svg>
+     <div class="header-brand-center">
+      <h1 class="header-brand-title">
+       <span class="fishing-word">
+        FISHING
+       </span>
+       <span class="dashboard-word">
+        DASHBOARD
+       </span>
+      </h1>
+      <div class="location-line">
+       <i aria-hidden="true" class="fa-solid fa-location-dot">
+       </i>
+       <span data-field="location.label" id="dashboard-location">
+        ΚΑΛΥΜΝΟΣ, ΕΛΛΑΔΑ
+       </span>
+      </div>
+     </div>
+     <svg aria-label="Θαλάσσιο ψάρι" class="header-fish-asset header-fish-right brand-fish" role="img" viewbox="0 0 190 90">
+      <use href="#header-fish-right">
+      </use>
+     </svg>
+    </div>
+    <div class="header-actions">
+     <button aria-label="Αγαπημένα" aria-pressed="false" class="header-action favorite-button" type="button">
+      <svg aria-hidden="true" class="header-control-icon" viewbox="0 0 32 32">
+       <path d="M16 4.2l3.45 7 7.72 1.12-5.59 5.45 1.32 7.69L16 21.83l-6.9 3.63 1.32-7.69-5.59-5.45 7.72-1.12L16 4.2Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.7">
+       </path>
+      </svg>
+     </button>
+     <button aria-label="Ανανέωση δεδομένων" class="header-action refresh-button" type="button">
+      <svg aria-hidden="true" class="header-control-icon" viewbox="0 0 32 32">
+       <path d="M25.5 10.2V4.8m0 0h-5.4m5.4 0-4.2 4.1A10.2 10.2 0 1 0 26 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+       </path>
+      </svg>
+     </button>
+    </div>
+   </header>
+   <main class="dashboard-content" id="dashboard-content">
+    <section class="panel hero-composite" data-layout-group="hero" data-master-section="date-weather">
+     <div class="hero-grid">
+      <article aria-label="Ημερομηνία" class="date-card widget" data-live-widget="date" data-size="compact" data-widget="date">
+       <div class="panel-kicker">
+        <i aria-hidden="true" class="fa-regular fa-calendar-days">
+        </i>
+        <span data-field="date.dayName" id="date-day-name">
+         ΚΥΡΙΑΚΗ
+        </span>
+       </div>
+       <div class="date-number" data-field="date.day" id="date-day-number">
+        2
+       </div>
+       <div class="date-month" data-field="date.monthYear" id="date-month-year">
+        ΑΥΓΟΥΣΤΟΥ
+        <br/>
+        2026
+       </div>
+      </article>
+      <article aria-label="Τρέχουσες καιρικές συνθήκες" class="weather-card widget" data-live-widget="weather" data-size="wide" data-widget="weather">
+       <div class="weather-main">
+        <div class="sun-wrap" data-condition="clear-day" data-field="weather.visual" id="weather-visual">
+         <svg aria-label="Ηλιοφάνεια πάνω από τη θάλασσα" class="premium-weather-scene premium-sun" role="img" viewbox="0 0 330 150">
+          <defs>
+           <lineargradient id="hero-sky" x1="0%" x2="0%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#04162b">
+            </stop>
+            <stop offset="48%" stop-color="#09365a">
+            </stop>
+            <stop offset="100%" stop-color="#03111f">
+            </stop>
+           </lineargradient>
+           <lineargradient id="hero-mountain" x1="0%" x2="100%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#476777">
+            </stop>
+            <stop offset="100%" stop-color="#07111a">
+            </stop>
+           </lineargradient>
+           <lineargradient id="hero-reflection" x1="0%" x2="0%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffd858" stop-opacity=".8">
+            </stop>
+            <stop offset="100%" stop-color="#ffc738" stop-opacity="0">
+            </stop>
+           </lineargradient>
+           <filter height="260%" id="hero-sun-glow" width="260%" x="-80%" y="-80%">
+            <fegaussianblur result="blur" stddeviation="6">
+            </fegaussianblur>
+            <femerge>
+             <femergenode in="blur">
+             </femergenode>
+             <femergenode in="SourceGraphic">
+             </femergenode>
+            </femerge>
+           </filter>
+          </defs>
+          <rect fill="url(#hero-sky)" height="150" width="330" x="0" y="0">
+          </rect>
+          <g opacity=".82">
+           <path d="M0 104 38 79 73 98 111 68 144 97 187 76 230 99 276 72 330 104V124H0Z" fill="url(#hero-mountain)">
+           </path>
+           <path d="M7 104 42 87 73 104 112 81 145 105 188 89 230 106 278 84 326 106" fill="none" stroke="#b4d8e7" stroke-opacity=".55" stroke-width="2">
+           </path>
+          </g>
+          <rect fill="url(#fd-sea)" height="39" width="330" x="0" y="111">
+          </rect>
+          <g stroke="#4bb6e5" stroke-opacity=".45" stroke-width="1">
+           <path d="M0 120c32-7 62 7 94 0s63 6 95 0 63 7 95 0 31-1 46 1">
+           </path>
+           <path d="M0 132c32-7 62 7 94 0s63 6 95 0 63 7 95 0 31-1 46 1">
+           </path>
+           <path d="M0 143c32-7 62 7 94 0s63 6 95 0 63 7 95 0 31-1 46 1">
+           </path>
+          </g>
+          <ellipse cx="151" cy="125" fill="url(#hero-reflection)" opacity=".45" rx="37" ry="24">
+          </ellipse>
+          <g filter="url(#hero-sun-glow)">
+           <g stroke="#ffc137" stroke-linecap="round">
+            <line stroke-width="3" x1="151" x2="151" y1="4" y2="22">
+            </line>
+            <line stroke-width="3" x1="151" x2="151" y1="88" y2="106">
+            </line>
+            <line stroke-width="3" x1="101" x2="119" y1="55" y2="55">
+            </line>
+            <line stroke-width="3" x1="183" x2="201" y1="55" y2="55">
+            </line>
+            <line stroke-width="2.6" x1="115" x2="128" y1="19" y2="32">
+            </line>
+            <line stroke-width="2.6" x1="174" x2="187" y1="78" y2="91">
+            </line>
+            <line stroke-width="2.6" x1="115" x2="128" y1="91" y2="78">
+            </line>
+            <line stroke-width="2.6" x1="174" x2="187" y1="32" y2="19">
+            </line>
+           </g>
+           <circle cx="151" cy="55" fill="url(#fd-sun-disc)" r="31" stroke="#ffd263" stroke-width="1.5">
+           </circle>
+           <circle cx="151" cy="55" fill="none" r="36" stroke="#ffb21d" stroke-opacity=".25" stroke-width="4">
+           </circle>
+          </g>
+         </svg>
+        </div>
+        <div class="weather-copy">
+         <div class="weather-label" data-field="weather.label" id="weather-condition-label">
+          ΗΛΙΟΦΑΝΕΙΑ
+         </div>
+         <div class="temperature-row">
+          <span class="temperature-value" data-field="weather.temperature" id="weather-temperature">
+           22
+          </span>
+          <span class="temperature-unit">
+           °C
+          </span>
+         </div>
+         <div class="weather-description" data-field="weather.description" id="weather-description">
+          Αίθριος ουρανός
+         </div>
+        </div>
+       </div>
+       <div class="weather-metrics">
+        <div class="weather-metric">
+         <span>
+          <i aria-hidden="true" class="fa-solid fa-temperature-half">
+          </i>
+          Αισθητή θερμ.
+         </span>
+         <strong data-field="weather.feelsLike" id="weather-feels-like">
+          22°C
+         </strong>
+        </div>
+        <div class="weather-metric">
+         <span>
+          <i aria-hidden="true" class="fa-solid fa-droplet">
+          </i>
+          Υγρασία
+         </span>
+         <strong data-field="weather.humidity" id="weather-humidity">
+          56%
+         </strong>
+        </div>
+        <div class="weather-metric">
+         <span>
+          <i aria-hidden="true" class="fa-solid fa-umbrella">
+          </i>
+          Πιθανότητα βροχής
+         </span>
+         <strong data-field="weather.rainProbability" id="weather-rain-probability">
+          0%
+         </strong>
+        </div>
+        <div class="weather-metric uv-metric">
+         <span>
+          <i aria-hidden="true" class="fa-regular fa-sun">
+          </i>
+          UV δείκτης
+         </span>
+         <strong data-field="weather.uv" id="weather-uv">
+          6 ΥΨΗΛΟΣ
+         </strong>
+        </div>
+        <div class="weather-metric">
+         <span>
+          <svg aria-hidden="true" viewbox="0 0 48 48">
+           <use href="#sunrise-icon">
+           </use>
+          </svg>
+          Ανατολή
+         </span>
+         <strong data-field="sun.rise" id="sunrise-time">
+          06:17
+         </strong>
+        </div>
+        <div class="weather-metric">
+         <span>
+          <svg aria-hidden="true" viewbox="0 0 48 48">
+           <use href="#sunset-icon">
+           </use>
+          </svg>
+          Δύση
+         </span>
+         <strong data-field="sun.set" id="sunset-time">
+          20:07
+         </strong>
+        </div>
+       </div>
+      </article>
+     </div>
+     <div class="section-title hero-hourly-title">
+      <i aria-hidden="true" class="fa-solid fa-cloud-sun">
+      </i>
+      <span>
+       ΣΥΝΘΗΚΕΣ ΚΑΙΡΟΥ – ΑΝΑ ΩΡΑ
+      </span>
+     </div>
+     <div class="hourly-strip cloud-strip" id="hourly-weather-strip" role="list">
+      <article class="hour-cell weather-hour-cell" data-hour-index="0" role="listitem">
+       <time data-field="hourlyWeather.0.time" datetime="2026-08-02T08:00:00+03:00">
+        08:00
+       </time>
+       <svg aria-hidden="true" class="weather-hour-icon premium-hour-icon" viewbox="0 0 64 64">
+        <use href="#weather-sun">
+        </use>
+       </svg>
+       <strong data-field="hourlyWeather.0.label">
+        Ηλιοφάνεια
+       </strong>
+       <span data-field="hourlyWeather.0.temperature">
+        22°C
+       </span>
+      </article>
+      <article class="hour-cell weather-hour-cell" data-hour-index="1" role="listitem">
+       <time data-field="hourlyWeather.1.time" datetime="2026-08-02T09:00:00+03:00">
+        09:00
+       </time>
+       <svg aria-hidden="true" class="weather-hour-icon premium-hour-icon" viewbox="0 0 64 64">
+        <use href="#weather-partly">
+        </use>
+       </svg>
+       <strong data-field="hourlyWeather.1.label">
+        Αραιή συννεφιά
+       </strong>
+       <span data-field="hourlyWeather.1.temperature">
+        23°C
+       </span>
+      </article>
+      <article class="hour-cell weather-hour-cell" data-hour-index="2" role="listitem">
+       <time data-field="hourlyWeather.2.time" datetime="2026-08-02T10:00:00+03:00">
+        10:00
+       </time>
+       <svg aria-hidden="true" class="weather-hour-icon premium-hour-icon" viewbox="0 0 64 64">
+        <use href="#weather-partly">
+        </use>
+       </svg>
+       <strong data-field="hourlyWeather.2.label">
+        Αραιή συννεφιά
+       </strong>
+       <span data-field="hourlyWeather.2.temperature">
+        24°C
+       </span>
+      </article>
+      <article class="hour-cell weather-hour-cell" data-hour-index="3" role="listitem">
+       <time data-field="hourlyWeather.3.time" datetime="2026-08-02T11:00:00+03:00">
+        11:00
+       </time>
+       <svg aria-hidden="true" class="weather-hour-icon premium-hour-icon" viewbox="0 0 64 64">
+        <use href="#weather-partly">
+        </use>
+       </svg>
+       <strong data-field="hourlyWeather.3.label">
+        Αραιή συννεφιά
+       </strong>
+       <span data-field="hourlyWeather.3.temperature">
+        25°C
+       </span>
+      </article>
+      <article class="hour-cell weather-hour-cell" data-hour-index="4" role="listitem">
+       <time data-field="hourlyWeather.4.time" datetime="2026-08-02T12:00:00+03:00">
+        12:00
+       </time>
+       <svg aria-hidden="true" class="weather-hour-icon premium-hour-icon" viewbox="0 0 64 64">
+        <use href="#weather-cloud">
+        </use>
+       </svg>
+       <strong data-field="hourlyWeather.4.label">
+        Συννεφιά
+       </strong>
+       <span data-field="hourlyWeather.4.temperature">
+        25°C
+       </span>
+      </article>
+      <article class="hour-cell weather-hour-cell" data-hour-index="5" role="listitem">
+       <time data-field="hourlyWeather.5.time" datetime="2026-08-02T13:00:00+03:00">
+        13:00
+       </time>
+       <svg aria-hidden="true" class="weather-hour-icon premium-hour-icon" viewbox="0 0 64 64">
+        <use href="#weather-cloud">
+        </use>
+       </svg>
+       <strong data-field="hourlyWeather.5.label">
+        Συννεφιά
+       </strong>
+       <span data-field="hourlyWeather.5.temperature">
+        26°C
+       </span>
+      </article>
+      <article class="hour-cell weather-hour-cell" data-hour-index="6" role="listitem">
+       <time data-field="hourlyWeather.6.time" datetime="2026-08-02T14:00:00+03:00">
+        14:00
+       </time>
+       <svg aria-hidden="true" class="weather-hour-icon premium-hour-icon" viewbox="0 0 64 64">
+        <use href="#weather-partly">
+        </use>
+       </svg>
+       <strong data-field="hourlyWeather.6.label">
+        Αραιή συννεφιά
+       </strong>
+       <span data-field="hourlyWeather.6.temperature">
+        26°C
+       </span>
+      </article>
+     </div>
+    </section>
+    <section class="wind-pressure-row" data-layout-group="wind-pressure">
+     <article class="panel full-width-panel widget" data-live-widget="wind" data-size="half" data-widget="wind">
+      <div class="section-title">
+       <i aria-hidden="true" class="fa-solid fa-wind">
+       </i>
+       <span>
+        ΑΝΕΜΟΣ (ΜΠΟΦΟΡ) – ΑΝΑ ΩΡΑ
+       </span>
+      </div>
+      <div class="hourly-strip wind-strip" id="wind-strip" role="list">
+       <article class="hour-cell wind-hour-cell" data-hour-index="0" role="listitem">
+        <time data-field="wind.0.time" datetime="2026-08-02T08:00:00+03:00">
+         08:00
+        </time>
+        <svg aria-hidden="true" class="wind-arrow direction-arrow" data-direction-deg="-45" data-field="wind.0.directionDeg" style="--direction-deg: -45deg" viewbox="0 0 48 48">
+         <use href="#direction-arrow">
+         </use>
+        </svg>
+        <span class="wind-dir" data-field="wind.0.directionLabel">
+         ΝΑ
+        </span>
+        <strong data-field="wind.0.value">
+         2
+        </strong>
+        <small data-field="wind.0.secondary">
+         9 km/h
+        </small>
+       </article>
+       <article class="hour-cell wind-hour-cell" data-hour-index="1" role="listitem">
+        <time data-field="wind.1.time" datetime="2026-08-02T09:00:00+03:00">
+         09:00
+        </time>
+        <svg aria-hidden="true" class="wind-arrow direction-arrow" data-direction-deg="-45" data-field="wind.1.directionDeg" style="--direction-deg: -45deg" viewbox="0 0 48 48">
+         <use href="#direction-arrow">
+         </use>
+        </svg>
+        <span class="wind-dir" data-field="wind.1.directionLabel">
+         ΝΑ
+        </span>
+        <strong data-field="wind.1.value">
+         2
+        </strong>
+        <small data-field="wind.1.secondary">
+         11 km/h
+        </small>
+       </article>
+       <article class="hour-cell wind-hour-cell" data-hour-index="2" role="listitem">
+        <time data-field="wind.2.time" datetime="2026-08-02T10:00:00+03:00">
+         10:00
+        </time>
+        <svg aria-hidden="true" class="wind-arrow direction-arrow" data-direction-deg="-135" data-field="wind.2.directionDeg" style="--direction-deg: -135deg" viewbox="0 0 48 48">
+         <use href="#direction-arrow">
+         </use>
+        </svg>
+        <span class="wind-dir" data-field="wind.2.directionLabel">
+         Α
+        </span>
+        <strong data-field="wind.2.value">
+         3
+        </strong>
+        <small data-field="wind.2.secondary">
+         13 km/h
+        </small>
+       </article>
+       <article class="hour-cell wind-hour-cell" data-hour-index="3" role="listitem">
+        <time data-field="wind.3.time" datetime="2026-08-02T11:00:00+03:00">
+         11:00
+        </time>
+        <svg aria-hidden="true" class="wind-arrow direction-arrow" data-direction-deg="-135" data-field="wind.3.directionDeg" style="--direction-deg: -135deg" viewbox="0 0 48 48">
+         <use href="#direction-arrow">
+         </use>
+        </svg>
+        <span class="wind-dir" data-field="wind.3.directionLabel">
+         Α
+        </span>
+        <strong data-field="wind.3.value">
+         3
+        </strong>
+        <small data-field="wind.3.secondary">
+         15 km/h
+        </small>
+       </article>
+       <article class="hour-cell wind-hour-cell" data-hour-index="4" role="listitem">
+        <time data-field="wind.4.time" datetime="2026-08-02T12:00:00+03:00">
+         12:00
+        </time>
+        <svg aria-hidden="true" class="wind-arrow direction-arrow" data-direction-deg="-135" data-field="wind.4.directionDeg" style="--direction-deg: -135deg" viewbox="0 0 48 48">
+         <use href="#direction-arrow">
+         </use>
+        </svg>
+        <span class="wind-dir" data-field="wind.4.directionLabel">
+         Α
+        </span>
+        <strong data-field="wind.4.value">
+         3
+        </strong>
+        <small data-field="wind.4.secondary">
+         17 km/h
+        </small>
+       </article>
+       <article class="hour-cell wind-hour-cell" data-hour-index="5" role="listitem">
+        <time data-field="wind.5.time" datetime="2026-08-02T13:00:00+03:00">
+         13:00
+        </time>
+        <svg aria-hidden="true" class="wind-arrow direction-arrow" data-direction-deg="180" data-field="wind.5.directionDeg" style="--direction-deg: 180deg" viewbox="0 0 48 48">
+         <use href="#direction-arrow">
+         </use>
+        </svg>
+        <span class="wind-dir" data-field="wind.5.directionLabel">
+         ΑΝΑ
+        </span>
+        <strong data-field="wind.5.value">
+         4
+        </strong>
+        <small data-field="wind.5.secondary">
+         21 km/h
+        </small>
+       </article>
+       <article class="hour-cell wind-hour-cell" data-hour-index="6" role="listitem">
+        <time data-field="wind.6.time" datetime="2026-08-02T14:00:00+03:00">
+         14:00
+        </time>
+        <svg aria-hidden="true" class="wind-arrow direction-arrow" data-direction-deg="180" data-field="wind.6.directionDeg" style="--direction-deg: 180deg" viewbox="0 0 48 48">
+         <use href="#direction-arrow">
+         </use>
+        </svg>
+        <span class="wind-dir" data-field="wind.6.directionLabel">
+         Δ
+        </span>
+        <strong data-field="wind.6.value">
+         4
+        </strong>
+        <small data-field="wind.6.secondary">
+         24 km/h
+        </small>
+       </article>
+      </div>
+     </article>
+     <article class="panel pressure-panel widget" data-live-widget="pressure" data-size="wide" data-widget="pressure">
+      <div class="pressure-main">
+       <div class="section-title">
+        <i aria-hidden="true" class="fa-regular fa-compass">
+        </i>
+        <span>
+         ΒΑΡΟΜΕΤΡΙΚΗ ΠΙΕΣΗ (hPa) – ΑΝΑ ΩΡΑ
+        </span>
+       </div>
+       <div class="chart-wrap">
+        <svg aria-label="Γράφημα βαρομετρικής πίεσης" class="pressure-chart" id="pressure-chart" data-chart="pressure" data-chart="pressure" id="pressure-chart" preserveaspectratio="none" role="img" viewbox="0 0 760 160">
+         <defs>
+          <lineargradient id="pressureFill" x1="0" x2="0" y1="0" y2="1">
+           <stop offset="0%" stop-color="#ffd331" stop-opacity=".22">
+           </stop>
+           <stop offset="100%" stop-color="#ffd331" stop-opacity="0">
+           </stop>
+          </lineargradient>
+          <filter height="180%" id="pressureGlow" width="140%" x="-20%" y="-40%">
+           <fegaussianblur result="blur" stddeviation="2">
+           </fegaussianblur>
+           <femerge>
+            <femergenode in="blur">
+            </femergenode>
+            <femergenode in="SourceGraphic">
+            </femergenode>
+           </femerge>
+          </filter>
+         </defs>
+         <g aria-hidden="true" class="grid-lines">
+          <line x1="0" x2="760" y1="28" y2="28">
+          </line>
+          <line x1="0" x2="760" y1="66" y2="66">
+          </line>
+          <line x1="0" x2="760" y1="104" y2="104">
+          </line>
+          <line x1="0" x2="760" y1="142" y2="142">
+          </line>
+          <line x1="58" x2="58" y1="0" y2="142">
+          </line>
+          <line x1="165" x2="165" y1="0" y2="142">
+          </line>
+          <line x1="272" x2="272" y1="0" y2="142">
+          </line>
+          <line x1="379" x2="379" y1="0" y2="142">
+          </line>
+          <line x1="486" x2="486" y1="0" y2="142">
+          </line>
+          <line x1="593" x2="593" y1="0" y2="142">
+          </line>
+          <line x1="700" x2="700" y1="0" y2="142">
+          </line>
+         </g>
+         <g class="pressure-axis-labels">
+          <text x="4" y="31">
+           1030
+          </text>
+          <text x="4" y="69">
+           1020
+          </text>
+          <text x="4" y="107">
+           1010
+          </text>
+          <text x="4" y="145">
+           1000
+          </text>
+         </g>
+         <path class="pressure-area" id="pressure-area" data-chart-area="pressure" d="M58 83 L165 83 L272 83 L379 83 L486 83 L593 83 L700 83 L700 142 L58 142 Z" data-chart-area="pressure" id="pressure-area">
+         </path>
+         <polyline class="pressure-line" id="pressure-line" data-chart-line="pressure" data-chart-line="pressure" filter="url(#pressureGlow)" id="pressure-line" points="58,83 165,83 272,83 379,83 486,83 593,83 700,83">
+         </polyline>
+         <g class="pressure-points" data-chart-points="pressure" id="pressure-points">
+          <circle cx="58" cy="83" data-point-index="0" fill="#07101d" r="8" stroke="#ffffff" stroke-width="3">
+          </circle>
+          <circle cx="58" cy="83" data-point-index="0-inner" fill="#ffd331" r="4" stroke="#ffd331" stroke-width="1">
+          </circle>
+          <circle cx="165" cy="83" data-point-index="1" r="5">
+          </circle>
+          <circle cx="272" cy="83" data-point-index="2" r="5">
+          </circle>
+          <circle cx="379" cy="83" data-point-index="3" r="5">
+          </circle>
+          <circle cx="486" cy="83" data-point-index="4" r="5">
+          </circle>
+          <circle cx="593" cy="83" data-point-index="5" r="5">
+          </circle>
+          <circle cx="700" cy="83" data-point-index="6" r="5">
+          </circle>
+         </g>
+         <g class="pressure-values" data-chart-values="pressure" id="pressure-values">
+          <text x="58" y="66">
+           1019
+          </text>
+          <text x="165" y="66">
+           1019
+          </text>
+          <text x="272" y="66">
+           1019
+          </text>
+          <text x="379" y="66">
+           1019
+          </text>
+          <text x="486" y="66">
+           1019
+          </text>
+          <text x="593" y="66">
+           1019
+          </text>
+          <text x="700" y="66">
+           1019
+          </text>
+         </g>
+        </svg>
+        <div class="chart-times pressure-times" data-chart-times="pressure" id="pressure-times">
+         <span>
+          08:00
+         </span>
+         <span>
+          09:00
+         </span>
+         <span>
+          10:00
+         </span>
+         <span>
+          11:00
+         </span>
+         <span>
+          12:00
+         </span>
+         <span>
+          13:00
+         </span>
+         <span>
+          14:00
+         </span>
+        </div>
+       </div>
+      </div>
+      <aside class="pressure-now">
+       <span>
+        ΤΩΡΑ
+       </span>
+       <strong data-field="pressure.current" id="pressure-current">
+        1019
+       </strong>
+       <small>
+        hPa
+       </small>
+       <b aria-hidden="true">
+        =
+       </b>
+       <em data-field="pressure.trend" data-trend="stable" id="pressure-trend">
+        Σταθερή
+       </em>
+      </aside>
+     </article>
+    </section>
+    <section class="moon-current-row" data-layout-group="moon-currents">
+     <article class="panel moon-panel widget" data-live-widget="moon" data-size="half" data-widget="moon">
+      <div class="section-title compact-title">
+       <span>
+        ΦΑΣΗ ΣΕΛΗΝΗΣ
+       </span>
+      </div>
+      <div class="moon-main">
+       <div class="moon-visual" data-field="moon.visual" data-illumination="72" data-phase="waxing-gibbous" id="moon-visual">
+        <svg aria-label="Αύξουσα Αμφίκυρτη Σελήνη 72%" class="premium-moon" role="img" viewbox="0 0 130 130">
+         <defs>
+          <clippath id="moon-clip">
+           <circle cx="65" cy="65" r="50">
+           </circle>
+          </clippath>
+          <filter height="140%" id="moon-texture" width="140%" x="-20%" y="-20%">
+           <feturbulence basefrequency=".08" numoctaves="3" result="noise" seed="8" type="fractalNoise">
+           </feturbulence>
+           <fecolormatrix in="noise" result="gray" type="saturate" values="0">
+           </fecolormatrix>
+           <feblend in="SourceGraphic" in2="gray" mode="multiply">
+           </feblend>
+          </filter>
+         </defs>
+         <circle cx="65" cy="65" fill="#05101b" r="54" stroke="#168cff" stroke-width="2">
+         </circle>
+         <circle cx="65" cy="65" fill="url(#fd-moon-gold)" filter="url(#moon-texture)" r="50">
+         </circle>
+         <g clip-path="url(#moon-clip)" opacity=".55">
+          <circle cx="45" cy="39" fill="#6e4610" r="8">
+          </circle>
+          <circle cx="80" cy="45" fill="#7b4e10" r="6">
+          </circle>
+          <circle cx="54" cy="74" fill="#68410d" r="11">
+          </circle>
+          <circle cx="86" cy="82" fill="#8c5c18" r="8">
+          </circle>
+          <circle cx="36" cy="90" fill="#7c5116" r="5">
+          </circle>
+          <circle cx="73" cy="103" fill="#5d390c" r="4">
+          </circle>
+          <path d="M28 58c20 12 45 13 76 2M38 97c20-8 38-8 56-1" fill="none" opacity=".32" stroke="#f2d578" stroke-width="1.2">
+          </path>
+         </g>
+         <ellipse cx="26" cy="65" data-moon-shadow="" fill="#020712" id="moon-shadow" opacity=".92" rx="18" ry="50">
+         </ellipse>
+        </svg>
+       </div>
+       <div class="moon-copy">
+        <strong data-field="moon.illumination" id="moon-illumination">
+         72%
+        </strong>
+        <span data-field="moon.phaseLabel" id="moon-phase-label">
+         Αύξουσα
+         <br/>
+         Αμφίκυρτη
+        </span>
+       </div>
+      </div>
+      <div class="moon-times">
+       <div>
+        <svg aria-hidden="true" viewbox="0 0 48 48">
+         <use href="#moon-rise-icon">
+         </use>
+        </svg>
+        <span>
+         Ανατολή
+        </span>
+        <strong data-field="moon.rise" id="moonrise-time">
+         13:28
+        </strong>
+       </div>
+       <div>
+        <svg aria-hidden="true" viewbox="0 0 48 48">
+         <use href="#moon-set-icon">
+         </use>
+        </svg>
+        <span>
+         Δύση
+        </span>
+        <strong data-field="moon.set" id="moonset-time">
+         01:02
+        </strong>
+       </div>
+      </div>
+     </article>
+     <article class="panel full-width-panel widget" data-live-widget="currents" data-size="wide" data-widget="currents">
+      <div class="section-title">
+       <i aria-hidden="true" class="fa-solid fa-water">
+       </i>
+       <span>
+        ΡΕΥΜΑΤΑ (ΤΑΧΥΤΗΤΑ &amp; ΔΙΕΥΘΥΝΣΗ) – ΑΝΑ ΩΡΑ
+       </span>
+      </div>
+      <div class="hourly-strip current-strip" id="current-strip" role="list">
+       <article class="hour-cell currents-hour-cell" data-hour-index="0" role="listitem">
+        <time data-field="currents.0.time" datetime="2026-08-02T08:00:00+03:00">
+         08:00
+        </time>
+        <svg aria-hidden="true" class="current-arrow direction-arrow current-green" data-direction-deg="-35" data-field="currents.0.directionDeg" style="--direction-deg: -35deg" viewbox="0 0 48 48">
+         <use href="#direction-arrow">
+         </use>
+        </svg>
+        <span class="wind-dir" data-field="currents.0.directionLabel">
+         ΝΑ
+        </span>
+        <strong data-field="currents.0.value">
+         0.3 kn
+        </strong>
+        <small data-field="currents.0.secondary">
+        </small>
+       </article>
+       <article class="hour-cell currents-hour-cell" data-hour-index="1" role="listitem">
+        <time data-field="currents.1.time" datetime="2026-08-02T09:00:00+03:00">
+         09:00
+        </time>
+        <svg aria-hidden="true" class="current-arrow direction-arrow current-green" data-direction-deg="-35" data-field="currents.1.directionDeg" style="--direction-deg: -35deg" viewbox="0 0 48 48">
+         <use href="#direction-arrow">
+         </use>
+        </svg>
+        <span class="wind-dir" data-field="currents.1.directionLabel">
+         ΝΑ
+        </span>
+        <strong data-field="currents.1.value">
+         0.4 kn
+        </strong>
+        <small data-field="currents.1.secondary">
+        </small>
+       </article>
+       <article class="hour-cell currents-hour-cell" data-hour-index="2" role="listitem">
+        <time data-field="currents.2.time" datetime="2026-08-02T10:00:00+03:00">
+         10:00
+        </time>
+        <svg aria-hidden="true" class="current-arrow direction-arrow current-lime" data-direction-deg="-135" data-field="currents.2.directionDeg" style="--direction-deg: -135deg" viewbox="0 0 48 48">
+         <use href="#direction-arrow">
+         </use>
+        </svg>
+        <span class="wind-dir" data-field="currents.2.directionLabel">
+         Α
+        </span>
+        <strong data-field="currents.2.value">
+         0.4 kn
+        </strong>
+        <small data-field="currents.2.secondary">
+        </small>
+       </article>
+       <article class="hour-cell currents-hour-cell" data-hour-index="3" role="listitem">
+        <time data-field="currents.3.time" datetime="2026-08-02T11:00:00+03:00">
+         11:00
+        </time>
+        <svg aria-hidden="true" class="current-arrow direction-arrow current-orange" data-direction-deg="180" data-field="currents.3.directionDeg" style="--direction-deg: 180deg" viewbox="0 0 48 48">
+         <use href="#direction-arrow">
+         </use>
+        </svg>
+        <span class="wind-dir" data-field="currents.3.directionLabel">
+         Α
+        </span>
+        <strong data-field="currents.3.value">
+         0.5 kn
+        </strong>
+        <small data-field="currents.3.secondary">
+        </small>
+       </article>
+       <article class="hour-cell currents-hour-cell" data-hour-index="4" role="listitem">
+        <time data-field="currents.4.time" datetime="2026-08-02T12:00:00+03:00">
+         12:00
+        </time>
+        <svg aria-hidden="true" class="current-arrow direction-arrow current-orange" data-direction-deg="180" data-field="currents.4.directionDeg" style="--direction-deg: 180deg" viewbox="0 0 48 48">
+         <use href="#direction-arrow">
+         </use>
+        </svg>
+        <span class="wind-dir" data-field="currents.4.directionLabel">
+         Α
+        </span>
+        <strong data-field="currents.4.value">
+         0.6 kn
+        </strong>
+        <small data-field="currents.4.secondary">
+        </small>
+       </article>
+       <article class="hour-cell currents-hour-cell" data-hour-index="5" role="listitem">
+        <time data-field="currents.5.time" datetime="2026-08-02T13:00:00+03:00">
+         13:00
+        </time>
+        <svg aria-hidden="true" class="current-arrow direction-arrow current-orange" data-direction-deg="-150" data-field="currents.5.directionDeg" style="--direction-deg: -150deg" viewbox="0 0 48 48">
+         <use href="#direction-arrow">
+         </use>
+        </svg>
+        <span class="wind-dir" data-field="currents.5.directionLabel">
+         ΑΝΑ
+        </span>
+        <strong data-field="currents.5.value">
+         0.6 kn
+        </strong>
+        <small data-field="currents.5.secondary">
+        </small>
+       </article>
+       <article class="hour-cell currents-hour-cell" data-hour-index="6" role="listitem">
+        <time data-field="currents.6.time" datetime="2026-08-02T14:00:00+03:00">
+         14:00
+        </time>
+        <svg aria-hidden="true" class="current-arrow direction-arrow current-orange" data-direction-deg="-150" data-field="currents.6.directionDeg" style="--direction-deg: -150deg" viewbox="0 0 48 48">
+         <use href="#direction-arrow">
+         </use>
+        </svg>
+        <span class="wind-dir" data-field="currents.6.directionLabel">
+         ΑΝΑ
+        </span>
+        <strong data-field="currents.6.value">
+         0.7 kn
+        </strong>
+        <small data-field="currents.6.secondary">
+        </small>
+       </article>
+      </div>
+     </article>
+    </section>
+    <section class="sea-tide-row" data-layout-group="sea-tides">
+     <article class="panel widget" data-live-widget="sea" data-size="half" data-widget="sea-conditions">
+      <div class="section-title">
+       <i aria-hidden="true" class="fa-solid fa-water">
+       </i>
+       <span>
+        ΣΥΝΘΗΚΕΣ ΘΑΛΑΣΣΑΣ
+       </span>
+      </div>
+      <div class="sea-condition-list">
+       <div>
+        <span>
+         Κύμα
+        </span>
+        <strong data-field="sea.waveHeight" id="wave-height">
+         0.6 m
+        </strong>
+       </div>
+       <div>
+        <span>
+         Περίοδος
+        </span>
+        <strong data-field="sea.wavePeriod" id="wave-period">
+         5 s
+        </strong>
+       </div>
+       <div>
+        <span>
+         Διεύθυνση
+        </span>
+        <strong data-field="sea.waveDirectionLabel" id="wave-direction-label">
+         ΒΑ
+         <svg aria-hidden="true" class="direction-arrow" data-direction-deg="315" id="wave-direction-arrow" style="--direction-deg:-45deg" viewbox="0 0 48 48">
+          <use href="#direction-arrow">
+          </use>
+         </svg>
+        </strong>
+       </div>
+       <div>
+        <span>
+         Θερμ. νερού
+        </span>
+        <strong data-field="sea.waterTemperature" id="water-temperature">
+         19°C
+        </strong>
+       </div>
+      </div>
+     </article>
+     <article class="panel tide-panel widget" data-live-widget="tides" data-size="wide" data-widget="tides">
+      <div class="section-title">
+       <i aria-hidden="true" class="fa-solid fa-water">
+       </i>
+       <span>
+        ΠΑΛΙΡΡΟΙΕΣ (m) – ΑΝΑ ΩΡΑ
+       </span>
+      </div>
+      <div class="tide-layout">
+       <aside class="tide-side tide-low">
+        <span>
+         ΕΠΟΜΕΝΗ ΑΜΠΩΤΗ
+        </span>
+        <strong data-field="tides.nextLow.time" id="next-low-tide-time">
+         11:40
+        </strong>
+        <small data-field="tides.nextLow.height" id="next-low-tide-height">
+         −0.12 m
+        </small>
+       </aside>
+       <div class="tide-chart-wrap">
+        <svg aria-label="Γράφημα παλίρροιας" class="tide-chart" id="tide-chart" data-chart="tides" data-chart="tides" id="tide-chart" preserveaspectratio="none" role="img" viewbox="0 0 760 190">
+         <defs>
+          <lineargradient id="tideFill" x1="0" x2="0" y1="0" y2="1">
+           <stop offset="0%" stop-color="#1597ff" stop-opacity=".36">
+           </stop>
+           <stop offset="100%" stop-color="#1597ff" stop-opacity="0">
+           </stop>
+          </lineargradient>
+          <filter height="160%" id="tideGlow" width="140%" x="-20%" y="-30%">
+           <fegaussianblur result="blur" stddeviation="2.2">
+           </fegaussianblur>
+           <femerge>
+            <femergenode in="blur">
+            </femergenode>
+            <femergenode in="SourceGraphic">
+            </femergenode>
+           </femerge>
+          </filter>
+         </defs>
+         <g aria-hidden="true" class="grid-lines">
+          <line x1="0" x2="760" y1="40" y2="40">
+          </line>
+          <line x1="0" x2="760" y1="92" y2="92">
+          </line>
+          <line x1="0" x2="760" y1="144" y2="144">
+          </line>
+          <line x1="0" x2="760" y1="174" y2="174">
+          </line>
+         </g>
+         <path class="tide-area" id="tide-area" data-chart-area="tides" d="M18 68 C80 16 139 21 208 136 C275 177 351 158 432 58 C501 8 568 51 638 137 C678 174 717 166 742 146 L742 174 L18 174 Z" data-chart-area="tides" id="tide-area">
+         </path>
+         <path class="tide-line" id="tide-line" data-chart-line="tides" d="M18 68 C80 16 139 21 208 136 C275 177 351 158 432 58 C501 8 568 51 638 137 C678 174 717 166 742 146" data-chart-line="tides" filter="url(#tideGlow)" id="tide-line">
+         </path>
+         <g class="tide-points" data-chart-points="tides" id="tide-points">
+          <circle cx="112" cy="38" data-tide-event="high-1" r="6">
+          </circle>
+          <circle cx="257" cy="151" data-tide-event="low-1" r="6">
+          </circle>
+          <circle cx="504" cy="31" data-tide-event="high-2" r="6">
+          </circle>
+          <circle cx="706" cy="151" data-tide-event="low-2" r="6">
+          </circle>
+         </g>
+         <g class="tide-labels" data-chart-values="tides" id="tide-labels">
+          <text x="112" y="18">
+           06:15
+          </text>
+          <text x="112" y="34">
+           +0.78 m
+          </text>
+          <text x="257" y="130">
+           11:40
+          </text>
+          <text class="negative" x="257" y="146">
+           −0.12 m
+          </text>
+          <text x="504" y="16">
+           17:55
+          </text>
+          <text x="504" y="31">
+           +0.85 m
+          </text>
+          <text x="706" y="130">
+           23:59
+          </text>
+          <text class="negative" x="706" y="146">
+           −0.10 m
+          </text>
+         </g>
+         <line data-chart-now="tides" id="tide-now-line" opacity=".55" stroke="#ffffff" stroke-dasharray="4 5" stroke-width="1.4" x1="150" x2="150" y1="18" y2="174">
+         </line>
+        </svg>
+        <div class="chart-times tide-times" data-chart-times="tides" id="tide-times">
+         <span>
+          00:00
+         </span>
+         <span>
+          03:00
+         </span>
+         <span>
+          06:00
+         </span>
+         <span>
+          09:00
+         </span>
+         <span>
+          12:00
+         </span>
+         <span>
+          15:00
+         </span>
+         <span>
+          18:00
+         </span>
+         <span>
+          21:00
+         </span>
+         <span>
+          24:00
+         </span>
+        </div>
+       </div>
+       <aside class="tide-side tide-high">
+        <span>
+         ΕΠΟΜΕΝΗ ΠΛΗΜΜΥΡΙΔΑ
+        </span>
+        <strong data-field="tides.nextHigh.time" id="next-high-tide-time">
+         17:55
+        </strong>
+        <small data-field="tides.nextHigh.height" id="next-high-tide-height">
+         +0.85 m
+        </small>
+       </aside>
+      </div>
+     </article>
+    </section>
+    <section class="panel widget best-times-panel" data-live-widget="best-times" data-size="wide" data-widget="best-times">
+     <div class="best-times-strip">
+      <div class="section-title">
+       <i aria-hidden="true" class="fa-regular fa-clock">
+       </i>
+       <span>
+        ΚΑΛΥΤΕΡΕΣ ΩΡΕΣ
+       </span>
+      </div>
+      <div class="best-times-content" id="best-times-list">
+       <strong data-field="bestTimes.morning" id="best-time-morning">
+        ΠΡΩΙ 05:45–07:45
+       </strong>
+       <span aria-hidden="true" class="best-times-separator">
+        ●
+       </span>
+       <strong data-field="bestTimes.evening" id="best-time-evening">
+        ΑΠΟΓΕΥΜΑ 18:10–20:10
+       </strong>
+       <span aria-hidden="true" class="best-times-separator">
+        ●
+       </span>
+       <strong data-field="bestTimes.night" id="best-time-night">
+        ΝΥΧΤΑ 23:10–00:30
+       </strong>
+      </div>
+     </div>
+    </section>
+    <section class="score-activity-row" data-layout-group="score-activity">
+     <article class="panel score-panel widget" data-live-widget="fishing-score" data-size="half" data-widget="fishing-score">
+      <h2>
+       FISHING SCORE
+      </h2>
+      <div aria-label="Fishing Score 85" aria-valuemax="100" aria-valuemin="0" aria-valuenow="85" class="score-gauge" data-score="85" id="fishing-score-gauge" role="meter">
+       <svg aria-hidden="true" class="premium-gauge" role="img" viewbox="0 0 300 205">
+        <defs>
+         <filter height="180%" id="scoreGlow" width="140%" x="-20%" y="-40%">
+          <fegaussianblur result="blur" stddeviation="2.2">
+          </fegaussianblur>
+          <femerge>
+           <femergenode in="blur">
+           </femergenode>
+           <femergenode in="SourceGraphic">
+           </femergenode>
+          </femerge>
+         </filter>
+         <lineargradient id="reelBlue" x1="0%" x2="100%" y1="0%" y2="100%">
+          <stop offset="0%" stop-color="#77dfff">
+          </stop>
+          <stop offset="35%" stop-color="#168cff">
+          </stop>
+          <stop offset="100%" stop-color="#063c76">
+          </stop>
+         </lineargradient>
+        </defs>
+        <path d="M25 172 A125 125 0 0 1 275 172" fill="none" stroke="#172631" stroke-linecap="round" stroke-width="23">
+        </path>
+        <path d="M25 172 A125 125 0 0 1 275 172" fill="none" filter="url(#scoreGlow)" stroke="url(#fd-score-gradient)" stroke-linecap="round" stroke-width="19">
+        </path>
+        <g class="gauge-ticks" stroke="#06101a" stroke-width="2.5">
+         <line x1="31" x2="52" y1="165" y2="157">
+         </line>
+         <line x1="43" x2="63" y1="126" y2="131">
+         </line>
+         <line x1="67" x2="84" y1="91" y2="104">
+         </line>
+         <line x1="103" x2="114" y1="65" y2="85">
+         </line>
+         <line x1="150" x2="150" y1="55" y2="77">
+         </line>
+         <line x1="197" x2="186" y1="65" y2="85">
+         </line>
+         <line x1="233" x2="216" y1="91" y2="104">
+         </line>
+         <line x1="257" x2="237" y1="126" y2="131">
+         </line>
+         <line x1="269" x2="248" y1="165" y2="157">
+         </line>
+        </g>
+        <g class="gauge-numbers" fill="#f8fbff" font-size="11" font-weight="800">
+         <text x="19" y="188">
+          0
+         </text>
+         <text x="55" y="89">
+          25
+         </text>
+         <text x="142" y="47">
+          50
+         </text>
+         <text x="237" y="89">
+          75
+         </text>
+        </g>
+        <g data-score="85" data-score-indicator="" id="score-rod-indicator" transform="rotate(63 150 170)">
+         <path d="M150 170C146 133 147 95 154 54" fill="none" stroke="#dce9ee" stroke-linecap="round" stroke-width="5">
+         </path>
+         <path d="M151 169C149 132 150 95 155 55" fill="none" opacity=".85" stroke="#47c8ff" stroke-linecap="round" stroke-width="1.5">
+         </path>
+         <path d="M154 55c7-7 15-11 24-12" fill="none" stroke="#dce9ee" stroke-linecap="round" stroke-width="3">
+         </path>
+         <circle cx="150" cy="170" fill="url(#reelBlue)" r="18" stroke="#8be5ff" stroke-width="3">
+         </circle>
+         <circle cx="150" cy="170" fill="#04111e" r="7" stroke="#b9efff" stroke-width="2">
+         </circle>
+         <path d="M168 170h17c9 0 9 14 0 14h-9" fill="none" stroke="#168cff" stroke-linecap="round" stroke-width="5">
+         </path>
+         <circle cx="186" cy="184" fill="#77dfff" r="4">
+         </circle>
+        </g>
+       </svg>
+       <div class="score-number">
+        <strong data-field="fishing.score" id="fishing-score-value">
+         85
+        </strong>
+       </div>
+      </div>
+      <div class="score-caption" data-field="fishing.scoreLabel" id="fishing-score-label">
+       ΕΞΑΙΡΕΤΙΚΕΣ ΣΥΝΘΗΚΕΣ
+      </div>
+      <div aria-label="5 από 5 αστέρια" class="score-stars" data-rating="5" id="fishing-score-stars">
+       <i aria-hidden="true" class="fa-solid fa-star">
+       </i>
+       <i aria-hidden="true" class="fa-solid fa-star">
+       </i>
+       <i aria-hidden="true" class="fa-solid fa-star">
+       </i>
+       <i aria-hidden="true" class="fa-solid fa-star">
+       </i>
+       <i aria-hidden="true" class="fa-solid fa-star">
+       </i>
+      </div>
+     </article>
+     <article class="panel activity-panel activity-composite widget" data-live-widget="fish-activity" data-size="wide" data-widget="fish-activity">
+      <h2>
+       FISH ACTIVITY
+      </h2>
+      <div class="activity-art">
+       <svg aria-label="Ψάρι δραστηριότητας με μπλε φυσαλίδες" class="activity-fish-svg" role="img" viewbox="0 0 330 180">
+        <g>
+         <circle class="bubble" cx="28" cy="24" r="7">
+         </circle>
+         <circle class="bubble" cx="52" cy="13" r="5">
+         </circle>
+         <circle class="bubble" cx="79" cy="28" r="8">
+         </circle>
+         <circle class="bubble" cx="114" cy="11" r="4">
+         </circle>
+         <circle class="bubble" cx="148" cy="24" r="7">
+         </circle>
+         <circle class="bubble" cx="182" cy="9" r="5">
+         </circle>
+         <circle class="bubble" cx="216" cy="26" r="8">
+         </circle>
+         <circle class="bubble" cx="252" cy="12" r="5">
+         </circle>
+         <circle class="bubble" cx="289" cy="31" r="8">
+         </circle>
+         <circle class="bubble" cx="313" cy="15" r="4">
+         </circle>
+         <circle class="bubble" cx="18" cy="72" r="5">
+         </circle>
+         <circle class="bubble" cx="307" cy="78" r="7">
+         </circle>
+         <circle class="bubble" cx="26" cy="132" r="7">
+         </circle>
+         <circle class="bubble" cx="301" cy="139" r="5">
+         </circle>
+        </g>
+        <use href="#activity-fish">
+        </use>
+       </svg>
+       <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="85" class="activity-spectrum" data-activity="85" id="fish-activity-meter" role="meter" style="--activity-percent:85%">
+        <span>
+        </span>
+        <span>
+        </span>
+        <span>
+        </span>
+        <span>
+        </span>
+        <span>
+        </span>
+        <b class="activity-spectrum-marker" data-activity-marker="">
+        </b>
+       </div>
+       <div class="activity-scale">
+        <span>
+         0%
+        </span>
+        <span>
+         100%
+        </span>
+       </div>
+       <div class="activity-verdict" data-field="fishing.activityLabel" id="fish-activity-label">
+        ΥΨΗΛΗ ΔΡΑΣΤΗΡΙΟΤΗΤΑ
+       </div>
+      </div>
+      <div class="activity-factors">
+       <div class="activity-list" id="fish-activity-factors">
+        <div data-factor="moon">
+         <span>
+          Σελήνη
+         </span>
+         <strong data-field="activityFactors.moon">
+          ΚΑΛΗ
+         </strong>
+        </div>
+        <div data-factor="pressure">
+         <span>
+          Πίεση
+         </span>
+         <strong data-field="activityFactors.pressure">
+          ΙΔΑΝΙΚΗ
+         </strong>
+        </div>
+        <div data-factor="currents">
+         <span>
+          Ρεύματα
+         </span>
+         <strong data-field="activityFactors.currents">
+          ΚΑΛΑ
+         </strong>
+        </div>
+        <div data-factor="tides">
+         <span>
+          Παλίρροια
+         </span>
+         <strong data-field="activityFactors.tides">
+          ΠΟΛΥ ΚΑΛΗ
+         </strong>
+        </div>
+        <div data-factor="waves">
+         <span>
+          Κύματα
+         </span>
+         <strong data-field="activityFactors.waves">
+          ΙΔΑΝΙΚΑ
+         </strong>
+        </div>
+       </div>
+      </div>
+     </article>
+    </section>
+    <section class="panel alerts-panel widget" data-live-widget="fishing-alerts" data-size="wide" data-widget="fishing-alerts">
+     <h2>
+      <i aria-hidden="true" class="fa-solid fa-bell">
+      </i>
+      FISHING ALERTS
+     </h2>
+     <ul aria-live="polite" class="alert-list" id="fishing-alerts-list">
+      <li class="alert-green" data-alert-id="spinning-window" data-alert-status="active">
+       <i aria-hidden="true" class="fa-solid fa-circle">
+       </i>
+       <span class="alert-symbol">
+        <i aria-hidden="true" class="fa-solid fa-fish">
+        </i>
+       </span>
+       <span>
+        <strong>
+         SPINNING:
+        </strong>
+        Ιδανικές συνθήκες
+        <b data-field="alerts.spinning.time">
+         08:00–10:00
+        </b>
+       </span>
+       <i aria-hidden="true" class="fa-solid fa-chevron-right alert-chevron">
+       </i>
+      </li>
+      <li class="alert-yellow" data-alert-id="wind-increase" data-alert-status="upcoming">
+       <i aria-hidden="true" class="fa-solid fa-circle">
+       </i>
+       <span class="alert-symbol">
+        <i aria-hidden="true" class="fa-solid fa-wind">
+        </i>
+       </span>
+       <span>
+        <strong>
+         ΑΝΕΜΟΣ:
+        </strong>
+        Ενισχύεται μετά τις
+        <b data-field="alerts.wind.time">
+         14:00
+        </b>
+       </span>
+       <i aria-hidden="true" class="fa-solid fa-chevron-right alert-chevron">
+       </i>
+      </li>
+      <li class="alert-orange" data-alert-id="current-increase" data-alert-status="upcoming">
+       <i aria-hidden="true" class="fa-solid fa-circle">
+       </i>
+       <span class="alert-symbol">
+        <i aria-hidden="true" class="fa-solid fa-water">
+        </i>
+       </span>
+       <span>
+        <strong>
+         ΡΕΥΜΑΤΑ:
+        </strong>
+        Αυξημένα μετά τις
+        <b data-field="alerts.currents.time">
+         16:00
+        </b>
+       </span>
+       <i aria-hidden="true" class="fa-solid fa-chevron-right alert-chevron">
+       </i>
+      </li>
+      <li class="alert-blue" data-alert-id="uv-high" data-alert-status="active">
+       <i aria-hidden="true" class="fa-solid fa-circle">
+       </i>
+       <span class="alert-symbol">
+        <i aria-hidden="true" class="fa-regular fa-sun">
+        </i>
+       </span>
+       <span>
+        <strong>
+         UV:
+        </strong>
+        Υψηλός δείκτης
+        <b data-field="alerts.uv.time">
+         11:00–16:00
+        </b>
+       </span>
+       <i aria-hidden="true" class="fa-solid fa-chevron-right alert-chevron">
+       </i>
+      </li>
+     </ul>
+     <p class="visually-hidden" id="fishing-alerts-empty">
+      Δεν υπάρχουν ενεργές ειδοποιήσεις.
+     </p>
+    </section>
+    <section class="technique-section widget" data-live-widget="techniques" data-size="wide" data-widget="techniques">
+     <div class="technique-heading">
+      <span aria-hidden="true">
+      </span>
+      <h2>
+       ΤΕΧΝΙΚΕΣ ΨΑΡΕΜΑΤΟΣ
+      </h2>
+      <span aria-hidden="true">
+      </span>
+     </div>
+     <div aria-label="Τεχνικές ψαρέματος" class="technique-grid technique-scroll" id="technique-track" data-scroll-axis="horizontal" data-extensible="true" role="list">
+      <button aria-pressed="true" class="technique-card selected" data-rating="5" data-technique="spinning" role="listitem" type="button">
+       <span class="technique-icon">
+        <svg aria-hidden="true" class="technique-svg" viewbox="0 0 220 120">
+         <use href="#lure-spinning">
+         </use>
+        </svg>
+       </span>
+       <strong>
+        SPINNING
+       </strong>
+       <span aria-label="5 από 5 αστέρια" class="technique-stars" data-technique-stars="">
+        <i class="fa-solid fa-star">
+        </i>
+        <i class="fa-solid fa-star">
+        </i>
+        <i class="fa-solid fa-star">
+        </i>
+        <i class="fa-solid fa-star">
+        </i>
+        <i class="fa-solid fa-star">
+        </i>
+       </span>
+       <span class="technique-rating-label" data-technique-label="">
+        Εξαιρετικό
+       </span>
+       <span aria-hidden="true" class="technique-dot">
+       </span>
+      </button>
+      <button aria-pressed="false" class="technique-card" data-rating="4" data-technique="lrf" role="listitem" type="button">
+       <span class="technique-icon">
+        <svg aria-hidden="true" class="technique-svg" viewbox="0 0 220 120">
+         <use href="#lure-lrf">
+         </use>
+        </svg>
+       </span>
+       <strong>
+        LRF
+       </strong>
+       <span aria-label="4 από 5 αστέρια" class="technique-stars" data-technique-stars="">
+        <i class="fa-solid fa-star">
+        </i>
+        <i class="fa-solid fa-star">
+        </i>
+        <i class="fa-solid fa-star">
+        </i>
+        <i class="fa-solid fa-star">
+        </i>
+        <i class="fa-solid fa-star empty">
+        </i>
+       </span>
+       <span class="technique-rating-label" data-technique-label="">
+        Πολύ Καλό
+       </span>
+       <span aria-hidden="true" class="technique-dot">
+       </span>
+      </button>
+      <button aria-pressed="false" class="technique-card" data-rating="3" data-technique="english" role="listitem" type="button">
+       <span class="technique-icon">
+        <svg aria-hidden="true" class="technique-svg" viewbox="0 0 220 120">
+         <use href="#lure-float">
+         </use>
+        </svg>
+       </span>
+       <strong>
+        ΕΓΓΛΕΖΙΚΟ
+       </strong>
+       <span aria-label="3 από 5 αστέρια" class="technique-stars" data-technique-stars="">
+        <i class="fa-solid fa-star">
+        </i>
+        <i class="fa-solid fa-star">
+        </i>
+        <i class="fa-solid fa-star">
+        </i>
+        <i class="fa-solid fa-star empty">
+        </i>
+        <i class="fa-solid fa-star empty">
+        </i>
+       </span>
+       <span class="technique-rating-label" data-technique-label="">
+        Καλό
+       </span>
+       <span aria-hidden="true" class="technique-dot">
+       </span>
+      </button>
+      <button aria-pressed="false" class="technique-card" data-rating="3" data-technique="shore-jigging" role="listitem" type="button">
+       <span class="technique-icon">
+        <svg aria-hidden="true" class="technique-svg" viewbox="0 0 220 120">
+         <use href="#lure-shore-jig">
+         </use>
+        </svg>
+       </span>
+       <strong>
+        SHORE JIGGING
+       </strong>
+       <span aria-label="3 από 5 αστέρια" class="technique-stars" data-technique-stars="">
+        <i class="fa-solid fa-star">
+        </i>
+        <i class="fa-solid fa-star">
+        </i>
+        <i class="fa-solid fa-star">
+        </i>
+        <i class="fa-solid fa-star empty">
+        </i>
+        <i class="fa-solid fa-star empty">
+        </i>
+       </span>
+       <span class="technique-rating-label" data-technique-label="">
+        Καλό
+       </span>
+       <span aria-hidden="true" class="technique-dot">
+       </span>
+      </button>
+     </div>
+    </section>
+    <nav aria-label="Κύρια πλοήγηση" class="bottom-navigation">
+     <button aria-current="page" class="nav-item active" type="button">
+      <i aria-hidden="true" class="fa-solid fa-gauge-high">
+      </i>
+      <span>
+       DASHBOARD
+      </span>
+     </button>
+     <button aria-current="false" class="nav-item" type="button">
+      <i aria-hidden="true" class="fa-solid fa-map">
+      </i>
+      <span>
+       ΧΑΡΤΗΣ
+      </span>
+     </button>
+     <button aria-current="false" class="nav-item" type="button">
+      <i aria-hidden="true" class="fa-solid fa-location-dot">
+      </i>
+      <span>
+       SPOTS
+      </span>
+     </button>
+     <button aria-current="false" class="nav-item" type="button">
+      <i aria-hidden="true" class="fa-regular fa-calendar-days">
+      </i>
+      <span>
+       ΗΜΕΡΟΛΟΓΙΟ
+      </span>
+     </button>
+     <button aria-current="false" class="nav-item" type="button">
+      <i aria-hidden="true" class="fa-solid fa-gear">
+      </i>
+      <span>
+       ΡΥΘΜΙΣΕΙΣ
+      </span>
+     </button>
+    </nav>
+   </main>
+  </div>
+  <template id="hourly-weather-cell-template">
+   <article class="hour-cell weather-hour-cell" role="listitem">
+    <time data-role="time">
+    </time>
+    <svg aria-hidden="true" class="weather-hour-icon premium-hour-icon" viewbox="0 0 64 64">
+     <use data-role="icon-use" href="#weather-sun">
+     </use>
+    </svg>
+    <strong data-role="label">
+    </strong>
+    <span data-role="temperature">
+    </span>
+   </article>
+  </template>
+  <template id="direction-cell-template">
+   <article class="hour-cell" role="listitem">
+    <time data-role="time">
+    </time>
+    <svg aria-hidden="true" class="direction-arrow" viewbox="0 0 48 48">
+     <use href="#direction-arrow">
+     </use>
+    </svg>
+    <span data-role="direction-label">
+    </span>
+    <strong data-role="value">
+    </strong>
+    <small data-role="secondary">
+    </small>
+   </article>
+  </template>
+  <template id="fishing-alert-template">
+   <li data-alert-status="upcoming">
+    <i aria-hidden="true" class="fa-solid fa-circle">
+    </i>
+    <span class="alert-symbol">
+     <i aria-hidden="true" data-role="icon">
+     </i>
+    </span>
+    <span data-role="message">
+    </span>
+    <i aria-hidden="true" class="fa-solid fa-chevron-right alert-chevron">
+    </i>
+   </li>
+  </template>
+  <template id="technique-card-template">
+   <button aria-pressed="false" class="technique-card" role="listitem" type="button">
+    <span class="technique-icon" data-role="graphic">
+    </span>
+    <strong data-role="name">
+    </strong>
+    <span class="technique-stars" data-role="stars">
+    </span>
+    <span class="technique-rating-label" data-role="rating-label">
+    </span>
+    <span aria-hidden="true" class="technique-dot">
+    </span>
+   </button>
+  </template>
 
-ΗΛΙΟΦΑΝΕΙΑ
-22 °C
-Αίθριος ουρανός
-Αισθητή θερμ. 22°C
-Υγρασία 56%
-Πιθανότητα βροχής 0%
-UV δείκτης 6 ΥΨΗΛΟΣ
-Ανατολή 06:17
-Δύση 20:07
-ΣΥΝΘΗΚΕΣ ΚΑΙΡΟΥ – ΑΝΑ ΩΡΑ
-08:00 Ηλιοφάνεια 22°C
-09:00 Αραιή συννεφιά 23°C
-10:00 Αραιή συννεφιά 24°C
-11:00 Αραιή συννεφιά 25°C
-12:00 Συννεφιά 25°C
-13:00 Συννεφιά 26°C
-14:00 Αραιή συννεφιά 26°C
-ΑΝΕΜΟΣ (ΜΠΟΦΟΡ) – ΑΝΑ ΩΡΑ
-08:00 ΝΑ 2 9 km/h
-09:00 ΝΑ 2 11 km/h
-10:00 Α 3 13 km/h
-11:00 Α 3 15 km/h
-12:00 Α 3 17 km/h
-13:00 ΑΝΑ 4 21 km/h
-14:00 Δ 4 24 km/h
-ΒΑΡΟΜΕΤΡΙΚΗ ΠΙΕΣΗ (hPa) – ΑΝΑ ΩΡΑ
-1030
-1020
-1010
-1000
-1019
-1019
-1019
-1019
-1019
-1019
-1019
-08:00 09:00 10:00 11:00 12:00 13:00 14:00
-ΤΩΡΑ 1019 hPa = Σταθερή
-ΦΑΣΗ ΣΕΛΗΝΗΣ
+  <script id="fishing-dashboard-config" type="application/json">
+{
+  "schemaVersion": "1.0.0",
+  "htmlVersion": "4.0.0-final-master-structure",
+  "visualMaster": {
+    "file": "Fishing-Dashboard-OFFICIAL-FINAL-MASTER-2026-08-05.png",
+    "width": 941,
+    "height": 1672,
+    "sha256": "fb82bbeb42a6101023372299f3e5511ad692fdf9f16b8ed55164e2a59fc8cdd5"
+  },
+  "locale": "el-GR",
+  "timezone": "Europe/Athens",
+  "location": {
+    "name": "Κάλυμνος",
+    "country": "Ελλάδα",
+    "label": "ΚΑΛΥΜΝΟΣ, ΕΛΛΑΔΑ",
+    "latitude": 36.95,
+    "longitude": 26.98
+  },
+  "layout": {
+    "defaultWidgetOrder": [
+      "hero-weather",
+      "wind+pressure",
+      "moon+currents",
+      "sea-conditions+tides",
+      "best-times",
+      "fishing-score+fish-activity",
+      "fishing-alerts",
+      "techniques"
+    ],
+    "allowedWidgetSizes": [
+      "compact",
+      "half",
+      "wide"
+    ],
+    "bottomNavigationAfterTechniques": true,
+    "customStatusBar": false,
+    "techniquesHorizontalScroll": true
+  },
+  "palette": {
+    "background": "#020712",
+    "panel": "#07101d",
+    "line": "#0f79c8",
+    "cyan": "#35c8ff",
+    "blue": "#1597ff",
+    "red": "#ff5d4a",
+    "orange": "#ff8a22",
+    "yellow": "#ffd331",
+    "lime": "#b7e11a",
+    "green": "#7fe000",
+    "white": "#f8fbff"
+  },
+  "demoFallbackData": {
+    "date": {
+      "iso": "2026-08-02",
+      "dayName": "ΚΥΡΙΑΚΗ",
+      "day": 2,
+      "month": "ΑΥΓΟΥΣΤΟΥ",
+      "year": 2026
+    },
+    "weather": {
+      "conditionCode": "clear-day",
+      "label": "ΗΛΙΟΦΑΝΕΙΑ",
+      "description": "Αίθριος ουρανός",
+      "temperatureC": 22,
+      "feelsLikeC": 22,
+      "humidityPercent": 56,
+      "rainProbabilityPercent": 0,
+      "uvIndex": 6,
+      "uvLabel": "ΥΨΗΛΟΣ",
+      "sunrise": "06:17",
+      "sunset": "20:07"
+    },
+    "hourlyWeather": [
+      {
+        "time": "08:00",
+        "conditionCode": "sun",
+        "label": "Ηλιοφάνεια",
+        "temperatureC": 22
+      },
+      {
+        "time": "09:00",
+        "conditionCode": "partly",
+        "label": "Αραιή συννεφιά",
+        "temperatureC": 23
+      },
+      {
+        "time": "10:00",
+        "conditionCode": "partly",
+        "label": "Αραιή συννεφιά",
+        "temperatureC": 24
+      },
+      {
+        "time": "11:00",
+        "conditionCode": "partly",
+        "label": "Αραιή συννεφιά",
+        "temperatureC": 25
+      },
+      {
+        "time": "12:00",
+        "conditionCode": "cloud",
+        "label": "Συννεφιά",
+        "temperatureC": 25
+      },
+      {
+        "time": "13:00",
+        "conditionCode": "cloud",
+        "label": "Συννεφιά",
+        "temperatureC": 26
+      },
+      {
+        "time": "14:00",
+        "conditionCode": "partly",
+        "label": "Αραιή συννεφιά",
+        "temperatureC": 26
+      }
+    ],
+    "wind": [
+      {
+        "time": "08:00",
+        "directionLabel": "ΝΑ",
+        "directionDeg": 315,
+        "beaufort": 2,
+        "speedKmh": 9
+      },
+      {
+        "time": "09:00",
+        "directionLabel": "ΝΑ",
+        "directionDeg": 315,
+        "beaufort": 2,
+        "speedKmh": 11
+      },
+      {
+        "time": "10:00",
+        "directionLabel": "Α",
+        "directionDeg": 225,
+        "beaufort": 3,
+        "speedKmh": 13
+      },
+      {
+        "time": "11:00",
+        "directionLabel": "Α",
+        "directionDeg": 225,
+        "beaufort": 3,
+        "speedKmh": 15
+      },
+      {
+        "time": "12:00",
+        "directionLabel": "Α",
+        "directionDeg": 225,
+        "beaufort": 3,
+        "speedKmh": 17
+      },
+      {
+        "time": "13:00",
+        "directionLabel": "ΑΝΑ",
+        "directionDeg": 180,
+        "beaufort": 4,
+        "speedKmh": 21
+      },
+      {
+        "time": "14:00",
+        "directionLabel": "Δ",
+        "directionDeg": 180,
+        "beaufort": 4,
+        "speedKmh": 24
+      }
+    ],
+    "pressure": {
+      "unit": "hPa",
+      "current": 1019,
+      "trend": "stable",
+      "trendLabel": "Σταθερή",
+      "series": [
+        {
+          "time": "08:00",
+          "value": 1019,
+          "isCurrent": true
+        },
+        {
+          "time": "09:00",
+          "value": 1019,
+          "isCurrent": false
+        },
+        {
+          "time": "10:00",
+          "value": 1019,
+          "isCurrent": false
+        },
+        {
+          "time": "11:00",
+          "value": 1019,
+          "isCurrent": false
+        },
+        {
+          "time": "12:00",
+          "value": 1019,
+          "isCurrent": false
+        },
+        {
+          "time": "13:00",
+          "value": 1019,
+          "isCurrent": false
+        },
+        {
+          "time": "14:00",
+          "value": 1019,
+          "isCurrent": false
+        }
+      ]
+    },
+    "moon": {
+      "phaseCode": "waxing-gibbous",
+      "phaseLabel": "Αύξουσα Αμφίκυρτη",
+      "illuminationPercent": 72,
+      "rise": "13:28",
+      "set": "01:02"
+    },
+    "currents": [
+      {
+        "time": "08:00",
+        "directionLabel": "ΝΑ",
+        "directionDeg": 325,
+        "speedKn": 0.3,
+        "level": "low"
+      },
+      {
+        "time": "09:00",
+        "directionLabel": "ΝΑ",
+        "directionDeg": 325,
+        "speedKn": 0.4,
+        "level": "low"
+      },
+      {
+        "time": "10:00",
+        "directionLabel": "Α",
+        "directionDeg": 225,
+        "speedKn": 0.4,
+        "level": "moderate"
+      },
+      {
+        "time": "11:00",
+        "directionLabel": "Α",
+        "directionDeg": 180,
+        "speedKn": 0.5,
+        "level": "moderate-high"
+      },
+      {
+        "time": "12:00",
+        "directionLabel": "Α",
+        "directionDeg": 180,
+        "speedKn": 0.6,
+        "level": "high"
+      },
+      {
+        "time": "13:00",
+        "directionLabel": "ΑΝΑ",
+        "directionDeg": 210,
+        "speedKn": 0.6,
+        "level": "high"
+      },
+      {
+        "time": "14:00",
+        "directionLabel": "ΑΝΑ",
+        "directionDeg": 210,
+        "speedKn": 0.7,
+        "level": "very-high"
+      }
+    ],
+    "sea": {
+      "waveHeightM": 0.6,
+      "wavePeriodS": 5,
+      "waveDirectionLabel": "ΒΑ",
+      "waveDirectionDeg": 315,
+      "waterTemperatureC": 19
+    },
+    "tides": {
+      "unit": "m",
+      "events": [
+        {
+          "time": "06:15",
+          "heightM": 0.78,
+          "type": "high"
+        },
+        {
+          "time": "11:40",
+          "heightM": -0.12,
+          "type": "low"
+        },
+        {
+          "time": "17:55",
+          "heightM": 0.85,
+          "type": "high"
+        },
+        {
+          "time": "23:59",
+          "heightM": -0.1,
+          "type": "low"
+        }
+      ],
+      "nextLow": {
+        "time": "11:40",
+        "heightM": -0.12
+      },
+      "nextHigh": {
+        "time": "17:55",
+        "heightM": 0.85
+      }
+    },
+    "bestTimes": [
+      {
+        "period": "morning",
+        "label": "ΠΡΩΙ",
+        "start": "05:45",
+        "end": "07:45"
+      },
+      {
+        "period": "evening",
+        "label": "ΑΠΟΓΕΥΜΑ",
+        "start": "18:10",
+        "end": "20:10"
+      },
+      {
+        "period": "night",
+        "label": "ΝΥΧΤΑ",
+        "start": "23:10",
+        "end": "00:30"
+      }
+    ],
+    "fishingScore": {
+      "value": 85,
+      "label": "ΕΞΑΙΡΕΤΙΚΕΣ ΣΥΝΘΗΚΕΣ",
+      "stars": 5,
+      "rodPointerValue": 85
+    },
+    "fishActivity": {
+      "percent": 85,
+      "label": "ΥΨΗΛΗ ΔΡΑΣΤΗΡΙΟΤΗΤΑ",
+      "factors": [
+        {
+          "id": "moon",
+          "label": "Σελήνη",
+          "value": "ΚΑΛΗ"
+        },
+        {
+          "id": "pressure",
+          "label": "Πίεση",
+          "value": "ΙΔΑΝΙΚΗ"
+        },
+        {
+          "id": "currents",
+          "label": "Ρεύματα",
+          "value": "ΚΑΛΑ"
+        },
+        {
+          "id": "tides",
+          "label": "Παλίρροια",
+          "value": "ΠΟΛΥ ΚΑΛΗ"
+        },
+        {
+          "id": "waves",
+          "label": "Κύματα",
+          "value": "ΙΔΑΝΙΚΑ"
+        }
+      ]
+    },
+    "alerts": [
+      {
+        "id": "spinning-window",
+        "category": "technique",
+        "title": "SPINNING",
+        "message": "Ιδανικές συνθήκες",
+        "start": "08:00",
+        "end": "10:00",
+        "color": "green"
+      },
+      {
+        "id": "wind-increase",
+        "category": "wind",
+        "title": "ΑΝΕΜΟΣ",
+        "message": "Ενισχύεται μετά τις",
+        "start": "14:00",
+        "color": "orange"
+      },
+      {
+        "id": "current-increase",
+        "category": "currents",
+        "title": "ΡΕΥΜΑΤΑ",
+        "message": "Αυξημένα μετά τις",
+        "start": "16:00",
+        "color": "orange"
+      },
+      {
+        "id": "uv-high",
+        "category": "uv",
+        "title": "UV",
+        "message": "Υψηλός δείκτης",
+        "start": "11:00",
+        "end": "16:00",
+        "color": "blue"
+      }
+    ],
+    "techniques": [
+      {
+        "id": "spinning",
+        "label": "SPINNING",
+        "rating": 5,
+        "ratingLabel": "Εξαιρετικό",
+        "assetSymbol": "lure-spinning",
+        "selected": true
+      },
+      {
+        "id": "lrf",
+        "label": "LRF",
+        "rating": 4,
+        "ratingLabel": "Πολύ Καλό",
+        "assetSymbol": "lure-lrf",
+        "selected": false
+      },
+      {
+        "id": "english",
+        "label": "ΕΓΓΛΕΖΙΚΟ",
+        "rating": 3,
+        "ratingLabel": "Καλό",
+        "assetSymbol": "lure-float",
+        "selected": false
+      },
+      {
+        "id": "shore-jigging",
+        "label": "SHORE JIGGING",
+        "rating": 3,
+        "ratingLabel": "Καλό",
+        "assetSymbol": "lure-shore-jig",
+        "selected": false
+      }
+    ]
+  },
+  "dynamicRules": {
+    "weatherVisual": {
+      "clearDay": "weather-sun",
+      "partlyCloudyDay": "weather-partly",
+      "cloudy": "weather-cloud",
+      "rain": "weather-rain",
+      "storm": "weather-storm",
+      "clearNight": "weather-moon"
+    },
+    "pressureTrendLabels": {
+      "rising": "Ανοδική",
+      "stable": "Σταθερή",
+      "falling": "Πτωτική"
+    },
+    "scoreThresholds": [
+      {
+        "minimum": 90,
+        "maximum": 100,
+        "label": "ΑΡΙΣΤΕΣ ΣΥΝΘΗΚΕΣ",
+        "stars": 5
+      },
+      {
+        "minimum": 80,
+        "maximum": 89,
+        "label": "ΕΞΑΙΡΕΤΙΚΕΣ ΣΥΝΘΗΚΕΣ",
+        "stars": 5
+      },
+      {
+        "minimum": 65,
+        "maximum": 79,
+        "label": "ΠΟΛΥ ΚΑΛΕΣ ΣΥΝΘΗΚΕΣ",
+        "stars": 4
+      },
+      {
+        "minimum": 50,
+        "maximum": 64,
+        "label": "ΚΑΛΕΣ ΣΥΝΘΗΚΕΣ",
+        "stars": 3
+      },
+      {
+        "minimum": 30,
+        "maximum": 49,
+        "label": "ΑΔΥΝΑΜΕΣ ΣΥΝΘΗΚΕΣ",
+        "stars": 2
+      },
+      {
+        "minimum": 0,
+        "maximum": 29,
+        "label": "ΚΑΚΕΣ ΣΥΝΘΗΚΕΣ",
+        "stars": 1
+      }
+    ],
+    "activityThresholds": [
+      {
+        "minimum": 80,
+        "maximum": 100,
+        "label": "ΥΨΗΛΗ ΔΡΑΣΤΗΡΙΟΤΗΤΑ"
+      },
+      {
+        "minimum": 60,
+        "maximum": 79,
+        "label": "ΠΟΛΥ ΚΑΛΗ ΔΡΑΣΤΗΡΙΟΤΗΤΑ"
+      },
+      {
+        "minimum": 40,
+        "maximum": 59,
+        "label": "ΜΕΤΡΙΑ ΔΡΑΣΤΗΡΙΟΤΗΤΑ"
+      },
+      {
+        "minimum": 20,
+        "maximum": 39,
+        "label": "ΧΑΜΗΛΗ ΔΡΑΣΤΗΡΙΟΤΗΤΑ"
+      },
+      {
+        "minimum": 0,
+        "maximum": 19,
+        "label": "ΠΟΛΥ ΧΑΜΗΛΗ ΔΡΑΣΤΗΡΙΟΤΗΤΑ"
+      }
+    ],
+    "techniqueRatingLabels": {
+      "5": "Εξαιρετικό",
+      "4": "Πολύ Καλό",
+      "3": "Καλό",
+      "2": "Αδύναμο",
+      "1": "Κακό"
+    },
+    "expiredAlertsVisible": false,
+    "arrowsUseDegrees": true,
+    "chartsUseLiveSeries": true,
+    "bestTimesAreCalculated": true,
+    "moonGeometryUsesTrueIllumination": true
+  },
+  "navigation": [
+    {
+      "id": "dashboard",
+      "label": "DASHBOARD",
+      "icon": "fa-gauge-high"
+    },
+    {
+      "id": "map",
+      "label": "ΧΑΡΤΗΣ",
+      "icon": "fa-map"
+    },
+    {
+      "id": "spots",
+      "label": "SPOTS",
+      "icon": "fa-location-dot"
+    },
+    {
+      "id": "calendar",
+      "label": "ΗΜΕΡΟΛΟΓΙΟ",
+      "icon": "fa-calendar-days"
+    },
+    {
+      "id": "settings",
+      "label": "ΡΥΘΜΙΣΕΙΣ",
+      "icon": "fa-gear"
+    }
+  ]
+}
+  </script>
 
-72% Αύξουσα 
-Αμφίκυρτη
-Ανατολή 13:28
-Δύση 01:02
-ΡΕΥΜΑΤΑ (ΤΑΧΥΤΗΤΑ & ΔΙΕΥΘΥΝΣΗ) – ΑΝΑ ΩΡΑ
-08:00 ΝΑ 0.3 kn
-09:00 ΝΑ 0.4 kn
-10:00 Α 0.4 kn
-11:00 Α 0.5 kn
-12:00 Α 0.6 kn
-13:00 ΑΝΑ 0.6 kn
-14:00 ΑΝΑ 0.7 kn
-ΣΥΝΘΗΚΕΣ ΘΑΛΑΣΣΑΣ
-Κύμα 0.6 m
-Περίοδος 5 s
-Διεύθυνση ΒΑ
-Θερμ. νερού 19°C
-ΠΑΛΙΡΡΟΙΕΣ (m) – ΑΝΑ ΩΡΑ
-ΕΠΟΜΕΝΗ ΑΜΠΩΤΗ 11:40 −0.12 m
-06:15
-+0.78 m
-11:40
-−0.12 m
-17:55
-+0.85 m
-23:59
-−0.10 m
-00:00 03:00 06:00 09:00 12:00 15:00 18:00 21:00 24:00
-ΕΠΟΜΕΝΗ ΠΛΗΜΜΥΡΙΔΑ 17:55 +0.85 m
-ΚΑΛΥΤΕΡΕΣ ΩΡΕΣ
-ΠΡΩΙ 05:45–07:45
-●
-ΑΠΟΓΕΥΜΑ 18:10–20:10
-●
-ΝΥΧΤΑ 23:10–00:30
-FISHING SCORE
-0
-25
-50
-75
-85
-ΕΞΑΙΡΕΤΙΚΕΣ ΣΥΝΘΗΚΕΣ
+  <script id="fishing-dashboard-html-migration" type="application/json">
+{
+  "version": "4.1.0-html",
+  "baseline": {
+    "repository": "chalkitisb-crypto/-fishing-dashboard",
+    "branch": "main",
+    "file": "index.html"
+  },
+  "visualMaster": "Fishing-Dashboard-OFFICIAL-FINAL-MASTER-2026-08-05.png",
+  "preservedIntegrationSelectors": [
+    ".dashboard-content",
+    ".menu-button",
+    ".favorite-button",
+    ".refresh-button",
+    ".technique-grid",
+    ".technique-card",
+    ".bottom-navigation",
+    ".nav-item",
+    ".widget"
+  ],
+  "lockedOrder": [
+    "header",
+    "date-weather",
+    "hourly-weather",
+    "wind-pressure",
+    "moon-currents",
+    "sea-tides",
+    "best-times",
+    "fishing-score-fish-activity",
+    "fishing-alerts",
+    "techniques",
+    "bottom-navigation"
+  ],
+  "dynamicHooks": {
+    "weather": true,
+    "windDirections": true,
+    "pressureChart": true,
+    "moonGeometry": true,
+    "currents": true,
+    "tideChart": true,
+    "bestTimes": true,
+    "fishingScoreRod": true,
+    "fishActivity": true,
+    "alerts": true,
+    "techniqueRatings": true
+  }
+}
+  </script>
 
+  <noscript>
+   <p>
+    Το Fishing Dashboard χρειάζεται JavaScript για ζωντανά δεδομένα και αποθήκευση διάταξης.
+   </p>
+  </noscript>
+  <script defer="" src="app.js?v=9.0.0">
+  </script>
+ </body>
+</html>
 
-
-
-
-FISH ACTIVITY
-
-
-
-
-
-
-0%
-100%
-ΥΨΗΛΗ ΔΡΑΣΤΗΡΙΟΤΗΤΑ
-Σελήνη ΚΑΛΗ
-Πίεση ΙΔΑΝΙΚΗ
-Ρεύματα ΚΑΛΑ
-Παλίρροια ΠΟΛΥ ΚΑΛΗ
-Κύματα ΙΔΑΝΙΚΑ
-FISHING ALERTS
-	•	 SPINNING: Ιδανικές συνθήκες 08:00–10:00
-	•	 ΑΝΕΜΟΣ: Ενισχύεται μετά τις 14:00
-	•	 ΡΕΥΜΑΤΑ: Αυξημένα μετά τις 16:00
-	•	 UV: Υψηλός δείκτης 11:00–16:00
-Δεν υπάρχουν ενεργές ειδοποιήσεις.
-ΤΕΧΝΙΚΕΣ ΨΑΡΕΜΑΤΟΣ
-SPINNING
-
-
-
-
-
-Εξαιρετικό
-LRF
-
-
-
-
-
-Πολύ Καλό
-ΕΓΓΛΕΖΙΚΟ
-
-
-
-
-
-Καλό
-SHORE JIGGING
-
-
-
-
-
-Καλό
-DASHBOARD ΧΑΡΤΗΣ SPOTS ΗΜΕΡΟΛΟΓΙΟ ΡΥΘΜΙΣΕΙΣ
