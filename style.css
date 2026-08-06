@@ -3363,3 +3363,515 @@ body.reference-layout-v3 .score-activity-row > .panel {
   height: auto !important;
   min-height: 148px !important;
 }
+/* =========================================================
+   MOON FIX — show rise/set icons row fully
+========================================================= */
+body.reference-layout-v3 .moon-panel {
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+body.reference-layout-v3 .moon-panel .section-title {
+  flex-shrink: 0 !important;
+  height: 18px !important;
+  min-height: 18px !important;
+}
+body.reference-layout-v3 .moon-panel .moon-main {
+  flex: 0 0 auto !important;
+  height: auto !important;
+  min-height: 72px !important;
+  padding: 4px 8px !important;
+  grid-template-columns: 68px 1fr !important;
+  gap: 8px !important;
+  align-items: center !important;
+}
+body.reference-layout-v3 .moon-panel .moon-visual,
+body.reference-layout-v3 .moon-panel .master-moon-photo {
+  width: 68px !important;
+  height: 68px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy strong {
+  font-size: 24px !important;
+  line-height: 1 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy span {
+  font-size: 9px !important;
+  line-height: 1.2 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  height: auto !important;
+  min-height: 32px !important;
+  padding: 4px 6px 6px !important;
+  border-top: 1px solid rgba(80, 140, 180, 0.25) !important;
+  flex-shrink: 0 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times > div {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  min-width: 0 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times svg {
+  width: 14px !important;
+  height: 14px !important;
+  flex-shrink: 0 !important;
+  display: block !important;
+  opacity: 0.9 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times span {
+  font-size: 7px !important;
+  color: #9ec5d8 !important;
+  display: inline !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times strong {
+  font-size: 10px !important;
+  color: #fff !important;
+  margin-left: auto !important;
+  display: inline !important;
+}
+
+/* moon-current row should not clip children */
+body.reference-layout-v3 .moon-current-row {
+  height: auto !important;
+  min-height: 0 !important;
+  align-items: stretch !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-current-row > .panel {
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+}
+
+/* =========================================================
+   ALL FIXES COMBINED — final pass
+========================================================= */
+
+/* Header: single favorite only, balanced fish */
+body.reference-layout-v3 .top-header.final-master-header {
+  display: grid !important;
+  grid-template-columns: 34px minmax(0,1fr) auto !important;
+  gap: 4px !important;
+  align-items: center !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .top-header .header-actions {
+  display: flex !important;
+  gap: 4px !important;
+}
+body.reference-layout-v3 .top-header .header-actions .favorite-button ~ .favorite-button,
+body.reference-layout-v3 .top-header .header-actions button.favorite-button:nth-of-type(n+2) {
+  display: none !important;
+}
+body.reference-layout-v3 .top-header .header-fish-asset.brand-fish {
+  width: 60px !important;
+  height: 38px !important;
+  object-fit: contain !important;
+}
+body.reference-layout-v3 .top-header .header-brand-lockup.brand-area {
+  grid-template-columns: 60px minmax(0,1fr) 60px !important;
+}
+body.reference-layout-v3 .top-header .header-brand-title {
+  font-size: 11px !important;
+  white-space: nowrap !important;
+}
+
+/* Moon full panel with rise/set */
+body.reference-layout-v3 .moon-current-row {
+  height: auto !important;
+  align-items: stretch !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-current-row > .panel {
+  height: auto !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel {
+  height: auto !important;
+  overflow: visible !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+body.reference-layout-v3 .moon-panel .moon-main {
+  min-height: 70px !important;
+  height: auto !important;
+  grid-template-columns: 66px 1fr !important;
+  gap: 8px !important;
+  padding: 4px 8px !important;
+}
+body.reference-layout-v3 .moon-panel .master-moon-photo {
+  width: 66px !important;
+  height: 66px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  min-height: 30px !important;
+  height: auto !important;
+  padding: 4px 6px 6px !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  border-top: 1px solid rgba(80,140,180,.25) !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times > div {
+  display: flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+  visibility: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times svg {
+  width: 13px !important;
+  height: 13px !important;
+  display: block !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times span {
+  font-size: 7px !important;
+  color: #9ec5d8 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times strong {
+  font-size: 10px !important;
+  color: #fff !important;
+  margin-left: auto !important;
+}
+
+/* Techniques: full master cards with labels visible */
+body.reference-layout-v3 .technique-section,
+body.reference-layout-v3 .panel.technique-section {
+  overflow: visible !important;
+  height: auto !important;
+  padding-bottom: 8px !important;
+}
+body.reference-layout-v3 .technique-grid.technique-scroll {
+  display: flex !important;
+  gap: 5px !important;
+  overflow: visible !important;
+  height: auto !important;
+  padding-bottom: 4px !important;
+}
+body.reference-layout-v3 .technique-card {
+  flex: 1 1 0 !important;
+  padding: 0 !important;
+  height: auto !important;
+  min-height: 120px !important;
+  background: transparent !important;
+  border: none !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .technique-card .technique-icon {
+  height: auto !important;
+  min-height: 120px !important;
+  margin: 0 !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .technique-card .technique-photo {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 120px !important;
+  max-height: 140px !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+  display: block !important;
+  border-radius: 10px !important;
+}
+body.reference-layout-v3 .technique-card > strong,
+body.reference-layout-v3 .technique-card .technique-stars,
+body.reference-layout-v3 .technique-card .technique-rating-label,
+body.reference-layout-v3 .technique-card .technique-dot {
+  display: none !important;
+}
+
+/* Fish activity: no double title in photo */
+body.reference-layout-v3 .activity-fish-photo {
+  height: 80px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+/* Score master card */
+body.reference-layout-v3 .score-master-photo {
+  width: 100% !important;
+  max-height: 135px !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+body.reference-layout-v3 .score-panel .score-gauge,
+body.reference-layout-v3 .score-panel .score-caption,
+body.reference-layout-v3 .score-panel .score-stars,
+body.reference-layout-v3 .score-panel .score-rod-photo,
+body.reference-layout-v3 .score-panel > h2 {
+  display: none !important;
+}
+
+/* Sun photo */
+body.reference-layout-v3 img.premium-sun-photo,
+body.reference-layout-v3 img.premium-weather-scene {
+  width: 100% !important;
+  height: 70px !important;
+  object-fit: cover !important;
+  border-radius: 8px !important;
+  display: block !important;
+}
+
+/* =========================================================
+   COMPLETE FIX — red marks + all known issues
+========================================================= */
+
+/* HEADER layout */
+body.reference-layout-v3 .top-header.final-master-header {
+  display: grid !important;
+  grid-template-columns: 32px minmax(0, 1fr) 72px !important;
+  column-gap: 6px !important;
+  align-items: center !important;
+  padding: 4px 6px !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .top-header .menu-button {
+  width: 30px !important;
+  height: 30px !important;
+  margin: 0 !important;
+}
+body.reference-layout-v3 .top-header .header-brand-lockup.brand-area {
+  display: grid !important;
+  grid-template-columns: 56px minmax(0, 1fr) 56px !important;
+  gap: 4px !important;
+  align-items: center !important;
+  min-width: 0 !important;
+}
+body.reference-layout-v3 .top-header .header-fish-asset.brand-fish {
+  width: 56px !important;
+  height: 36px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+body.reference-layout-v3 .top-header .header-brand-title {
+  font-size: 10.5px !important;
+  letter-spacing: .03em !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .top-header .header-brand-title .fishing-word,
+body.reference-layout-v3 .top-header .header-brand-title .dashboard-word {
+  font-size: 10.5px !important;
+}
+body.reference-layout-v3 .top-header .header-actions {
+  display: flex !important;
+  gap: 4px !important;
+  justify-content: flex-end !important;
+}
+body.reference-layout-v3 .top-header .header-actions .header-action {
+  width: 28px !important;
+  height: 28px !important;
+}
+/* Force only ONE favorite button */
+body.reference-layout-v3 .top-header .header-actions .favorite-button:not(:first-of-type) {
+  display: none !important;
+}
+body.reference-layout-v3 .top-header .header-actions > .favorite-button ~ .favorite-button {
+  display: none !important;
+}
+
+/* SUN scene full */
+body.reference-layout-v3 img.premium-sun-photo,
+body.reference-layout-v3 img.premium-weather-scene {
+  width: 100% !important;
+  height: 78px !important;
+  object-fit: cover !important;
+  object-position: center 40% !important;
+  border-radius: 8px !important;
+  display: block !important;
+}
+
+/* Weather metrics icons clearer */
+body.reference-layout-v3 .weather-side-metrics svg,
+body.reference-layout-v3 .metric-list svg {
+  width: 12px !important;
+  height: 12px !important;
+  opacity: 1 !important;
+}
+
+/* MOON with rise/set row */
+body.reference-layout-v3 .moon-current-row {
+  height: auto !important;
+  overflow: visible !important;
+  align-items: stretch !important;
+}
+body.reference-layout-v3 .moon-current-row > .panel {
+  height: auto !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel {
+  height: auto !important;
+  min-height: 118px !important;
+  overflow: visible !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+body.reference-layout-v3 .moon-panel .moon-main {
+  flex: 0 0 auto !important;
+  min-height: 68px !important;
+  height: auto !important;
+  grid-template-columns: 64px 1fr !important;
+  gap: 8px !important;
+  padding: 4px 8px !important;
+}
+body.reference-layout-v3 .moon-panel .master-moon-photo {
+  width: 64px !important;
+  height: 64px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy strong {
+  font-size: 22px !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy span {
+  font-size: 8.5px !important;
+  line-height: 1.2 !important;
+  white-space: normal !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  flex: 0 0 auto !important;
+  min-height: 28px !important;
+  height: 28px !important;
+  padding: 2px 6px 4px !important;
+  border-top: 1px solid rgba(90,150,190,.3) !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times > div {
+  display: flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times svg {
+  width: 12px !important;
+  height: 12px !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times span {
+  font-size: 6.5px !important;
+  color: #9ec5d8 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times strong {
+  font-size: 9px !important;
+  color: #fff !important;
+  margin-left: auto !important;
+}
+
+/* SCORE master card full */
+body.reference-layout-v3 .score-activity-row {
+  height: auto !important;
+  min-height: 150px !important;
+}
+body.reference-layout-v3 .score-activity-row > .panel {
+  height: auto !important;
+  min-height: 150px !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .score-panel {
+  padding: 4px !important;
+}
+body.reference-layout-v3 .score-panel > h2 { display: none !important; }
+body.reference-layout-v3 .score-master-photo {
+  width: 100% !important;
+  max-height: 145px !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+body.reference-layout-v3 .score-panel .score-gauge,
+body.reference-layout-v3 .score-panel .score-caption,
+body.reference-layout-v3 .score-panel .score-stars,
+body.reference-layout-v3 .score-panel .score-rod-photo {
+  display: none !important;
+}
+
+/* FISH ACTIVITY */
+body.reference-layout-v3 .activity-fish-photo {
+  height: 78px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+body.reference-layout-v3 .activity-spectrum {
+  margin-top: 2px !important;
+}
+
+/* TECHNIQUES full cards - labels must show */
+body.reference-layout-v3 .technique-section {
+  height: auto !important;
+  min-height: 150px !important;
+  overflow: visible !important;
+  padding-bottom: 10px !important;
+  margin-bottom: 4px !important;
+}
+body.reference-layout-v3 .technique-section h2,
+body.reference-layout-v3 .technique-section .section-title {
+  margin-bottom: 4px !important;
+}
+body.reference-layout-v3 .technique-grid.technique-scroll {
+  display: flex !important;
+  gap: 5px !important;
+  height: auto !important;
+  min-height: 140px !important;
+  overflow: visible !important;
+  padding-bottom: 6px !important;
+}
+body.reference-layout-v3 .technique-card {
+  flex: 1 1 0 !important;
+  height: auto !important;
+  min-height: 140px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 1px solid rgba(60,120,160,.25) !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .technique-card .technique-icon {
+  height: 140px !important;
+  min-height: 140px !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .technique-card .technique-photo {
+  width: 100% !important;
+  height: 140px !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+  display: block !important;
+}
+body.reference-layout-v3 .technique-card > strong,
+body.reference-layout-v3 .technique-card .technique-stars,
+body.reference-layout-v3 .technique-card .technique-rating-label,
+body.reference-layout-v3 .technique-card .technique-dot {
+  display: none !important;
+}
+
+/* Bottom nav clear of techniques */
+body.reference-layout-v3 .bottom-nav {
+  z-index: 20 !important;
+}
+body.reference-layout-v3 .dashboard-content {
+  padding-bottom: 70px !important;
+  overflow-x: hidden !important;
+}
