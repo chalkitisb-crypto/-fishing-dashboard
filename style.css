@@ -2970,3 +2970,258 @@ body.reference-layout-v3 .best-times-content strong {
   color: #ffc24a !important;
   font-weight: 800 !important;
 }
+
+/* =========================================================
+   FULL FIX PASS — all red-mark issues
+========================================================= */
+
+/* 1-2 HEADER: tight layout, no overflow into buttons */
+body.reference-layout-v3 .top-header.final-master-header {
+  display: grid !important;
+  grid-template-columns: 36px minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: 4px 6px !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .top-header .menu-button {
+  width: 32px !important;
+  height: 32px !important;
+}
+body.reference-layout-v3 .top-header .header-brand-lockup.brand-area {
+  grid-template-columns: 58px minmax(0, 1fr) 58px !important;
+  gap: 2px !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .top-header .header-fish-asset.brand-fish {
+  width: 58px !important;
+  height: 36px !important;
+  max-width: 58px !important;
+  object-fit: contain !important;
+}
+body.reference-layout-v3 .top-header .header-brand-title {
+  font-size: 11px !important;
+  white-space: nowrap !important;
+}
+body.reference-layout-v3 .top-header .header-brand-title .fishing-word,
+body.reference-layout-v3 .top-header .header-brand-title .dashboard-word {
+  font-size: 11px !important;
+}
+body.reference-layout-v3 .top-header .header-actions {
+  display: flex !important;
+  gap: 4px !important;
+  flex-shrink: 0 !important;
+}
+body.reference-layout-v3 .top-header .header-actions .header-action {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+/* Hide any accidental duplicate star if present */
+body.reference-layout-v3 .top-header .header-actions .favorite-button ~ .favorite-button {
+  display: none !important;
+}
+
+/* 5 MOON */
+body.reference-layout-v3 .moon-panel .moon-main {
+  min-height: 84px !important;
+  height: auto !important;
+  grid-template-columns: 72px 1fr !important;
+  gap: 10px !important;
+  padding: 6px 8px !important;
+  align-items: center !important;
+}
+body.reference-layout-v3 .moon-panel .moon-visual,
+body.reference-layout-v3 .moon-panel .master-moon-photo {
+  width: 72px !important;
+  height: 72px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy strong {
+  font-size: 26px !important;
+  line-height: 1 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy span {
+  font-size: 9px !important;
+  line-height: 1.2 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+}
+
+/* 6 SCORE + ALERTS: no overlap */
+body.reference-layout-v3 .score-activity-row {
+  height: auto !important;
+  min-height: 150px !important;
+  align-items: stretch !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .score-activity-row > .panel,
+body.reference-layout-v3 .score-activity-row > .widget {
+  height: auto !important;
+  min-height: 150px !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .score-panel {
+  min-height: 150px !important;
+  max-height: 160px !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+body.reference-layout-v3 .score-panel .score-gauge {
+  height: 100px !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+body.reference-layout-v3 .score-panel .premium-gauge {
+  height: 100px !important;
+}
+body.reference-layout-v3 .score-panel #score-rod-indicator {
+  opacity: 0 !important;
+}
+body.reference-layout-v3 .score-panel .score-rod-photo {
+  position: absolute !important;
+  right: 0 !important;
+  bottom: 18% !important;
+  width: 48% !important;
+  max-height: 85% !important;
+  object-fit: contain !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+}
+body.reference-layout-v3 .score-panel .score-number {
+  z-index: 5 !important;
+  right: 32% !important;
+}
+body.reference-layout-v3 .score-panel .score-number strong {
+  font-size: 34px !important;
+}
+body.reference-layout-v3 .score-panel .score-caption,
+body.reference-layout-v3 .score-panel .score-stars {
+  position: relative;
+  z-index: 5;
+}
+
+/* Alerts fully separate, no bleed from score */
+body.reference-layout-v3 .alerts-panel {
+  position: relative !important;
+  z-index: 10 !important;
+  height: auto !important;
+  min-height: 72px !important;
+  margin-top: 8px !important;
+  overflow: hidden !important;
+  background: rgba(4, 12, 20, 0.98) !important;
+  clear: both !important;
+}
+body.reference-layout-v3 .alerts-panel h2 {
+  color: #fff !important;
+}
+body.reference-layout-v3 .alert-list {
+  height: auto !important;
+  min-height: 48px !important;
+}
+body.reference-layout-v3 .alert-list li {
+  color: #e8f4fb !important;
+  font-size: 8px !important;
+  line-height: 1.3 !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+}
+body.reference-layout-v3 .alert-list li b,
+body.reference-layout-v3 .alert-list li span {
+  color: inherit !important;
+  background: transparent !important;
+}
+
+/* 7 FISH ACTIVITY */
+body.reference-layout-v3 .activity-panel .activity-fish-photo {
+  height: 78px !important;
+  object-fit: contain !important;
+}
+body.reference-layout-v3 .activity-panel .activity-spectrum {
+  margin-top: 4px !important;
+}
+
+/* 8 TECHNIQUES: photo + labels visible */
+body.reference-layout-v3 .technique-section {
+  overflow: visible !important;
+  margin-top: 6px !important;
+}
+body.reference-layout-v3 .technique-grid.technique-scroll {
+  display: flex !important;
+  gap: 6px !important;
+  overflow-x: auto !important;
+  padding-bottom: 4px !important;
+}
+body.reference-layout-v3 .technique-card {
+  flex: 0 0 auto !important;
+  width: 78px !important;
+  min-height: 110px !important;
+  height: auto !important;
+  padding: 4px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .technique-card .technique-icon {
+  width: 100% !important;
+  height: 52px !important;
+  min-height: 52px !important;
+  margin-bottom: 3px !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
+  flex-shrink: 0 !important;
+}
+body.reference-layout-v3 .technique-card .technique-photo {
+  width: 100% !important;
+  height: 52px !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+body.reference-layout-v3 .technique-card > strong {
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+  font-size: 7.5px !important;
+  line-height: 1.2 !important;
+  margin: 2px 0 0 !important;
+  color: #fff !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  height: auto !important;
+}
+body.reference-layout-v3 .technique-card .technique-stars {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 1px !important;
+  margin: 2px 0 !important;
+  font-size: 7px !important;
+  color: #ffd34a !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  height: auto !important;
+}
+body.reference-layout-v3 .technique-card .technique-rating-label {
+  display: block !important;
+  text-align: center !important;
+  font-size: 7px !important;
+  color: #8fd4ff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  height: auto !important;
+}
+body.reference-layout-v3 .technique-card .technique-dot {
+  display: none !important;
+}
+
+/* Weather side icons slightly clearer */
+body.reference-layout-v3 .weather-side-metrics i,
+body.reference-layout-v3 .metric-row i {
+  opacity: 0.95;
+}
