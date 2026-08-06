@@ -3875,3 +3875,171 @@ body.reference-layout-v3 .dashboard-content {
   padding-bottom: 70px !important;
   overflow-x: hidden !important;
 }
+
+/* =========================================================
+   USER ISSUES FIX — fish faces, double star, sun, yellow
+   icons, moon, single spectrum, score stars
+========================================================= */
+
+/* Header fish larger to keep faces */
+body.reference-layout-v3 .top-header .header-fish-asset.brand-fish {
+  width: 72px !important;
+  height: 44px !important;
+  max-width: 72px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+body.reference-layout-v3 .top-header .header-brand-lockup.brand-area {
+  grid-template-columns: 72px minmax(0, 1fr) 72px !important;
+  gap: 2px !important;
+}
+body.reference-layout-v3 .top-header .header-brand-title {
+  font-size: 10px !important;
+  white-space: nowrap !important;
+}
+body.reference-layout-v3 .top-header .header-brand-title .fishing-word,
+body.reference-layout-v3 .top-header .header-brand-title .dashboard-word {
+  font-size: 10px !important;
+}
+
+/* ONLY one star in header */
+body.reference-layout-v3 .top-header .header-actions {
+  display: flex !important;
+  gap: 4px !important;
+}
+body.reference-layout-v3 .top-header .header-actions .favorite-button {
+  display: inline-flex !important;
+}
+body.reference-layout-v3 .top-header .header-actions .favorite-button ~ .favorite-button,
+body.reference-layout-v3 .top-header .header-actions button.favorite-button:nth-child(n+2),
+body.reference-layout-v3 .top-header .header-actions > *:not(.favorite-button):not(.refresh-button) {
+  display: none !important;
+}
+/* If a second star exists as sibling before refresh */
+body.reference-layout-v3 .top-header .header-actions .favorite-button + .favorite-button {
+  display: none !important;
+}
+
+/* Sun fuller bottom */
+body.reference-layout-v3 img.premium-sun-photo,
+body.reference-layout-v3 img.premium-weather-scene {
+  height: 82px !important;
+  object-fit: cover !important;
+  object-position: center 55% !important;
+}
+
+/* Yellow sunrise/sunset icons in weather metrics */
+body.reference-layout-v3 .weather-metric svg use[href="#sunrise-icon"],
+body.reference-layout-v3 .weather-metric svg use[href="#sunset-icon"] {
+  color: #ffc24a !important;
+}
+body.reference-layout-v3 .weather-metric:nth-last-child(2) svg,
+body.reference-layout-v3 .weather-metric:nth-last-child(1) svg {
+  color: #ffc24a !important;
+  fill: #ffc24a !important;
+  stroke: #ffc24a !important;
+}
+body.reference-layout-v3 .weather-metric svg[viewBox],
+body.reference-layout-v3 .weather-metrics .weather-metric:nth-child(5) svg,
+body.reference-layout-v3 .weather-metrics .weather-metric:nth-child(6) svg {
+  color: #ffc24a !important;
+}
+body.reference-layout-v3 .weather-metrics .weather-metric:nth-child(5),
+body.reference-layout-v3 .weather-metrics .weather-metric:nth-child(6) {
+  color: #ffc24a !important;
+}
+body.reference-layout-v3 .weather-metrics .weather-metric:nth-child(5) svg *,
+body.reference-layout-v3 .weather-metrics .weather-metric:nth-child(6) svg * {
+  stroke: #ffc24a !important;
+}
+
+/* Moon proper two-column times */
+body.reference-layout-v3 .moon-panel {
+  min-height: 125px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-main {
+  min-height: 70px !important;
+  grid-template-columns: 68px 1fr !important;
+}
+body.reference-layout-v3 .moon-panel .master-moon-photo {
+  width: 68px !important;
+  height: 68px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy span {
+  font-size: 9px !important;
+  line-height: 1.25 !important;
+  white-space: normal !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 4px !important;
+  min-height: 32px !important;
+  height: 32px !important;
+  padding: 4px 6px !important;
+  border-top: 1px solid rgba(90,150,190,.3) !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times > div {
+  display: grid !important;
+  grid-template-columns: 14px auto 1fr !important;
+  align-items: center !important;
+  gap: 3px !important;
+  min-width: 0 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times svg {
+  width: 14px !important;
+  height: 14px !important;
+  display: block !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times span {
+  font-size: 7px !important;
+  color: #9ec5d8 !important;
+  white-space: nowrap !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times strong {
+  font-size: 10px !important;
+  color: #fff !important;
+  text-align: right !important;
+  white-space: nowrap !important;
+}
+
+/* Fish activity: single spectrum only */
+body.reference-layout-v3 .activity-fish-photo {
+  height: 72px !important;
+  object-fit: contain !important;
+}
+body.reference-layout-v3 .activity-spectrum {
+  display: flex !important;
+  height: 6px !important;
+  margin-top: 4px !important;
+  position: relative !important;
+}
+/* hide any duplicate spectrum if present */
+body.reference-layout-v3 .activity-spectrum + .activity-spectrum {
+  display: none !important;
+}
+
+/* Score: master card includes stars — show full card */
+body.reference-layout-v3 .score-master-photo {
+  width: 100% !important;
+  max-height: 155px !important;
+  object-fit: contain !important;
+  object-position: center top !important;
+  display: block !important;
+}
+body.reference-layout-v3 .score-panel .score-gauge,
+body.reference-layout-v3 .score-panel .score-caption,
+body.reference-layout-v3 .score-panel .score-stars,
+body.reference-layout-v3 .score-panel .score-rod-photo,
+body.reference-layout-v3 .score-panel > h2 {
+  display: none !important;
+}
+body.reference-layout-v3 .score-activity-row {
+  min-height: 160px !important;
+}
+body.reference-layout-v3 .score-activity-row > .panel {
+  min-height: 160px !important;
+}
