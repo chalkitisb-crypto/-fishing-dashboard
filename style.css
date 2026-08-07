@@ -7797,3 +7797,174 @@ body.reference-layout-v3 section.score-activity-row article.panel.activity-panel
 body.reference-layout-v3 article[data-widget="fish-activity"] {
   flex-direction: unset !important;
 }
+
+
+/* =========================================================
+   VISUAL 100% — complete polish before dynamic phase
+========================================================= */
+
+/* 1) Moon phase text full — no truncate */
+body.reference-layout-v3 .moon-panel .moon-copy,
+body.reference-layout-v3 .moon-panel #moon-phase-label {
+  overflow: visible !important;
+  max-width: none !important;
+  white-space: normal !important;
+}
+body.reference-layout-v3 .moon-panel #moon-illumination {
+  font-size: 20px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel #moon-phase-label {
+  font-size: 9px !important;
+  line-height: 1.25 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+body.reference-layout-v3 .moon-panel .moon-main {
+  grid-template-columns: 58px minmax(0, 1fr) !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel {
+  overflow: visible !important;
+}
+
+/* 2) Hide residual tide times floating under best-hours */
+body.reference-layout-v3 .best-times-panel ~ * .tide-times,
+body.reference-layout-v3 .tide-times {
+  position: static !important;
+  z-index: 0 !important;
+}
+body.reference-layout-v3 .best-times-panel {
+  position: relative !important;
+  z-index: 2 !important;
+  isolation: isolate !important;
+  overflow: hidden !important;
+  background: rgba(4, 14, 24, 0.98) !important;
+}
+/* Kill any ghost chart-times bleed */
+body.reference-layout-v3 .score-activity-row {
+  position: relative !important;
+  z-index: 1 !important;
+  isolation: isolate !important;
+}
+
+/* 3) Spectrum marker highly visible */
+body.reference-layout-v3 .activity-spectrum-marker,
+body.reference-layout-v3 [data-widget="fish-activity"] .activity-spectrum-marker {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 3px !important;
+  height: 14px !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 6px rgba(255,255,255,0.9), 0 0 2px #fff !important;
+  z-index: 5 !important;
+}
+
+/* 4) Header fish closer */
+body.reference-layout-v3 .header-brand-lockup.brand-area {
+  gap: 0 !important;
+  column-gap: 0 !important;
+}
+body.reference-layout-v3 .header-fish-left {
+  margin-right: -14px !important;
+  transform: translateX(6px) scale(1.04) !important;
+}
+body.reference-layout-v3 .header-fish-right {
+  margin-left: -14px !important;
+  transform: translateX(-6px) scale(1.04) !important;
+}
+body.reference-layout-v3 .header-brand-center {
+  padding-inline: 0 !important;
+  z-index: 3 !important;
+}
+
+/* 5) Tide chart taller + labels visible */
+body.reference-layout-v3 .tide-layout {
+  height: auto !important;
+  min-height: 140px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .tide-chart {
+  height: 110px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .tide-labels text {
+  visibility: visible !important;
+  opacity: 1 !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+}
+body.reference-layout-v3 .tide-points circle {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* 6) Best hours crystal clear */
+body.reference-layout-v3 .best-times-content strong {
+  color: #F5C542 !important;
+  font-size: 8px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  text-shadow: 0 0 4px rgba(245,197,66,0.35) !important;
+}
+body.reference-layout-v3 .best-times-separator {
+  color: #F5C542 !important;
+  opacity: 0.6 !important;
+}
+
+/* 7) Hourly no empty gap, labels locked */
+body.reference-layout-v3 .hero-composite {
+  min-height: 200px !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .cloud-strip {
+  min-height: 82px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .weather-hour-cell strong,
+body.reference-layout-v3 .weather-hour-cell > span {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* 8) Activity 2-col reinforced */
+body.reference-layout-v3 [data-widget="fish-activity"] {
+  display: grid !important;
+  grid-template-columns: 52% 48% !important;
+  grid-template-areas: "title title" "art factors" !important;
+  flex-direction: unset !important;
+}
+body.reference-layout-v3 [data-widget="fish-activity"] > h2 { grid-area: title !important; }
+body.reference-layout-v3 [data-widget="fish-activity"] > .activity-art { grid-area: art !important; }
+body.reference-layout-v3 [data-widget="fish-activity"] > .activity-factors { grid-area: factors !important; }
+
+/* 9) Score/Activity row */
+body.reference-layout-v3 .score-activity-row {
+  display: grid !important;
+  grid-template-columns: 38% 62% !important;
+}
+
+/* 10) Section title blue icons consistent */
+body.reference-layout-v3 .section-title i {
+  color: #3dc4ff !important;
+  filter: drop-shadow(0 0 5px rgba(61,196,255,0.55)) !important;
+  opacity: 1 !important;
+}
+
+/* 11) Sea title full */
+body.reference-layout-v3 .sea-tide-row .section-title span {
+  overflow: visible !important;
+  white-space: nowrap !important;
+  font-size: 6.5px !important;
+}
+
+/* 12) Wind/pressure titles full */
+body.reference-layout-v3 .wind-pressure-row .section-title span {
+  overflow: visible !important;
+  white-space: nowrap !important;
+  font-size: 6.5px !important;
+}
