@@ -1121,9 +1121,10 @@ body.reference-layout-v3 #wave-direction-arrow {
 ========================================================= */
 
 body.reference-layout-v3 .tide-layout {
-  height: 73px;
+  height: auto;
+  min-height: 130px;
   display: grid;
-  grid-template-columns: 55px minmax(0, 1fr) 55px;
+  grid-template-columns: 58px minmax(0, 1fr) 58px;
   align-items: stretch;
 }
 
@@ -1186,7 +1187,7 @@ body.reference-layout-v3 .tide-chart-wrap {
 
 body.reference-layout-v3 .tide-chart {
   width: 100%;
-  height: 54px;
+  height: 100px;
   overflow: visible;
 }
 
@@ -7038,4 +7039,178 @@ body.reference-layout-v3 .wind-hour-cell:nth-child(7) .direction-arrow {
 }
 body.reference-layout-v3 .wind-hour-cell:nth-child(n+3):nth-child(-n+5) .direction-arrow {
   color: #9AFF6B !important;
+}
+
+
+/* =========================================================
+   SEA + TIDES + BEST HOURS + GLOBAL BLUE ICONS
+========================================================= */
+
+/* Sea title full text */
+body.reference-layout-v3 .sea-tide-row .section-title {
+  overflow: visible !important;
+}
+body.reference-layout-v3 .sea-tide-row .section-title span {
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: nowrap !important;
+  font-size: 6.5px !important;
+  letter-spacing: 0.06em !important;
+}
+
+/* Tides taller frame like Master */
+body.reference-layout-v3 .sea-tide-row {
+  grid-template-columns: 28% minmax(0, 72%) !important;
+  align-items: stretch !important;
+}
+body.reference-layout-v3 .tide-panel,
+body.reference-layout-v3 [data-widget="tides"] {
+  min-height: 150px !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .tide-layout {
+  min-height: 120px !important;
+  align-items: stretch !important;
+}
+body.reference-layout-v3 .tide-chart,
+body.reference-layout-v3 #tide-chart {
+  height: 90px !important;
+  min-height: 90px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .tide-line {
+  filter: drop-shadow(0 0 4px rgba(21, 151, 255, 0.55)) !important;
+}
+body.reference-layout-v3 .tide-side strong {
+  font-size: 14px !important;
+}
+body.reference-layout-v3 .tide-side small {
+  font-size: 10px !important;
+}
+
+/* Best hours — centered + legible */
+body.reference-layout-v3 .best-times-panel,
+body.reference-layout-v3 [data-widget="best-times"] {
+  overflow: visible !important;
+}
+body.reference-layout-v3 .best-times-strip {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 10px !important;
+  padding: 8px 12px !important;
+  min-height: 36px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+body.reference-layout-v3 .best-times-strip .section-title,
+body.reference-layout-v3 .best-times-strip > .section-title {
+  flex: 0 0 auto !important;
+  border-bottom: none !important;
+  min-height: auto !important;
+  padding: 0 !important;
+  font-size: 7px !important;
+}
+body.reference-layout-v3 .best-times-content {
+  display: flex !important;
+  flex: 1 1 auto !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-wrap: nowrap !important;
+  min-width: 0 !important;
+}
+body.reference-layout-v3 .best-times-content strong {
+  font-size: 8px !important;
+  font-weight: 700 !important;
+  color: #F5C542 !important;
+  letter-spacing: 0.04em !important;
+  white-space: nowrap !important;
+  text-shadow: 0 0 6px rgba(245, 197, 66, 0.35) !important;
+}
+body.reference-layout-v3 .best-times-separator {
+  color: #F5C542 !important;
+  opacity: 0.7 !important;
+  font-size: 10px !important;
+}
+
+/* Global section title blue icons */
+body.reference-layout-v3 .section-title i,
+body.reference-layout-v3 .section-title .fa-solid,
+body.reference-layout-v3 .section-title .fa-regular {
+  color: #3dc4ff !important;
+  filter: drop-shadow(0 0 5px rgba(61, 196, 255, 0.5)) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+
+/* =========================================================
+   TIDE LABELS + BLUE ICONS — high confidence
+========================================================= */
+body.reference-layout-v3 .tide-layout {
+  height: auto !important;
+  min-height: 130px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .tide-chart-wrap {
+  overflow: visible !important;
+  padding: 4px 4px 2px !important;
+}
+body.reference-layout-v3 .tide-chart,
+body.reference-layout-v3 #tide-chart {
+  height: 100px !important;
+  min-height: 100px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .tide-labels text,
+body.reference-layout-v3 #tide-labels text {
+  fill: #5CFF8A !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  text-anchor: middle !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+body.reference-layout-v3 .tide-labels text.negative,
+body.reference-layout-v3 #tide-labels text.negative {
+  fill: #FF5C5C !important;
+}
+body.reference-layout-v3 .tide-points circle,
+body.reference-layout-v3 #tide-points circle {
+  fill: #08121d !important;
+  stroke: #f2f8fc !important;
+  stroke-width: 2.5 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  r: 5 !important;
+}
+body.reference-layout-v3 .tide-times,
+body.reference-layout-v3 #tide-times {
+  display: grid !important;
+  grid-template-columns: repeat(9, 1fr) !important;
+  font-size: 6px !important;
+  color: #c5dcec !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  margin-top: 2px !important;
+}
+body.reference-layout-v3 .tide-panel {
+  min-height: 160px !important;
+  overflow: visible !important;
+}
+
+/* Blue icons stronger globally */
+body.reference-layout-v3 .section-title i {
+  color: #3dc4ff !important;
+  font-size: 13px !important;
+  filter: drop-shadow(0 0 6px rgba(61, 196, 255, 0.65)) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
 }
