@@ -6162,3 +6162,72 @@ body.reference-layout-v3 .weather-hour-cell span[data-field*="temperature"] {
   visibility: visible !important;
   opacity: 1 !important;
 }
+
+/* =========================================================
+   CRITICAL LAYOUT LOCK — score+activity side by side + hourly
+========================================================= */
+body.reference-layout-v3 .score-activity-row {
+  display: grid !important;
+  grid-template-columns: 39% minmax(0, 61%) !important;
+  grid-template-rows: auto !important;
+  gap: 6px !important;
+  align-items: stretch !important;
+  width: 100% !important;
+}
+body.reference-layout-v3 .score-activity-row > .panel,
+body.reference-layout-v3 .score-activity-row > .widget,
+body.reference-layout-v3 .score-activity-row > [data-widget="fishing-score"],
+body.reference-layout-v3 .score-activity-row > [data-widget="fish-activity"] {
+  width: auto !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  float: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  grid-column: auto !important;
+  grid-row: 1 !important;
+}
+body.reference-layout-v3 .score-panel {
+  min-height: 0 !important;
+  max-height: 200px !important;
+}
+body.reference-layout-v3 .activity-panel {
+  min-height: 0 !important;
+  max-height: 200px !important;
+}
+body.reference-layout-v3 .score-master-photo {
+  max-height: 150px !important;
+  object-fit: contain !important;
+}
+
+/* Hourly must show labels */
+body.reference-layout-v3 .cloud-strip,
+body.reference-layout-v3 #hourly-weather-strip {
+  display: grid !important;
+  grid-auto-flow: column !important;
+  grid-auto-columns: calc(100% / 7) !important;
+  height: auto !important;
+  min-height: 96px !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .cloud-strip .weather-hour-cell,
+body.reference-layout-v3 .cloud-strip .hour-cell {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  height: auto !important;
+  min-height: 90px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .weather-hour-cell strong,
+body.reference-layout-v3 .weather-hour-cell > span {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: static !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  color: #eef6fc !important;
+}
