@@ -933,7 +933,16 @@
       setText("time", hour.time, cell);
       const time = $("time", cell);
       if (time) time.dateTime = hour.iso;
-      setText("strong", hour.label || CONDITION_META[hour.condition]?.description, cell);
+      const lab = hour.label || CONDITION_META[hour.condition]?.description || "";
+      const strongEl = cell.querySelector("strong");
+      if (strongEl) {
+        if (lab.includes(" ") && lab.length > 10) {
+          const i = lab.indexOf(" ");
+          strongEl.innerHTML = lab.slice(0, i) + "<br>" + lab.slice(i + 1);
+        } else {
+          strongEl.textContent = lab;
+        }
+      }
       setText("span", `${Math.round(hour.temperature)}°C`, cell);
       const use = $("svg use", cell);
       if (use) use.setAttribute("href", CONDITION_META[hour.condition]?.icon || "#weather-partly");
@@ -1024,7 +1033,17 @@
   function renderMoon(data) {
     const moon = data.moon;
     setText("#moon-illumination", `${moon.illumination}%`);
-    setText("#moon-phase-label", moon.phaseLabel);
+    const phaseEl = document.querySelector("#moon-phase-label");
+    if (phaseEl) {
+      const label = moon.phaseLabel || "";
+      // Keep two-line display like Master (Αύξουσα / Αμφίκυρτη)
+      if (label.includes(" ")) {
+        const parts = label.split(" ");
+        phaseEl.innerHTML = parts[0] + "<br>" + parts.slice(1).join(" ");
+      } else {
+        phaseEl.textContent = label;
+      }
+    }
     setText("#moonrise-time", moon.rise);
     setText("#moonset-time", moon.set);
 

@@ -6043,3 +6043,62 @@ body.reference-layout-v3 .top-header [data-action="favorite"] svg {
   height: 16px !important;
   margin: 0 auto !important;
 }
+
+/* =========================================================
+   HOURLY ONLY — full labels + clearer icons
+========================================================= */
+body.reference-layout-v3 #hourly-weather-strip,
+body.reference-layout-v3 .hourly-strip.cloud-strip {
+  display: flex !important;
+  gap: 2px !important;
+  overflow-x: auto !important;
+  padding: 4px 2px 6px !important;
+}
+body.reference-layout-v3 .weather-hour-cell {
+  flex: 1 1 0 !important;
+  min-width: 48px !important;
+  max-width: 56px !important;
+  padding: 2px 1px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 2px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .weather-hour-cell > span:first-child,
+body.reference-layout-v3 .weather-hour-cell .hour-time {
+  font-size: 8px !important;
+  color: #9ec5d8 !important;
+  white-space: nowrap !important;
+}
+body.reference-layout-v3 .weather-hour-icon,
+body.reference-layout-v3 .premium-hour-icon {
+  width: 26px !important;
+  height: 26px !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+  color: #ffd331 !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .weather-hour-cell strong {
+  font-size: 6.5px !important;
+  line-height: 1.25 !important;
+  font-weight: 600 !important;
+  color: #d8ecf8 !important;
+  text-align: center !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  max-height: none !important;
+  display: block !important;
+  width: 100% !important;
+  hyphens: none !important;
+  word-break: normal !important;
+}
+body.reference-layout-v3 .weather-hour-cell > span:last-child,
+body.reference-layout-v3 .weather-hour-cell .hour-temp {
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  color: #e8f4fc !important;
+  display: block !important;
+  text-align: center !important;
+}
