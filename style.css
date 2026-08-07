@@ -7214,3 +7214,224 @@ body.reference-layout-v3 .section-title i {
   width: auto !important;
   height: auto !important;
 }
+
+/* =========================================================
+   BEST TIMES FIX — no overlap, clear gold slots
+========================================================= */
+body.reference-layout-v3 .best-times-panel,
+body.reference-layout-v3 [data-widget="best-times"] {
+  overflow: hidden !important;
+  isolation: isolate !important;
+  z-index: 1 !important;
+  min-height: 40px !important;
+  height: auto !important;
+}
+body.reference-layout-v3 .best-times-strip {
+  display: grid !important;
+  grid-template-columns: auto 1fr !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 8px 10px !important;
+  min-height: 40px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .best-times-strip > .section-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  border-bottom: none !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 0 8px 0 0 !important;
+  margin: 0 !important;
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
+  font-size: 7px !important;
+  letter-spacing: 0.08em !important;
+}
+body.reference-layout-v3 .best-times-content {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+body.reference-layout-v3 .best-times-content strong {
+  display: inline-block !important;
+  font-size: 7.5px !important;
+  font-weight: 700 !important;
+  color: #F5C542 !important;
+  letter-spacing: 0.03em !important;
+  white-space: nowrap !important;
+  text-shadow: 0 0 5px rgba(245, 197, 66, 0.3) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+body.reference-layout-v3 .best-times-separator {
+  display: inline-block !important;
+  color: #F5C542 !important;
+  opacity: 0.55 !important;
+  font-size: 8px !important;
+  flex-shrink: 0 !important;
+}
+/* Prevent tide times from floating over */
+body.reference-layout-v3 .tide-times,
+body.reference-layout-v3 #tide-times {
+  position: static !important;
+  z-index: 0 !important;
+}
+
+/* =========================================================
+   CURRENTS tighter + TIDES taller (layout balance)
+========================================================= */
+body.reference-layout-v3 .moon-current-row {
+  grid-template-columns: 34% minmax(0, 66%) !important;
+  align-items: start !important;
+}
+body.reference-layout-v3 [data-widget="currents"],
+body.reference-layout-v3 .panel[data-live-widget="currents"] {
+  min-height: 0 !important;
+  height: auto !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 #current-strip,
+body.reference-layout-v3 .current-strip {
+  min-height: 58px !important;
+  max-height: 70px !important;
+  overflow: hidden !important;
+}
+
+body.reference-layout-v3 .sea-tide-row {
+  grid-template-columns: 26% minmax(0, 74%) !important;
+  align-items: stretch !important;
+}
+body.reference-layout-v3 .tide-panel,
+body.reference-layout-v3 [data-widget="tides"] {
+  min-height: 175px !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .tide-layout {
+  min-height: 145px !important;
+  height: auto !important;
+}
+body.reference-layout-v3 .tide-chart,
+body.reference-layout-v3 #tide-chart {
+  height: 110px !important;
+  min-height: 110px !important;
+}
+
+
+/* =========================================================
+   SAFE 95% DEPLOY — header fish, compact weather, locks
+========================================================= */
+
+/* 1) Header fish closer to title — proven approach */
+body.reference-layout-v3 .header-brand-lockup.brand-area {
+  gap: 0 !important;
+  column-gap: 0 !important;
+  justify-items: center !important;
+}
+body.reference-layout-v3 .header-fish-left {
+  margin-right: -10px !important;
+  transform: translateX(4px) scale(1.02) !important;
+}
+body.reference-layout-v3 .header-fish-right {
+  margin-left: -10px !important;
+  transform: translateX(-4px) scale(1.02) !important;
+}
+body.reference-layout-v3 .header-brand-center {
+  padding-inline: 0 !important;
+  z-index: 2 !important;
+}
+
+/* 2) Weather/hourly strip slightly tighter (less empty gap) */
+body.reference-layout-v3 .hero-composite {
+  height: auto !important;
+  min-height: 205px !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .cloud-strip,
+body.reference-layout-v3 #hourly-weather-strip {
+  height: auto !important;
+  min-height: 84px !important;
+  max-height: none !important;
+  overflow: visible !important;
+  padding-bottom: 2px !important;
+}
+body.reference-layout-v3 .weather-hour-cell strong,
+body.reference-layout-v3 .weather-hour-cell > span {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* 3) Best times clear (no overlap) */
+body.reference-layout-v3 .best-times-strip {
+  display: grid !important;
+  grid-template-columns: auto 1fr !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 8px 10px !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .best-times-content {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-wrap: nowrap !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .best-times-content strong {
+  color: #F5C542 !important;
+  font-size: 7.5px !important;
+  white-space: nowrap !important;
+  display: inline-block !important;
+}
+
+/* 4) Score+Activity side by side lock */
+body.reference-layout-v3 .score-activity-row {
+  display: grid !important;
+  grid-template-columns: 39% minmax(0, 61%) !important;
+}
+
+/* 5) Tide layout not clipped */
+body.reference-layout-v3 .tide-layout {
+  height: auto !important;
+  min-height: 130px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .tide-chart {
+  height: 100px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .tide-labels text {
+  visibility: visible !important;
+  opacity: 1 !important;
+  font-size: 11px !important;
+}
+
+/* 6) Sea title full */
+body.reference-layout-v3 .sea-tide-row .section-title span {
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: nowrap !important;
+  font-size: 6.5px !important;
+}
+
+/* 7) Currents not oversized */
+body.reference-layout-v3 .moon-current-row {
+  align-items: start !important;
+}
+body.reference-layout-v3 #current-strip {
+  max-height: 72px !important;
+}
