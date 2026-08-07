@@ -8708,3 +8708,276 @@ body.reference-layout-v3 .technique-card .technique-rating-label {
 body.reference-layout-v3 .technique-card .technique-dot {
   display: none !important;
 }
+
+/* =========================================================
+   VISUAL v11 — APPROVED REDESIGN (W1–W11)
+   Puzzle layout + premium marine polish
+========================================================= */
+
+:root {
+  --v11-gold: #f0c14a;
+  --v11-gold-soft: #e8c56a;
+  --v11-yellow-neon: #ffd331;
+  --v11-blue-neon: #35c8ff;
+  --v11-green-trend: #3dde7a;
+  --v11-blue-trend: #4aa8ff;
+  --v11-red-trend: #ff5a5a;
+}
+
+/* --- Layout puzzle: tighter rows, consistent gaps --- */
+body.reference-layout-v3 .wind-pressure-row,
+body.reference-layout-v3 .moon-current-row,
+body.reference-layout-v3 .sea-tide-row,
+body.reference-layout-v3 .score-activity-row {
+  gap: 10px !important;
+  margin-top: 10px !important;
+  align-items: stretch !important;
+}
+
+body.reference-layout-v3 .panel,
+body.reference-layout-v3 .widget {
+  border-radius: 14px !important;
+}
+
+/* --- W1 Weather hourly: sky-like cells, compact --- */
+body.reference-layout-v3 .weather-hour-cell,
+body.reference-layout-v3 .hourly-strip .hour-cell {
+  background:
+    linear-gradient(180deg, rgba(70, 140, 200, .35) 0%, rgba(20, 50, 90, .55) 55%, rgba(8, 20, 40, .75) 100%) !important;
+  border: 1px solid rgba(80, 160, 220, .28) !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  min-height: 0 !important;
+}
+
+body.reference-layout-v3 .weather-hour-cell strong,
+body.reference-layout-v3 .hourly-strip .hour-cell strong {
+  color: #fff !important;
+  font-weight: 800 !important;
+}
+
+/* --- W4 Pressure: stronger yellow neon + fill --- */
+body.reference-layout-v3 .pressure-line {
+  stroke: var(--v11-yellow-neon) !important;
+  stroke-width: 3.5 !important;
+  filter: drop-shadow(0 0 6px rgba(255, 211, 49, .75)) drop-shadow(0 0 12px rgba(255, 180, 0, .35)) !important;
+}
+
+body.reference-layout-v3 .pressure-area {
+  fill: url(#pressureFill) !important;
+  opacity: 1 !important;
+}
+
+body.reference-layout-v3 .pressure-points circle {
+  fill: var(--v11-yellow-neon) !important;
+  filter: drop-shadow(0 0 5px rgba(255, 211, 49, .8)) !important;
+}
+
+/* Trend colors: stable green / falling blue / rising red */
+body.reference-layout-v3 .pressure-now em,
+body.reference-layout-v3 #pressure-trend {
+  font-weight: 900 !important;
+  letter-spacing: .08em !important;
+}
+body.reference-layout-v3 #pressure-trend[data-trend="stable"],
+body.reference-layout-v3 .pressure-now em[data-trend="stable"] {
+  color: var(--v11-green-trend) !important;
+}
+body.reference-layout-v3 #pressure-trend[data-trend="falling"],
+body.reference-layout-v3 .pressure-now em[data-trend="falling"] {
+  color: var(--v11-blue-trend) !important;
+}
+body.reference-layout-v3 #pressure-trend[data-trend="rising"],
+body.reference-layout-v3 .pressure-now em[data-trend="rising"] {
+  color: var(--v11-red-trend) !important;
+}
+
+/* --- W5 Moon: all gold text, cyan title icon --- */
+body.reference-layout-v3 .moon-panel .section-title,
+body.reference-layout-v3 .moon-panel .section-title span {
+  color: var(--v11-gold) !important;
+}
+body.reference-layout-v3 .moon-panel .section-title::before {
+  content: "" !important;
+  display: inline-block !important;
+  width: 10px !important;
+  height: 10px !important;
+  margin-right: 6px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(circle at 35% 35%, #7fd4ff, #168cff 60%, #0a4a8a) !important;
+  box-shadow: 0 0 8px rgba(53, 200, 255, .85), 0 0 14px rgba(22, 140, 255, .45) !important;
+  vertical-align: middle !important;
+  flex-shrink: 0 !important;
+}
+body.reference-layout-v3 .moon-copy strong,
+body.reference-layout-v3 #moon-illumination,
+body.reference-layout-v3 .moon-copy span,
+body.reference-layout-v3 #moon-phase-label,
+body.reference-layout-v3 .moon-time-text span,
+body.reference-layout-v3 .moon-time-text strong,
+body.reference-layout-v3 #moonrise-time,
+body.reference-layout-v3 #moonset-time {
+  color: var(--v11-gold) !important;
+}
+body.reference-layout-v3 .moon-disk,
+body.reference-layout-v3 .premium-moon {
+  filter: drop-shadow(0 0 10px rgba(240, 193, 74, .45)) !important;
+}
+
+/* --- W6 Tides: blue neon line + trend --- */
+body.reference-layout-v3 .tide-line,
+body.reference-layout-v3 .tides-line,
+body.reference-layout-v3 #tide-chart .tide-line,
+body.reference-layout-v3 svg[data-chart="tides"] path.tide-line {
+  stroke: var(--v11-blue-neon) !important;
+  stroke-width: 3 !important;
+  filter: drop-shadow(0 0 6px rgba(53, 200, 255, .7)) !important;
+}
+body.reference-layout-v3 .tide-area,
+body.reference-layout-v3 svg[data-chart="tides"] .tide-area {
+  fill: url(#tideFill) !important;
+  opacity: .9 !important;
+}
+body.reference-layout-v3 .tide-trend-up,
+body.reference-layout-v3 [data-tide-trend="rising"] {
+  color: var(--v11-green-trend) !important;
+}
+body.reference-layout-v3 .tide-trend-down,
+body.reference-layout-v3 [data-tide-trend="falling"] {
+  color: var(--v11-red-trend) !important;
+}
+
+/* --- W7 Best times: gold moon color --- */
+body.reference-layout-v3 .best-times-panel,
+body.reference-layout-v3 .best-times-panel * {
+  color: var(--v11-gold-soft) !important;
+}
+body.reference-layout-v3 .best-times-panel .section-title,
+body.reference-layout-v3 .best-times-panel .section-title span {
+  color: var(--v11-gold) !important;
+}
+body.reference-layout-v3 .best-times-panel .section-title i {
+  color: var(--v11-blue-neon) !important;
+  filter: drop-shadow(0 0 6px rgba(53, 200, 255, .6)) !important;
+}
+body.reference-layout-v3 .best-slot,
+body.reference-layout-v3 .best-times-list,
+body.reference-layout-v3 .best-times-panel strong,
+body.reference-layout-v3 .best-times-panel time {
+  color: var(--v11-gold) !important;
+  font-weight: 750 !important;
+}
+
+/* --- W8 Fishing score polish --- */
+body.reference-layout-v3 .score-panel {
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .score-gauge {
+  filter: drop-shadow(0 0 12px rgba(53, 200, 255, .25)) !important;
+}
+body.reference-layout-v3 .score-stars {
+  color: var(--v11-gold) !important;
+}
+body.reference-layout-v3 .score-caption {
+  color: var(--v11-gold-soft) !important;
+  font-weight: 700 !important;
+}
+
+/* --- W9 Fish activity: fill panel, clean list --- */
+body.reference-layout-v3 .activity-panel,
+body.reference-layout-v3 .activity-composite {
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .activity-spectrum {
+  border-radius: 6px !important;
+  box-shadow: 0 0 10px rgba(53, 200, 255, .2) !important;
+}
+body.reference-layout-v3 .activity-list {
+  overflow: hidden !important;
+  max-height: 100% !important;
+}
+body.reference-layout-v3 .activity-verdict {
+  color: var(--v11-gold-soft) !important;
+  font-weight: 800 !important;
+}
+
+/* --- W10 Alerts: cleaner list, cyan bell, no white dots --- */
+body.reference-layout-v3 .alerts-panel .section-title i,
+body.reference-layout-v3 .alerts-panel .fa-bell {
+  color: var(--v11-blue-neon) !important;
+  filter: drop-shadow(0 0 8px rgba(53, 200, 255, .7)) !important;
+}
+body.reference-layout-v3 .alert-list li {
+  border-radius: 10px !important;
+  background: linear-gradient(90deg, rgba(8, 28, 48, .9), rgba(4, 14, 28, .95)) !important;
+  border: 1px solid rgba(53, 200, 255, .18) !important;
+  margin-bottom: 6px !important;
+}
+body.reference-layout-v3 .alert-list li::before,
+body.reference-layout-v3 .alert-symbol::before {
+  content: none !important;
+  display: none !important;
+}
+body.reference-layout-v3 .alert-symbol {
+  color: var(--v11-blue-neon) !important;
+  filter: drop-shadow(0 0 4px rgba(53, 200, 255, .5)) !important;
+}
+body.reference-layout-v3 .alert-list li.alert-green .alert-symbol { color: var(--v11-green-trend) !important; }
+body.reference-layout-v3 .alert-list li.alert-yellow .alert-symbol { color: var(--v11-gold) !important; }
+body.reference-layout-v3 .alert-list li.alert-orange .alert-symbol { color: #ff9a3c !important; }
+
+/* --- W11 Techniques: images fit frames, no leftover text/lines --- */
+body.reference-layout-v3 .technique-card {
+  overflow: hidden !important;
+  position: relative !important;
+}
+body.reference-layout-v3 .technique-card .technique-icon,
+body.reference-layout-v3 .technique-card .technique-photo {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 72px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+body.reference-layout-v3 .technique-card .technique-dot {
+  display: none !important;
+}
+body.reference-layout-v3 .technique-card::after,
+body.reference-layout-v3 .technique-card::before {
+  box-shadow: none !important;
+}
+body.reference-layout-v3 .technique-rating-label {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 100% !important;
+}
+
+/* --- Header fish spacing note (closer to title later polish) --- */
+body.reference-layout-v3 .header-brand-lockup {
+  gap: 2px !important;
+}
+
+/* --- Section title cyan icons glow (all widgets) --- */
+body.reference-layout-v3 .section-title > i,
+body.reference-layout-v3 .section-title > .fa-solid,
+body.reference-layout-v3 .section-title > svg {
+  color: var(--v11-blue-neon) !important;
+  filter: drop-shadow(0 0 6px rgba(53, 200, 255, .55)) !important;
+}
+
+/* --- Smooth horizontal strips --- */
+body.reference-layout-v3 .hourly-strip,
+body.reference-layout-v3 .wind-strip,
+body.reference-layout-v3 .currents-strip,
+body.reference-layout-v3 .technique-scroll {
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+}
+body.reference-layout-v3 .hourly-strip::-webkit-scrollbar,
+body.reference-layout-v3 .wind-strip::-webkit-scrollbar,
+body.reference-layout-v3 .technique-scroll::-webkit-scrollbar {
+  display: none !important;
+}
