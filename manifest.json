@@ -1,0 +1,19 @@
+{
+  "name": "Fishing Dashboard — Κάλυμνος",
+  "short_name": "Fishing",
+  "description": "Premium fishing intelligence dashboard",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#020b18",
+  "theme_color": "#020b18",
+  "orientation": "portrait-primary",
+  "lang": "el",
+  "icons": [
+    {
+      "src": "fish_only.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
