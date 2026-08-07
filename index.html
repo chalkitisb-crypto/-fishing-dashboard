@@ -33,7 +33,7 @@
   </title>
   <link crossorigin="" href="https://cdnjs.cloudflare.com" rel="preconnect"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
-  <link href="style.css?v=10.2.3" rel="stylesheet"/>
+  <link href="style.css?v=10.4.0" rel="stylesheet"/>
   <link href="manifest.json" rel="manifest"/>
   <style id="master-graphic-upgrade">
 
@@ -1252,7 +1252,7 @@
       </div>
       <div class="moon-main">
        <div class="moon-visual" data-field="moon.visual" data-illumination="72" data-phase="waxing-gibbous" id="moon-visual">
-        <img alt="Αύξουσα Αμφίκυρτη Σελήνη 72%" class="premium-moon master-moon-photo" src="moon_sphere.png"/>
+        <img alt="Αύξουσα Αμφίκυρτη Σελήνη 72%" class="premium-moon master-moon-photo moon-disk" src="moon_sphere.png"/>
        </div>
        <div class="moon-copy">
         <strong data-field="moon.illumination" id="moon-illumination">72%</strong>
@@ -1261,10 +1261,10 @@
       </div>
       <div class="moon-times">
        <div class="moon-time-cell">
-        <svg class="moon-time-icon" viewBox="0 0 48 48" width="28" height="28" style="width:28px;height:28px;flex-shrink:0;display:block" aria-hidden="true">
-         <path fill="#F5C542" d="M28 12c-7 1-12 7-12 14s5 13 12 14c-9-1-15-8-15-14s6-13 15-14z"/>
-         <path fill="none" stroke="#F5C542" stroke-width="2.6" stroke-linecap="round" d="M8 38h32"/>
-         <path fill="none" stroke="#F5C542" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M34 28V16m0 0l-4 4m4-4l4 4"/>
+        <svg class="moon-time-icon" viewBox="0 0 32 32" width="22" height="22" aria-hidden="true">
+         <path fill="#F5C542" d="M20 6c-6.5.8-11.5 6.2-11.5 12.8S13.5 31 20 31.8C12 31 5.5 24.5 5.5 16.8S12 6.8 20 6z"/>
+         <path fill="none" stroke="#F5C542" stroke-width="2.2" stroke-linecap="round" d="M4 28h24"/>
+         <path fill="none" stroke="#F5C542" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M24 20V10m0 0l-3.5 3.5M24 10l3.5 3.5"/>
         </svg>
         <div class="moon-time-text">
          <span>Ανατολή</span>
@@ -1272,12 +1272,11 @@
         </div>
        </div>
        <div class="moon-time-cell">
-        <svg class="moon-time-icon" viewBox="0 0 48 48" width="28" height="28" style="width:28px;height:28px;flex-shrink:0;display:block" aria-hidden="true">
-         <path fill="#F5C542" d="M28 10c-7 1-12 7-12 14s5 13 12 14c-9-1-15-8-15-14s6-13 15-14z"/>
-         <path fill="#F5C542" d="M36 8l1.2 2.4 2.6.4-1.9 1.8.5 2.6L36 14l-2.4 1.2.5-2.6-1.9-1.8 2.6-.4z"/>
-         <path fill="#F5C542" d="M42 16l.9 1.7 1.9.3-1.4 1.3.3 2L42 20l-1.7.9.3-2-1.4-1.3 1.9-.3z"/>
-         <path fill="none" stroke="#F5C542" stroke-width="2.6" stroke-linecap="round" d="M8 38h32"/>
-         <path fill="none" stroke="#F5C542" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M34 18v12m0 0l-4-4m4 4l4-4"/>
+        <svg class="moon-time-icon" viewBox="0 0 32 32" width="22" height="22" aria-hidden="true">
+         <path fill="#F5C542" d="M20 5c-6.5.8-11.5 6.2-11.5 12.8S13.5 30 20 30.8C12 30 5.5 23.5 5.5 15.8S12 5.8 20 5z"/>
+         <path fill="#F5C542" d="M25 7l1 2 2.2.3-1.6 1.6.4 2.2L25 12.2l-2 1.1.4-2.2-1.6-1.6 2.2-.3z"/>
+         <path fill="none" stroke="#F5C542" stroke-width="2.2" stroke-linecap="round" d="M4 28h24"/>
+         <path fill="none" stroke="#F5C542" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M24 11v10m0 0l-3.5-3.5M24 21l3.5-3.5"/>
         </svg>
         <div class="moon-time-text">
          <span>Δύση</span>
@@ -1288,7 +1287,7 @@
      </article>
      <article class="panel full-width-panel widget" data-live-widget="currents" data-size="wide" data-widget="currents">
       <div class="section-title">
-       <i aria-hidden="true" class="fa-solid fa-arrow-right-arrow-left"></i>
+       <i aria-hidden="true" class="fa-solid fa-water"></i>
        <span>
         ΡΕΥΜΑΤΑ (ΤΑΧΥΤΗΤΑ &amp; ΔΙΕΥΘΥΝΣΗ) – ΑΝΑ ΩΡΑ
        </span>
@@ -1613,15 +1612,11 @@
        <strong data-field="bestTimes.morning" id="best-time-morning">
         ΠΡΩΙ 05:45–07:45
        </strong>
-       <span aria-hidden="true" class="best-times-separator">
-        ●
-       </span>
+       <span aria-hidden="true" class="best-times-separator"> — </span>
        <strong data-field="bestTimes.evening" id="best-time-evening">
         ΑΠΟΓΕΥΜΑ 18:10–20:10
        </strong>
-       <span aria-hidden="true" class="best-times-separator">
-        ●
-       </span>
+       <span aria-hidden="true" class="best-times-separator"> — </span>
        <strong data-field="bestTimes.night" id="best-time-night">
         ΝΥΧΤΑ 23:10–00:30
        </strong>
@@ -1820,8 +1815,6 @@
      </h2>
      <ul aria-live="polite" class="alert-list" id="fishing-alerts-list">
       <li class="alert-green" data-alert-id="spinning-window" data-alert-status="active">
-       <i aria-hidden="true" class="fa-solid fa-circle">
-       </i>
        <span class="alert-symbol">
         <i aria-hidden="true" class="fa-solid fa-fish">
         </i>
@@ -1839,8 +1832,6 @@
        </i>
       </li>
       <li class="alert-yellow" data-alert-id="wind-increase" data-alert-status="upcoming">
-       <i aria-hidden="true" class="fa-solid fa-circle">
-       </i>
        <span class="alert-symbol">
         <i aria-hidden="true" class="fa-solid fa-wind">
         </i>
@@ -1858,8 +1849,6 @@
        </i>
       </li>
       <li class="alert-orange" data-alert-id="current-increase" data-alert-status="upcoming">
-       <i aria-hidden="true" class="fa-solid fa-circle">
-       </i>
        <span class="alert-symbol">
         <i aria-hidden="true" class="fa-solid fa-water">
         </i>
@@ -1877,8 +1866,6 @@
        </i>
       </li>
       <li class="alert-blue" data-alert-id="uv-high" data-alert-status="active">
-       <i aria-hidden="true" class="fa-solid fa-circle">
-       </i>
        <span class="alert-symbol">
         <i aria-hidden="true" class="fa-regular fa-sun">
         </i>
@@ -2084,9 +2071,7 @@
   </template>
   <template id="fishing-alert-template">
    <li data-alert-status="upcoming">
-    <i aria-hidden="true" class="fa-solid fa-circle">
-    </i>
-    <span class="alert-symbol">
+       <span class="alert-symbol">
      <i aria-hidden="true" data-role="icon">
      </i>
     </span>
@@ -2724,7 +2709,7 @@
     Το Fishing Dashboard χρειάζεται JavaScript για ζωντανά δεδομένα και αποθήκευση διάταξης.
    </p>
   </noscript>
-  <script defer="" src="app.js?v=10.2.3">
+  <script defer="" src="app.js?v=10.4.0">
   </script>
  </body>
 </html>

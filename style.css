@@ -8306,3 +8306,405 @@ body.reference-layout-v3 .activity-spectrum-marker {
   height: 14px !important;
   z-index: 6 !important;
 }
+
+
+/* =========================================================
+   v10.3.0 — Moon icons + iPhone/iPad responsive
+========================================================= */
+
+/* Moon rise/set icons ALWAYS visible */
+body.reference-layout-v3 .moon-panel .moon-times {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  min-height: 48px !important;
+  padding: 6px 4px !important;
+  border-top: 1px solid rgba(32,139,199,.35) !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-cell {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 0 6px !important;
+  min-width: 0 !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-icon {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #F5C542 !important;
+  font-size: 16px !important;
+  width: 20px !important;
+  min-width: 20px !important;
+  text-align: center !important;
+  flex-shrink: 0 !important;
+  line-height: 1 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-text span,
+body.reference-layout-v3 .moon-panel .moon-time-text strong {
+  display: block !important;
+  color: #F5C542 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-text span {
+  font-size: 8px !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-text strong {
+  font-size: 13px !important;
+  font-weight: 800 !important;
+}
+
+/* ---- Responsive: phone vs tablet ---- */
+
+/* iPhone / narrow (default is phone-first) */
+@media (max-width: 430px) {
+  body.reference-layout-v3 .score-activity-row {
+    grid-template-columns: 38% 62% !important;
+  }
+  body.reference-layout-v3 .moon-current-row {
+    grid-template-columns: 36% 64% !important;
+  }
+  body.reference-layout-v3 .sea-tide-row {
+    grid-template-columns: 28% 72% !important;
+  }
+  body.reference-layout-v3 .wind-pressure-row {
+    grid-template-columns: 42% 58% !important;
+  }
+}
+
+/* iPad mini / large phone landscape / small tablet */
+@media (min-width: 431px) and (max-width: 834px) {
+  body.reference-layout-v3 {
+    max-width: 100% !important;
+  }
+  body.reference-layout-v3 .app-shell,
+  body.reference-layout-v3 .dashboard-shell,
+  body.reference-layout-v3 main {
+    max-width: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+  body.reference-layout-v3 .score-activity-row {
+    grid-template-columns: 36% 64% !important;
+  }
+  body.reference-layout-v3 [data-widget="fish-activity"] {
+    grid-template-columns: 48% 52% !important;
+  }
+  body.reference-layout-v3 .section-title span {
+    font-size: 7.5px !important;
+  }
+  body.reference-layout-v3 .best-times-content strong {
+    font-size: 8.5px !important;
+  }
+  body.reference-layout-v3 .moon-panel #moon-illumination {
+    font-size: 22px !important;
+  }
+  body.reference-layout-v3 .moon-panel #moon-phase-label {
+    font-size: 10px !important;
+  }
+}
+
+/* iPad Pro / large tablet — centered column, readable */
+@media (min-width: 835px) {
+  body.reference-layout-v3 .app-shell,
+  body.reference-layout-v3 .dashboard-shell,
+  body.reference-layout-v3 #app,
+  body.reference-layout-v3 main {
+    max-width: 430px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  /* Keep phone layout proportions on tablet by constraining width */
+  body.reference-layout-v3 {
+    background: #02080f !important;
+  }
+}
+
+
+/* =========================================================
+   v10.4.0 — Independent visual polish (user requests)
+========================================================= */
+
+/* A) Header left fish — more space from title */
+body.reference-layout-v3 .header-fish-left {
+  margin-right: 2px !important;
+  transform: translateX(0) scale(1.02) !important;
+  justify-self: end !important;
+}
+body.reference-layout-v3 .header-fish-right {
+  margin-left: 2px !important;
+  transform: translateX(0) scale(1.02) !important;
+  justify-self: start !important;
+}
+body.reference-layout-v3 .header-brand-lockup.brand-area {
+  grid-template-columns: 58px minmax(0, 1fr) 58px !important;
+  column-gap: 6px !important;
+  gap: 6px !important;
+}
+body.reference-layout-v3 .header-brand-center {
+  padding-inline: 4px !important;
+}
+
+/* B) Moon — text fully inside frame + improved disk + yellow icons */
+body.reference-layout-v3 .moon-panel {
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .moon-panel .moon-main {
+  display: grid !important;
+  grid-template-columns: 64px minmax(0, 1fr) !important;
+  column-gap: 10px !important;
+  align-items: center !important;
+  padding: 8px 10px 6px !important;
+  overflow: hidden !important;
+  min-width: 0 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-visual {
+  width: 64px !important;
+  height: 64px !important;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  box-shadow:
+    0 0 0 2px rgba(245, 197, 66, 0.35),
+    0 0 14px rgba(245, 197, 66, 0.25),
+    inset 0 0 12px rgba(0,0,0,0.35) !important;
+  background: radial-gradient(circle at 35% 30%, #3a3a2a, #0a0c10) !important;
+}
+body.reference-layout-v3 .moon-panel .moon-disk,
+body.reference-layout-v3 .moon-panel .premium-moon {
+  width: 64px !important;
+  height: 64px !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  filter: saturate(1.15) contrast(1.08) brightness(1.05) !important;
+  display: block !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  max-width: 100% !important;
+}
+body.reference-layout-v3 .moon-panel #moon-illumination {
+  font-size: 22px !important;
+  line-height: 1.05 !important;
+  color: #fff !important;
+  font-weight: 800 !important;
+  display: block !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+body.reference-layout-v3 .moon-panel #moon-phase-label {
+  font-size: 9.5px !important;
+  line-height: 1.25 !important;
+  color: #d8ecf8 !important;
+  display: block !important;
+  margin-top: 3px !important;
+  white-space: normal !important;
+  overflow: hidden !important;
+  max-width: 100% !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  border-top: 1px solid rgba(32,139,199,.35) !important;
+  min-height: 46px !important;
+  padding: 6px 4px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-cell {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 7px !important;
+  padding: 0 6px !important;
+  min-width: 0 !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-icon {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  flex-shrink: 0 !important;
+  overflow: visible !important;
+  filter: drop-shadow(0 0 3px rgba(245,197,66,.45)) !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-text span,
+body.reference-layout-v3 .moon-panel .moon-time-text strong {
+  display: block !important;
+  color: #F5C542 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-text span { font-size: 8px !important; }
+body.reference-layout-v3 .moon-panel .moon-time-text strong {
+  font-size: 12px !important;
+  font-weight: 800 !important;
+}
+
+/* C) Currents icon already fa-water via HTML */
+
+/* D) Best hours separators = em dash */
+body.reference-layout-v3 .best-times-separator {
+  color: #F5C542 !important;
+  opacity: 0.75 !important;
+  font-size: 10px !important;
+  font-weight: 400 !important;
+  padding: 0 2px !important;
+}
+
+/* E) Kill ghost letters above Fish Activity (leaked tide times) */
+body.reference-layout-v3 .tide-times,
+body.reference-layout-v3 #tide-times {
+  overflow: hidden !important;
+  max-height: 14px !important;
+  position: static !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
+body.reference-layout-v3 .tide-panel,
+body.reference-layout-v3 .tide-chart-wrap {
+  overflow: hidden !important;
+  isolation: isolate !important;
+}
+body.reference-layout-v3 .best-times-panel {
+  overflow: hidden !important;
+  isolation: isolate !important;
+  z-index: 4 !important;
+  position: relative !important;
+  background: #061018 !important;
+}
+body.reference-layout-v3 .score-activity-row {
+  position: relative !important;
+  z-index: 3 !important;
+  isolation: isolate !important;
+  margin-top: 4px !important;
+}
+
+/* F) Fish Activity list not clipped */
+body.reference-layout-v3 [data-widget="fish-activity"] {
+  overflow: hidden !important;
+  min-height: 165px !important;
+}
+body.reference-layout-v3 [data-widget="fish-activity"] > .activity-factors,
+body.reference-layout-v3 [data-widget="fish-activity"] #fish-activity-factors {
+  overflow: visible !important;
+  min-width: 0 !important;
+  padding-right: 2px !important;
+}
+body.reference-layout-v3 [data-widget="fish-activity"] #fish-activity-factors > div {
+  gap: 4px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 [data-widget="fish-activity"] #fish-activity-factors > div > span {
+  font-size: 8.5px !important;
+  flex-shrink: 1 !important;
+  min-width: 0 !important;
+}
+body.reference-layout-v3 [data-widget="fish-activity"] #fish-activity-factors > div > strong {
+  font-size: 8.5px !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+/* G) Fishing Alerts — no white dots, blue bell */
+body.reference-layout-v3 .alerts-panel h2 i,
+body.reference-layout-v3 .alerts-panel .fa-bell {
+  color: #2ec8ff !important;
+  filter: drop-shadow(0 0 4px rgba(46,200,255,.65)) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+body.reference-layout-v3 .alert-list li > i.fa-circle,
+body.reference-layout-v3 .alert-list .fa-circle {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+}
+body.reference-layout-v3 .alert-list li {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+body.reference-layout-v3 .alert-list .alert-symbol i {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  font-size: 13px !important;
+  width: 18px !important;
+  text-align: center !important;
+}
+body.reference-layout-v3 .alert-list .alert-green .alert-symbol i { color: #3dff9a !important; }
+body.reference-layout-v3 .alert-list .alert-yellow .alert-symbol i { color: #ffd331 !important; }
+body.reference-layout-v3 .alert-list .alert-orange .alert-symbol i { color: #ff9a3c !important; }
+body.reference-layout-v3 .alert-list .alert-blue .alert-symbol i { color: #2ec8ff !important; }
+
+/* H) Techniques — photos fill the card frame */
+body.reference-layout-v3 .technique-card {
+  overflow: hidden !important;
+  position: relative !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  min-height: 120px !important;
+}
+body.reference-layout-v3 .technique-card .technique-icon {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .technique-card .technique-photo {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+  border-radius: 0 !important;
+}
+body.reference-layout-v3 .technique-card > strong,
+body.reference-layout-v3 .technique-card .technique-stars,
+body.reference-layout-v3 .technique-card .technique-rating-label {
+  position: relative !important;
+  z-index: 1 !important;
+  text-shadow: 0 1px 4px rgba(0,0,0,.85) !important;
+  padding: 0 6px !important;
+}
+body.reference-layout-v3 .technique-card > strong {
+  margin-top: auto !important;
+  padding-top: 8px !important;
+  background: linear-gradient(to top, rgba(0,0,0,.75), transparent) !important;
+  padding-bottom: 2px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  font-size: 8px !important;
+}
+body.reference-layout-v3 .technique-card .technique-stars {
+  justify-content: center !important;
+  background: rgba(0,0,0,.55) !important;
+  width: 100% !important;
+  padding: 2px 0 !important;
+  box-sizing: border-box !important;
+}
+body.reference-layout-v3 .technique-card .technique-rating-label {
+  text-align: center !important;
+  background: rgba(0,0,0,.65) !important;
+  width: 100% !important;
+  padding: 2px 0 6px !important;
+  box-sizing: border-box !important;
+  font-size: 7px !important;
+}
+body.reference-layout-v3 .technique-card .technique-dot {
+  display: none !important;
+}
