@@ -7968,3 +7968,341 @@ body.reference-layout-v3 .wind-pressure-row .section-title span {
   white-space: nowrap !important;
   font-size: 6.5px !important;
 }
+
+
+/* =========================================================
+   CIRCLED FIXES v10.2.0 — all red-marked issues
+========================================================= */
+
+/* A) Header fish tight to title */
+body.reference-layout-v3 .header-brand-lockup.brand-area {
+  display: grid !important;
+  grid-template-columns: 56px minmax(0, 1fr) 56px !important;
+  gap: 0 !important;
+  column-gap: 0 !important;
+  align-items: center !important;
+}
+body.reference-layout-v3 .header-fish-left {
+  margin: 0 -18px 0 0 !important;
+  transform: translateX(10px) scale(1.06) !important;
+  justify-self: end !important;
+}
+body.reference-layout-v3 .header-fish-right {
+  margin: 0 0 0 -18px !important;
+  transform: translateX(-10px) scale(1.06) !important;
+  justify-self: start !important;
+}
+body.reference-layout-v3 .header-brand-center {
+  padding: 0 !important;
+  z-index: 4 !important;
+}
+
+/* B) Hourly — less empty bottom */
+body.reference-layout-v3 .hero-composite {
+  min-height: 0 !important;
+  height: auto !important;
+  padding-bottom: 0 !important;
+}
+body.reference-layout-v3 .cloud-strip,
+body.reference-layout-v3 #hourly-weather-strip {
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 4px 4px 6px !important;
+  margin: 0 !important;
+}
+body.reference-layout-v3 .weather-hour-cell {
+  padding-bottom: 2px !important;
+}
+
+/* C) Moon copy full + rise/set icons */
+body.reference-layout-v3 .moon-panel .moon-copy {
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel #moon-phase-label {
+  font-size: 9px !important;
+  white-space: normal !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-icon,
+body.reference-layout-v3 .moon-panel i.moon-time-icon,
+body.reference-layout-v3 .moon-panel .moon-times svg {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  color: #F5C542 !important;
+  flex-shrink: 0 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times {
+  min-height: 48px !important;
+  overflow: visible !important;
+}
+
+/* D) Currents — no empty bottom */
+body.reference-layout-v3 [data-widget="currents"],
+body.reference-layout-v3 .panel[data-live-widget="currents"] {
+  min-height: 0 !important;
+  height: auto !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 #current-strip,
+body.reference-layout-v3 .current-strip {
+  min-height: 0 !important;
+  max-height: none !important;
+  height: auto !important;
+  padding-bottom: 4px !important;
+}
+
+/* E) Tides taller, labels, no clip */
+body.reference-layout-v3 .tide-panel,
+body.reference-layout-v3 [data-widget="tides"] {
+  min-height: 168px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .tide-layout {
+  min-height: 140px !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .tide-chart {
+  height: 108px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .tide-labels text {
+  visibility: visible !important;
+  opacity: 1 !important;
+  font-size: 10px !important;
+}
+body.reference-layout-v3 .tide-times {
+  font-size: 6px !important;
+  opacity: 0.85 !important;
+  position: static !important;
+}
+
+/* F) Ghost times under best-hours — hide completely */
+body.reference-layout-v3 .best-times-panel {
+  overflow: hidden !important;
+  isolation: isolate !important;
+  z-index: 5 !important;
+  position: relative !important;
+  background: #061018 !important;
+}
+body.reference-layout-v3 .best-times-strip {
+  overflow: hidden !important;
+}
+/* Prevent tide-times from escaping */
+body.reference-layout-v3 .tide-chart-wrap {
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .tide-panel {
+  isolation: isolate !important;
+}
+
+/* G) Best hours no truncate */
+body.reference-layout-v3 .best-times-content {
+  overflow: visible !important;
+  flex-wrap: nowrap !important;
+  gap: 6px !important;
+}
+body.reference-layout-v3 .best-times-content strong {
+  font-size: 7px !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+}
+
+/* H) Activity divider + marker + factors */
+body.reference-layout-v3 [data-widget="fish-activity"] .activity-art {
+  border-right: 1px solid rgba(50, 160, 220, 0.35) !important;
+}
+body.reference-layout-v3 [data-widget="fish-activity"] .activity-spectrum-marker {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 3px !important;
+  height: 14px !important;
+  background: #fff !important;
+  box-shadow: 0 0 6px #fff !important;
+  z-index: 6 !important;
+}
+body.reference-layout-v3 [data-widget="fish-activity"] #fish-activity-factors > div > strong {
+  color: #3dff9a !important;
+  font-size: 9px !important;
+}
+
+/* I) Alerts icons visible */
+body.reference-layout-v3 .alert-list li i,
+body.reference-layout-v3 .alerts-panel .fa-solid {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: inherit !important;
+  width: 16px !important;
+  text-align: center !important;
+}
+
+/* J) Techniques — less empty above cards */
+body.reference-layout-v3 .technique-section,
+body.reference-layout-v3 [data-widget="techniques"] {
+  padding-top: 4px !important;
+  margin-top: 4px !important;
+}
+body.reference-layout-v3 .technique-section .section-title,
+body.reference-layout-v3 .technique-section h2 {
+  margin: 0 0 6px !important;
+  padding: 4px 0 !important;
+  min-height: 0 !important;
+}
+body.reference-layout-v3 .technique-grid,
+body.reference-layout-v3 .techniques-row {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  gap: 6px !important;
+}
+
+
+/* =========================================================
+   ALL WIDGET BLUE ICONS — unified Master-like cyan system
+========================================================= */
+body.reference-layout-v3 .section-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+body.reference-layout-v3 .section-title i,
+body.reference-layout-v3 .section-title .fa-solid,
+body.reference-layout-v3 .section-title .fa-regular,
+body.reference-layout-v3 .panel > h2 > i,
+body.reference-layout-v3 .alerts-panel h2 i,
+body.reference-layout-v3 .best-times-strip .section-title i {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #2ec8ff !important;
+  font-size: 12px !important;
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  flex-shrink: 0 !important;
+  filter:
+    drop-shadow(0 0 4px rgba(46, 200, 255, 0.75))
+    drop-shadow(0 0 8px rgba(46, 200, 255, 0.35)) !important;
+  text-shadow: 0 0 6px rgba(46, 200, 255, 0.5) !important;
+  line-height: 1 !important;
+}
+/* Bottom nav icons */
+body.reference-layout-v3 .bottom-nav i,
+body.reference-layout-v3 nav i {
+  color: #2ec8ff !important;
+  filter: drop-shadow(0 0 3px rgba(46, 200, 255, 0.4)) !important;
+}
+/* Alert row icons */
+body.reference-layout-v3 .alert-list li > i:first-child,
+body.reference-layout-v3 .alert-list .fa-solid {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 18px !important;
+  text-align: center !important;
+  font-size: 12px !important;
+  filter: drop-shadow(0 0 3px currentColor) !important;
+}
+
+/* Fish Activity — fill entire panel frame */
+body.reference-layout-v3 [data-widget="fish-activity"],
+body.reference-layout-v3 article.activity-panel.activity-composite {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  box-sizing: border-box !important;
+  align-self: stretch !important;
+}
+body.reference-layout-v3 .score-activity-row {
+  align-items: stretch !important;
+}
+body.reference-layout-v3 .score-activity-row > [data-widget="fishing-score"],
+body.reference-layout-v3 .score-activity-row > [data-widget="fish-activity"] {
+  height: 100% !important;
+  min-height: 160px !important;
+  align-self: stretch !important;
+}
+body.reference-layout-v3 [data-widget="fish-activity"] {
+  display: grid !important;
+  grid-template-columns: 52% 48% !important;
+  grid-template-rows: auto 1fr !important;
+  grid-template-areas: "title title" "art factors" !important;
+  padding: 6px 8px 8px !important;
+}
+body.reference-layout-v3 [data-widget="fish-activity"] > .activity-art,
+body.reference-layout-v3 [data-widget="fish-activity"] > .activity-factors {
+  height: 100% !important;
+  min-height: 0 !important;
+}
+body.reference-layout-v3 [data-widget="fish-activity"] > .activity-factors {
+  justify-content: space-evenly !important;
+}
+body.reference-layout-v3 [data-widget="fish-activity"] .activity-fish-photo {
+  max-width: 100% !important;
+  height: 90px !important;
+  object-fit: contain !important;
+}
+
+
+/* =========================================================
+   PRE-DEPLOY 99% NUCLEAR LOCK — must stay last in file
+========================================================= */
+body.reference-layout-v3 article[data-widget="fish-activity"].activity-panel.activity-composite {
+  display: grid !important;
+  grid-template-columns: 52% 48% !important;
+  grid-template-rows: auto 1fr !important;
+  grid-template-areas: "title title" "art factors" !important;
+  flex-direction: unset !important;
+  height: 100% !important;
+  min-height: 160px !important;
+  width: 100% !important;
+  align-self: stretch !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  padding: 6px 8px 8px !important;
+}
+body.reference-layout-v3 article[data-widget="fish-activity"] > h2 {
+  grid-area: title !important;
+  grid-column: 1 / -1 !important;
+}
+body.reference-layout-v3 article[data-widget="fish-activity"] > .activity-art {
+  grid-area: art !important;
+  border-right: 1px solid rgba(50,160,220,.35) !important;
+}
+body.reference-layout-v3 article[data-widget="fish-activity"] > .activity-factors {
+  grid-area: factors !important;
+  justify-content: space-evenly !important;
+}
+body.reference-layout-v3 .score-activity-row {
+  display: grid !important;
+  grid-template-columns: 38% 62% !important;
+  align-items: stretch !important;
+}
+body.reference-layout-v3 .best-times-panel {
+  overflow: hidden !important;
+  isolation: isolate !important;
+  z-index: 5 !important;
+  background: #061018 !important;
+}
+body.reference-layout-v3 .section-title i {
+  color: #2ec8ff !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 4px rgba(46,200,255,.7)) !important;
+}
+body.reference-layout-v3 .activity-spectrum-marker {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: #fff !important;
+  width: 3px !important;
+  height: 14px !important;
+  z-index: 6 !important;
+}
