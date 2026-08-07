@@ -654,7 +654,8 @@ body.reference-layout-v3 .hourly-strip::-webkit-scrollbar {
 }
 
 body.reference-layout-v3 .cloud-strip {
-  height: 45px;
+  height: auto;
+  min-height: 92px;
   grid-auto-columns: calc(100% / 7);
 }
 
@@ -696,22 +697,26 @@ body.reference-layout-v3 .weather-hour-icon {
 }
 
 body.reference-layout-v3 .weather-hour-cell strong {
-  max-width: 52px;
-  min-height: 12px;
-  display: grid;
-  place-items: center;
+  max-width: 56px;
+  min-height: 14px;
+  display: block;
   color: var(--fd-white);
-  font-size: 5.6px;
+  font-size: 6.5px;
   font-weight: 750;
-  line-height: 1.05;
+  line-height: 1.2;
+  text-align: center;
+  white-space: normal;
+  overflow: visible;
 }
 
 body.reference-layout-v3 .weather-hour-cell > span {
-  margin-top: 1px;
+  margin-top: 2px;
   color: var(--fd-white);
-  font-size: 6.2px;
+  font-size: 9px;
   font-weight: 750;
-  line-height: 1;
+  line-height: 1.1;
+  display: block;
+  text-align: center;
 }
 
 /* =========================================================
