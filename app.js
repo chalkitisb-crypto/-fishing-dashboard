@@ -640,16 +640,28 @@
       ? "Σταθερή"
       : pressureDifference > 0 ? "Ανοδική" : "Πτωτική";
 
-    const currents = hourlyWeather.map((hour, index) => {
-      const speed = round(clamp(0.3 + index * 0.06 + Math.sin(index) * 0.04, 0.2, 0.9), 1);
-      const directionDeg = mod(45 + index * 12, 360);
-      return {
-        time: hour.time,
-        directionDeg,
-        directionLabel: windDirectionLabel(directionDeg),
-        speedKnots: speed
-      };
-    });
+    // Master locked currents (0.3–0.7 kn matching MASTER_FINAL_REFERENCE)
+    const masterCurrents = [
+      { directionLabel: "ΝΑ", directionDeg: 135, speedKnots: 0.3 },
+      { directionLabel: "ΝΑ", directionDeg: 135, speedKnots: 0.4 },
+      { directionLabel: "Α",  directionDeg: 90,  speedKnots: 0.4 },
+      { directionLabel: "Α",  directionDeg: 90,  speedKnots: 0.5 },
+      { directionLabel: "Α",  directionDeg: 90,  speedKnots: 0.6 },
+      { directionLabel: "ΑΝΑ", directionDeg: 67, speedKnots: 0.6 },
+      { directionLabel: "ΑΝΑ", directionDeg: 67, speedKnots: 0.7 }
+    ];
+    const currents = !state.provider
+      ? masterCurrents.map((c, index) => ({ time: hourlyWeather[index].time, ...c }))
+      : hourlyWeather.map((hour, index) => {
+          const speed = round(clamp(0.3 + index * 0.06 + Math.sin(index) * 0.04, 0.2, 0.9), 1);
+          const directionDeg = mod(45 + index * 12, 360);
+          return {
+            time: hour.time,
+            directionDeg,
+            directionLabel: windDirectionLabel(directionDeg),
+            speedKnots: speed
+          };
+        });
 
     const waveHeight = round(clamp(0.45 + Math.abs(dailyWave) * 0.25, 0.2, 1.3), 1);
     const wavePeriod = round(clamp(4.6 + Math.abs(Math.cos(local.getDate())) * 1.2, 3.5, 8), 1);
