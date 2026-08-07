@@ -6309,3 +6309,52 @@ body.reference-layout-v3 .pressure-area {
 body.reference-layout-v3 .pressure-chart {
   overflow: visible !important;
 }
+
+/* =========================================================
+   MOON ONLY — rise/set icons visible like Master
+========================================================= */
+body.reference-layout-v3 .moon-panel .moon-times {
+  height: auto !important;
+  min-height: 44px !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  border-top: 1px solid rgba(32, 139, 199, 0.35) !important;
+  overflow: visible !important;
+  padding: 4px 2px !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times > div {
+  display: grid !important;
+  grid-template-columns: 28px minmax(0, 1fr) !important;
+  grid-template-rows: auto auto !important;
+  column-gap: 4px !important;
+  row-gap: 1px !important;
+  align-items: center !important;
+  padding: 2px 4px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times svg {
+  width: 26px !important;
+  height: 26px !important;
+  grid-row: 1 / 3 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #F5C542 !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times span {
+  display: block !important;
+  color: #e8f4fc !important;
+  font-size: 8px !important;
+  font-weight: 600 !important;
+  visibility: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times strong,
+body.reference-layout-v3 .moon-panel .moon-times #moonrise-time,
+body.reference-layout-v3 .moon-panel .moon-times #moonset-time {
+  display: block !important;
+  color: #F5C542 !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  visibility: visible !important;
+}
