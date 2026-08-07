@@ -5807,3 +5807,151 @@ body.reference-layout-v3 .score-activity-row > .panel {
   height: auto !important;
   overflow: hidden !important;
 }
+
+/* =========================================================
+   FINAL 3 POLISH — header fish, moon full phase, hourly
+========================================================= */
+
+/* Header fish even closer */
+body.reference-layout-v3 .top-header .header-brand-lockup.brand-area {
+  grid-template-columns: 96px minmax(0, 1fr) 96px !important;
+  column-gap: 0 !important;
+}
+body.reference-layout-v3 .top-header .header-fish-asset.brand-fish {
+  width: 96px !important;
+  height: 56px !important;
+}
+body.reference-layout-v3 .top-header .header-fish-left {
+  object-position: 100% 50% !important;
+  transform: translateX(16px) !important;
+}
+body.reference-layout-v3 .top-header .header-fish-right {
+  object-position: 0% 50% !important;
+  transform: translateX(-16px) !important;
+}
+body.reference-layout-v3 .top-header .header-brand-center {
+  z-index: 3 !important;
+  position: relative !important;
+}
+
+/* Moon phase full text 2 lines */
+body.reference-layout-v3 .moon-panel .moon-copy {
+  min-width: 0 !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy span#moon-phase-label,
+body.reference-layout-v3 .moon-panel #moon-phase-label {
+  display: block !important;
+  font-size: 10px !important;
+  line-height: 1.3 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  max-height: none !important;
+  color: #d4eaf6 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-main {
+  grid-template-columns: 70px minmax(0, 1fr) !important;
+  overflow: visible !important;
+}
+
+/* Hourly: allow 2-line labels + temps */
+body.reference-layout-v3 .weather-hour-cell {
+  min-width: 52px !important;
+  padding: 2px 1px !important;
+}
+body.reference-layout-v3 .weather-hour-cell strong {
+  font-size: 6.5px !important;
+  line-height: 1.25 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  max-height: none !important;
+  display: block !important;
+  text-align: center !important;
+  hyphens: none !important;
+}
+body.reference-layout-v3 .weather-hour-cell > span:last-child {
+  display: block !important;
+  font-size: 8px !important;
+  margin-top: 1px !important;
+  color: #c5dcec !important;
+  text-align: center !important;
+}
+
+/* =========================================================
+   HEADER ONLY — tight fish to title, less gaps
+========================================================= */
+body.reference-layout-v3 .top-header.final-master-header {
+  display: grid !important;
+  grid-template-columns: 30px minmax(0, 1fr) 68px !important;
+  column-gap: 2px !important;
+  align-items: center !important;
+  padding: 3px 4px !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .top-header .menu-button {
+  width: 30px !important;
+  height: 30px !important;
+  margin: 0 !important;
+}
+body.reference-layout-v3 .top-header .header-brand-lockup.brand-area {
+  display: grid !important;
+  grid-template-columns: minmax(70px, 1fr) auto minmax(70px, 1fr) !important;
+  column-gap: 0 !important;
+  align-items: center !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .top-header .header-fish-asset.brand-fish {
+  width: 100% !important;
+  max-width: 100px !important;
+  height: 50px !important;
+  object-fit: contain !important;
+}
+body.reference-layout-v3 .top-header .header-fish-left {
+  justify-self: end !important;
+  object-position: right center !important;
+  margin-right: -4px !important;
+}
+body.reference-layout-v3 .top-header .header-fish-right {
+  justify-self: start !important;
+  object-position: left center !important;
+  margin-left: -4px !important;
+}
+body.reference-layout-v3 .top-header .header-brand-center {
+  justify-self: center !important;
+  text-align: center !important;
+  padding: 0 2px !important;
+  z-index: 2 !important;
+  min-width: 0 !important;
+}
+body.reference-layout-v3 .top-header .header-brand-title {
+  font-size: 11px !important;
+  letter-spacing: 0.02em !important;
+  white-space: nowrap !important;
+  line-height: 1.1 !important;
+  margin: 0 !important;
+}
+body.reference-layout-v3 .top-header .header-brand-title .fishing-word {
+  color: #fff !important;
+  font-weight: 800 !important;
+}
+body.reference-layout-v3 .top-header .header-brand-title .dashboard-word {
+  color: #2eb5ff !important;
+  font-weight: 800 !important;
+}
+body.reference-layout-v3 .top-header .location-line {
+  font-size: 7.5px !important;
+  justify-content: center !important;
+  gap: 3px !important;
+  margin-top: 1px !important;
+}
+body.reference-layout-v3 .top-header .header-actions {
+  display: grid !important;
+  grid-template-columns: 32px 32px !important;
+  gap: 5px !important;
+  justify-self: end !important;
+}
+body.reference-layout-v3 .top-header .header-actions .header-action {
+  width: 32px !important;
+  height: 32px !important;
+}
