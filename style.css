@@ -5447,3 +5447,363 @@ body.reference-layout-v3 img.premium-weather-scene {
   object-position: center 72% !important;
   border-radius: 8px !important;
 }
+
+/* =========================================================
+   STABLE VISUAL CLOSEOUT — moon clean, activity factors,
+   header fish, hourly, techniques, single titles
+========================================================= */
+
+/* HEADER fish closer to title */
+body.reference-layout-v3 .top-header.final-master-header {
+  display: grid !important;
+  grid-template-columns: 28px minmax(0, 1fr) 64px !important;
+  column-gap: 1px !important;
+  align-items: center !important;
+  padding: 2px 3px !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .top-header .header-brand-lockup.brand-area {
+  display: grid !important;
+  grid-template-columns: 90px minmax(0, 1fr) 90px !important;
+  column-gap: 0 !important;
+  align-items: center !important;
+}
+body.reference-layout-v3 .top-header .header-fish-asset.brand-fish {
+  width: 90px !important;
+  height: 52px !important;
+  object-fit: contain !important;
+}
+body.reference-layout-v3 .top-header .header-fish-left {
+  object-position: 100% 50% !important;
+  transform: translateX(12px) !important;
+}
+body.reference-layout-v3 .top-header .header-fish-right {
+  object-position: 0% 50% !important;
+  transform: translateX(-12px) !important;
+}
+body.reference-layout-v3 .top-header .header-brand-title {
+  font-size: 10px !important;
+  white-space: nowrap !important;
+}
+
+/* MOON — clean sphere, yellow times */
+body.reference-layout-v3 .moon-panel {
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+body.reference-layout-v3 .moon-panel .moon-main {
+  display: grid !important;
+  grid-template-columns: 68px 1fr !important;
+  gap: 8px !important;
+  align-items: center !important;
+  padding: 6px 8px 2px !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .moon-panel .master-moon-photo,
+body.reference-layout-v3 .moon-panel img.premium-moon {
+  width: 68px !important;
+  height: 68px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  display: block !important;
+  background: #0a1018 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy strong {
+  font-size: 24px !important;
+  line-height: 1 !important;
+  color: #fff !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy span {
+  font-size: 9.5px !important;
+  line-height: 1.25 !important;
+  color: #d4eaf6 !important;
+  display: block !important;
+  white-space: normal !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 6px !important;
+  padding: 4px 10px 6px !important;
+  border-top: 1px solid rgba(90,150,190,0.25) !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times > div {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1px !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times > div > svg {
+  display: none !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times span {
+  font-size: 7px !important;
+  color: #9ec5d8 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times strong {
+  font-size: 12px !important;
+  color: #ffd331 !important;
+  font-weight: 800 !important;
+}
+
+/* HOURLY labels full */
+body.reference-layout-v3 .weather-hour-cell {
+  min-width: 50px !important;
+}
+body.reference-layout-v3 .weather-hour-cell strong {
+  font-size: 6.5px !important;
+  line-height: 1.2 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  max-height: none !important;
+  display: block !important;
+  text-align: center !important;
+}
+body.reference-layout-v3 .weather-hour-cell > span:last-child {
+  display: block !important;
+  font-size: 8px !important;
+  color: #c5dcec !important;
+  text-align: center !important;
+}
+
+/* SCORE single title */
+body.reference-layout-v3 .score-panel > h2 {
+  display: block !important;
+  font-size: 9px !important;
+  letter-spacing: 0.14em !important;
+  color: #9ecfe8 !important;
+  text-align: center !important;
+  margin: 2px 0 0 !important;
+}
+body.reference-layout-v3 .score-master-photo {
+  display: block !important;
+  width: 100% !important;
+  max-height: 160px !important;
+  object-fit: contain !important;
+}
+body.reference-layout-v3 .score-panel .score-gauge,
+body.reference-layout-v3 .score-panel .score-caption,
+body.reference-layout-v3 .score-panel .score-stars,
+body.reference-layout-v3 .score-panel .score-rod-photo {
+  display: none !important;
+}
+
+/* ACTIVITY — single title, fix factors rows */
+body.reference-layout-v3 .activity-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 4px 8px 6px !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .activity-panel > h2 {
+  display: block !important;
+  font-size: 9px !important;
+  letter-spacing: 0.12em !important;
+  text-align: center !important;
+  color: #9ecfe8 !important;
+  margin: 2px 0 4px !important;
+  flex-shrink: 0 !important;
+}
+/* Hide any baked title overlay if present */
+body.reference-layout-v3 .activity-panel .activity-art > h2,
+body.reference-layout-v3 .activity-art h2 {
+  display: none !important;
+}
+body.reference-layout-v3 .activity-fish-photo {
+  height: 68px !important;
+  width: auto !important;
+  max-width: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+body.reference-layout-v3 .activity-spectrum {
+  display: flex !important;
+  width: 100% !important;
+  height: 8px !important;
+  margin: 6px 0 2px !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  background: transparent !important;
+}
+body.reference-layout-v3 .activity-spectrum span {
+  flex: 1 1 0 !important;
+  height: 100% !important;
+}
+body.reference-layout-v3 .activity-spectrum span:nth-child(1) { background: #ff5d4a !important; }
+body.reference-layout-v3 .activity-spectrum span:nth-child(2) { background: #ff8a22 !important; }
+body.reference-layout-v3 .activity-spectrum span:nth-child(3) { background: #ffd331 !important; }
+body.reference-layout-v3 .activity-spectrum span:nth-child(4) { background: #b7e11a !important; }
+body.reference-layout-v3 .activity-spectrum span:nth-child(5) { background: #20d66b !important; }
+body.reference-layout-v3 .activity-spectrum-marker {
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 3px !important;
+  background: #fff !important;
+  left: var(--activity-percent, 85%) !important;
+  transform: translateX(-50%) !important;
+  border-radius: 1px !important;
+}
+body.reference-layout-v3 .activity-scale {
+  display: flex !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  font-size: 7px !important;
+  color: #8eb4c8 !important;
+}
+body.reference-layout-v3 .activity-verdict {
+  text-align: center !important;
+  font-size: 8px !important;
+  color: #c5dcec !important;
+  margin: 3px 0 6px !important;
+  letter-spacing: 0.05em !important;
+  white-space: nowrap !important;
+}
+
+/* CRITICAL: factors as proper rows, not smashed */
+body.reference-layout-v3 .activity-factors,
+body.reference-layout-v3 .activity-list,
+body.reference-layout-v3 #fish-activity-factors {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  flex-wrap: nowrap !important;
+}
+body.reference-layout-v3 #fish-activity-factors > div,
+body.reference-layout-v3 .activity-list > div,
+body.reference-layout-v3 .activity-factors > div {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+  gap: 8px !important;
+  padding: 1px 0 !important;
+  margin: 0 !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  flex-wrap: nowrap !important;
+}
+body.reference-layout-v3 #fish-activity-factors > div > span,
+body.reference-layout-v3 .activity-list > div > span {
+  font-size: 9px !important;
+  color: #a8c8dc !important;
+  flex: 0 0 auto !important;
+}
+body.reference-layout-v3 #fish-activity-factors > div > strong,
+body.reference-layout-v3 .activity-list > div > strong {
+  font-size: 9px !important;
+  color: #3dff9a !important;
+  font-weight: 700 !important;
+  text-align: right !important;
+  flex: 0 0 auto !important;
+}
+
+/* BEST TIMES */
+body.reference-layout-v3 .best-times-strip,
+body.reference-layout-v3 [data-layout-group="best-times"],
+body.reference-layout-v3 .panel.best-times {
+  overflow: hidden !important;
+}
+
+/* TECHNIQUES even gaps */
+body.reference-layout-v3 .technique-section {
+  border: none !important;
+  background: transparent !important;
+  padding: 2px 2px 6px !important;
+  margin: 0 !important;
+}
+body.reference-layout-v3 .technique-section::before {
+  display: none !important;
+}
+body.reference-layout-v3 .technique-heading {
+  margin: 0 0 4px !important;
+  padding: 0 !important;
+}
+body.reference-layout-v3 .technique-heading h2 {
+  font-size: 10px !important;
+  letter-spacing: 0.14em !important;
+  color: #9ecfe8 !important;
+  margin: 0 !important;
+}
+body.reference-layout-v3 .technique-grid.technique-scroll {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 6px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .technique-card {
+  border: 1px solid rgba(60,120,160,0.28) !important;
+  border-radius: 10px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: #061018 !important;
+  box-shadow: none !important;
+}
+body.reference-layout-v3 .technique-card::before {
+  display: none !important;
+}
+body.reference-layout-v3 .technique-card .technique-icon {
+  height: 128px !important;
+  min-height: 128px !important;
+  margin: 0 !important;
+  border: none !important;
+}
+body.reference-layout-v3 .technique-card .technique-photo {
+  width: 100% !important;
+  height: 128px !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+  display: block !important;
+}
+body.reference-layout-v3 .technique-card > strong,
+body.reference-layout-v3 .technique-card .technique-stars,
+body.reference-layout-v3 .technique-card .technique-rating-label,
+body.reference-layout-v3 .technique-card .technique-dot {
+  display: none !important;
+}
+
+/* Alerts icons slightly clearer */
+body.reference-layout-v3 .alert-list .alert-symbol {
+  width: 22px !important;
+  height: 22px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 6px !important;
+  background: rgba(30,90,130,0.35) !important;
+  flex-shrink: 0 !important;
+}
+body.reference-layout-v3 .alert-list .alert-symbol i {
+  font-size: 11px !important;
+}
+
+/* Sun sea */
+body.reference-layout-v3 img.premium-sun-photo,
+body.reference-layout-v3 img.premium-weather-scene {
+  height: 90px !important;
+  object-fit: cover !important;
+  object-position: center 70% !important;
+}
+body.reference-layout-v3 .score-activity-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1.25fr !important;
+  gap: 6px !important;
+  align-items: stretch !important;
+  min-height: 0 !important;
+}
+body.reference-layout-v3 .score-activity-row > .panel {
+  min-height: 0 !important;
+  height: auto !important;
+  overflow: hidden !important;
+}
