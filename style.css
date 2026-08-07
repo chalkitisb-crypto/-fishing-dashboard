@@ -6795,3 +6795,29 @@ body.reference-layout-v3 .moon-panel .moon-times {
   min-height: 52px !important;
   padding: 8px 4px !important;
 }
+
+/* Deploy A2 — FA moon icons guaranteed visible */
+body.reference-layout-v3 .moon-panel .moon-time-icon.fa-moon,
+body.reference-layout-v3 .moon-panel i.moon-time-icon {
+  color: #F5C542 !important;
+  font-size: 18px !important;
+  width: 24px !important;
+  min-width: 24px !important;
+  text-align: center !important;
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  flex-shrink: 0 !important;
+  line-height: 1 !important;
+}
+
+/* Moon times labels + times same gold as moon icons */
+body.reference-layout-v3 .moon-panel .moon-time-text span,
+body.reference-layout-v3 .moon-panel .moon-time-cell span {
+  color: #F5C542 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-text strong,
+body.reference-layout-v3 .moon-panel #moonrise-time,
+body.reference-layout-v3 .moon-panel #moonset-time {
+  color: #F5C542 !important;
+}
