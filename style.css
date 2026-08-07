@@ -6358,3 +6358,94 @@ body.reference-layout-v3 .moon-panel .moon-times #moonset-time {
   font-weight: 800 !important;
   visibility: visible !important;
 }
+
+/* =========================================================
+   MOON TIMES — simple flex layout (no overlap)
+========================================================= */
+body.reference-layout-v3 .moon-panel .moon-times {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  height: auto !important;
+  min-height: 48px !important;
+  padding: 6px 4px !important;
+  gap: 0 !important;
+  border-top: 1px solid rgba(32, 139, 199, 0.35) !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times > div {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 2px 6px !important;
+  min-width: 0 !important;
+  overflow: visible !important;
+  border-right: 1px solid rgba(32, 139, 199, 0.25) !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times > div:last-child {
+  border-right: 0 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times svg {
+  flex: 0 0 24px !important;
+  width: 24px !important;
+  height: 24px !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  grid-row: auto !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times > div > span,
+body.reference-layout-v3 .moon-panel .moon-times > div > strong {
+  display: block !important;
+  width: auto !important;
+  max-width: none !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+}
+/* stack label + time vertically next to icon */
+body.reference-layout-v3 .moon-panel .moon-times > div {
+  display: grid !important;
+  grid-template-columns: 24px 1fr !important;
+  grid-template-rows: auto auto !important;
+  grid-template-areas:
+    "icon label"
+    "icon time" !important;
+  column-gap: 6px !important;
+  row-gap: 2px !important;
+  align-items: center !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times svg {
+  grid-area: icon !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times span {
+  grid-area: label !important;
+  font-size: 8px !important;
+  color: #d8ecf8 !important;
+  line-height: 1.1 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times strong {
+  grid-area: time !important;
+  font-size: 13px !important;
+  color: #F5C542 !important;
+  font-weight: 800 !important;
+  line-height: 1.1 !important;
+}
+
+/* =========================================================
+   MOON TIMES — neutralize old rules (inline HTML is authority)
+========================================================= */
+body.reference-layout-v3 .moon-panel .moon-times {
+  height: auto !important;
+  min-height: 48px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times > div,
+body.reference-layout-v3 .moon-panel .moon-time-cell {
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  grid-template-columns: none !important;
+  grid-template-rows: none !important;
+  grid-template-areas: none !important;
+}
