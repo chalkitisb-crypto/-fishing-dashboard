@@ -5955,3 +5955,91 @@ body.reference-layout-v3 .top-header .header-actions .header-action {
   width: 32px !important;
   height: 32px !important;
 }
+
+/* =========================================================
+   HEADER v2 — equal fish spacing, full faces, centered star
+========================================================= */
+body.reference-layout-v3 .top-header.final-master-header {
+  display: grid !important;
+  grid-template-columns: 32px minmax(0, 1fr) 72px !important;
+  column-gap: 4px !important;
+  align-items: center !important;
+  padding: 4px 6px !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .top-header .menu-button {
+  width: 32px !important;
+  height: 32px !important;
+  margin: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+}
+/* Equal columns for left fish | title | right fish */
+body.reference-layout-v3 .top-header .header-brand-lockup.brand-area {
+  display: grid !important;
+  grid-template-columns: 1fr auto 1fr !important;
+  column-gap: 6px !important;
+  align-items: center !important;
+  min-width: 0 !important;
+}
+body.reference-layout-v3 .top-header .header-fish-asset.brand-fish {
+  width: auto !important;
+  max-width: 100% !important;
+  height: 48px !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+body.reference-layout-v3 .top-header .header-fish-left {
+  justify-self: end !important;
+  object-position: center center !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+body.reference-layout-v3 .top-header .header-fish-right {
+  justify-self: start !important;
+  object-position: center center !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+body.reference-layout-v3 .top-header .header-brand-center {
+  justify-self: center !important;
+  text-align: center !important;
+  padding: 0 4px !important;
+  z-index: 2 !important;
+}
+body.reference-layout-v3 .top-header .header-brand-title {
+  font-size: 11px !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+}
+body.reference-layout-v3 .top-header .header-actions {
+  display: grid !important;
+  grid-template-columns: 34px 34px !important;
+  gap: 6px !important;
+  align-items: center !important;
+}
+body.reference-layout-v3 .top-header .header-actions .header-action {
+  width: 34px !important;
+  height: 34px !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+body.reference-layout-v3 .top-header .header-actions .header-action svg,
+body.reference-layout-v3 .top-header .header-actions .header-action i,
+body.reference-layout-v3 .top-header .header-actions .header-action .icon {
+  margin: 0 !important;
+  display: block !important;
+}
+body.reference-layout-v3 .top-header .favorite-button,
+body.reference-layout-v3 .top-header [data-action="favorite"] {
+  display: grid !important;
+  place-items: center !important;
+}
+body.reference-layout-v3 .top-header .favorite-button svg,
+body.reference-layout-v3 .top-header [data-action="favorite"] svg {
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0 auto !important;
+}
