@@ -1,8 +1,8 @@
-const CACHE_NAME = "fishing-dashboard-v18.2.0";
+const CACHE_NAME = "fishing-dashboard-v18.4.0";
 const ASSETS = [
-  "./","./index.html","./style.css","./app.js","./manifest.json",
+  "./","./index.html","./style.css","./app.js","./manifest.json","./ico_uv.png","./ico_wind.png","./ico_moon.png","./ico_spin.png",
   "./fish_left.png","./fish_right.png","./sun_scene.png","./moon_sphere.png",
-  "./score_gauge.jpg","./activity_tsipoura.jpg","./activity_clean.jpg",
+  "./score_gauge.jpg","./score_only.jpg","./tides_chart.jpg","./pressure_chart.jpg","./activity_tsipoura.jpg","./activity_clean.jpg",
   "./wx_08.jpg","./wx_09.jpg","./wx_10.jpg","./wx_11.jpg","./wx_12.jpg","./wx_13.jpg","./wx_14.jpg",
   "./tech_card_spinning.png","./tech_card_lrf.png","./tech_card_english.png","./tech_card_shore_jig.png"
 ];
