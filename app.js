@@ -1,4 +1,4 @@
-/* Fishing Dashboard v18.0 — full approved widgets */
+/* Fishing Dashboard v18.2 — full approved widgets */
 (function () {
   "use strict";
 

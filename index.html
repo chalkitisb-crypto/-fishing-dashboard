@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <title>Fishing Dashboard — Κάλυμνος</title>
   <link rel="manifest" href="manifest.json"/>
-  <link rel="stylesheet" href="style.css?v=18.1.0"/>
+  <link rel="stylesheet" href="style.css?v=18.2.0"/>
 </head>
 <body>
 <div class="app">
@@ -55,18 +55,36 @@
     <!-- WEATHER HOURS -->
     <section class="card">
       <div class="sec-title"><i class="dot"></i> ΣΥΝΘΗΚΕΣ ΚΑΙΡΟΥ – ΑΝΑ ΩΡΑ</div>
-      <img class="panel-img" src="weather_panel.jpg" alt="Καιρός"/>
+      <div class="h-scroll" id="weather-hours"></div>
     </section>
 
     <!-- WIND + PRESSURE -->
     <div class="row row-2">
-      <section class="card">
+      <section class="card card-scroll">
         <div class="sec-title"><i class="dot"></i> ΑΝΕΜΟΣ (ΜΠΟΦΟΡ)</div>
         <div class="h-scroll" id="wind-hours"></div>
       </section>
       <section class="card">
         <div class="sec-title"><i class="dot"></i> ΒΑΡΟΜΕΤΡΙΚΗ ΠΙΕΣΗ</div>
-        <img class="panel-img" src="pressure_panel.jpg" alt="Πίεση"/>
+        <div class="pressure-body">
+          <svg class="chart" viewBox="0 0 320 90" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="pFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#ffd331" stop-opacity=".45"/>
+                <stop offset="100%" stop-color="#ffd331" stop-opacity="0"/>
+              </linearGradient>
+              <filter id="pGlow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <path id="pressure-area" fill="url(#pFill)" d=""/>
+            <polyline id="pressure-line" fill="none" stroke="#ffd331" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#pGlow)" points=""/>
+          </svg>
+          <div class="pressure-now">
+            <span>ΤΩΡΑ</span>
+            <strong>1019</strong>
+            <small>hPa</small>
+            <em class="trend-stable">Σταθερή</em>
+          </div>
+        </div>
       </section>
     </div>
 
@@ -74,9 +92,19 @@
     <div class="row row-moon">
       <section class="card moon-card">
         <div class="sec-title"><i class="dot"></i> ΦΑΣΗ ΣΕΛΗΝΗΣ</div>
-        <img class="panel-img" src="moon_panel.jpg" alt="Σελήνη 72%"/>
+        <div class="moon-body">
+          <img src="moon_sphere.png" alt="" class="moon-img"/>
+          <div class="moon-info">
+            <div class="moon-pct">72%</div>
+            <div class="moon-phase">Αύξουσα<br/>Αμφίκυρτη</div>
+          </div>
+        </div>
+        <div class="moon-times">
+          <div class="moon-time"><span class="mt-ico">↑</span><div><span>Ανατολή</span><strong>13:28</strong></div></div>
+          <div class="moon-time"><span class="mt-ico">↓</span><div><span>Δύση</span><strong>01:02</strong></div></div>
+        </div>
       </section>
-      <section class="card">
+      <section class="card card-scroll">
         <div class="sec-title"><i class="dot"></i> ΡΕΥΜΑΤΑ</div>
         <div class="h-scroll" id="current-hours"></div>
       </section>
@@ -95,7 +123,21 @@
       </section>
       <section class="card">
         <div class="sec-title"><i class="dot"></i> ΠΑΛΙΡΡΟΙΕΣ</div>
-        <img class="panel-img" src="tides_panel.jpg" alt="Παλίρροιες"/>
+        <svg class="chart tide-chart" viewBox="0 0 280 72" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="tFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#35c8ff" stop-opacity=".4"/>
+              <stop offset="100%" stop-color="#35c8ff" stop-opacity="0"/>
+            </linearGradient>
+            <filter id="tGlow"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <path id="tide-area" fill="url(#tFill)" d=""/>
+          <path id="tide-line" fill="none" stroke="#35c8ff" stroke-width="3" filter="url(#tGlow)" d=""/>
+        </svg>
+        <div class="tide-meta">
+          <div><span class="td">−</span> Αμπώτις <b>11:40</b></div>
+          <div><span class="tu">+</span> Πλημμυρίδα <b>17:55</b></div>
+        </div>
       </section>
     </div>
 
@@ -113,11 +155,13 @@
     <div class="row row-score">
       <section class="card score-card">
         <div class="sec-title"><i class="dot diamond"></i> FISHING SCORE</div>
-        <img class="panel-img" src="score_panel.jpg" alt="Fishing Score 85"/>
+        <div class="score-wrap">
+          <img src="score_gauge.jpg" alt="85" class="score-img"/>
+          <div class="score-label">ΕΞΑΙΡΕΤΙΚΕΣ ΣΥΝΘΗΚΕΣ</div>
+        </div>
       </section>
       <section class="card activity-card">
-        <div class="sec-title"><i class="dot"></i> FISH ACTIVITY</div>
-        <img class="panel-img" src="activity_panel.jpg" alt="Fish Activity 78%"/>
+        <img class="activity-panel" src="activity_clean.jpg" alt="Fish Activity"/>
       </section>
     </div>
 
@@ -161,6 +205,6 @@
     <button class="nav-item" data-nav="settings" type="button"><span>⚙</span>ΡΥΘΜΙΣΕΙΣ</button>
   </nav>
 </div>
-<script src="app.js?v=18.1.0"></script>
+<script src="app.js?v=18.2.0"></script>
 </body>
 </html>
