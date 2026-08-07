@@ -4739,3 +4739,346 @@ body.reference-layout-v3 .alert-list li.alert-orange .alert-symbol i,
 body.reference-layout-v3 .alert-list li[class*="orange"] .alert-symbol i { color: #ff9a3a !important; }
 body.reference-layout-v3 .alert-list li.alert-blue .alert-symbol i,
 body.reference-layout-v3 .alert-list li[class*="blue"] .alert-symbol i { color: #5eb8ff !important; }
+
+/* =========================================================
+   USER FEEDBACK FIX v2 — faces, sun sea, moon yellow,
+   single score title, spectrum, techniques frames, fill panels
+========================================================= */
+
+/* HEADER: fish faces full, close to title */
+body.reference-layout-v3 .top-header.final-master-header {
+  display: grid !important;
+  grid-template-columns: 30px minmax(0, 1fr) 68px !important;
+  column-gap: 2px !important;
+  align-items: center !important;
+  padding: 2px 4px !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .top-header .header-brand-lockup.brand-area {
+  display: grid !important;
+  grid-template-columns: 86px minmax(0, 1fr) 86px !important;
+  column-gap: 0 !important;
+  align-items: center !important;
+  min-width: 0 !important;
+}
+body.reference-layout-v3 .top-header .header-fish-asset.brand-fish {
+  width: 86px !important;
+  height: 52px !important;
+  max-width: 86px !important;
+  object-fit: contain !important;
+}
+/* push fish toward center title */
+body.reference-layout-v3 .top-header .header-fish-left {
+  object-position: 100% 50% !important;
+  transform: translateX(6px) !important;
+}
+body.reference-layout-v3 .top-header .header-fish-right {
+  object-position: 0% 50% !important;
+  transform: translateX(-6px) !important;
+}
+body.reference-layout-v3 .top-header .header-brand-center {
+  min-width: 0 !important;
+  padding: 0 2px !important;
+}
+body.reference-layout-v3 .top-header .header-brand-title {
+  font-size: 10.5px !important;
+  white-space: nowrap !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* SUN with sea visible */
+body.reference-layout-v3 img.premium-sun-photo,
+body.reference-layout-v3 img.premium-weather-scene {
+  height: 92px !important;
+  object-fit: cover !important;
+  object-position: center 70% !important; /* bias down to show sea */
+  border-radius: 8px !important;
+  display: block !important;
+}
+
+/* MOON: yellow times, content inside frame */
+body.reference-layout-v3 .moon-panel {
+  overflow: hidden !important;
+  min-height: 0 !important;
+  height: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding-bottom: 4px !important;
+}
+body.reference-layout-v3 .moon-panel .moon-main {
+  display: grid !important;
+  grid-template-columns: 70px 1fr !important;
+  gap: 8px !important;
+  align-items: center !important;
+  padding: 6px 8px 2px !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .moon-panel .master-moon-photo,
+body.reference-layout-v3 .moon-panel img.premium-moon {
+  width: 68px !important;
+  height: 68px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy {
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy strong {
+  font-size: 22px !important;
+  line-height: 1 !important;
+  display: block !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy span {
+  font-size: 9px !important;
+  line-height: 1.2 !important;
+  white-space: normal !important;
+  overflow: hidden !important;
+  display: block !important;
+  max-height: 2.5em !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 6px !important;
+  padding: 4px 8px 6px !important;
+  border-top: 1px solid rgba(90,150,190,0.28) !important;
+  flex-shrink: 0 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times > div {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1px !important;
+  min-width: 0 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times > div > svg {
+  display: none !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times span {
+  font-size: 7px !important;
+  color: #9ec5d8 !important;
+}
+/* YELLOW times as requested */
+body.reference-layout-v3 .moon-panel .moon-times strong {
+  font-size: 12px !important;
+  color: #ffd331 !important;
+  font-weight: 800 !important;
+}
+
+/* SCORE: single title, fill panel */
+body.reference-layout-v3 .score-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 4px !important;
+  overflow: hidden !important;
+  height: 100% !important;
+}
+body.reference-layout-v3 .score-panel > h2 {
+  display: block !important;
+  font-size: 9px !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: #9ecfe8 !important;
+  text-align: center !important;
+  margin: 2px 0 2px !important;
+  font-weight: 700 !important;
+  opacity: 1 !important;
+  flex-shrink: 0 !important;
+}
+body.reference-layout-v3 .score-master-photo {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: none !important;
+  min-height: 140px !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  display: block !important;
+}
+body.reference-layout-v3 .score-panel .score-gauge,
+body.reference-layout-v3 .score-panel .score-caption,
+body.reference-layout-v3 .score-panel .score-stars,
+body.reference-layout-v3 .score-panel .score-rod-photo {
+  display: none !important;
+}
+body.reference-layout-v3 .score-activity-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1.15fr !important;
+  gap: 6px !important;
+  min-height: 180px !important;
+  height: auto !important;
+  align-items: stretch !important;
+}
+body.reference-layout-v3 .score-activity-row > .panel {
+  min-height: 180px !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* FISH ACTIVITY: fill panel, clean spectrum (no white line artifact) */
+body.reference-layout-v3 .activity-panel {
+  padding: 6px 8px !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .activity-panel > h2 {
+  font-size: 9px !important;
+  letter-spacing: 0.12em !important;
+  text-align: center !important;
+  color: #9ecfe8 !important;
+  margin: 0 0 4px !important;
+  flex-shrink: 0 !important;
+}
+body.reference-layout-v3 .activity-panel .activity-art {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 0 !important;
+}
+body.reference-layout-v3 .activity-fish-photo {
+  height: 78px !important;
+  width: auto !important;
+  max-width: 100% !important;
+  object-fit: contain !important;
+}
+body.reference-layout-v3 .activity-spectrum {
+  display: flex !important;
+  width: 100% !important;
+  height: 8px !important;
+  margin: 6px 0 2px !important;
+  border-radius: 4px !important;
+  overflow: hidden !important; /* clip any overflow line */
+  position: relative !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+body.reference-layout-v3 .activity-spectrum span {
+  flex: 1 1 0 !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  border: none !important;
+  outline: none !important;
+}
+body.reference-layout-v3 .activity-spectrum span:nth-child(1) { background: #ff5d4a !important; }
+body.reference-layout-v3 .activity-spectrum span:nth-child(2) { background: #ff8a22 !important; }
+body.reference-layout-v3 .activity-spectrum span:nth-child(3) { background: #ffd331 !important; }
+body.reference-layout-v3 .activity-spectrum span:nth-child(4) { background: #b7e11a !important; }
+body.reference-layout-v3 .activity-spectrum span:nth-child(5) { background: #20d66b !important; }
+/* marker: thin, not a full white line across */
+body.reference-layout-v3 .activity-spectrum-marker {
+  position: absolute !important;
+  top: -2px !important;
+  bottom: -2px !important;
+  width: 3px !important;
+  height: auto !important;
+  background: #ffffff !important;
+  border-radius: 1px !important;
+  left: var(--activity-percent, 85%) !important;
+  transform: translateX(-50%) !important;
+  box-shadow: 0 0 4px rgba(0,0,0,0.5) !important;
+  z-index: 2 !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+body.reference-layout-v3 .activity-scale {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  font-size: 7px !important;
+  color: #8eb4c8 !important;
+}
+
+/* TECHNIQUES: no double frames */
+body.reference-layout-v3 .technique-section {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 4px 2px 8px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .technique-section::before {
+  display: none !important;
+  content: none !important;
+}
+body.reference-layout-v3 .technique-heading {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  margin: 2px 0 6px !important;
+}
+body.reference-layout-v3 .technique-heading h2 {
+  display: block !important;
+  font-size: 10px !important;
+  letter-spacing: 0.14em !important;
+  color: #9ecfe8 !important;
+  margin: 0 !important;
+  white-space: nowrap !important;
+}
+body.reference-layout-v3 .technique-grid.technique-scroll {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 5px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .technique-card {
+  border: 1px solid rgba(60, 120, 160, 0.3) !important;
+  border-radius: 10px !important;
+  background: #061018 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  min-width: 0 !important;
+}
+body.reference-layout-v3 .technique-card::before {
+  display: none !important;
+  content: none !important;
+}
+body.reference-layout-v3 .technique-card .technique-icon {
+  border: none !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  height: 132px !important;
+  min-height: 132px !important;
+  background: transparent !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .technique-card .technique-photo {
+  width: 100% !important;
+  height: 132px !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+  border: none !important;
+  display: block !important;
+}
+body.reference-layout-v3 .technique-card > strong,
+body.reference-layout-v3 .technique-card .technique-stars,
+body.reference-layout-v3 .technique-card .technique-rating-label,
+body.reference-layout-v3 .technique-card .technique-dot {
+  display: none !important;
+}
+
+/* Hourly labels */
+body.reference-layout-v3 .weather-hour-cell strong {
+  font-size: 6.5px !important;
+  line-height: 1.2 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  display: block !important;
+}
+body.reference-layout-v3 .weather-hour-cell > span:last-child {
+  display: block !important;
+  font-size: 8px !important;
+  color: #c5dcec !important;
+}
