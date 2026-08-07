@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1"/>
+  <meta name="theme-color" content="#020b18"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <title>Fishing Dashboard — Κάλυμνος</title>
+  <link rel="manifest" href="manifest.json"/>
+  <link rel="stylesheet" href="style.css?v=18.1.0"/>
+</head>
+<body>
+<div class="app">
+  <header class="header">
+    <button class="icon-btn" id="btn-menu" aria-label="Μενού">☰</button>
+    <div class="brand">
+      <img class="brand-fish" src="fish_left.png" alt=""/>
+      <div class="brand-text">
+        <div class="brand-title"><span class="w1">FISHING</span> <span class="w2">DASHBOARD</span></div>
+        <div class="brand-loc">📍 Κάλυμνος, Ελλάδα</div>
+      </div>
+      <img class="brand-fish" src="fish_right.png" alt=""/>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" id="btn-fav" aria-label="Αγαπημένο">☆</button>
+      <button class="icon-btn" id="btn-refresh" aria-label="Ανανέωση">↻</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <!-- HERO -->
+    <section class="card hero">
+      <div class="hero-date">
+        <div class="hero-dow">ΚΥΡΙΑΚΗ</div>
+        <div class="hero-day">2</div>
+        <div class="hero-mon">ΑΥΓΟΥΣΤΟΥ<br/>2026</div>
+      </div>
+      <div class="hero-sun"><img src="sun_scene.png" alt="" class="sun-img"/></div>
+      <div class="hero-now">
+        <div class="hero-cond">ΗΛΙΟΦΑΝΕΙΑ</div>
+        <div class="hero-temp">22<span>°C</span></div>
+        <div class="hero-desc">Αίθριος ουρανός</div>
+      </div>
+      <div class="hero-metrics">
+        <div><span>Αισθητή</span><b>22°C</b></div>
+        <div><span>Υγρασία</span><b>56%</b></div>
+        <div><span>Βροχή</span><b>0%</b></div>
+        <div><span>UV</span><b class="uv">6 ΥΨΗΛΟΣ</b></div>
+        <div><span>Ανατολή</span><b>06:17</b></div>
+        <div><span>Δύση</span><b>20:07</b></div>
+      </div>
+    </section>
+
+    <!-- WEATHER HOURS -->
+    <section class="card">
+      <div class="sec-title"><i class="dot"></i> ΣΥΝΘΗΚΕΣ ΚΑΙΡΟΥ – ΑΝΑ ΩΡΑ</div>
+      <img class="panel-img" src="weather_panel.jpg" alt="Καιρός"/>
+    </section>
+
+    <!-- WIND + PRESSURE -->
+    <div class="row row-2">
+      <section class="card">
+        <div class="sec-title"><i class="dot"></i> ΑΝΕΜΟΣ (ΜΠΟΦΟΡ)</div>
+        <div class="h-scroll" id="wind-hours"></div>
+      </section>
+      <section class="card">
+        <div class="sec-title"><i class="dot"></i> ΒΑΡΟΜΕΤΡΙΚΗ ΠΙΕΣΗ</div>
+        <img class="panel-img" src="pressure_panel.jpg" alt="Πίεση"/>
+      </section>
+    </div>
+
+    <!-- MOON + CURRENTS -->
+    <div class="row row-moon">
+      <section class="card moon-card">
+        <div class="sec-title"><i class="dot"></i> ΦΑΣΗ ΣΕΛΗΝΗΣ</div>
+        <img class="panel-img" src="moon_panel.jpg" alt="Σελήνη 72%"/>
+      </section>
+      <section class="card">
+        <div class="sec-title"><i class="dot"></i> ΡΕΥΜΑΤΑ</div>
+        <div class="h-scroll" id="current-hours"></div>
+      </section>
+    </div>
+
+    <!-- SEA + TIDES -->
+    <div class="row row-2">
+      <section class="card">
+        <div class="sec-title"><i class="dot"></i> ΣΥΝΘΗΚΕΣ ΘΑΛΑΣΣΑΣ</div>
+        <div class="sea-grid">
+          <div><span>Κύμα</span><b>0.6 m</b></div>
+          <div><span>Περίοδος</span><b>5 s</b></div>
+          <div><span>Διεύθυνση</span><b>ΒΑ</b></div>
+          <div><span>Θερμ. νερού</span><b>19°C</b></div>
+        </div>
+      </section>
+      <section class="card">
+        <div class="sec-title"><i class="dot"></i> ΠΑΛΙΡΡΟΙΕΣ</div>
+        <img class="panel-img" src="tides_panel.jpg" alt="Παλίρροιες"/>
+      </section>
+    </div>
+
+    <!-- BEST HOURS -->
+    <section class="card best-card">
+      <div class="sec-title"><i class="dot"></i> ΚΑΛΥΤΕΡΕΣ ΩΡΕΣ</div>
+      <div class="best-line">
+        <span>ΠΡΩΙ 05:45–07:45</span><span class="sep"> · </span>
+        <span>ΑΠΟΓΕΥΜΑ 18:10–20:10</span><span class="sep"> · </span>
+        <span>ΝΥΧΤΑ 23:10–00:30</span>
+      </div>
+    </section>
+
+    <!-- SCORE + ACTIVITY -->
+    <div class="row row-score">
+      <section class="card score-card">
+        <div class="sec-title"><i class="dot diamond"></i> FISHING SCORE</div>
+        <img class="panel-img" src="score_panel.jpg" alt="Fishing Score 85"/>
+      </section>
+      <section class="card activity-card">
+        <div class="sec-title"><i class="dot"></i> FISH ACTIVITY</div>
+        <img class="panel-img" src="activity_panel.jpg" alt="Fish Activity 78%"/>
+      </section>
+    </div>
+
+    <!-- ALERTS -->
+    <section class="card">
+      <div class="sec-title"><i class="dot"></i> FISHING ALERTS</div>
+      <ul class="alert-list">
+        <li class="a-green"><span class="a-ico">✦</span><div><b>AI · SPINNING</b><span>Ιδανικές συνθήκες 08:00–10:00</span></div><i>›</i></li>
+        <li class="a-gold"><span class="a-ico">☽</span><div><b>ΣΕΛΗΝΗ</b><span>72% — αυξημένη δραστηριότητα</span></div><i>›</i></li>
+        <li class="a-orange"><span class="a-ico">≋</span><div><b>ΑΝΕΜΟΣ</b><span>Ενισχύεται μετά τις 14:00</span></div><i>›</i></li>
+        <li class="a-blue"><span class="a-ico">◎</span><div><b>UV</b><span>Υψηλός δείκτης 11:00–16:00</span></div><i>›</i></li>
+      </ul>
+    </section>
+
+    <!-- TECHNIQUES -->
+    <section class="card">
+      <div class="sec-title"><i class="dot"></i> ΤΕΧΝΙΚΕΣ ΨΑΡΕΜΑΤΟΣ</div>
+      <div class="h-scroll tech-scroll" id="tech-list">
+        <button class="tech selected" data-tech="spinning" type="button">
+          <img src="tech_card_spinning.png" alt=""/><span class="tn">SPINNING</span><span class="ts">★★★★★</span><span class="tl">Εξαιρετικό</span>
+        </button>
+        <button class="tech" data-tech="lrf" type="button">
+          <img src="tech_card_lrf.png" alt=""/><span class="tn">LRF</span><span class="ts">★★★★☆</span><span class="tl">Πολύ Καλό</span>
+        </button>
+        <button class="tech" data-tech="english" type="button">
+          <img src="tech_card_english.png" alt=""/><span class="tn">ΕΓΓΛΕΖΙΚΟ</span><span class="ts">★★★☆☆</span><span class="tl">Καλό</span>
+        </button>
+        <button class="tech" data-tech="shore" type="button">
+          <img src="tech_card_shore_jig.png" alt=""/><span class="tn">SHORE JIG</span><span class="ts">★★★☆☆</span><span class="tl">Καλό</span>
+        </button>
+      </div>
+    </section>
+    <div class="bottom-spacer"></div>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="nav-item active" data-nav="dashboard" type="button"><span>◉</span>DASHBOARD</button>
+    <button class="nav-item" data-nav="map" type="button"><span>▣</span>ΧΑΡΤΗΣ</button>
+    <button class="nav-item" data-nav="spots" type="button"><span>📍</span>SPOTS</button>
+    <button class="nav-item" data-nav="calendar" type="button"><span>▦</span>ΗΜΕΡΟΛΟΓΙΟ</button>
+    <button class="nav-item" data-nav="settings" type="button"><span>⚙</span>ΡΥΘΜΙΣΕΙΣ</button>
+  </nav>
+</div>
+<script src="app.js?v=18.1.0"></script>
+</body>
+</html>
