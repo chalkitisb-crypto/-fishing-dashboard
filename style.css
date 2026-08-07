@@ -6764,3 +6764,34 @@ body.reference-layout-v3 .moon-panel .moon-time-text strong {
 body.reference-layout-v3 .moon-panel .moon-time-text span {
   font-size: 8px !important;
 }
+
+/* =========================================================
+   DEPLOY A — moon rise/set icons only (visible + gold)
+========================================================= */
+body.reference-layout-v3 .moon-panel .moon-time-icon {
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+  flex: 0 0 28px !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  color: #F5C542 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-icon path {
+  fill: #F5C542 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-icon path[stroke] {
+  fill: none !important;
+  stroke: #F5C542 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-cell {
+  gap: 8px !important;
+  align-items: center !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times {
+  min-height: 52px !important;
+  padding: 8px 4px !important;
+}

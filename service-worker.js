@@ -1,7 +1,7 @@
 /* Fishing Dashboard — minimal service worker (v9)
    Cache-first for static assets. Safe no-op fallback if offline.
 */
-const CACHE_NAME = "fishing-dashboard-v9.0.14";
+const CACHE_NAME = "fishing-dashboard-v9.0.15";
 const ASSETS = [
   "./",
   "./index.html",
