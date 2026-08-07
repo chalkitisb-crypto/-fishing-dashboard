@@ -6102,3 +6102,58 @@ body.reference-layout-v3 .weather-hour-cell .hour-temp {
   display: block !important;
   text-align: center !important;
 }
+
+/* =========================================================
+   HOURLY FIX — raise cloud-strip height so labels+temps show
+========================================================= */
+body.reference-layout-v3 .cloud-strip,
+body.reference-layout-v3 #hourly-weather-strip.cloud-strip,
+body.reference-layout-v3 #hourly-weather-strip {
+  height: auto !important;
+  min-height: 88px !important;
+  max-height: none !important;
+  overflow: visible !important;
+  align-items: start !important;
+  padding-bottom: 4px !important;
+}
+body.reference-layout-v3 .weather-hour-cell,
+body.reference-layout-v3 .cloud-strip .hour-cell {
+  height: auto !important;
+  min-height: 84px !important;
+  overflow: visible !important;
+  justify-content: flex-start !important;
+  gap: 2px !important;
+  padding: 3px 1px 4px !important;
+}
+body.reference-layout-v3 .weather-hour-cell time {
+  font-size: 7.5px !important;
+  color: #c5dcec !important;
+  display: block !important;
+}
+body.reference-layout-v3 .weather-hour-icon,
+body.reference-layout-v3 .premium-hour-icon {
+  width: 24px !important;
+  height: 24px !important;
+  flex-shrink: 0 !important;
+}
+body.reference-layout-v3 .weather-hour-cell strong {
+  display: block !important;
+  font-size: 6.5px !important;
+  line-height: 1.25 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  max-height: none !important;
+  color: #d8ecf8 !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+body.reference-layout-v3 .weather-hour-cell > span,
+body.reference-layout-v3 .weather-hour-cell span[data-field*="temperature"] {
+  display: block !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  color: #eef6fc !important;
+  margin-top: 1px !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
