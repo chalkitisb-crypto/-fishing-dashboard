@@ -427,8 +427,10 @@ body.reference-layout-v3 .location-line i {
 ========================================================= */
 
 body.reference-layout-v3 .hero-composite {
-  height: 151px;
+  height: auto;
+  min-height: 230px;
   margin: 0;
+  overflow: visible;
 }
 
 body.reference-layout-v3 .hero-composite .hero-grid {
@@ -6230,4 +6232,12 @@ body.reference-layout-v3 .weather-hour-cell > span {
   max-height: none !important;
   overflow: visible !important;
   color: #eef6fc !important;
+}
+
+/* ROOT CAUSE FIX — hero-composite was 151px clipping hourly labels */
+body.reference-layout-v3 .hero-composite {
+  height: auto !important;
+  min-height: 230px !important;
+  max-height: none !important;
+  overflow: visible !important;
 }
