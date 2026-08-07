@@ -6449,3 +6449,318 @@ body.reference-layout-v3 .moon-panel .moon-time-cell {
   grid-template-rows: none !important;
   grid-template-areas: none !important;
 }
+
+/* =========================================================
+   MOON COPY — fit 72% + phase inside panel
+========================================================= */
+body.reference-layout-v3 .moon-panel {
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .moon-panel .moon-main {
+  grid-template-columns: 64px minmax(0, 1fr) !important;
+  column-gap: 8px !important;
+  padding: 6px 8px !important;
+  overflow: hidden !important;
+  min-width: 0 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-visual,
+body.reference-layout-v3 .moon-panel .master-moon-photo,
+body.reference-layout-v3 .moon-panel img.premium-moon {
+  width: 64px !important;
+  height: 64px !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy strong#moon-illumination,
+body.reference-layout-v3 .moon-panel .moon-copy strong {
+  font-size: 22px !important;
+  line-height: 1.05 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  max-width: 100% !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy span,
+body.reference-layout-v3 .moon-panel #moon-phase-label {
+  font-size: 9px !important;
+  line-height: 1.2 !important;
+  white-space: normal !important;
+  overflow: hidden !important;
+  max-width: 100% !important;
+  word-break: normal !important;
+}
+
+/* =========================================================
+   MOON SECTION COMPLETE — single source of truth
+========================================================= */
+body.reference-layout-v3 .moon-panel {
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+body.reference-layout-v3 .moon-panel .moon-main {
+  display: grid !important;
+  grid-template-columns: 58px minmax(0, 1fr) !important;
+  column-gap: 8px !important;
+  align-items: center !important;
+  padding: 8px 10px 6px !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-visual {
+  width: 58px !important;
+  height: 58px !important;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  flex-shrink: 0 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-visual img,
+body.reference-layout-v3 .moon-panel .master-moon-photo {
+  width: 58px !important;
+  height: 58px !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  display: block !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  max-width: 100% !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy strong,
+body.reference-layout-v3 .moon-panel #moon-illumination {
+  display: block !important;
+  font-size: 20px !important;
+  line-height: 1.05 !important;
+  color: #fff !important;
+  font-weight: 800 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: clip !important;
+  max-width: 100% !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy span,
+body.reference-layout-v3 .moon-panel #moon-phase-label {
+  display: block !important;
+  font-size: 9px !important;
+  line-height: 1.25 !important;
+  color: #d4eaf6 !important;
+  margin-top: 3px !important;
+  white-space: normal !important;
+  overflow: hidden !important;
+  max-width: 100% !important;
+}
+
+/* times row */
+body.reference-layout-v3 .moon-panel .moon-times {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  border-top: 1px solid rgba(32, 139, 199, 0.35) !important;
+  min-height: 44px !important;
+  height: auto !important;
+  padding: 6px 4px !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  box-sizing: border-box !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-cell {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 0 6px !important;
+  min-width: 0 !important;
+  overflow: visible !important;
+  border-right: 1px solid rgba(32, 139, 199, 0.25) !important;
+  grid-template-columns: none !important;
+  grid-template-rows: none !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-cell:last-child {
+  border-right: none !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-icon {
+  width: 22px !important;
+  height: 22px !important;
+  flex-shrink: 0 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-text {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1px !important;
+  min-width: 0 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-text span {
+  font-size: 8px !important;
+  color: #d8ecf8 !important;
+  line-height: 1.1 !important;
+  display: block !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-text strong,
+body.reference-layout-v3 .moon-panel #moonrise-time,
+body.reference-layout-v3 .moon-panel #moonset-time {
+  font-size: 12px !important;
+  color: #F5C542 !important;
+  font-weight: 800 !important;
+  line-height: 1.1 !important;
+  display: block !important;
+}
+
+
+/* =========================================================
+   MOON v13 — high-confidence nuclear overrides
+========================================================= */
+body.reference-layout-v3 article.moon-panel,
+body.reference-layout-v3 [data-widget="moon"],
+body.reference-layout-v3 .moon-panel {
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .moon-panel .moon-main {
+  display: grid !important;
+  grid-template-columns: 56px minmax(0, 1fr) !important;
+  gap: 0 8px !important;
+  align-items: center !important;
+  padding: 8px 10px 4px !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  height: auto !important;
+  max-width: 100% !important;
+}
+body.reference-layout-v3 .moon-panel .moon-visual,
+body.reference-layout-v3 .moon-panel .moon-visual img {
+  width: 56px !important;
+  height: 56px !important;
+  max-width: 56px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+}
+body.reference-layout-v3 .moon-panel .moon-copy {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+body.reference-layout-v3 .moon-panel #moon-illumination {
+  font-size: 18px !important;
+  line-height: 1 !important;
+  color: #fff !important;
+  display: block !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .moon-panel #moon-phase-label {
+  font-size: 8.5px !important;
+  line-height: 1.2 !important;
+  color: #d4eaf6 !important;
+  display: block !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  margin-top: 2px !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  border-top: 1px solid rgba(32,139,199,.35) !important;
+  padding: 5px 2px !important;
+  min-height: 42px !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-cell {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 5px !important;
+  padding: 0 5px !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  border-right: 1px solid rgba(32,139,199,.25) !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-cell:last-child {
+  border-right: 0 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-icon {
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  flex: 0 0 22px !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-text {
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  gap: 1px !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-text span {
+  font-size: 7.5px !important;
+  color: #d8ecf8 !important;
+  display: block !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-text strong {
+  font-size: 11px !important;
+  color: #F5C542 !important;
+  font-weight: 800 !important;
+  display: block !important;
+}
+
+/* =========================================================
+   MOON PANEL — larger frame so content fits
+========================================================= */
+body.reference-layout-v3 .moon-current-row {
+  grid-template-columns: 36% minmax(0, 64%) !important;
+  align-items: stretch !important;
+}
+body.reference-layout-v3 .moon-panel,
+body.reference-layout-v3 [data-widget="moon"] {
+  min-height: 168px !important;
+  height: auto !important;
+  overflow: hidden !important;
+}
+body.reference-layout-v3 .moon-panel .moon-main {
+  grid-template-columns: 72px minmax(0, 1fr) !important;
+  column-gap: 10px !important;
+  padding: 10px 12px 6px !important;
+}
+body.reference-layout-v3 .moon-panel .moon-visual,
+body.reference-layout-v3 .moon-panel .moon-visual img,
+body.reference-layout-v3 .moon-panel .master-moon-photo {
+  width: 72px !important;
+  height: 72px !important;
+  max-width: 72px !important;
+}
+body.reference-layout-v3 .moon-panel #moon-illumination {
+  font-size: 24px !important;
+}
+body.reference-layout-v3 .moon-panel #moon-phase-label {
+  font-size: 10px !important;
+  line-height: 1.25 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-times {
+  min-height: 48px !important;
+  padding: 6px 4px !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-icon {
+  width: 26px !important;
+  height: 26px !important;
+  min-width: 26px !important;
+  flex-basis: 26px !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-text strong {
+  font-size: 13px !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-text span {
+  font-size: 8px !important;
+}

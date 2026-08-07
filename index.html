@@ -33,7 +33,7 @@
   </title>
   <link crossorigin="" href="https://cdnjs.cloudflare.com" rel="preconnect"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
-  <link href="style.css?v=9.0.10" rel="stylesheet"/>
+  <link href="style.css?v=9.0.14" rel="stylesheet"/>
   <link href="manifest.json" rel="manifest"/>
   <style id="master-graphic-upgrade">
 
@@ -1255,33 +1255,33 @@
         <img alt="Αύξουσα Αμφίκυρτη Σελήνη 72%" class="premium-moon master-moon-photo" src="moon_sphere.png"/>
        </div>
        <div class="moon-copy">
-        <strong data-field="moon.illumination" id="moon-illumination">
-         72%
-        </strong>
-        <span data-field="moon.phaseLabel" id="moon-phase-label">
-         Αύξουσα
-         <br/>
-         Αμφίκυρτη
-        </span>
+        <strong data-field="moon.illumination" id="moon-illumination">72%</strong>
+        <span data-field="moon.phaseLabel" id="moon-phase-label">Αύξουσα<br/>Αμφίκυρτη</span>
        </div>
       </div>
-      <div class="moon-times" style="display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:48px;padding:6px 4px;border-top:1px solid rgba(32,139,199,.35);box-sizing:border-box">
-       <div class="moon-time-cell" style="display:flex;align-items:center;gap:8px;padding:2px 8px;border-right:1px solid rgba(32,139,199,.25);box-sizing:border-box">
-        <svg aria-hidden="true" width="26" height="26" viewBox="0 0 48 48" style="flex-shrink:0">
-         <use href="#moon-rise-icon"></use>
+      <div class="moon-times">
+       <div class="moon-time-cell">
+        <svg class="moon-time-icon" viewBox="0 0 48 48" width="22" height="22" aria-hidden="true">
+         <path d="M30 10c-9 1-16 9-16 18 0 9 7 17 16 18-11-1-20-10-20-18S19 11 30 10z" fill="#F5C542"/>
+         <path d="M8 40h32" stroke="#F5C542" stroke-width="2.8" stroke-linecap="round"/>
+         <path d="M36 30V16m0 0l-5 5m5-5l5 5" stroke="#F5C542" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
         </svg>
-        <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
-         <span style="font-size:8px;color:#d8ecf8;line-height:1.1">Ανατολή</span>
-         <strong data-field="moon.rise" id="moonrise-time" style="font-size:13px;color:#F5C542;font-weight:800;line-height:1.1">13:28</strong>
+        <div class="moon-time-text">
+         <span>Ανατολή</span>
+         <strong data-field="moon.rise" id="moonrise-time">13:28</strong>
         </div>
        </div>
-       <div class="moon-time-cell" style="display:flex;align-items:center;gap:8px;padding:2px 8px;box-sizing:border-box">
-        <svg aria-hidden="true" width="26" height="26" viewBox="0 0 48 48" style="flex-shrink:0">
-         <use href="#moon-set-icon"></use>
+       <div class="moon-time-cell">
+        <svg class="moon-time-icon" viewBox="0 0 48 48" width="22" height="22" aria-hidden="true">
+         <path d="M30 8c-9 1-16 9-16 18 0 9 7 17 16 18-11-1-20-10-20-18S19 9 30 8z" fill="#F5C542"/>
+         <path d="M36 9l1.5 3 3.3.5-2.4 2.3.6 3.2L36 16.2 33 18l.6-3.2-2.4-2.3 3.3-.5z" fill="#F5C542"/>
+         <path d="M42 16l1 2 2.2.3-1.6 1.5.4 2.1L42 20.7l-1.8 1.1.4-2.1-1.6-1.5 2.2-.3z" fill="#F5C542"/>
+         <path d="M8 40h32" stroke="#F5C542" stroke-width="2.8" stroke-linecap="round"/>
+         <path d="M36 18v14m0 0l-5-5m5 5l5-5" stroke="#F5C542" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
         </svg>
-        <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
-         <span style="font-size:8px;color:#d8ecf8;line-height:1.1">Δύση</span>
-         <strong data-field="moon.set" id="moonset-time" style="font-size:13px;color:#F5C542;font-weight:800;line-height:1.1">01:02</strong>
+        <div class="moon-time-text">
+         <span>Δύση</span>
+         <strong data-field="moon.set" id="moonset-time">01:02</strong>
         </div>
        </div>
       </div>
@@ -2726,7 +2726,7 @@
     Το Fishing Dashboard χρειάζεται JavaScript για ζωντανά δεδομένα και αποθήκευση διάταξης.
    </p>
   </noscript>
-  <script defer="" src="app.js?v=9.0.10">
+  <script defer="" src="app.js?v=9.0.14">
   </script>
  </body>
 </html>
