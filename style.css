@@ -6241,3 +6241,71 @@ body.reference-layout-v3 .hero-composite {
   max-height: none !important;
   overflow: visible !important;
 }
+
+/* =========================================================
+   WIND + PRESSURE — full titles, icons, glow, arrows
+========================================================= */
+body.reference-layout-v3 .wind-pressure-row .section-title {
+  overflow: visible !important;
+  white-space: nowrap !important;
+  min-height: 22px !important;
+  padding: 3px 6px !important;
+  gap: 5px !important;
+}
+body.reference-layout-v3 .wind-pressure-row .section-title span {
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: nowrap !important;
+  font-size: 7px !important;
+  letter-spacing: 0.08em !important;
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+}
+body.reference-layout-v3 .wind-pressure-row .section-title i {
+  color: #3dc4ff !important;
+  font-size: 12px !important;
+  filter: drop-shadow(0 0 6px rgba(61, 196, 255, 0.55)) !important;
+  opacity: 1 !important;
+}
+
+/* Wind arrows — clearer, Master-like */
+body.reference-layout-v3 .direction-arrow,
+body.reference-layout-v3 .wind-arrow {
+  width: 16px !important;
+  height: 16px !important;
+  color: #7CFF6B !important;
+  filter: drop-shadow(0 0 4px rgba(124, 255, 107, 0.55)) !important;
+  transform: rotate(var(--direction-deg, 0deg)) !important;
+  transform-origin: center center !important;
+}
+body.reference-layout-v3 .wind-hour-cell:nth-child(6) .direction-arrow,
+body.reference-layout-v3 .wind-hour-cell:nth-child(7) .direction-arrow {
+  color: #FF9A3C !important;
+  filter: drop-shadow(0 0 4px rgba(255, 154, 60, 0.55)) !important;
+}
+
+/* Pressure chart glow stronger */
+body.reference-layout-v3 .pressure-line {
+  stroke: #FFD331 !important;
+  stroke-width: 2.5 !important;
+  filter: drop-shadow(0 0 3px rgba(255, 211, 49, 0.9))
+          drop-shadow(0 0 8px rgba(255, 211, 49, 0.55)) !important;
+}
+body.reference-layout-v3 .pressure-points circle {
+  fill: #FFD331 !important;
+  stroke: #FFD331 !important;
+  filter: drop-shadow(0 0 4px rgba(255, 211, 49, 0.8)) !important;
+}
+body.reference-layout-v3 .pressure-points circle:first-child {
+  fill: #07101a !important;
+  stroke: #fff !important;
+  stroke-width: 3 !important;
+  filter: drop-shadow(0 0 6px rgba(255, 211, 49, 0.9)) !important;
+}
+body.reference-layout-v3 .pressure-area {
+  fill: url(#pressureFill) !important;
+  opacity: 0.85 !important;
+}
+body.reference-layout-v3 .pressure-chart {
+  overflow: visible !important;
+}
