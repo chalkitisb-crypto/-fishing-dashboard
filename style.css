@@ -6821,3 +6821,221 @@ body.reference-layout-v3 .moon-panel #moonrise-time,
 body.reference-layout-v3 .moon-panel #moonset-time {
   color: #F5C542 !important;
 }
+
+/* =========================================================
+   DEPLOY B — all pending polish
+========================================================= */
+
+/* 1) Header fish closer to title */
+body.reference-layout-v3 .header-brand-lockup.brand-area {
+  gap: 2px !important;
+  column-gap: 2px !important;
+}
+body.reference-layout-v3 .header-fish-asset.brand-fish,
+body.reference-layout-v3 .header-fish-left,
+body.reference-layout-v3 .header-fish-right {
+  transform: scale(1.05) !important;
+}
+body.reference-layout-v3 .header-fish-left {
+  margin-right: -6px !important;
+}
+body.reference-layout-v3 .header-fish-right {
+  margin-left: -6px !important;
+}
+body.reference-layout-v3 .header-brand-center {
+  padding-inline: 0 !important;
+}
+
+/* 2) Hourly less empty space under */
+body.reference-layout-v3 .hero-composite {
+  min-height: 210px !important;
+  height: auto !important;
+}
+body.reference-layout-v3 .cloud-strip,
+body.reference-layout-v3 #hourly-weather-strip {
+  min-height: 86px !important;
+  padding-bottom: 2px !important;
+}
+
+/* 3) Wind arrows clearer */
+body.reference-layout-v3 .direction-arrow,
+body.reference-layout-v3 .wind-arrow {
+  width: 15px !important;
+  height: 15px !important;
+  filter: drop-shadow(0 0 3px rgba(124, 255, 107, 0.5)) !important;
+}
+
+/* 4) Section title blue icons */
+body.reference-layout-v3 .wind-pressure-row .section-title i,
+body.reference-layout-v3 .section-title i.fa-wind,
+body.reference-layout-v3 .section-title i.fa-gauge-high {
+  color: #3dc4ff !important;
+  filter: drop-shadow(0 0 5px rgba(61, 196, 255, 0.55)) !important;
+  font-size: 12px !important;
+}
+
+/* 5) Pressure glow stronger */
+body.reference-layout-v3 .pressure-line {
+  stroke: #FFD331 !important;
+  stroke-width: 2.5 !important;
+  filter: drop-shadow(0 0 4px rgba(255, 211, 49, 0.95))
+          drop-shadow(0 0 10px rgba(255, 211, 49, 0.5)) !important;
+}
+body.reference-layout-v3 .pressure-points circle {
+  filter: drop-shadow(0 0 4px rgba(255, 211, 49, 0.85)) !important;
+}
+
+/* 6) Wind km/h slightly more readable */
+body.reference-layout-v3 .wind-hour-cell small {
+  font-size: 5.5px !important;
+  letter-spacing: -0.02em !important;
+  white-space: nowrap !important;
+}
+
+/* 7) Moon icons + gold labels (keep) */
+body.reference-layout-v3 .moon-panel .moon-time-icon {
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  flex: 0 0 28px !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-text span,
+body.reference-layout-v3 .moon-panel .moon-time-text strong,
+body.reference-layout-v3 .moon-panel #moonrise-time,
+body.reference-layout-v3 .moon-panel #moonset-time {
+  color: #F5C542 !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-cell {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+/* Deploy B+ — wind panel a bit wider so km/h fit; safer polish */
+body.reference-layout-v3 .wind-pressure-row {
+  grid-template-columns: 44% minmax(0, 56%) !important;
+  align-items: stretch !important;
+}
+body.reference-layout-v3 .wind-panel,
+body.reference-layout-v3 [data-widget="wind"] {
+  min-width: 0 !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .wind-strip,
+body.reference-layout-v3 #wind-strip {
+  min-height: 72px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .wind-hour-cell {
+  overflow: visible !important;
+  padding: 2px 1px !important;
+}
+body.reference-layout-v3 .wind-hour-cell small {
+  font-size: 6px !important;
+  line-height: 1.1 !important;
+  white-space: nowrap !important;
+  display: block !important;
+  color: #9fd4a8 !important;
+}
+body.reference-layout-v3 .wind-hour-cell strong {
+  font-size: 12px !important;
+}
+body.reference-layout-v3 .wind-hour-cell .wind-dir {
+  font-size: 6.5px !important;
+}
+
+/* =========================================================
+   DEPLOY B SAFE — 95% confidence locks
+========================================================= */
+
+/* Don't break score/activity side-by-side */
+body.reference-layout-v3 .score-activity-row {
+  display: grid !important;
+  grid-template-columns: 39% minmax(0, 61%) !important;
+}
+
+/* Don't re-clip hourly labels */
+body.reference-layout-v3 .hero-composite {
+  height: auto !important;
+  min-height: 210px !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 #hourly-weather-strip.cloud-strip,
+body.reference-layout-v3 .cloud-strip {
+  height: auto !important;
+  min-height: 86px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .weather-hour-cell strong,
+body.reference-layout-v3 .weather-hour-cell > span {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Moon times stay gold + visible icons */
+body.reference-layout-v3 .moon-panel .moon-times {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  min-height: 52px !important;
+  overflow: visible !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-cell {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-icon {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 28px !important;
+  height: 28px !important;
+}
+body.reference-layout-v3 .moon-panel .moon-time-text span,
+body.reference-layout-v3 .moon-panel .moon-time-text strong {
+  color: #F5C542 !important;
+  display: block !important;
+}
+
+/* Wind/pressure titles full text */
+body.reference-layout-v3 .wind-pressure-row .section-title span {
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: nowrap !important;
+  font-size: 6.5px !important;
+  letter-spacing: 0.06em !important;
+}
+
+
+/* =========================================================
+   WIND ARROWS — Master-like shape + colors
+========================================================= */
+body.reference-layout-v3 .wind-arrow.direction-arrow,
+body.reference-layout-v3 .direction-arrow.wind-arrow,
+body.reference-layout-v3 .wind-hour-cell .direction-arrow {
+  width: 16px !important;
+  height: 16px !important;
+  display: block !important;
+  margin: 1px auto !important;
+  color: #7CFF6B !important;
+  transform: rotate(var(--direction-deg, 0deg)) !important;
+  transform-origin: center center !important;
+  filter: drop-shadow(0 0 3px rgba(124, 255, 107, 0.65)) !important;
+  overflow: visible !important;
+}
+/* stronger wind hours (ANA / Δ) — orange like Master */
+body.reference-layout-v3 .wind-hour-cell:nth-child(6) .direction-arrow,
+body.reference-layout-v3 .wind-hour-cell:nth-child(7) .direction-arrow {
+  color: #FF9A3C !important;
+  filter: drop-shadow(0 0 3px rgba(255, 154, 60, 0.65)) !important;
+}
+body.reference-layout-v3 .wind-hour-cell:nth-child(n+3):nth-child(-n+5) .direction-arrow {
+  color: #9AFF6B !important;
+}
