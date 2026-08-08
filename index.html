@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <title>Fishing Dashboard — Κάλυμνος</title>
   <link rel="manifest" href="manifest.json"/>
-  <link rel="stylesheet" href="style.css?v=22.0.0"/>
+  <link rel="stylesheet" href="style.css?v=23.0.0"/>
 </head>
 <body>
 <div class="app">
@@ -81,7 +81,8 @@
           <svg viewBox="0 0 320 100" class="chart-svg" aria-hidden="true">
             <defs>
               <linearGradient id="pGlow" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#f0c14a" stop-opacity="0.55"/>
+                <stop offset="0%" stop-color="#f0c14a" stop-opacity="0.7"/>
+                <stop offset="55%" stop-color="#f0c14a" stop-opacity="0.25"/>
                 <stop offset="100%" stop-color="#f0c14a" stop-opacity="0"/>
               </linearGradient>
               <filter id="pBlur"><feGaussianBlur stdDeviation="1.8"/></filter>
@@ -182,29 +183,29 @@
 
     <section class="card">
       <div class="sec-title"><i class="dot"></i> FISHING ALERTS</div>
-      <ul class="alert-list">
-        <li class="a-green"><span class="a-ico">🎣</span><div><b>AI · SPINNING</b><span>Ιδανικές συνθήκες 08:00–10:00</span></div><i>›</i></li>
-        <li class="a-gold"><span class="a-ico">🪝</span><div><b>ΔΟΛΩΜΑ</b><span>Ζωντανό δόλωμα προτείνεται</span></div><i>›</i></li>
-        <li class="a-cyan"><span class="a-ico">🐟</span><div><b>ΤΣΙΠΟΥΡΑ</b><span>Υψηλή δραστηριότητα — επόμενες 3 ώρες</span></div><i>›</i></li>
-        <li class="a-orange"><span class="a-ico">❗</span><div><b>ΑΝΕΜΟΣ</b><span>Ενισχύεται μετά τις 14:00</span></div><i>›</i></li>
-        <li class="a-blue"><span class="a-ico">🔔</span><div><b>ΠΕΡΙΟΧΗ</b><span>Προτίμησε νότια πλευρά</span></div><i>›</i></li>
-        <li class="a-purple"><span class="a-ico">📊</span><div><b>ΣΕΛΗΝΗ</b><span>72% — αυξημένη δραστηριότητα</span></div><i>›</i></li>
+      <ul class="alert-list" id="alert-list">
+        <li class="a-green" role="button" tabindex="0"><span class="a-ico">🎣</span><div><b>AI · SPINNING</b><span>Ιδανικές συνθήκες 08:00–10:00</span></div><i>›</i></li>
+        <li class="a-gold" role="button" tabindex="0"><span class="a-ico">🪝</span><div><b>ΔΟΛΩΜΑ</b><span>Ζωντανό δόλωμα προτείνεται</span></div><i>›</i></li>
+        <li class="a-cyan" role="button" tabindex="0"><span class="a-ico">🐟</span><div><b>ΤΣΙΠΟΥΡΑ</b><span>Υψηλή δραστηριότητα — επόμενες 3 ώρες</span></div><i>›</i></li>
+        <li class="a-orange" role="button" tabindex="0"><span class="a-ico">❗</span><div><b>ΑΝΕΜΟΣ</b><span>Ενισχύεται μετά τις 14:00</span></div><i>›</i></li>
+        <li class="a-blue" role="button" tabindex="0"><span class="a-ico">🔔</span><div><b>ΠΕΡΙΟΧΗ</b><span>Προτίμησε νότια πλευρά</span></div><i>›</i></li>
+        <li class="a-purple" role="button" tabindex="0"><span class="a-ico">📊</span><div><b>ΣΕΛΗΝΗ</b><span>72% — αυξημένη δραστηριότητα</span></div><i>›</i></li>
       </ul>
     </section>
 
     <section class="card">
       <div class="sec-title"><i class="dot"></i> ΤΕΧΝΙΚΕΣ ΨΑΡΕΜΑΤΟΣ</div>
       <div class="h-scroll tech-scroll" id="tech-list">
-        <button class="tech selected" data-tech="spinning" type="button">
+        <button class="tech selected" data-tech="spinning" data-stars="5" type="button">
           <img src="tech_card_spinning.png" alt=""/><span class="tn">SPINNING</span><span class="ts">★★★★★</span><span class="tl">Ιδανική</span>
         </button>
-        <button class="tech" data-tech="lrf" type="button">
+        <button class="tech" data-tech="lrf" data-stars="3" type="button">
           <img src="tech_card_lrf.png" alt=""/><span class="tn">LRF</span><span class="ts">★★★☆☆</span><span class="tl">Καλή</span>
         </button>
-        <button class="tech" data-tech="english" type="button">
+        <button class="tech" data-tech="english" data-stars="4" type="button">
           <img src="tech_card_english.png" alt=""/><span class="tn">ΕΓΓΛΕΖΙΚΟ</span><span class="ts">★★★★☆</span><span class="tl">Πολύ καλή</span>
         </button>
-        <button class="tech" data-tech="shore" type="button">
+        <button class="tech" data-tech="shore" data-stars="2" type="button">
           <img src="tech_card_shore_jig.png" alt=""/><span class="tn">SHORE JIG</span><span class="ts">★★☆☆☆</span><span class="tl">Μέτρια</span>
         </button>
       </div>
@@ -220,6 +221,6 @@
     <button class="nav-item" data-nav="settings" type="button"><span>⚙</span>ΡΥΘΜΙΣΕΙΣ</button>
   </nav>
 </div>
-<script src="app.js?v=22.0.0"></script>
+<script src="app.js?v=23.0.0"></script>
 </body>
 </html>

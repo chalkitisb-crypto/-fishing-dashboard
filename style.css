@@ -1,4 +1,4 @@
-/* Fishing Dashboard v22.0.0 — concentrated visual fixes */
+/* Fishing Dashboard v23.0.0 — final locked visuals */
 :root{
   --bg:#020b18;--cyan:#35c8ff;--gold:#f0c14a;--green:#3dde7a;--orange:#ff9a3c;--red:#ff5a5a;
   --text:#e8f4ff;--muted:#8aa4bc;--line:rgba(53,200,255,.38);--radius:16px;
@@ -39,9 +39,12 @@ html,body{height:100%;background:var(--bg);color:var(--text);overflow-x:hidden;
 .h-scroll{display:flex;gap:8px;overflow-x:auto;overflow-y:hidden;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .h-scroll::-webkit-scrollbar{display:none}
 
-/* HERO full-bleed — no left blue line, transparent metrics */
-.hero{position:relative;padding:0;overflow:hidden;min-height:200px;border:1px solid rgba(80,180,240,.48)}
-.hero-bg{position:absolute;inset:0;z-index:0}
+/* HERO — full sun, no left blue line, transparent metrics */
+.hero{position:relative;padding:0;overflow:hidden;min-height:200px;
+  border:1px solid rgba(80,180,240,.48)!important;border-left:1px solid rgba(80,180,240,.48)!important;
+  outline:none;background:rgba(4,14,28,.97)}
+.hero::before,.hero::after{display:none!important;content:none!important}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;border-radius:inherit}
 .sun-img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 .hero-overlay{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-start;
   padding:14px 12px 8px;background:linear-gradient(180deg,rgba(2,11,24,.5),rgba(2,11,24,.12) 60%,transparent)}
@@ -55,20 +58,19 @@ html,body{height:100%;background:var(--bg);color:var(--text);overflow-x:hidden;
 .hero-temp span{font-size:14px}
 .hero-desc{font-size:11px;color:rgba(232,244,255,.9);text-shadow:0 1px 4px #000}
 .hero-metrics{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;
-  padding:8px 12px 12px;background:linear-gradient(0deg,rgba(2,11,24,.65),rgba(2,11,24,.25))}
+  padding:8px 12px 12px;background:linear-gradient(0deg,rgba(2,11,24,.65),rgba(2,11,24,.25));
+  border:none;border-left:none}
 .hero-metrics div{background:rgba(0,0,0,.18);border-radius:10px;padding:8px 6px;text-align:center;
   border:1px solid rgba(255,255,255,.06)}
 .hero-metrics span{display:block;font-size:9px;color:rgba(200,220,240,.75);margin-bottom:2px}
 .hero-metrics b{font-size:12px;color:#fff;text-shadow:0 1px 3px #000}
 .hero-metrics .uv{color:var(--orange)}
 
-/* Weather — premium circular icons */
+/* Weather premium circular icons */
 .wh-cell{flex:0 0 74px;background:rgba(6,22,40,.92);border:1px solid rgba(53,200,255,.28);
   border-radius:14px;padding:8px 6px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px}
-.wh-ico{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;
-  background:radial-gradient(circle at 35% 28%,rgba(90,150,220,.4),rgba(4,16,36,.98));
-  border:1.5px solid rgba(53,200,255,.55);box-shadow:0 0 16px rgba(53,200,255,.28),inset 0 0 12px rgba(0,0,0,.35)}
-.wh-ico svg{width:30px;height:30px;display:block;filter:drop-shadow(0 0 4px rgba(255,210,80,.35))}
+.wh-ico{width:48px;height:48px;border-radius:50%;object-fit:contain;display:block;
+  filter:drop-shadow(0 0 8px rgba(53,200,255,.35))}
 .wh-cell time{font-size:10px;color:var(--muted)}
 .wh-cell .lab{font-size:9px;color:var(--text);line-height:1.15;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .wh-cell strong{font-size:13px;color:#fff}
@@ -84,7 +86,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);overflow-x:hidden;
 .w-cell .dir{font-size:11px;font-weight:700}
 .w-cell strong{font-size:12px;display:block;margin-top:2px}
 
-/* Pressure — locked neon yellow with dots */
+/* Pressure — black bg, yellow line + yellow shadow */
 .pressure-body{display:flex;flex-direction:column;gap:6px;flex:1}
 .chart-svg{width:100%;height:auto;display:block;background:#000;border-radius:8px}
 .pressure-now{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 6px;margin-top:2px}
@@ -121,22 +123,25 @@ html,body{height:100%;background:var(--bg);color:var(--text);overflow-x:hidden;
   text-shadow:0 0 10px rgba(240,193,74,.3)}
 .best-line .sep{color:rgba(240,193,74,.45)}
 
-/* Score — fill widget */
+/* Score */
 .score-card{padding:10px 8px 8px}
 .score-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;padding:0}
 .score-img{width:100%;max-width:100%;height:auto;object-fit:contain;display:block;
-  filter:drop-shadow(0 0 10px rgba(53,200,255,.3))}
+  filter:drop-shadow(0 0 10px rgba(53,200,255,.25))}
 
-/* Activity — no crop of tail/text */
+/* Activity — single frame, contain */
 .activity-card{padding:10px 8px 8px}
-.activity-body{flex:1;overflow:hidden;border-radius:10px;min-height:0;display:flex;align-items:center}
+.activity-body{flex:1;overflow:hidden;border-radius:10px;min-height:0;display:flex;align-items:center;border:none}
 .activity-panel{width:100%;height:auto;max-height:100%;min-height:140px;object-fit:contain;object-position:center;
-  display:block;border-radius:8px}
+  display:block;border-radius:8px;border:none}
 
-/* Alerts */
+/* Alerts — tappable */
 .alert-list{list-style:none;display:flex;flex-direction:column;gap:8px}
 .alert-list li{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:12px;
-  background:rgba(6,22,40,.85);border:1px solid rgba(53,200,255,.22)}
+  background:rgba(6,22,40,.85);border:1px solid rgba(53,200,255,.22);cursor:pointer;
+  -webkit-user-select:none;user-select:none;transition:background .15s,border-color .15s,transform .1s}
+.alert-list li:active,.alert-list li.pressed{background:rgba(20,50,80,.95);border-color:rgba(53,200,255,.55);
+  transform:scale(.985)}
 .alert-list .a-ico{width:40px;height:40px;min-width:40px;border-radius:11px;display:grid;place-items:center;
   font-size:20px;line-height:1;background:rgba(0,0,0,.4);flex-shrink:0;
   border:1px solid rgba(53,200,255,.25)}
@@ -151,7 +156,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);overflow-x:hidden;
 .a-blue .a-ico{background:rgba(80,160,255,.18);border-color:rgba(80,160,255,.4)}
 .a-purple .a-ico{background:rgba(180,120,255,.18);border-color:rgba(180,120,255,.4)}
 
-/* Techniques — UNTOUCHED */
+/* Techniques — images untouched, stars from code */
 .tech-scroll{gap:10px}
 .tech{flex:0 0 130px;background:rgba(4,16,30,.95);border:1px solid rgba(53,200,255,.28);
   border-radius:14px;padding:8px;text-align:center;color:inherit;cursor:pointer}
@@ -165,7 +170,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);overflow-x:hidden;
   display:flex;background:rgba(2,11,24,.96);border-top:1px solid rgba(53,200,255,.25);
   padding:6px 4px calc(6px + env(safe-area-inset-bottom));z-index:30;backdrop-filter:blur(12px)}
 .nav-item{flex:1;background:none;border:0;color:var(--muted);font-size:9px;padding:4px 2px;
-  display:flex;flex-direction:column;align-items:center;gap:2px}
+  display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
 .nav-item span{font-size:16px}
 .nav-item.active{color:var(--cyan)}
 .bottom-spacer{height:8px}
