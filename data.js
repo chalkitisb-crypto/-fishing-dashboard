@@ -300,6 +300,179 @@
     });
   }
 
+  /* ===== STAGE 2 FULL: score, activity, techniques, alerts, best hours ===== */
+  var STAR_LABEL = { 5: "Ιδανική", 4: "Πολύ καλή", 3: "Καλή", 2: "Μέτρια", 1: "Κακή" };
+
+  function computeScore(data) {
+    if (!data || !data.current) {
+      return { score: 50, activity: 50, label: "Μέτριες", stars: 3, reasons: [], factors: {} };
+    }
+    var c = data.current;
+    var sea = data.sea || {};
+    var score = 52;
+    var reasons = [];
+    var factors = {};
+
+    var bf = kmhToBf(c.windKmh || 0);
+    factors.wind = bf;
+    if (bf <= 2) { score += 16; reasons.push("Ήπιος άνεμος (" + bf + " Μπ.)"); factors.windLabel = "Ιδανικός"; }
+    else if (bf === 3) { score += 10; reasons.push("Άνεμος 3 Μποφόρ"); factors.windLabel = "Καλός"; }
+    else if (bf === 4) { score += 0; reasons.push("Άνεμος 4 — οριακός"); factors.windLabel = "Μέτριος"; }
+    else if (bf === 5) { score -= 12; reasons.push("Άνεμος 5 — δύσκολος"); factors.windLabel = "Δύσκολος"; }
+    else { score -= 24; reasons.push("Ισχυρός άνεμος"); factors.windLabel = "Απαγορευτικός"; }
+
+    var p = c.pressure || 1013;
+    factors.pressure = Math.round(p);
+    if (p >= 1015 && p <= 1025) { score += 8; reasons.push("Καλή πίεση " + Math.round(p) + " hPa"); factors.pressureLabel = "Καλή"; }
+    else if (p < 1005) { score -= 8; reasons.push("Χαμηλή πίεση"); factors.pressureLabel = "Χαμηλή"; }
+    else { factors.pressureLabel = "Μέτρια"; }
+
+    var tr = data.pressureTrend || "";
+    factors.trend = tr;
+    if (tr.indexOf("Άνοδος") >= 0) { score += 7; reasons.push("Πίεση σε άνοδο"); }
+    else if (tr.indexOf("Πτώση") >= 0) { score -= 7; reasons.push("Πίεση σε πτώση"); }
+
+    var wh = sea.wave != null ? sea.wave : 0.6;
+    factors.wave = wh;
+    if (wh < 0.5) { score += 12; reasons.push("Ήρεμη θάλασσα"); factors.waveLabel = "Ιδανική"; }
+    else if (wh < 1.0) { score += 6; reasons.push("Μικρό κύμα " + wh.toFixed(1) + "m"); factors.waveLabel = "Καλή"; }
+    else if (wh < 1.5) { score -= 4; reasons.push("Μέτριο κύμα"); factors.waveLabel = "Μέτρια"; }
+    else { score -= 15; reasons.push("Μεγάλο κύμα"); factors.waveLabel = "Δύσκολη"; }
+
+    var m = (data.moon && data.moon.pct) != null ? data.moon.pct : 50;
+    factors.moon = m;
+    if (m >= 35 && m <= 75) { score += 6; reasons.push("Καλή σελήνη " + m + "%"); factors.moonLabel = "Καλή"; }
+    else if (m > 90 || m < 15) { score += 3; factors.moonLabel = "Ακραία"; }
+    else { factors.moonLabel = "Μέτρια"; }
+
+    var h = new Date().getHours();
+    if (h >= 5 && h <= 8) { score += 9; reasons.push("Πρωινό παράθυρο"); }
+    else if (h >= 17 && h <= 20) { score += 9; reasons.push("Απογευματινό παράθυρο"); }
+    else if (h >= 22 || h <= 3) { score += 4; reasons.push("Νυχτερινό"); }
+
+    if ((c.weatherCode || 0) >= 95) { score -= 20; reasons.push("Καταιγίδα"); }
+    else if ((c.weatherCode || 0) >= 61) { score -= 10; reasons.push("Βροχή"); }
+
+    score = Math.max(0, Math.min(100, Math.round(score)));
+    var activity = Math.max(5, Math.min(99, Math.round(score * 0.88 + (bf <= 3 ? 6 : 0) + (wh < 0.8 ? 4 : 0))));
+
+    var label, stars;
+    if (score >= 85) { label = "Εξαιρετικές"; stars = 5; }
+    else if (score >= 70) { label = "Πολύ καλές"; stars = 4; }
+    else if (score >= 55) { label = "Καλές"; stars = 3; }
+    else if (score >= 40) { label = "Μέτριες"; stars = 2; }
+    else { label = "Δύσκολες"; stars = 1; }
+
+    return { score: score, activity: activity, label: label, stars: stars, reasons: reasons.slice(0, 5), factors: factors };
+  }
+
+  function computeTechniques(data, sc) {
+    sc = sc || computeScore(data);
+    var bf = kmhToBf((data.current && data.current.windKmh) || 0);
+    var wh = (data.sea && data.sea.wave != null) ? data.sea.wave : 0.6;
+    var h = new Date().getHours();
+    var isDawnDusk = (h >= 5 && h <= 8) || (h >= 17 && h <= 20);
+
+    function clampStars(n) { return Math.max(1, Math.min(5, Math.round(n))); }
+
+    // Base from overall score, adjusted per technique
+    var base = sc.stars;
+    var list = [
+      {
+        id: "spinning",
+        stars: clampStars(base + (bf <= 3 ? 1 : 0) + (wh < 1.2 ? 0 : -1) + (isDawnDusk ? 0.5 : 0))
+      },
+      {
+        id: "lrf",
+        stars: clampStars(base + (bf <= 2 ? 1 : -1) + (wh < 0.6 ? 1 : -1))
+      },
+      {
+        id: "english",
+        stars: clampStars(base + (bf <= 3 ? 0.5 : -1) + (wh < 0.8 ? 1 : 0))
+      },
+      {
+        id: "shore",
+        stars: clampStars(base - 1 + (bf >= 3 && bf <= 5 ? 1 : 0) + (wh >= 0.8 ? 0.5 : -0.5))
+      }
+    ];
+    list.forEach(function (t) {
+      t.label = STAR_LABEL[t.stars] || "Καλή";
+    });
+    list.sort(function (a, b) { return b.stars - a.stars; });
+    return list;
+  }
+
+  function computeAlerts(data, sc) {
+    sc = sc || computeScore(data);
+    var c = data.current || {};
+    var sea = data.sea || {};
+    var bf = kmhToBf(c.windKmh || 0);
+    var alerts = [];
+    var bh = computeBestHours(data);
+
+    if (sc.score >= 75) {
+      alerts.push({ cls: "a-green", ico: "🎣", title: "ΚΑΛΟ ΠΑΡΑΘΥΡΟ", text: "Score " + sc.score + " · " + (sc.reasons[0] || "Ευνοϊκές συνθήκες") });
+    }
+    if (bf >= 5) {
+      alerts.push({ cls: "a-orange", ico: "❗", title: "ΑΝΕΜΟΣ", text: bf + " Μποφόρ — πρόσεξε ασφάλεια / σημείο" });
+    } else if (bf <= 2) {
+      alerts.push({ cls: "a-green", ico: "💨", title: "ΗΠΙΟΣ ΑΝΕΜΟΣ", text: bf + " Μποφόρ — ιδανικό για shore" });
+    }
+    var tr = data.pressureTrend || "";
+    if (tr.indexOf("Άνοδος") >= 0) {
+      alerts.push({ cls: "a-cyan", ico: "📊", title: "ΠΙΕΣΗ", text: "Ανεβαίνει — συχνά θετικό για δραστηριότητα" });
+    } else if (tr.indexOf("Πτώση") >= 0) {
+      alerts.push({ cls: "a-gold", ico: "📊", title: "ΠΙΕΣΗ", text: "Πέφτει — μπορεί να αλλάξει η δραστηριότητα" });
+    }
+    if (sea.wave != null && sea.wave >= 1.3) {
+      alerts.push({ cls: "a-orange", ico: "🌊", title: "ΚΥΜΑ", text: sea.wave.toFixed(1) + " m — δύσκολες συνθήκες ακτής" });
+    }
+    if ((c.uv || 0) >= 7) {
+      alerts.push({ cls: "a-gold", ico: "☀️", title: "UV ΥΨΗΛΟ", text: "Προστασία από τον ήλιο" });
+    }
+    if (data.moon && data.moon.pct >= 40 && data.moon.pct <= 70) {
+      alerts.push({ cls: "a-purple", ico: "🌙", title: "ΣΕΛΗΝΗ", text: data.moon.pct + "% — ευνοϊκή περίοδος" });
+    }
+    var techs = computeTechniques(data, sc);
+    if (techs[0] && techs[0].stars >= 4) {
+      var names = { spinning: "SPINNING", lrf: "LRF", english: "ΕΓΓΛΕΖΙΚΟ", shore: "SHORE JIG" };
+      alerts.push({ cls: "a-green", ico: "🎯", title: "ΤΕΧΝΙΚΗ", text: (names[techs[0].id] || techs[0].id) + " · " + techs[0].label });
+    }
+    alerts.push({ cls: "a-cyan", ico: "⏰", title: "ΚΑΛΥΤΕΡΕΣ ΩΡΕΣ", text: "Απόγευμα " + bh.evening });
+
+    if (alerts.length > 6) alerts = alerts.slice(0, 6);
+    if (!alerts.length) {
+      alerts.push({ cls: "a-gold", ico: "ℹ️", title: "ΕΝΗΜΕΡΩΣΗ", text: "Συνθήκες μέτριες — δες Score για λεπτομέρειες" });
+    }
+    return alerts;
+  }
+
+  function computeBestHours(data) {
+    var sun = (data && data.sun) || {};
+    var rise = sun.rise || "06:30";
+    var set = sun.set || "20:00";
+    function addMin(hhmm, mins) {
+      var p = String(hhmm).split(":");
+      var t = parseInt(p[0], 10) * 60 + parseInt(p[1] || "0", 10) + mins;
+      if (t < 0) t += 24 * 60;
+      t = t % (24 * 60);
+      var h = Math.floor(t / 60), m = t % 60;
+      return (h < 10 ? "0" : "") + h + ":" + (m < 10 ? "0" : "") + m;
+    }
+    var morning = addMin(rise, -30) + "–" + addMin(rise, 90);
+    var evening = addMin(set, -90) + "–" + addMin(set, 30);
+    var night = "23:00–00:30";
+    var sc = data && data.current ? computeScore(data) : { reasons: [] };
+    return {
+      morning: morning,
+      evening: evening,
+      night: night,
+      whyMorning: ["Κοντά στην ανατολή " + rise, "Χαμηλό φως", (sc.reasons[0] || "Ήπια δραστηριότητα")],
+      whyEvening: ["Προς δύση " + set, "Χρυσή ώρα", (sc.reasons[1] || sc.reasons[0] || "Αυξημένη δραστηριότητα")],
+      whyNight: ["Σκοτάδι", "Σελήνη " + ((data.moon && data.moon.pct) || "—") + "%", "Λιγότερη πίεση ανθρώπινης κίνησης"]
+    };
+  }
+
   /** Public API */
   global.FDData = {
     DEFAULT: DEFAULT,
@@ -309,9 +482,12 @@
     degToCompass: degToCompass,
     kmhToBf: kmhToBf,
     uvLabel: uvLabel,
-    /* Poseidon hook — Stage 1 stub */
-    fetchPoseidon: function () {
-      return Promise.resolve(null);
-    }
+    fetchPoseidon: function () { return Promise.resolve(null); },
+    computeScore: computeScore,
+    computeTechniques: computeTechniques,
+    computeAlerts: computeAlerts,
+    computeBestHours: computeBestHours,
+    STAR_LABEL: STAR_LABEL
   };
+
 })(window);

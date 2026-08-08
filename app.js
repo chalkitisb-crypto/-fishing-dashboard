@@ -1,4 +1,4 @@
-/* Fishing Dashboard v31.2.0 — Stage 1 live Open-Meteo */
+/* Fishing Dashboard v33.1.0 — Stage 1 live Open-Meteo */
 (function () {
   "use strict";
 
@@ -141,9 +141,113 @@
     }
 
 
+    
+    applyStage2(data);
+
     var locEl = document.querySelector(".brand-loc");
     if (locEl && data.location) {
       locEl.textContent = "📍 " + (data.location.name || "Κάλυμνος") + ", Ελλάδα";
+    }
+  }
+
+
+
+  /** Map score 0–100 → degrees. Gauge arc: left(-120) … center(0) … right(+120) */
+  function scoreToAngle(score) {
+    score = Math.max(0, Math.min(100, Number(score) || 0));
+    return -120 + (score / 100) * 240;
+  }
+
+  function setRodAngle(score) {
+    var arm = $("score-rod-arm");
+    if (!arm) return;
+    var deg = scoreToAngle(score);
+    arm.style.transform = "rotate(" + deg + "deg)";
+    arm.dataset.score = String(score);
+  }
+
+  function applyStage2(data) {
+    if (!window.FDData || !FDData.computeScore) return;
+    var sc = FDData.computeScore(data);
+    if ($("score-num")) $("score-num").textContent = sc.score;
+    setRodAngle(sc.score);
+    if ($("score-lab")) $("score-lab").textContent = sc.label;
+    if ($("activity-pct")) $("activity-pct").textContent = sc.activity;
+    var sr = $("score-reasons");
+    if (sr) {
+      sr.innerHTML = (sc.reasons || []).slice(0, 3).map(function (r) {
+        return "<div>· " + r + "</div>";
+      }).join("");
+    }
+
+    // Best hours + why
+    var bl = $("best-line");
+    var bw = $("best-why");
+    if (bl && FDData.computeBestHours) {
+      var bh = FDData.computeBestHours(data);
+      bl.innerHTML =
+        '<button type="button" class="best-chip" data-why="morning">ΠΡΩΙ ' + bh.morning + "</button>" +
+        '<span class="sep"> · </span>' +
+        '<button type="button" class="best-chip" data-why="evening">ΑΠΟΓΕΥΜΑ ' + bh.evening + "</button>" +
+        '<span class="sep"> · </span>' +
+        '<button type="button" class="best-chip" data-why="night">ΝΥΧΤΑ ' + bh.night + "</button>";
+      bl.querySelectorAll(".best-chip").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var key = btn.getAttribute("data-why");
+          var map = { morning: bh.whyMorning, evening: bh.whyEvening, night: bh.whyNight };
+          var title = { morning: "Πρωί", evening: "Απόγευμα", night: "Νύχτα" };
+          if (!bw) return;
+          if (bw.dataset.open === key) {
+            bw.hidden = true;
+            bw.dataset.open = "";
+            return;
+          }
+          bw.dataset.open = key;
+          bw.hidden = false;
+          bw.innerHTML = "<b>Γιατί " + title[key] + "</b><ul>" +
+            (map[key] || []).map(function (x) { return "<li>" + x + "</li>"; }).join("") +
+            "</ul>";
+        });
+      });
+    }
+
+    // Techniques live stars
+    if (FDData.computeTechniques) {
+      var techs = FDData.computeTechniques(data, sc);
+      var byId = {};
+      techs.forEach(function (t) { byId[t.id] = t; });
+      document.querySelectorAll(".tech").forEach(function (btn) {
+        var id = btn.getAttribute("data-tech");
+        // map shore_jig / shore
+        if (id === "shore_jig") id = "shore";
+        var t = byId[id];
+        if (!t) return;
+        btn.setAttribute("data-stars", String(t.stars));
+        var st = btn.querySelector(".ts") || btn.querySelector(".tech-stars");
+        var lab = btn.querySelector(".tl") || btn.querySelector(".tech-lab");
+        if (st) st.textContent = starsText(t.stars);
+        if (lab) lab.textContent = t.label;
+      });
+    }
+
+    // Alerts rules
+    if (FDData.computeAlerts) {
+      var alerts = FDData.computeAlerts(data, sc);
+      var root = $("alert-list");
+      if (root) {
+        root.innerHTML = alerts.map(function (a) {
+          return '<li class="' + a.cls + '" role="button" tabindex="0">' +
+            '<span class="a-ico">' + a.ico + "</span>" +
+            "<div><b>" + a.title + "</b><span>" + a.text + "</span></div><i>›</i></li>";
+        }).join("");
+        root.querySelectorAll("li").forEach(function (li) {
+          function activate() {
+            li.classList.add("pressed");
+            setTimeout(function () { li.classList.remove("pressed"); }, 150);
+          }
+          li.addEventListener("click", activate);
+        });
+      }
     }
   }
 
