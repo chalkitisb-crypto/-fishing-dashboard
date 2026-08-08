@@ -8,20 +8,18 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <title>Fishing Dashboard — Κάλυμνος</title>
   <link rel="manifest" href="manifest.json"/>
-  <link rel="stylesheet" href="style.css?v=26.1.0"/>
+  <link rel="stylesheet" href="style.css?v=28.0.0"/>
 </head>
 <body>
 <div class="app">
   <header class="header">
     <button class="icon-btn" id="btn-menu" aria-label="Μενού">☰</button>
-    <div class="brand">
-      <img class="brand-fish" src="fish_left.png" alt=""/>
-      <div class="brand-text">
-        <div class="brand-title"><span class="w1">FISHING</span> <span class="w2">DASHBOARD</span></div>
-        <div class="brand-loc">📍 Κάλυμνος, Ελλάδα</div>
-      </div>
-      <img class="brand-fish" src="fish_right.png" alt=""/>
+    <img class="brand-fish brand-fish-l" src="fish_left.png" alt=""/>
+    <div class="brand-text">
+      <div class="brand-title"><span class="w1">FISHING</span> <span class="w2">DASHBOARD</span></div>
+      <div class="brand-loc">📍 Κάλυμνος, Ελλάδα</div>
     </div>
+    <img class="brand-fish brand-fish-r" src="fish_right.png" alt=""/>
     <div class="header-actions">
       <button class="icon-btn" id="btn-fav" aria-label="Αγαπημένο">☆</button>
       <button class="icon-btn" id="btn-refresh" aria-label="Ανανέωση">↻</button>
@@ -131,7 +129,6 @@
 
     <div class="row row-score">
       <section class="card score-card">
-        <div class="sec-title"><i class="dot diamond"></i> FISHING SCORE</div>
         <div class="score-wrap">
           <img src="score_rod.png" alt="85" class="score-img"/>
         </div>
@@ -184,6 +181,6 @@
     <button class="nav-item" data-nav="settings" type="button"><span>⚙</span>ΡΥΘΜΙΣΕΙΣ</button>
   </nav>
 </div>
-<script src="app.js?v=26.1.0"></script>
+<script src="app.js?v=28.0.0"></script>
 </body>
 </html>
