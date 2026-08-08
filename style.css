@@ -604,3 +604,115 @@ html,body{height:100%;background:var(--bg);color:var(--text);overflow-x:hidden;
 }
 .score-rod-layer,.score-rod-pivot,.score-rod-arm:not(img),.score-rod-shaft,.score-rod-tip{display:none!important}
 .score-img{filter:none!important}
+
+/* ===== v38 COMPLETE LOCK FIX ===== */
+.score-meta{
+  position:absolute;left:50%;bottom:4%;transform:translateX(-50%);
+  text-align:center;z-index:4;width:90%;pointer-events:none;
+  /* NO box / NO extra frame */
+  background:transparent!important;border:none!important;padding:0!important;
+}
+.score-stars{color:#f5c542;font-size:14px;letter-spacing:2px;text-shadow:0 0 8px rgba(245,197,66,.5)}
+.score-num-line{font-size:28px;font-weight:800;color:#35c8ff;line-height:1.1;
+  text-shadow:0 0 12px rgba(53,200,255,.55)}
+.score-lab{font-size:12px;color:#35c8ff;font-weight:600;margin-top:1px}
+.score-reasons{font-size:9px;color:#7ad7ff;margin-top:3px;line-height:1.25;opacity:.95}
+.score-rod-live{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:fill;
+  transform-origin:48% 68%;pointer-events:none;z-index:2;
+  transition:transform .85s cubic-bezier(.2,.8,.2,1);
+}
+.score-wrap{position:relative;min-height:280px}
+.score-img{width:100%;height:auto;display:block;min-height:260px;object-fit:contain}
+.score-live{display:none!important} /* remove old box */
+
+/* Activity — no CSS brows, bar over image bar, pct inside */
+.activity-brows{display:none!important}
+.activity-live{display:none!important}
+.activity-body{position:relative;overflow:hidden;border-radius:12px}
+.activity-panel{width:100%;display:block;height:auto}
+.activity-bar-wrap{
+  position:absolute;left:6%;right:6%;bottom:8%;height:16px;
+  background:rgba(0,20,40,.55);border-radius:999px;overflow:hidden;
+  border:1px solid rgba(53,200,255,.25);z-index:2;
+  display:flex;align-items:center;
+}
+.activity-bar-fill{
+  height:100%;width:0%;border-radius:999px;
+  background:linear-gradient(90deg,#1a6b8a,#35c8ff 55%,#7ef0c0);
+  transition:width .6s ease;box-shadow:0 0 10px rgba(53,200,255,.4);
+}
+.activity-bar-pct{
+  position:absolute;left:0;right:0;text-align:center;
+  font-size:11px;font-weight:800;color:#e8f8ff;z-index:3;
+  text-shadow:0 1px 2px #000;pointer-events:none;
+}
+
+/* Charts premium */
+.chart-premium{padding:4px 2px 6px}
+.chart-svg-tall{width:100%;height:140px;display:block;background:#050d18;border-radius:10px}
+.pressure-footer,.tide-footer{
+  display:flex;flex-wrap:wrap;align-items:center;gap:8px;
+  padding:8px 6px 2px;font-size:12px;color:#cde;
+}
+.pressure-footer .pf-now{color:#f5c542;font-weight:700}
+.pressure-footer .pf-now b{font-size:14px}
+.pressure-footer .pf-trend{color:#2ecc71;font-size:11px}
+.tide-footer{flex-direction:column;align-items:stretch;gap:4px}
+.tide-row{display:flex;align-items:center;gap:8px;color:#7ad7ff;font-size:12px}
+.tide-row b{margin-left:auto;color:#35c8ff}
+.tide-row .t-ico{width:18px;text-align:center;opacity:.8}
+
+/* Zone map fill */
+.zone-map-fill,.zone-map{
+  width:100%!important;height:100%!important;min-height:110px!important;
+  object-fit:cover!important;object-position:center!important;
+  border-radius:10px;display:block;
+}
+.zone-body{display:grid;grid-template-columns:1.1fr 1fr;gap:8px;align-items:stretch}
+.zone-body .zone-map{min-height:120px}
+
+/* Weather icons size for new circular assets */
+.wh-ico{width:56px!important;height:56px!important;object-fit:contain!important;border-radius:50%}
+
+/* Alert icons */
+.alert-item{display:flex;align-items:center;gap:10px;padding:10px 8px;
+  border-bottom:1px solid rgba(53,200,255,.12);cursor:pointer}
+.alert-ico{width:42px;height:42px;border-radius:10px;object-fit:contain;flex-shrink:0}
+.alert-text{flex:1;min-width:0}
+.alert-text strong{display:block;font-size:13px;color:#e8f4ff}
+.alert-text span{font-size:11px;color:#8ab}
+.alert-chev{color:#35c8ff;font-size:18px}
+
+/* v38.1 moon phase light + score number clean */
+.moon-disc{
+  position:relative;width:76px;height:76px;border-radius:50%;overflow:hidden;
+  flex-shrink:0;background:#020b18;
+  box-shadow:0 0 14px rgba(245,197,66,.2), inset 0 0 12px rgba(0,0,0,.5);
+}
+.moon-disc .moon-img{
+  width:100%!important;height:100%!important;object-fit:cover;border-radius:50%;
+  display:block;position:relative;z-index:1;
+}
+.moon-lit{
+  position:absolute;inset:0;border-radius:50%;z-index:2;pointer-events:none;
+  mix-blend-mode:soft-light;
+}
+.moon-shade{
+  position:absolute;inset:0;border-radius:50%;z-index:3;pointer-events:none;
+}
+
+.score-meta{
+  position:absolute;left:50%;bottom:5%;transform:translateX(-50%);
+  text-align:center;z-index:5;width:88%;
+  background:transparent!important;border:none!important;box-shadow:none!important;
+  padding:0!important;pointer-events:none;
+}
+.score-num-line span, #score-num{
+  font-size:34px!important;font-weight:800!important;color:#35c8ff!important;
+  text-shadow:0 0 16px rgba(53,200,255,.7),0 2px 4px rgba(0,0,0,.8)!important;
+}
+.score-stars{
+  color:#f5c542!important;font-size:15px!important;letter-spacing:3px;
+  margin-bottom:2px;text-shadow:0 0 10px rgba(245,197,66,.55);
+}

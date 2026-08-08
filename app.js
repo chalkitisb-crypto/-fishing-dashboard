@@ -1,4 +1,4 @@
-/* Fishing Dashboard v37.2.0 — Stage 1 complete APIs + score SVG */
+/* Fishing Dashboard v38.1.0 — Stage 1 complete APIs + score SVG */
 (function () {
   "use strict";
 
@@ -65,59 +65,87 @@
     var line = $("pressure-line");
     var area = $("pressure-area");
     var dots = $("pressure-dots");
-    if (!line || !area) return;
-    if (!pressurePts.length) return;
-    var w = 320, h = 120, padX = 12, padTop = 12, padBot = 20;
-    var min = Math.min.apply(null, pressurePts) - 1;
-    var max = Math.max.apply(null, pressurePts) + 1;
-    var xs = pressurePts.map(function (_, i) {
-      return padX + (i * (w - padX * 2)) / Math.max(1, pressurePts.length - 1);
-    });
-    var ys = pressurePts.map(function (v) {
-      return padTop + (1 - (v - min) / (max - min)) * (h - padTop - padBot);
-    });
-    var pts = xs.map(function (x, i) { return x.toFixed(1) + "," + ys[i].toFixed(1); }).join(" ");
-    line.setAttribute("points", pts);
-    area.setAttribute("d", "M" + xs[0] + "," + (h - 2) + " " + xs.map(function (x, i) {
-      return "L" + x + "," + ys[i];
-    }).join(" ") + " L" + xs[xs.length - 1] + "," + (h - 2) + " Z");
+    var labels = $("pressure-labels");
+    var grid = $("pressure-grid");
+    if (!line || !pressurePts || pressurePts.length < 2) return;
+    var pts = pressurePts;
+    var times = pressureTimes || [];
+    var w = 320, h = 150;
+    var padL = 36, padR = 12, padT = 18, padB = 28;
+    var min = Math.min.apply(null, pts) - 1;
+    var max = Math.max.apply(null, pts) + 1;
+    if (max <= min) max = min + 2;
+    function X(i) { return padL + (i * (w - padL - padR)) / Math.max(1, pts.length - 1); }
+    function Y(v) { return padT + (1 - (v - min) / (max - min)) * (h - padT - padB); }
+    var pairs = pts.map(function (v, i) { return X(i).toFixed(1) + "," + Y(v).toFixed(1); });
+    line.setAttribute("points", pairs.join(" "));
+    if (area) {
+      area.setAttribute("d",
+        "M" + X(0).toFixed(1) + "," + (h - padB) + " " +
+        pairs.map(function (p) { return "L" + p; }).join(" ") +
+        " L" + X(pts.length - 1).toFixed(1) + "," + (h - padB) + " Z");
+    }
     if (dots) {
-      dots.innerHTML = xs.map(function (x, i) {
-        return '<circle cx="' + x + '" cy="' + ys[i] + '" r="3"/>';
+      dots.innerHTML = pts.map(function (v, i) {
+        return '<circle cx="' + X(i).toFixed(1) + '" cy="' + Y(v).toFixed(1) +
+          '" r="4" fill="#f5c542" stroke="#1a1000" stroke-width="1"/>' +
+          '<text x="' + X(i).toFixed(1) + '" y="' + (Y(v) - 8).toFixed(1) +
+          '" text-anchor="middle" fill="#f5c542" font-size="9" font-weight="700">' +
+          Math.round(v) + "</text>";
       }).join("");
     }
+    if (grid) {
+      var ticks = [];
+      var step = Math.max(1, Math.round((max - min) / 4));
+      for (var v = Math.ceil(min); v <= max; v += step) {
+        var y = Y(v);
+        ticks.push('<line x1="' + padL + '" y1="' + y + '" x2="' + (w - padR) +
+          '" y2="' + y + '" stroke="rgba(53,200,255,.12)" stroke-dasharray="3 4"/>');
+        ticks.push('<text x="' + (padL - 4) + '" y="' + (y + 3) +
+          '" text-anchor="end" fill="rgba(53,200,255,.55)" font-size="8">' + v + "</text>");
+      }
+      // time labels
+      for (var i = 0; i < pts.length; i++) {
+        var t = times[i] || "";
+        if (t) ticks.push('<text x="' + X(i).toFixed(1) + '" y="' + (h - 8) +
+          '" text-anchor="middle" fill="rgba(53,200,255,.5)" font-size="8">' + t + "</text>");
+      }
+      grid.innerHTML = ticks.join("");
+    }
   }
+
 
   function drawTide(pts) {
     pts = pts || tidePts;
     var line = $("tide-line");
     var area = $("tide-area");
-    var dot = $("tide-dot");
+    var dots = $("tide-dots");
     if (!line || !pts || !pts.length) return;
-    var w = 320, h = 110, padX = 12, padTop = 14, padBot = 16;
+    var w = 320, h = 130;
+    var padL = 10, padR = 10, padT = 16, padB = 16;
     var min = Math.min.apply(null, pts) - 0.05;
     var max = Math.max.apply(null, pts) + 0.05;
     if (max <= min) max = min + 0.2;
-    var xs = pts.map(function (_, i) {
-      return padX + (i * (w - padX * 2)) / Math.max(1, pts.length - 1);
-    });
-    var ys = pts.map(function (v) {
-      return padTop + (1 - (v - min) / (max - min)) * (h - padTop - padBot);
-    });
-    var ptsStr = xs.map(function (x, i) {
-      return x.toFixed(1) + "," + ys[i].toFixed(1);
-    }).join(" ");
-    line.setAttribute("points", ptsStr);
+    function X(i) { return padL + (i * (w - padL - padR)) / Math.max(1, pts.length - 1); }
+    function Y(v) { return padT + (1 - (v - min) / (max - min)) * (h - padT - padB); }
+    var pairs = pts.map(function (v, i) { return X(i).toFixed(1) + "," + Y(v).toFixed(1); });
+    line.setAttribute("points", pairs.join(" "));
     if (area) {
-      var d = "M" + xs[0].toFixed(1) + "," + (h - padBot) + " " +
-        xs.map(function (x, i) { return "L" + x.toFixed(1) + "," + ys[i].toFixed(1); }).join(" ") +
-        " L" + xs[xs.length - 1].toFixed(1) + "," + (h - padBot) + " Z";
-      area.setAttribute("d", d);
+      area.setAttribute("d",
+        "M" + X(0).toFixed(1) + "," + (h - padB) + " " +
+        pairs.map(function (p) { return "L" + p; }).join(" ") +
+        " L" + X(pts.length - 1).toFixed(1) + "," + (h - padB) + " Z");
     }
-    var ni = Math.min(2, pts.length - 1);
-    if (dot) {
-      dot.setAttribute("cx", xs[ni]);
-      dot.setAttribute("cy", ys[ni]);
+    if (dots) {
+      // mark peaks roughly
+      dots.innerHTML = pts.map(function (v, i) {
+        var isExt = i > 0 && i < pts.length - 1 && (
+          (v >= pts[i - 1] && v >= pts[i + 1]) || (v <= pts[i - 1] && v <= pts[i + 1])
+        );
+        if (!isExt && i !== 0 && i !== pts.length - 1) return "";
+        return '<circle cx="' + X(i).toFixed(1) + '" cy="' + Y(v).toFixed(1) +
+          '" r="4.5" fill="#fff" stroke="#35c8ff" stroke-width="2"/>';
+      }).join("");
     }
   }
 
@@ -206,39 +234,100 @@
 
 
 
+
   function setMoonVisual(pct, phaseHtml) {
     pct = Math.max(0, Math.min(100, Number(pct) || 0));
     var shade = $("moon-shade");
-    var disc = $("moon-disc");
-    var img = disc ? disc.querySelector(".moon-img") : document.querySelector(".moon-img");
+    var lit = $("moon-lit");
+    var img = $("moon-img") || document.querySelector(".moon-img");
     if (!shade) return;
     var phase = (phaseHtml || "").toLowerCase();
-    var waxing = phase.indexOf("αύξουσα") >= 0 || phase.indexOf("αυξουσα") >= 0;
-    var waning = phase.indexOf("φθίνουσα") >= 0 || phase.indexOf("φθινουσα") >= 0;
-    // Dark overlay covers (100-pct)% of disc from left (waning) or right (waxing)
-    var dark = 100 - pct;
-    if (pct < 5) {
-      shade.style.opacity = "0.92";
-      shade.style.background = "#020b18";
-      shade.style.left = "0"; shade.style.right = "0";
-      shade.style.clipPath = "none";
-    } else if (pct > 95) {
+    var waxing = phase.indexOf("αύξ") >= 0 || phase.indexOf("αυξ") >= 0;
+    var waning = phase.indexOf("φθίν") >= 0 || phase.indexOf("φθιν") >= 0;
+    if (!waxing && !waning) {
+      // infer from pct path: after full = waning typically when labeled φθίνουσα
+      waning = true;
+    }
+    // Illumination: use radial/linear combo so lit side glows, dark side absorbs
+    var illum = pct / 100;
+    var darkPct = 100 - pct;
+    if (pct <= 3) {
+      // new moon
+      shade.style.opacity = "0.95";
+      shade.style.background = "radial-gradient(circle at 50% 50%, rgba(2,11,24,.75) 0%, rgba(2,11,24,.98) 70%)";
+      shade.style.boxShadow = "none";
+      if (img) img.style.filter = "brightness(0.25) saturate(0.6)";
+    } else if (pct >= 97) {
       shade.style.opacity = "0";
-    } else {
+      shade.style.background = "transparent";
+      if (img) img.style.filter = "brightness(1.15) saturate(1.05) drop-shadow(0 0 8px rgba(255,240,200,.35))";
+    } else if (waning) {
+      // light on LEFT, dark on RIGHT grows as pct drops
       shade.style.opacity = "1";
-      // Approximate phase: linear gradient mask
-      if (waning || (!waxing && pct < 50)) {
-        // light on left, dark on right for waning crescent-ish
-        shade.style.background =
-          "linear-gradient(90deg, transparent 0%, transparent " + pct + "%, rgba(2,11,24,.92) " + pct + "%, rgba(2,11,24,.95) 100%)";
-      } else {
-        shade.style.background =
-          "linear-gradient(90deg, rgba(2,11,24,.95) 0%, rgba(2,11,24,.92) " + dark + "%, transparent " + dark + "%, transparent 100%)";
-      }
+      shade.style.background =
+        "linear-gradient(90deg, transparent 0%, transparent " + (pct * 0.85) + "%, rgba(2,11,24,.55) " + pct + "%, rgba(2,11,24,.97) " + Math.min(100, pct + 18) + "%)";
+      shade.style.boxShadow = "inset -6px 0 12px rgba(2,11,24,.35)";
+      if (img) img.style.filter = "brightness(" + (0.55 + illum * 0.55).toFixed(2) + ") contrast(1.08)";
+    } else {
+      // waxing: light on RIGHT
+      shade.style.opacity = "1";
+      shade.style.background =
+        "linear-gradient(90deg, rgba(2,11,24,.97) 0%, rgba(2,11,24,.55) " + darkPct + "%, transparent " + Math.min(100, darkPct + 15) + "%, transparent 100%)";
+      shade.style.boxShadow = "inset 6px 0 12px rgba(2,11,24,.35)";
+      if (img) img.style.filter = "brightness(" + (0.55 + illum * 0.55).toFixed(2) + ") contrast(1.08)";
     }
-    if (img) {
-      img.style.filter = pct < 30 ? "brightness(0.85) contrast(1.05)" : "brightness(1)";
+    if (lit) {
+      lit.style.opacity = String(0.15 + illum * 0.35);
+      lit.style.background = waxing && !waning
+        ? "radial-gradient(circle at 70% 40%, rgba(255,245,210,.45), transparent 55%)"
+        : "radial-gradient(circle at 30% 40%, rgba(255,245,210,.45), transparent 55%)";
     }
+  }
+
+
+
+  function scoreToAngle(score) {
+    score = Math.max(0, Math.min(100, Number(score) || 0));
+    return -70 + (score / 100) * 140;
+  }
+  function setRodAngle(score) {
+    var arm = $("score-rod-arm");
+    if (!arm) return;
+    arm.style.transform = "rotate(" + scoreToAngle(score) + "deg)";
+  }
+  function scoreStars(score) {
+    var n = score >= 90 ? 5 : score >= 75 ? 4 : score >= 55 ? 3 : score >= 35 ? 2 : 1;
+    var s = "";
+    for (var i = 0; i < 5; i++) s += i < n ? "★" : "☆";
+    return s;
+  }
+  function scoreLabel(score) {
+    if (score >= 90) return "Ιδανική";
+    if (score >= 75) return "Πολύ καλή";
+    if (score >= 55) return "Καλή";
+    if (score >= 35) return "Μέτρια";
+    return "Κακή";
+  }
+
+
+  var ALERT_ICONS = {
+    wind: "ico_alert_rod.png",
+    technique: "ico_alert_hook.png",
+    fish: "ico_alert_fish.png",
+    warn: "ico_alert_warn.png",
+    hours: "ico_alert_bell.png",
+    score: "ico_alert_chart.png",
+    default: "ico_alert_bell.png"
+  };
+  function alertIcon(a) {
+    var t = ((a.type || a.title || "") + "").toLowerCase();
+    if (t.indexOf("άνεμ") >= 0 || t.indexOf("ανεμ") >= 0 || t.indexOf("wind") >= 0) return ALERT_ICONS.wind;
+    if (t.indexOf("τεχν") >= 0 || t.indexOf("spin") >= 0) return ALERT_ICONS.technique;
+    if (t.indexOf("ψαρ") >= 0 || t.indexOf("fish") >= 0) return ALERT_ICONS.fish;
+    if (t.indexOf("προσοχ") >= 0 || t.indexOf("warn") >= 0) return ALERT_ICONS.warn;
+    if (t.indexOf("ώρ") >= 0 || t.indexOf("ωρ") >= 0) return ALERT_ICONS.hours;
+    if (t.indexOf("score") >= 0) return ALERT_ICONS.score;
+    return ALERT_ICONS.default;
   }
 
   function applyStage2(data) {
@@ -246,14 +335,17 @@
     var sc = FDData.computeScore(data);
     if ($("score-num")) $("score-num").textContent = sc.score;
     setRodAngle(sc.score);
-    if ($("score-lab")) $("score-lab").textContent = sc.label;
-    if ($("activity-pct")) $("activity-pct").textContent = sc.activity;
-    setActivityBrows(sc.activity);
+    if ($("score-stars")) $("score-stars").textContent = scoreStars(sc.score);
+    if ($("score-lab")) $("score-lab").textContent = scoreLabel(sc.score);
+    if ($("score-reasons") && sc.reasons) {
+      $("score-reasons").innerHTML = sc.reasons.map(function (r) {
+        return "<div>· " + r + "</div>";
+      }).join("");
+    }
+    if ($("activity-pct")) $("activity-pct").textContent = sc.activity + "%";
     var bar = $("activity-bar-fill");
     if (bar) {
-      bar.style.width = Math.max(4, Math.min(100, sc.activity)) + "%";
-      var col = sc.activity >= 70 ? "#2ecc71" : sc.activity >= 45 ? "#f1c40f" : "#e74c3c";
-      bar.style.background = col;
+      bar.style.width = Math.max(8, Math.min(100, sc.activity)) + "%";
     }
     if ($("zone-place") && data.location) {
       $("zone-place").textContent = "📍 " + (data.location.name || "Κάλυμνος") + " · Νότια άκρη · 2–4μ";
@@ -321,9 +413,10 @@
       var root = $("alert-list");
       if (root) {
         root.innerHTML = alerts.map(function (a) {
-          return '<li class="' + a.cls + '" role="button" tabindex="0">' +
-            '<span class="a-ico">' + a.ico + "</span>" +
-            "<div><b>" + a.title + "</b><span>" + a.text + "</span></div><i>›</i></li>";
+          var ico = alertIcon(a);
+          return '<li class="alert-item" tabindex="0"><img class="alert-ico" src="' + ico +
+            '" alt=""/><div class="alert-text"><strong>' + (a.title || "") +
+            '</strong><span>' + (a.text || a.detail || "") + '</span></div><span class="alert-chev">›</span></li>';
         }).join("");
         root.querySelectorAll("li").forEach(function (li) {
           function activate() {
@@ -344,13 +437,14 @@
     pressureTimes = data.pressureTimes || [];
     tidePts = data.tidePts || tidePts;
     applyHero(data);
-    if ($("tide-h") && data.tideNow != null) {
-      $("tide-h").textContent = data.tideNow.toFixed(2) + " m";
-    }
-    if ($("tide-info")) {
-      var ex = (data.tideExtrema || [])[0];
-      $("tide-info").textContent = ex ? (ex.type + " ~ " + ex.t) : (data.tideSource || "");
-    }
+    var exs = data.tideExtrema || [];
+    var low = null, high = null;
+    exs.forEach(function (e) {
+      if (e.type === "Low" && !low) low = e;
+      if (e.type === "High" && !high) high = e;
+    });
+    if ($("tide-low")) $("tide-low").textContent = low ? low.t : "—";
+    if ($("tide-high")) $("tide-high").textContent = high ? high.t : "—";
 
     renderWeather();
     renderWind();
