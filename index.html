@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <title>Fishing Dashboard — Κάλυμνος</title>
   <link rel="manifest" href="manifest.json"/>
-  <link rel="stylesheet" href="style.css?v=28.0.0"/>
+  <link rel="stylesheet" href="style.css?v=29.0.0"/>
 </head>
 <body>
 <div class="app">
@@ -133,12 +133,24 @@
           <img src="score_rod.png" alt="85" class="score-img"/>
         </div>
       </section>
-      <section class="card activity-card">
-        <div class="sec-title"><i class="dot"></i> FISH ACTIVITY</div>
-        <div class="activity-body">
-          <img class="activity-panel" src="activity_body.jpg" alt=""/>
-        </div>
-      </section>
+      <div class="score-right">
+        <section class="card activity-card">
+          <div class="sec-title"><i class="dot"></i> FISH ACTIVITY</div>
+          <div class="activity-body">
+            <img class="activity-panel" src="activity_body.jpg" alt=""/>
+          </div>
+        </section>
+        <section class="card zone-card">
+          <div class="sec-title"><i class="dot"></i> ΖΩΝΗ</div>
+          <div class="zone-body">
+            <img class="zone-map" src="zone_map.png" alt="Χάρτης"/>
+            <div class="zone-info">
+              <div class="zone-label">Βέλτιστη ζώνη</div>
+              <div class="zone-place">📍 Νότια άκρη · 2–4μ</div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
 
     <section class="card">
@@ -181,6 +193,6 @@
     <button class="nav-item" data-nav="settings" type="button"><span>⚙</span>ΡΥΘΜΙΣΕΙΣ</button>
   </nav>
 </div>
-<script src="app.js?v=28.0.0"></script>
+<script src="app.js?v=29.0.0"></script>
 </body>
 </html>
