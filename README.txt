@@ -1,4 +1,4 @@
-Fishing Dashboard v25.0.0 — IMAGE-BASED (100% όπως Score)
+Fishing Dashboard v26.0.0 — ΟΛΑ ΜΑΖΙ
 
 UPLOAD ΟΛΑ στη ρίζα GitHub:
 
@@ -6,18 +6,22 @@ UPLOAD ΟΛΑ στη ρίζα GitHub:
   style.css
   app.js
   sun_scene.png
-  score_rod.png
-  activity_body.jpg
+  score_rod.png          (χωρίς διπλό frame)
+  activity_body.jpg      (χωρίς μεγάλα κενά)
   pressure_chart.png
   tides_chart.png
-  ico_wx_sun.png
+  ico_wx_sun.png         (locked premium από mock)
   ico_wx_partly.png
   ico_wx_haze.png
   ico_wx_cloud.png
   ico_wx_rain.png
   ico_wx_storm.png
 
-Τώρα ΠΙΕΣΗ + ΠΑΛΙΡΡΟΙΕΣ + ΚΑΙΡΟΣ + SCORE + HERO = εικόνες
-(όπως το κοντέρ που φάνηκε 100%)
+FIXES μέσα:
+- Header κενά σφιγμένα
+- Score χωρίς διπλό πλαίσιο
+- Activity χωρίς μεγάλα κενά
+- Weather icons = ακριβώς το locked mock
+- Hero / πίεση / παλίρροιες εικόνες
 
 Μετά: commit → Netlify → iPhone ΙΔΙΩΤΙΚΗ
