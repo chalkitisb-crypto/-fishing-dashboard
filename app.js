@@ -1,4 +1,4 @@
-/* Fishing Dashboard v35.0.0 — Stage 1 complete APIs + score SVG */
+/* Fishing Dashboard v37.2.0 — Stage 1 complete APIs + score SVG */
 (function () {
   "use strict";
 
@@ -91,21 +91,29 @@
   function drawTide(pts) {
     pts = pts || tidePts;
     var line = $("tide-line");
+    var area = $("tide-area");
     var dot = $("tide-dot");
     if (!line || !pts || !pts.length) return;
-    var w = 320, h = 100, padX = 10, padTop = 12, padBot = 14;
+    var w = 320, h = 110, padX = 12, padTop = 14, padBot = 16;
     var min = Math.min.apply(null, pts) - 0.05;
     var max = Math.max.apply(null, pts) + 0.05;
+    if (max <= min) max = min + 0.2;
     var xs = pts.map(function (_, i) {
       return padX + (i * (w - padX * 2)) / Math.max(1, pts.length - 1);
     });
     var ys = pts.map(function (v) {
       return padTop + (1 - (v - min) / (max - min)) * (h - padTop - padBot);
     });
-    line.setAttribute("points", xs.map(function (x, i) {
+    var ptsStr = xs.map(function (x, i) {
       return x.toFixed(1) + "," + ys[i].toFixed(1);
-    }).join(" "));
-    // now marker ~ index 2 (we built with -2 offset)
+    }).join(" ");
+    line.setAttribute("points", ptsStr);
+    if (area) {
+      var d = "M" + xs[0].toFixed(1) + "," + (h - padBot) + " " +
+        xs.map(function (x, i) { return "L" + x.toFixed(1) + "," + ys[i].toFixed(1); }).join(" ") +
+        " L" + xs[xs.length - 1].toFixed(1) + "," + (h - padBot) + " Z";
+      area.setAttribute("d", d);
+    }
     var ni = Math.min(2, pts.length - 1);
     if (dot) {
       dot.setAttribute("cx", xs[ni]);
@@ -149,6 +157,7 @@
       if ($("moon-phase")) $("moon-phase").innerHTML = data.moon.phaseHtml;
       if ($("moon-rise") && data.moon.rise) $("moon-rise").textContent = data.moon.rise;
       if ($("moon-set") && data.moon.set) $("moon-set").textContent = data.moon.set;
+      setMoonVisual(data.moon.pct, data.moon.phaseHtml || "");
     }
 
 
@@ -167,17 +176,69 @@
   
 
 
+
   function scoreToAngle(score) {
     score = Math.max(0, Math.min(100, Number(score) || 0));
-    return -90 + (score / 100) * 180;
+    // 0 → left (-70deg), 50 → up (0), 100 → right (+70deg) approx dial
+    return -70 + (score / 100) * 140;
   }
 
   function setRodAngle(score) {
     var arm = $("score-rod-arm");
     if (!arm) return;
     var deg = scoreToAngle(score);
-    arm.setAttribute("transform", "rotate(" + deg + " 100 130)");
+    arm.style.transform = "rotate(" + deg + "deg)";
     arm.dataset.score = String(score);
+  }
+
+  function setActivityBrows(pct) {
+    pct = Math.max(0, Math.min(100, Number(pct) || 0));
+    var root = $("activity-brows");
+    if (!root) return;
+    root.classList.remove("brow-low", "brow-mid", "brow-high");
+    if (pct >= 70) root.classList.add("brow-high");
+    else if (pct >= 40) root.classList.add("brow-mid");
+    else root.classList.add("brow-low");
+    // angle: low = frown, high = raised
+    var ang = pct < 40 ? 18 : pct < 70 ? 4 : -14;
+    root.style.setProperty("--brow-ang", ang + "deg");
+  }
+
+
+
+  function setMoonVisual(pct, phaseHtml) {
+    pct = Math.max(0, Math.min(100, Number(pct) || 0));
+    var shade = $("moon-shade");
+    var disc = $("moon-disc");
+    var img = disc ? disc.querySelector(".moon-img") : document.querySelector(".moon-img");
+    if (!shade) return;
+    var phase = (phaseHtml || "").toLowerCase();
+    var waxing = phase.indexOf("αύξουσα") >= 0 || phase.indexOf("αυξουσα") >= 0;
+    var waning = phase.indexOf("φθίνουσα") >= 0 || phase.indexOf("φθινουσα") >= 0;
+    // Dark overlay covers (100-pct)% of disc from left (waning) or right (waxing)
+    var dark = 100 - pct;
+    if (pct < 5) {
+      shade.style.opacity = "0.92";
+      shade.style.background = "#020b18";
+      shade.style.left = "0"; shade.style.right = "0";
+      shade.style.clipPath = "none";
+    } else if (pct > 95) {
+      shade.style.opacity = "0";
+    } else {
+      shade.style.opacity = "1";
+      // Approximate phase: linear gradient mask
+      if (waning || (!waxing && pct < 50)) {
+        // light on left, dark on right for waning crescent-ish
+        shade.style.background =
+          "linear-gradient(90deg, transparent 0%, transparent " + pct + "%, rgba(2,11,24,.92) " + pct + "%, rgba(2,11,24,.95) 100%)";
+      } else {
+        shade.style.background =
+          "linear-gradient(90deg, rgba(2,11,24,.95) 0%, rgba(2,11,24,.92) " + dark + "%, transparent " + dark + "%, transparent 100%)";
+      }
+    }
+    if (img) {
+      img.style.filter = pct < 30 ? "brightness(0.85) contrast(1.05)" : "brightness(1)";
+    }
   }
 
   function applyStage2(data) {
@@ -187,6 +248,16 @@
     setRodAngle(sc.score);
     if ($("score-lab")) $("score-lab").textContent = sc.label;
     if ($("activity-pct")) $("activity-pct").textContent = sc.activity;
+    setActivityBrows(sc.activity);
+    var bar = $("activity-bar-fill");
+    if (bar) {
+      bar.style.width = Math.max(4, Math.min(100, sc.activity)) + "%";
+      var col = sc.activity >= 70 ? "#2ecc71" : sc.activity >= 45 ? "#f1c40f" : "#e74c3c";
+      bar.style.background = col;
+    }
+    if ($("zone-place") && data.location) {
+      $("zone-place").textContent = "📍 " + (data.location.name || "Κάλυμνος") + " · Νότια άκρη · 2–4μ";
+    }
     var sr = $("score-reasons");
     if (sr) {
       sr.innerHTML = (sc.reasons || []).slice(0, 3).map(function (r) {
