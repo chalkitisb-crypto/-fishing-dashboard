@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <title>Fishing Dashboard — Κάλυμνος</title>
   <link rel="manifest" href="manifest.json"/>
-  <link rel="stylesheet" href="style.css?v=21.1.0"/>
+  <link rel="stylesheet" href="style.css?v=22.0.0"/>
 </head>
 <body>
 <div class="app">
@@ -78,18 +78,20 @@
       <section class="card">
         <div class="sec-title"><i class="dot"></i> ΒΑΡΟΜΕΤΡΙΚΗ ΠΙΕΣΗ</div>
         <div class="pressure-body">
-          <svg viewBox="0 0 320 88" class="chart-svg" aria-hidden="true">
+          <svg viewBox="0 0 320 100" class="chart-svg" aria-hidden="true">
             <defs>
               <linearGradient id="pGlow" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#f0c14a" stop-opacity="0.4"/>
+                <stop offset="0%" stop-color="#f0c14a" stop-opacity="0.55"/>
                 <stop offset="100%" stop-color="#f0c14a" stop-opacity="0"/>
               </linearGradient>
+              <filter id="pBlur"><feGaussianBlur stdDeviation="1.8"/></filter>
             </defs>
             <path id="pressure-area" fill="url(#pGlow)" d=""/>
-            <polyline id="pressure-line" fill="none" stroke="#f0c14a" stroke-width="2.8"
+            <polyline id="pressure-line" fill="none" stroke="#f0c14a" stroke-width="3"
+              stroke-linecap="round" stroke-linejoin="round" filter="url(#pBlur)" points=""/>
+            <polyline id="pressure-line-core" fill="none" stroke="#ffe08a" stroke-width="1.6"
               stroke-linecap="round" stroke-linejoin="round" points=""/>
-            <polyline id="pressure-line-core" fill="none" stroke="#ffe08a" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round" points=""/>
+            <g id="pressure-dots"></g>
           </svg>
           <div class="pressure-now">
             <span>ΤΩΡΑ</span>
@@ -134,16 +136,18 @@
       </section>
       <section class="card">
         <div class="sec-title"><i class="dot"></i> ΠΑΛΙΡΡΟΙΕΣ</div>
-        <svg viewBox="0 0 280 78" class="chart-svg tides-svg" aria-hidden="true">
+        <svg viewBox="0 0 280 90" class="chart-svg tides-svg" aria-hidden="true">
           <defs>
             <linearGradient id="tFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#35c8ff" stop-opacity="0.5"/>
-              <stop offset="100%" stop-color="#0a7cff" stop-opacity="0.12"/>
+              <stop offset="0%" stop-color="#35c8ff" stop-opacity="0.55"/>
+              <stop offset="100%" stop-color="#0a7cff" stop-opacity="0.1"/>
             </linearGradient>
+            <filter id="tGlow"><feGaussianBlur stdDeviation="1.5"/></filter>
           </defs>
           <path id="tide-area" fill="url(#tFill)" d=""/>
-          <path id="tide-line" fill="none" stroke="#5ad0ff" stroke-width="2.6"
-            stroke-linecap="round" d=""/>
+          <path id="tide-line" fill="none" stroke="#7ae0ff" stroke-width="2.8"
+            stroke-linecap="round" filter="url(#tGlow)" d=""/>
+          <g id="tide-dots"></g>
         </svg>
         <div class="tide-meta">
           <div><span class="td">−</span> Αμπώτις <b>11:40</b></div>
@@ -216,6 +220,6 @@
     <button class="nav-item" data-nav="settings" type="button"><span>⚙</span>ΡΥΘΜΙΣΕΙΣ</button>
   </nav>
 </div>
-<script src="app.js?v=21.1.0"></script>
+<script src="app.js?v=22.0.0"></script>
 </body>
 </html>

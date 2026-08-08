@@ -1,15 +1,19 @@
-Fishing Dashboard v19.0.0 — 7 locked widget visuals
-Upload ALL files to GitHub root (main).
-Netlify: Deploy without cache if needed.
-Hard refresh / private window after deploy.
+Fishing Dashboard v22.0.0 — concentrated visual fixes
 
-Locked updates:
-1 Weather panel
-2 Pressure chart/panel
-3 Tides chart/panel
-4 Fishing Score panel
-5 Fish Activity (preview_activity_LOCKED)
-6 Alerts structure (icons)
-7 Techniques photoreal cards
+UPLOAD (ρίζα GitHub — Replace):
+  index.html
+  style.css
+  app.js
 
-Version query: ?v=19.0.0
+Δεν χρειάζονται νέα PNG (score_rod.png + activity_body.jpg ήδη από v21.1)
+
+Μετά: commit → Netlify deploy (clear cache αν μπορείς) → iPhone ιδιωτική
+
+Fixes:
+1. Hero — metrics πιο διάφανα, χωρίς extra μπλε γραμμή
+2. Weather — premium κυκλικά icons (ήλιος/αραιή/ήπιος/σύννεφο/βροχή/καταιγίδα)
+3. Πίεση — neon κίτρινη γραμμή + glowing dots + τιμές/ώρες
+4. Παλίρροιες — κυανό glow + white markers στα peaks
+5. Score — full fit στο widget
+6. Activity — object-fit contain (ουρά + γράμματα ορατά)
+7. Τεχνικές — ΑΘΙΚΤΕΣ

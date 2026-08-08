@@ -1,4 +1,4 @@
-/* Fishing Dashboard v21.1.0 — fixes: hero full sun, locked score, no double frames */
+/* Fishing Dashboard v22.0.0 — concentrated visual fixes */
 :root{
   --bg:#020b18;--cyan:#35c8ff;--gold:#f0c14a;--green:#3dde7a;--orange:#ff9a3c;--red:#ff5a5a;
   --text:#e8f4ff;--muted:#8aa4bc;--line:rgba(53,200,255,.38);--radius:16px;
@@ -39,36 +39,36 @@ html,body{height:100%;background:var(--bg);color:var(--text);overflow-x:hidden;
 .h-scroll{display:flex;gap:8px;overflow-x:auto;overflow-y:hidden;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .h-scroll::-webkit-scrollbar{display:none}
 
-/* HERO full-bleed sun */
-.hero{position:relative;padding:0;overflow:hidden;min-height:200px}
+/* HERO full-bleed — no left blue line, transparent metrics */
+.hero{position:relative;padding:0;overflow:hidden;min-height:200px;border:1px solid rgba(80,180,240,.48)}
 .hero-bg{position:absolute;inset:0;z-index:0}
 .sun-img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 .hero-overlay{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-start;
-  padding:14px 12px 8px;background:linear-gradient(180deg,rgba(2,11,24,.55),rgba(2,11,24,.15) 60%,transparent)}
+  padding:14px 12px 8px;background:linear-gradient(180deg,rgba(2,11,24,.5),rgba(2,11,24,.12) 60%,transparent)}
 .hero-date{text-align:left}
-.hero-dow{font-size:10px;color:rgba(232,244,255,.85);letter-spacing:1px;text-shadow:0 1px 4px #000}
+.hero-dow{font-size:10px;color:rgba(232,244,255,.9);letter-spacing:1px;text-shadow:0 1px 4px #000}
 .hero-day{font-size:40px;font-weight:800;line-height:1;color:#fff;text-shadow:0 2px 8px #000}
-.hero-mon{font-size:10px;color:rgba(232,244,255,.8);line-height:1.2;text-shadow:0 1px 4px #000}
+.hero-mon{font-size:10px;color:rgba(232,244,255,.85);line-height:1.2;text-shadow:0 1px 4px #000}
 .hero-now{text-align:right}
 .hero-cond{font-size:10px;color:#ffe08a;font-weight:700;letter-spacing:.5px;text-shadow:0 1px 4px #000}
 .hero-temp{font-size:32px;font-weight:800;line-height:1;color:#fff;text-shadow:0 2px 8px #000}
 .hero-temp span{font-size:14px}
-.hero-desc{font-size:11px;color:rgba(232,244,255,.85);text-shadow:0 1px 4px #000}
+.hero-desc{font-size:11px;color:rgba(232,244,255,.9);text-shadow:0 1px 4px #000}
 .hero-metrics{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;
-  padding:8px 12px 12px;background:linear-gradient(0deg,rgba(2,11,24,.75),rgba(2,11,24,.35))}
-.hero-metrics div{background:rgba(0,0,0,.35);border-radius:10px;padding:8px 6px;text-align:center;
-  border:1px solid rgba(255,255,255,.08)}
-.hero-metrics span{display:block;font-size:9px;color:var(--muted);margin-bottom:2px}
-.hero-metrics b{font-size:12px}
+  padding:8px 12px 12px;background:linear-gradient(0deg,rgba(2,11,24,.65),rgba(2,11,24,.25))}
+.hero-metrics div{background:rgba(0,0,0,.18);border-radius:10px;padding:8px 6px;text-align:center;
+  border:1px solid rgba(255,255,255,.06)}
+.hero-metrics span{display:block;font-size:9px;color:rgba(200,220,240,.75);margin-bottom:2px}
+.hero-metrics b{font-size:12px;color:#fff;text-shadow:0 1px 3px #000}
 .hero-metrics .uv{color:var(--orange)}
 
-/* Weather — premium circular icons (SVG drawn in JS) */
+/* Weather — premium circular icons */
 .wh-cell{flex:0 0 74px;background:rgba(6,22,40,.92);border:1px solid rgba(53,200,255,.28);
   border-radius:14px;padding:8px 6px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px}
-.wh-ico{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
-  background:radial-gradient(circle at 35% 30%,rgba(80,140,200,.35),rgba(6,20,40,.95));
-  border:1.5px solid rgba(53,200,255,.5);box-shadow:0 0 14px rgba(53,200,255,.22),inset 0 0 10px rgba(0,0,0,.3)}
-.wh-ico svg{width:28px;height:28px;display:block}
+.wh-ico{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle at 35% 28%,rgba(90,150,220,.4),rgba(4,16,36,.98));
+  border:1.5px solid rgba(53,200,255,.55);box-shadow:0 0 16px rgba(53,200,255,.28),inset 0 0 12px rgba(0,0,0,.35)}
+.wh-ico svg{width:30px;height:30px;display:block;filter:drop-shadow(0 0 4px rgba(255,210,80,.35))}
 .wh-cell time{font-size:10px;color:var(--muted)}
 .wh-cell .lab{font-size:9px;color:var(--text);line-height:1.15;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .wh-cell strong{font-size:13px;color:#fff}
@@ -84,16 +84,16 @@ html,body{height:100%;background:var(--bg);color:var(--text);overflow-x:hidden;
 .w-cell .dir{font-size:11px;font-weight:700}
 .w-cell strong{font-size:12px;display:block;margin-top:2px}
 
-/* Pressure — NO nested frame */
+/* Pressure — locked neon yellow with dots */
 .pressure-body{display:flex;flex-direction:column;gap:6px;flex:1}
 .chart-svg{width:100%;height:auto;display:block;background:#000;border-radius:8px}
-.pressure-now{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 6px}
+.pressure-now{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 6px;margin-top:2px}
 .pressure-now span{font-size:10px;color:var(--muted)}
 .pressure-now strong{font-size:22px;color:var(--gold);line-height:1;text-shadow:0 0 12px rgba(240,193,74,.45)}
 .pressure-now small{font-size:11px;color:var(--muted)}
 .trend-stable{color:var(--green);font-style:normal;font-size:12px;font-weight:700}
 
-/* Moon — restored simple good layout */
+/* Moon */
 .moon-body{display:flex;align-items:center;gap:10px}
 .moon-img{width:72px;height:72px;object-fit:cover;border-radius:50%;flex-shrink:0;
   border:1px solid rgba(240,193,74,.35);box-shadow:0 0 18px rgba(240,193,74,.55)}
@@ -110,7 +110,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);overflow-x:hidden;
 .sea-grid span{display:block;font-size:10px;color:var(--muted)}
 .sea-grid b{font-size:15px}
 
-/* Tides — NO nested frame */
+/* Tides */
 .tides-svg{margin-bottom:6px}
 .tide-meta{display:flex;justify-content:space-between;gap:8px;font-size:11px}
 .td{color:var(--red);font-weight:800}
@@ -121,19 +121,19 @@ html,body{height:100%;background:var(--bg);color:var(--text);overflow-x:hidden;
   text-shadow:0 0 10px rgba(240,193,74,.3)}
 .best-line .sep{color:rgba(240,193,74,.45)}
 
-/* Score — locked gauge with rod */
-.score-card{padding-bottom:10px}
-.score-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:0}
+/* Score — fill widget */
+.score-card{padding:10px 8px 8px}
+.score-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;padding:0}
 .score-img{width:100%;max-width:100%;height:auto;object-fit:contain;display:block;
-  filter:drop-shadow(0 0 12px rgba(53,200,255,.35))}
+  filter:drop-shadow(0 0 10px rgba(53,200,255,.3))}
 
-/* Activity — title from code, fit content */
-.activity-card{padding-bottom:8px}
-.activity-body{flex:1;overflow:hidden;border-radius:10px;min-height:0}
-.activity-panel{width:100%;height:100%;min-height:160px;object-fit:cover;object-position:center center;
-  display:block;border-radius:10px}
+/* Activity — no crop of tail/text */
+.activity-card{padding:10px 8px 8px}
+.activity-body{flex:1;overflow:hidden;border-radius:10px;min-height:0;display:flex;align-items:center}
+.activity-panel{width:100%;height:auto;max-height:100%;min-height:140px;object-fit:contain;object-position:center;
+  display:block;border-radius:8px}
 
-/* Alerts — larger icons for mobile */
+/* Alerts */
 .alert-list{list-style:none;display:flex;flex-direction:column;gap:8px}
 .alert-list li{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:12px;
   background:rgba(6,22,40,.85);border:1px solid rgba(53,200,255,.22)}
@@ -151,7 +151,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);overflow-x:hidden;
 .a-blue .a-ico{background:rgba(80,160,255,.18);border-color:rgba(80,160,255,.4)}
 .a-purple .a-ico{background:rgba(180,120,255,.18);border-color:rgba(180,120,255,.4)}
 
-/* Techniques */
+/* Techniques — UNTOUCHED */
 .tech-scroll{gap:10px}
 .tech{flex:0 0 130px;background:rgba(4,16,30,.95);border:1px solid rgba(53,200,255,.28);
   border-radius:14px;padding:8px;text-align:center;color:inherit;cursor:pointer}
@@ -161,7 +161,6 @@ html,body{height:100%;background:var(--bg);color:var(--text);overflow-x:hidden;
 .tech .tl{display:block;font-size:10px;color:var(--muted)}
 .tech.selected{border-color:var(--cyan);box-shadow:0 0 16px rgba(53,200,255,.35)}
 
-/* Bottom nav */
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;max-width:480px;margin:0 auto;
   display:flex;background:rgba(2,11,24,.96);border-top:1px solid rgba(53,200,255,.25);
   padding:6px 4px calc(6px + env(safe-area-inset-bottom));z-index:30;backdrop-filter:blur(12px)}
@@ -171,7 +170,6 @@ html,body{height:100%;background:var(--bg);color:var(--text);overflow-x:hidden;
 .nav-item.active{color:var(--cyan)}
 .bottom-spacer{height:8px}
 
-/* Menu */
 .menu-panel{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:40;display:none;align-items:flex-start;justify-content:flex-start;padding-top:56px}
 .menu-panel.open{display:flex}
 .menu-sheet{width:min(280px,85vw);height:auto;min-height:60%;background:linear-gradient(165deg,#0a1f38,#061428);
