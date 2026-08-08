@@ -1,4 +1,4 @@
-/* Fishing Dashboard v26.0.0 — final locked visuals */
+/* Fishing Dashboard v26.1.0 — final locked visuals */
 (function () {
   "use strict";
 
