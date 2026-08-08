@@ -1,25 +1,34 @@
-/* Fishing Dashboard v20.0.0 — rod score, SVG charts, weather icons, alerts */
+/* Fishing Dashboard v21.1.0 */
 (function () {
   "use strict";
 
+  /* Premium circular SVG icons matching locked design */
+  var ICO = {
+    sun: '<svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="6" fill="#ffd24a"/><g stroke="#ffd24a" stroke-width="2" stroke-linecap="round"><path d="M16 3v4M16 25v4M3 16h4M25 16h4M6.5 6.5l2.8 2.8M22.7 22.7l2.8 2.8M6.5 25.5l2.8-2.8M22.7 9.3l2.8-2.8"/></g></svg>',
+    partly: '<svg viewBox="0 0 32 32" fill="none"><circle cx="11" cy="12" r="5" fill="#ffd24a"/><path d="M10 22h14a5 5 0 0 0 0-10 6.5 6.5 0 0 0-12.2 2.2A4.5 4.5 0 0 0 10 22z" fill="#c5d4e8"/></svg>',
+    cloud: '<svg viewBox="0 0 32 32" fill="none"><path d="M9 23h15a5.5 5.5 0 0 0 0-11 7 7 0 0 0-13.5 2.5A5 5 0 0 0 9 23z" fill="#9eb6d4"/></svg>',
+    rain: '<svg viewBox="0 0 32 32" fill="none"><path d="M9 18h15a5.5 5.5 0 0 0 0-11 7 7 0 0 0-13.5 2.5A5 5 0 0 0 9 18z" fill="#8aa4bc"/><g stroke="#5ad0ff" stroke-width="1.6" stroke-linecap="round"><path d="M12 21v4M16 20v5M20 21v4"/></g></svg>',
+    storm: '<svg viewBox="0 0 32 32" fill="none"><path d="M9 17h15a5.5 5.5 0 0 0 0-11 7 7 0 0 0-13.5 2.5A5 5 0 0 0 9 17z" fill="#6a7f9a"/><path d="M17 18l-3 5h3l-2 5 6-7h-3l2-3z" fill="#ffd24a"/></svg>'
+  };
+
   var weatherHours = [
-    { t: "08:00", ico: "☀️", lab: "Ηλιοφάνεια", temp: 22 },
-    { t: "09:00", ico: "🌤", lab: "Αραιή συννεφιά", temp: 23 },
-    { t: "10:00", ico: "🌤", lab: "Αραιή συννεφιά", temp: 24 },
-    { t: "11:00", ico: "⛅", lab: "Αραιή συννεφιά", temp: 25 },
-    { t: "12:00", ico: "☁️", lab: "Συννεφιά", temp: 25 },
-    { t: "13:00", ico: "☁️", lab: "Συννεφιά", temp: 26 },
-    { t: "14:00", ico: "🌤", lab: "Αραιή συννεφιά", temp: 26 }
+    { t: "08:00", ico: "sun", lab: "Αίθριος", temp: 22 },
+    { t: "09:00", ico: "partly", lab: "Αραιή", temp: 23 },
+    { t: "10:00", ico: "sun", lab: "Ήπιος", temp: 24 },
+    { t: "11:00", ico: "cloud", lab: "Συννεφιά", temp: 25 },
+    { t: "12:00", ico: "rain", lab: "Βροχή", temp: 26 },
+    { t: "13:00", ico: "storm", lab: "Καταιγίδα", temp: 25 },
+    { t: "14:00", ico: "partly", lab: "Αραιή", temp: 24 }
   ];
 
   var windHours = [
-    { t: "08:00", deg: -35, dir: "ΝΑ", bf: 2, km: 9, cls: "g" },
-    { t: "09:00", deg: -35, dir: "ΝΑ", bf: 2, km: 11, cls: "g" },
-    { t: "10:00", deg: -90, dir: "Α", bf: 3, km: 13, cls: "g" },
-    { t: "11:00", deg: -90, dir: "Α", bf: 3, km: 15, cls: "g" },
-    { t: "12:00", deg: -90, dir: "Α", bf: 3, km: 17, cls: "o" },
-    { t: "13:00", deg: -45, dir: "ΑΝΑ", bf: 4, km: 21, cls: "o" },
-    { t: "14:00", deg: 0, dir: "Β", bf: 4, km: 24, cls: "r" }
+    { t: "08:00", deg: -35, dir: "ΝΑ", bf: 2, cls: "g" },
+    { t: "09:00", deg: -35, dir: "ΝΑ", bf: 2, cls: "g" },
+    { t: "10:00", deg: -90, dir: "Α", bf: 3, cls: "g" },
+    { t: "11:00", deg: -90, dir: "Α", bf: 3, cls: "g" },
+    { t: "12:00", deg: -90, dir: "Α", bf: 3, cls: "o" },
+    { t: "13:00", deg: -45, dir: "ΑΝΑ", bf: 4, cls: "o" },
+    { t: "14:00", deg: 0, dir: "Β", bf: 4, cls: "r" }
   ];
 
   var currentHours = [
@@ -41,7 +50,7 @@
     var root = $("weather-hours");
     if (!root) return;
     root.innerHTML = weatherHours.map(function (h) {
-      return '<article class="wh-cell"><div class="wh-ico">' + h.ico +
+      return '<article class="wh-cell"><div class="wh-ico">' + (ICO[h.ico] || ICO.sun) +
         '</div><time>' + h.t + '</time><span class="lab">' + h.lab +
         '</span><strong>' + h.temp + '°C</strong></article>';
     }).join("");
@@ -70,7 +79,7 @@
   function drawPressure() {
     var line = $("pressure-line"), core = $("pressure-line-core"), area = $("pressure-area");
     if (!line || !area) return;
-    var w = 320, h = 90, pad = 10;
+    var w = 320, h = 88, pad = 12;
     var min = Math.min.apply(null, pressurePts) - 3;
     var max = Math.max.apply(null, pressurePts) + 3;
     if (max === min) { min -= 2; max += 2; }
@@ -87,7 +96,7 @@
   function drawTide() {
     var line = $("tide-line"), area = $("tide-area");
     if (!line || !area) return;
-    var w = 280, h = 80, pad = 8;
+    var w = 280, h = 78, pad = 8;
     var xs = tidePts.map(function (_, i) { return pad + (i * (w - pad * 2)) / (tidePts.length - 1); });
     var ys = tidePts.map(function (v) { return pad + (1 - Math.min(1, Math.max(0, v))) * (h - pad * 2); });
     var d = "M" + xs[0] + "," + ys[0];
