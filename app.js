@@ -1,4 +1,4 @@
-/* Fishing Dashboard v33.1.0 — Stage 1 live Open-Meteo */
+/* Fishing Dashboard v34.0.0 — Stage 3 PWA + clean score */
 (function () {
   "use strict";
 
@@ -299,6 +299,77 @@
     });
   }
 
+
+  function showView(name) {
+    var dash = $("view-dashboard");
+    var views = ["map", "spots", "calendar", "settings"];
+    if (dash) dash.hidden = name !== "dashboard";
+    views.forEach(function (v) {
+      var el = $("view-" + v);
+      if (el) el.hidden = name !== v;
+    });
+    document.querySelectorAll(".nav-item").forEach(function (b) {
+      b.classList.toggle("active", b.getAttribute("data-nav") === name);
+    });
+    if (name === "calendar") renderCalendar();
+    try { localStorage.setItem("fd-view", name); } catch (e) {}
+  }
+
+  function renderCalendar() {
+    var root = $("cal-grid");
+    if (!root || root.dataset.ready) return;
+    var now = new Date();
+    var y = now.getFullYear(), m = now.getMonth();
+    var first = new Date(y, m, 1).getDay();
+    var days = new Date(y, m + 1, 0).getDate();
+    var html = "<div class=\"cal-head\">" + (m + 1) + "/" + y + "</div><div class=\"cal-days\">";
+    var labels = ["Κ","Δ","Τ","Τ","Π","Π","Σ"];
+    labels.forEach(function (l) { html += "<span class=\"cdim\">" + l + "</span>"; });
+    for (var i = 0; i < first; i++) html += "<span></span>";
+    for (var d = 1; d <= days; d++) {
+      var cls = d === now.getDate() ? " class=\"today\"" : "";
+      html += "<span" + cls + ">" + d + "</span>";
+    }
+    html += "</div>";
+    root.innerHTML = html;
+    root.dataset.ready = "1";
+  }
+
+  function bindTabs() {
+    document.querySelectorAll(".nav-item").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        showView(btn.getAttribute("data-nav") || "dashboard");
+      });
+    });
+    document.querySelectorAll(".menu-item").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var nav = btn.getAttribute("data-go");
+        if (nav) showView(nav);
+      });
+    });
+    try {
+      var v = localStorage.getItem("fd-view");
+      if (v) showView(v);
+    } catch (e) {}
+  }
+
+  function bindInstall() {
+    var deferred = null;
+    var btn = $("btn-install");
+    window.addEventListener("beforeinstallprompt", function (e) {
+      e.preventDefault();
+      deferred = e;
+      if (btn) btn.hidden = false;
+    });
+    if (btn) {
+      btn.addEventListener("click", function () {
+        if (!deferred) return;
+        deferred.prompt();
+        deferred.userChoice.then(function () { deferred = null; btn.hidden = true; });
+      });
+    }
+  }
+
   function bindUI() {
     var refresh = $("btn-refresh");
     if (refresh) {
@@ -392,6 +463,8 @@
   function init() {
     syncTechLabels();
     bindUI();
+    bindTabs();
+    bindInstall();
     renderWeather();
     renderWind();
     renderCurrents();
@@ -407,6 +480,6 @@
   else init();
 
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./service-worker.js").catch(function () {});
+    navigator.serviceWorker.register("./service-worker.js?v=34").catch(function () {});
   }
 })();

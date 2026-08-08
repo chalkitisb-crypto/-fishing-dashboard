@@ -1,21 +1,61 @@
-const CACHE_NAME = "fishing-dashboard-v18.5.0";
-const ASSETS = [
-  "./","./index.html","./style.css","./app.js","./manifest.json","./ico_uv.png","./ico_wind.png","./ico_moon.png","./ico_spin.png",
-  "./fish_left.png","./fish_right.png","./sun_scene.png","./moon_sphere.png",
-  "./score_gauge.jpg","./score_only.png","./tides_chart.jpg","./pressure_chart.jpg","./activity_tsipoura.jpg","./activity_clean.jpg",
-  "./wx_08.jpg","./wx_09.jpg","./wx_10.jpg","./wx_11.jpg","./wx_12.jpg","./wx_13.jpg","./wx_14.jpg",
-  "./tech_card_spinning.png","./tech_card_lrf.png","./tech_card_english.png","./tech_card_shore_jig.png"
+/* Fishing Dashboard SW v34 */
+var CACHE = "fd-v34";
+var ASSETS = [
+  "./",
+  "./index.html",
+  "./style.css",
+  "./app.js",
+  "./data.js",
+  "./manifest.json",
+  "./score_clean.png",
+  "./activity_body.jpg",
+  "./zone_map.png",
+  "./sun_scene.png",
+  "./moon_sphere.png",
+  "./fish_left.png",
+  "./fish_right.png",
+  "./ico_wx_sun.png",
+  "./ico_wx_partly.png",
+  "./ico_wx_haze.png",
+  "./ico_wx_cloud.png",
+  "./ico_wx_rain.png",
+  "./ico_wx_storm.png"
 ];
-self.addEventListener("install", (e) => {
-  e.waitUntil(caches.open(CACHE_NAME).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+
+self.addEventListener("install", function (e) {
+  e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(ASSETS); }).then(function () { return self.skipWaiting(); }));
 });
-self.addEventListener("activate", (e) => {
-  e.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))).then(() => self.clients.claim()));
+
+self.addEventListener("activate", function (e) {
+  e.waitUntil(
+    caches.keys().then(function (keys) {
+      return Promise.all(keys.filter(function (k) { return k !== CACHE; }).map(function (k) { return caches.delete(k); }));
+    }).then(function () { return self.clients.claim(); })
+  );
 });
-self.addEventListener("fetch", (e) => {
-  e.respondWith(caches.match(e.request).then((cached) => cached || fetch(e.request).then((r) => {
-    const copy = r.clone();
-    caches.open(CACHE_NAME).then((c) => c.put(e.request, copy));
-    return r;
-  }).catch(() => cached)));
+
+self.addEventListener("fetch", function (e) {
+  var url = e.request.url;
+  // network-first for API
+  if (url.indexOf("open-meteo.com") >= 0 || url.indexOf("marine-api") >= 0) {
+    e.respondWith(
+      fetch(e.request).then(function (r) {
+        return r;
+      }).catch(function () {
+        return caches.match(e.request);
+      })
+    );
+    return;
+  }
+  e.respondWith(
+    caches.match(e.request).then(function (cached) {
+      return cached || fetch(e.request).then(function (r) {
+        var copy = r.clone();
+        caches.open(CACHE).then(function (c) { c.put(e.request, copy); });
+        return r;
+      }).catch(function () {
+        return cached || new Response("Offline", { status: 503 });
+      });
+    })
+  );
 });

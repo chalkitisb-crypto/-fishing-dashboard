@@ -1,5 +1,5 @@
 /* v31.2 stage1 batch */
-/* Fishing Dashboard v33.1.0 */
+/* Fishing Dashboard v34.0.0 */
 
 .header{display:flex;align-items:center;gap:0;padding:6px 4px;position:sticky;top:0;z-index:20;
   background:linear-gradient(180deg,rgba(2,11,24,.98),rgba(2,11,24,.9));backdrop-filter:blur(12px)}
@@ -27,7 +27,7 @@
 .activity-panel{width:100%;height:auto;min-height:180px;object-fit:contain;object-position:center;
   display:block;margin:0;border:none;border-radius:8px;transform:scale(1.1);transform-origin:center top}
 
-/* Fishing Dashboard v33.1.0 — final locked visuals */
+/* Fishing Dashboard v34.0.0 — final locked visuals */
 :root{
   --bg:#020b18;--cyan:#35c8ff;--gold:#f0c14a;--green:#3dde7a;--orange:#ff9a3c;--red:#ff5a5a;
   --text:#e8f4ff;--muted:#8aa4bc;--line:rgba(53,200,255,.38);--radius:16px;
@@ -216,7 +216,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);overflow-x:hidden;
 .row-score .card{height:auto!important;min-height:0!important}
 
 
-/* === v33.1.0 HARD OVERRIDES (>90% reliability) === */
+/* === v34.0.0 HARD OVERRIDES (>90% reliability) === */
 .header{display:flex!important;align-items:center!important;gap:0!important;padding:6px 4px!important}
 .header .icon-btn{flex-shrink:0!important;margin:0!important}
 .brand-fish{width:82px!important;height:52px!important;object-fit:contain!important;flex-shrink:0!important;margin:0!important}
@@ -323,3 +323,45 @@ html,body{height:100%;background:var(--bg);color:var(--text);overflow-x:hidden;
   background:#35c8ff;box-shadow:0 0 8px #35c8ff;
 }
 .score-live{z-index:3}
+
+/* v34 clean score + views */
+.score-img{width:100%;height:auto;display:block;border-radius:12px}
+.score-rod-pivot{top:62%;left:50%}
+.score-rod-arm{height:38%}
+.score-live{
+  left:50%;bottom:6%;transform:translateX(-50%);
+  background:rgba(2,11,24,.82);border:1px solid rgba(53,200,255,.4);
+  border-radius:14px;padding:8px 14px;min-width:88px;
+}
+.score-live-num{font-size:32px;font-weight:800;color:#35c8ff}
+.score-reasons{font-size:10px;opacity:.9;max-width:160px}
+.view{padding:12px 12px 88px;max-width:480px;margin:0 auto}
+.view-card{padding:14px}
+.view-text{color:#cde;font-size:14px;line-height:1.45}
+.muted{color:#6a8aa0;font-size:12px}
+.view-map-placeholder{
+  margin-top:12px;height:180px;border-radius:14px;
+  background:linear-gradient(160deg,#0a1a2e,#123);
+  border:1px dashed rgba(53,200,255,.35);
+  display:flex;align-items:center;justify-content:center;color:#8ab;font-size:14px
+}
+.spot-list{list-style:none;padding:0;margin:12px 0}
+.spot-list li{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 12px;margin:6px 0;border-radius:12px;
+  background:rgba(53,200,255,.06);border:1px solid rgba(53,200,255,.2);color:#e8f4ff;font-size:13px
+}
+.mini{background:rgba(53,200,255,.15);border:1px solid rgba(53,200,255,.4);color:#35c8ff;
+  border-radius:8px;padding:4px 10px;font-size:12px}
+.set-row{display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:10px 0;border-bottom:1px solid rgba(53,200,255,.12);color:#e8f4ff;font-size:14px}
+.set-row select{background:#0a1a2e;color:#e8f4ff;border:1px solid rgba(53,200,255,.3);
+  border-radius:8px;padding:6px 8px}
+.btn-primary{width:100%;margin-top:14px;padding:12px;border:none;border-radius:12px;
+  background:linear-gradient(90deg,#1a8,#35c8ff);color:#021018;font-weight:800;font-size:15px}
+.cal-grid{margin-top:10px}
+.cal-head{text-align:center;color:#35c8ff;font-weight:700;margin-bottom:8px}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;font-size:12px;color:#cde}
+.cal-days .cdim{color:#6a8aa0;font-size:10px}
+.cal-days .today{background:rgba(53,200,255,.25);border-radius:8px;color:#35c8ff;font-weight:700}
+#view-dashboard[hidden]{display:none!important}

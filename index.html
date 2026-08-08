@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <title>Fishing Dashboard — Κάλυμνος</title>
   <link rel="manifest" href="manifest.json"/>
-  <link rel="stylesheet" href="style.css?v=33.1.0"/>
+  <link rel="stylesheet" href="style.css?v=34.0.0"/>
 </head>
 <body>
 <div class="app">
@@ -37,7 +37,7 @@
     </div>
   </div>
 
-  <main class="main">
+  <main class="main" id="view-dashboard">
     <div id="data-status" class="data-status">Σύνδεση δεδομένων…</div>
     <!-- HERO: sun full-bleed background -->
     <section class="card hero">
@@ -133,7 +133,7 @@
     <div class="row row-score">
       <section class="card score-card">
         <div class="score-wrap">
-          <img src="score_rod.png" alt="Score" class="score-img"/>
+          <img src="score_clean.png" alt="Score" class="score-img"/>
           <div class="score-rod-layer" aria-hidden="true">
             <div class="score-rod-pivot">
               <div class="score-rod-arm" id="score-rod-arm">
@@ -195,6 +195,50 @@
     <div class="bottom-spacer"></div>
   </main>
 
+  
+  <section class="view" id="view-map" hidden>
+    <div class="card view-card">
+      <div class="sec-title"><i class="dot"></i> ΧΑΡΤΗΣ</div>
+      <p class="view-text">Χάρτης spots · pins · συνθήκες ανά σημείο.<br/><span class="muted">Σύντομα — Στάδιο 4</span></p>
+      <div class="view-map-placeholder">🗺️ Κάλυμνος · επιλογή σημείου</div>
+    </div>
+  </section>
+  <section class="view" id="view-spots" hidden>
+    <div class="card view-card">
+      <div class="sec-title"><i class="dot"></i> SPOTS</div>
+      <p class="view-text">Αποθηκευμένα σημεία · αγαπημένα · σημειώσεις.</p>
+      <ul class="spot-list">
+        <li>📍 Νότια άκρη · 2–4μ <button type="button" class="mini">Άνοιγμα</button></li>
+        <li>📍 Λιμανάκι <button type="button" class="mini">Άνοιγμα</button></li>
+      </ul>
+      <p class="muted">Σύντομα πλήρης διαχείριση</p>
+    </div>
+  </section>
+  <section class="view" id="view-calendar" hidden>
+    <div class="card view-card">
+      <div class="sec-title"><i class="dot"></i> ΗΜΕΡΟΛΟΓΙΟ</div>
+      <p class="view-text">Score ημέρας · είδη · μήνες αναπαραγωγής.</p>
+      <div class="cal-grid" id="cal-grid"></div>
+      <p class="muted">Σύντομα πλήρη δεδομένα ειδών</p>
+    </div>
+  </section>
+  <section class="view" id="view-settings" hidden>
+    <div class="card view-card">
+      <div class="sec-title"><i class="dot"></i> ΡΥΘΜΙΣΕΙΣ</div>
+      <label class="set-row">Μονάδα ανέμου
+        <select id="set-wind-unit"><option>Μποφόρ</option><option>kn</option><option>km/h</option></select>
+      </label>
+      <label class="set-row">Θερμοκρασία
+        <select id="set-temp-unit"><option>°C</option><option>°F</option></select>
+      </label>
+      <label class="set-row">Τοποθεσία default
+        <select id="set-loc"><option value="kalymnos">Κάλυμνος</option><option value="gps">GPS συσκευής</option></select>
+      </label>
+      <button type="button" class="btn-primary" id="btn-install" hidden>Εγκατάσταση εφαρμογής</button>
+      <p class="muted" id="pwa-status">PWA · offline cache ενεργό</p>
+    </div>
+  </section>
+
   <nav class="bottom-nav">
     <button class="nav-item active" data-nav="dashboard" type="button"><span>◉</span>DASHBOARD</button>
     <button class="nav-item" data-nav="map" type="button"><span>▣</span>ΧΑΡΤΗΣ</button>
@@ -203,7 +247,7 @@
     <button class="nav-item" data-nav="settings" type="button"><span>⚙</span>ΡΥΘΜΙΣΕΙΣ</button>
   </nav>
 </div>
-<script src="data.js?v=33.1.0"></script>
-<script src="app.js?v=33.1.0"></script>
+<script src="data.js?v=34.0.0"></script>
+<script src="app.js?v=34.0.0"></script>
 </body>
 </html>
