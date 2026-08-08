@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <title>Fishing Dashboard — Κάλυμνος</title>
   <link rel="manifest" href="manifest.json"/>
-  <link rel="stylesheet" href="style.css?v=34.0.0"/>
+  <link rel="stylesheet" href="style.css?v=35.0.0"/>
 </head>
 <body>
 <div class="app">
@@ -120,7 +120,11 @@
       </section>
       <section class="card">
         <div class="sec-title"><i class="dot"></i> ΠΑΛΙΡΡΟΙΕΣ</div>
-        <img src="tides_chart.png" alt="Παλίρροιες" class="chart-img tides-img"/>
+        <div class="tide-now"><b id="tide-h">—</b> <span id="tide-info">—</span></div>
+        <svg class="chart-svg" viewBox="0 0 320 100" preserveAspectRatio="none" aria-hidden="true">
+          <polyline id="tide-line" fill="none" stroke="#35c8ff" stroke-width="2.5" points=""/>
+          <circle id="tide-dot" cx="0" cy="0" r="4" fill="#35c8ff"/>
+        </svg>
       </section>
     </div>
 
@@ -131,17 +135,33 @@
     </section>
 
     <div class="row row-score">
-      <section class="card score-card">
+            <section class="card score-card">
+        <div class="sec-title"><i class="dot"></i> FISHING SCORE</div>
         <div class="score-wrap">
-          <img src="score_clean.png" alt="Score" class="score-img"/>
-          <div class="score-rod-layer" aria-hidden="true">
-            <div class="score-rod-pivot">
-              <div class="score-rod-arm" id="score-rod-arm">
-                <span class="score-rod-line"></span>
-                <span class="score-rod-tip"></span>
-              </div>
-            </div>
-          </div>
+          <svg class="score-gauge" viewBox="0 0 200 160" aria-hidden="true">
+            <defs>
+              <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#e74c3c"/>
+                <stop offset="35%" stop-color="#f1c40f"/>
+                <stop offset="65%" stop-color="#2ecc71"/>
+                <stop offset="100%" stop-color="#1abc9c"/>
+              </linearGradient>
+            </defs>
+            <path d="M20 130 A80 80 0 0 1 180 130" fill="none" stroke="rgba(53,200,255,.15)" stroke-width="14" stroke-linecap="round"/>
+            <path d="M20 130 A80 80 0 0 1 180 130" fill="none" stroke="url(#arcGrad)" stroke-width="12" stroke-linecap="round"/>
+            <g class="score-ticks" fill="#8ab" font-size="9" text-anchor="middle">
+              <text x="28" y="148">0</text>
+              <text x="55" y="55">25</text>
+              <text x="100" y="38">50</text>
+              <text x="145" y="55">75</text>
+              <text x="172" y="148">100</text>
+            </g>
+            <g id="score-rod-arm" style="transform-origin:100px 130px;transition:transform .8s cubic-bezier(.2,.8,.2,1)">
+              <line x1="100" y1="130" x2="100" y2="55" stroke="#c4a35a" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="100" cy="55" r="4" fill="#35c8ff"/>
+              <circle cx="100" cy="130" r="6" fill="#1a3048" stroke="#35c8ff" stroke-width="2"/>
+            </g>
+          </svg>
           <div class="score-live" id="score-live">
             <div class="score-live-num" id="score-num">—</div>
             <div class="score-live-lab" id="score-lab">—</div>
@@ -247,7 +267,7 @@
     <button class="nav-item" data-nav="settings" type="button"><span>⚙</span>ΡΥΘΜΙΣΕΙΣ</button>
   </nav>
 </div>
-<script src="data.js?v=34.0.0"></script>
-<script src="app.js?v=34.0.0"></script>
+<script src="data.js?v=35.0.0"></script>
+<script src="app.js?v=35.0.0"></script>
 </body>
 </html>

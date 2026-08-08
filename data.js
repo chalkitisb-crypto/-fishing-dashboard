@@ -126,7 +126,7 @@
       "&hourly=temperature_2m,weather_code,wind_speed_10m,wind_direction_10m,pressure_msl,precipitation_probability" +
       "&daily=sunrise,sunset,uv_index_max&timezone=Europe%2FAthens&forecast_days=2";
     var marine = "https://marine-api.open-meteo.com/v1/marine?latitude=" + lat + "&longitude=" + lon +
-      "&hourly=wave_height,wave_period,wave_direction,sea_surface_temperature&timezone=Europe%2FAthens&forecast_days=1";
+      "&hourly=wave_height,wave_period,wave_direction,sea_surface_temperature,ocean_current_velocity,ocean_current_direction&timezone=Europe%2FAthens&forecast_days=1";
     return { forecast: base, marine: marine };
   }
 
@@ -189,20 +189,60 @@
       waterTemp: mh.sea_surface_temperature ? mh.sea_surface_temperature[mi] : null
     };
 
-    // currents: Stage1 placeholder from wind proxy until Poseidon
-    var currentHours = windHours.map(function (w) {
-      return {
-        t: w.t,
-        deg: w.deg,
-        dir: w.dir,
-        kn: (Math.max(0.1, w.bf * 0.15)).toFixed(1),
-        cls: w.cls,
-        proxy: true
-      };
-    });
+    // Ocean currents from Open-Meteo marine (km/h → kn)
+    var currentHours = [];
+    if (mh.ocean_current_velocity && mh.ocean_current_direction && mh.time) {
+      var cStart = mi;
+      for (i = cStart; i < Math.min(cStart + 12, mh.time.length); i++) {
+        var cvelKmh = mh.ocean_current_velocity[i] || 0;
+        var ckn = cvelKmh / 1.852;
+        var cdeg = mh.ocean_current_direction[i] || 0;
+        var cbfProxy = ckn < 0.3 ? 1 : ckn < 0.6 ? 2 : ckn < 1.0 ? 3 : 4;
+        currentHours.push({
+          t: hhmm(mh.time[i]),
+          deg: cdeg,
+          dir: degToCompass(cdeg),
+          kn: ckn.toFixed(1),
+          cls: bfClass(cbfProxy),
+          proxy: false,
+          source: "open-meteo-marine"
+        });
+      }
+    }
+    if (!currentHours.length) {
+      currentHours = windHours.map(function (w) {
+        return { t: w.t, deg: w.deg, dir: w.dir, kn: (Math.max(0.1, w.bf * 0.12)).toFixed(1), cls: w.cls, proxy: true };
+      });
+    }
+
+    // Aegean microtidal model (approx) — M2 dominant, range ~0.15–0.45 m near Dodecanese
+    function tideHeightAt(date) {
+      var t = date.getTime() / 1000;
+      // Simplified constituents (radians)
+      var M2 = 0.18 * Math.sin(2 * Math.PI * (t / 44714.16) + 0.4);
+      var S2 = 0.06 * Math.sin(2 * Math.PI * (t / 43200) + 1.1);
+      var K1 = 0.04 * Math.sin(2 * Math.PI * (t / 86164) + 0.2);
+      return 0.25 + M2 + S2 + K1; // mean ~0.25 m
+    }
+    var tidePts = [];
+    var tideTimes = [];
+    var tideNow = tideHeightAt(now);
+    for (i = 0; i < 13; i++) {
+      var td = new Date(now.getTime() + (i - 2) * 3600 * 1000);
+      tidePts.push(Math.round(tideHeightAt(td) * 100) / 100);
+      tideTimes.push(hhmm(td.toISOString()));
+    }
+    // next high/low rough
+    var tideExtrema = [];
+    for (i = 1; i < tidePts.length - 1; i++) {
+      if (tidePts[i] >= tidePts[i - 1] && tidePts[i] >= tidePts[i + 1])
+        tideExtrema.push({ t: tideTimes[i], h: tidePts[i], type: "High" });
+      if (tidePts[i] <= tidePts[i - 1] && tidePts[i] <= tidePts[i + 1])
+        tideExtrema.push({ t: tideTimes[i], h: tidePts[i], type: "Low" });
+    }
 
     return {
-      source: "open-meteo",
+      source: "open-meteo+marine",
       poseidon: null,
       location: loc,
       fetchedAt: now.toISOString(),
@@ -244,7 +284,12 @@
         return "→ Σταθερή";
       })(),
       moon: moonInfo(now),
-      sea: sea
+      sea: sea,
+      tidePts: tidePts,
+      tideTimes: tideTimes,
+      tideNow: tideNow,
+      tideExtrema: tideExtrema,
+      tideSource: "aegean-harmonic-approx"
     };
   }
 

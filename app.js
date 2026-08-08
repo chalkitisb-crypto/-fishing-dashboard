@@ -1,4 +1,4 @@
-/* Fishing Dashboard v34.0.0 — Stage 3 PWA + clean score */
+/* Fishing Dashboard v35.0.0 — Stage 1 complete APIs + score SVG */
 (function () {
   "use strict";
 
@@ -88,20 +88,31 @@
     }
   }
 
-  function drawTide() {
+  function drawTide(pts) {
+    pts = pts || tidePts;
     var line = $("tide-line");
-    if (!line) return;
-    var w = 320, h = 100, padX = 10, padTop = 10, padBot = 16;
-    var xs = tidePts.map(function (_, i) {
-      return padX + (i * (w - padX * 2)) / Math.max(1, tidePts.length - 1);
+    var dot = $("tide-dot");
+    if (!line || !pts || !pts.length) return;
+    var w = 320, h = 100, padX = 10, padTop = 12, padBot = 14;
+    var min = Math.min.apply(null, pts) - 0.05;
+    var max = Math.max.apply(null, pts) + 0.05;
+    var xs = pts.map(function (_, i) {
+      return padX + (i * (w - padX * 2)) / Math.max(1, pts.length - 1);
     });
-    var ys = tidePts.map(function (v) {
-      return padTop + (1 - Math.min(1.2, Math.max(0, v)) / 1.2) * (h - padTop - padBot);
+    var ys = pts.map(function (v) {
+      return padTop + (1 - (v - min) / (max - min)) * (h - padTop - padBot);
     });
     line.setAttribute("points", xs.map(function (x, i) {
       return x.toFixed(1) + "," + ys[i].toFixed(1);
     }).join(" "));
+    // now marker ~ index 2 (we built with -2 offset)
+    var ni = Math.min(2, pts.length - 1);
+    if (dot) {
+      dot.setAttribute("cx", xs[ni]);
+      dot.setAttribute("cy", ys[ni]);
+    }
   }
+
 
   function applyHero(data) {
     if (!data) return;
@@ -153,16 +164,19 @@
 
 
   /** Map score 0–100 → degrees. Gauge arc: left(-120) … center(0) … right(+120) */
+  
+
+
   function scoreToAngle(score) {
     score = Math.max(0, Math.min(100, Number(score) || 0));
-    return -120 + (score / 100) * 240;
+    return -90 + (score / 100) * 180;
   }
 
   function setRodAngle(score) {
     var arm = $("score-rod-arm");
     if (!arm) return;
     var deg = scoreToAngle(score);
-    arm.style.transform = "rotate(" + deg + "deg)";
+    arm.setAttribute("transform", "rotate(" + deg + " 100 130)");
     arm.dataset.score = String(score);
   }
 
@@ -257,7 +271,16 @@
     currentHours = data.currentHours || [];
     pressurePts = data.pressurePts || [];
     pressureTimes = data.pressureTimes || [];
+    tidePts = data.tidePts || tidePts;
     applyHero(data);
+    if ($("tide-h") && data.tideNow != null) {
+      $("tide-h").textContent = data.tideNow.toFixed(2) + " m";
+    }
+    if ($("tide-info")) {
+      var ex = (data.tideExtrema || [])[0];
+      $("tide-info").textContent = ex ? (ex.type + " ~ " + ex.t) : (data.tideSource || "");
+    }
+
     renderWeather();
     renderWind();
     renderCurrents();
@@ -277,7 +300,7 @@
       var t = new Date(data.fetchedAt);
       var hh = String(t.getHours()).padStart(2, "0");
       var mm = String(t.getMinutes()).padStart(2, "0");
-      setStatus("Live · " + (data.location && data.location.name) + " · " + hh + ":" + mm + " · Open-Meteo");
+      setStatus("Live · " + (data.location && data.location.name) + " · " + hh + ":" + mm + " · Meteo+Marine");
     }).catch(function (err) {
       var cached = FDData.loadCache();
       if (cached && cached.data) {
