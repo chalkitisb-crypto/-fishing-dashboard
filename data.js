@@ -87,6 +87,39 @@
     } catch (e) { return null; }
   }
 
+
+  function moonInfo(date) {
+    // Approximate illumination + phase (simple astronomical formula)
+    var lp = 2551443; // synodic month seconds-ish via days
+    var newMoon = Date.UTC(2000, 0, 6, 18, 14, 0);
+    var now = date.getTime();
+    var phase = ((now - newMoon) / 1000) % (29.53058867 * 86400);
+    if (phase < 0) phase += 29.53058867 * 86400;
+    var age = phase / 86400; // days
+    var illum = Math.round((1 - Math.cos((2 * Math.PI * age) / 29.53058867)) / 2 * 100);
+    var name, wax;
+    if (age < 1.84566) { name = "Νέα Σελήνη"; wax = true; }
+    else if (age < 5.53699) { name = "Αύξουσα<br/>Μηνοειδής"; wax = true; }
+    else if (age < 9.22831) { name = "Αύξουσα<br/>Αμφίκυρτη"; wax = true; }
+    else if (age < 12.91963) { name = "Αύξουσα<br/>Αμφίκυρτη"; wax = true; }
+    else if (age < 16.61096) { name = "Πανσέληνος"; wax = false; }
+    else if (age < 20.30228) { name = "Φθίνουσα<br/>Αμφίκυρτη"; wax = false; }
+    else if (age < 23.99361) { name = "Φθίνουσα<br/>Αμφίκυρτη"; wax = false; }
+    else if (age < 27.68493) { name = "Φθίνουσα<br/>Μηνοειδής"; wax = false; }
+    else { name = "Νέα Σελήνη"; wax = true; }
+    // Rough moonrise/set estimate from phase (not observatory-grade)
+    var lag = age / 29.53058867 * 24; // hours after sunrise roughly
+    function pad(n) { n = Math.floor(n) % 24; if (n < 0) n += 24; return (n < 10 ? "0" : "") + n; }
+    var riseH = (6 + lag) % 24;
+    var setH = (riseH + 12.5) % 24;
+    var rise = pad(riseH) + ":" + pad((riseH % 1) * 60);
+    var set = pad(setH) + ":" + pad((setH % 1) * 60);
+    // fix minutes from fractional
+    rise = pad(riseH) + ":" + String(Math.floor((riseH % 1) * 60)).padStart(2, "0");
+    set = pad(setH) + ":" + String(Math.floor((setH % 1) * 60)).padStart(2, "0");
+    return { pct: illum, phaseHtml: name, age: age, rise: rise, set: set };
+  }
+
   function buildUrls(lat, lon) {
     var base = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon +
       "&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,pressure_msl,uv_index" +
@@ -202,6 +235,15 @@
       currentHours: currentHours,
       pressurePts: pressurePts,
       pressureTimes: pressureTimes,
+      pressureTrend: (function () {
+        if (pressurePts.length < 2) return "—";
+        var a = pressurePts[0], b = pressurePts[pressurePts.length - 1];
+        var d = b - a;
+        if (d > 0.5) return "↑ Άνοδος";
+        if (d < -0.5) return "↓ Πτώση";
+        return "→ Σταθερή";
+      })(),
+      moon: moonInfo(now),
       sea: sea
     };
   }

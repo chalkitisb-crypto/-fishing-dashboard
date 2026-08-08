@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <title>Fishing Dashboard — Κάλυμνος</title>
   <link rel="manifest" href="manifest.json"/>
-  <link rel="stylesheet" href="style.css?v=31.0.0"/>
+  <link rel="stylesheet" href="style.css?v=31.2.0"/>
 </head>
 <body>
 <div class="app">
@@ -77,7 +77,12 @@
       <section class="card">
         <div class="sec-title"><i class="dot"></i> ΒΑΡΟΜΕΤΡΙΚΗ ΠΙΕΣΗ</div>
         <div class="pressure-body">
-          <img src="pressure_chart.png" alt="Πίεση" class="chart-img"/>
+          <div class="pressure-now"><b id="pressure-hpa">—</b><span id="pressure-trend">—</span></div>
+          <svg id="pressure-svg" class="chart-svg" viewBox="0 0 320 120" preserveAspectRatio="none" aria-hidden="true">
+            <path id="pressure-area" fill="rgba(245,197,66,.15)" d=""/>
+            <polyline id="pressure-line" fill="none" stroke="#f5c542" stroke-width="2.5" points=""/>
+            <g id="pressure-dots"></g>
+          </svg>
         </div>
       </section>
     </div>
@@ -88,13 +93,13 @@
         <div class="moon-body">
           <img src="moon_sphere.png" alt="" class="moon-img"/>
           <div class="moon-info">
-            <div class="moon-pct">72%</div>
-            <div class="moon-phase">Αύξουσα<br/>Αμφίκυρτη</div>
+            <div class="moon-pct" id="moon-pct">—</div>
+            <div class="moon-phase" id="moon-phase">—</div>
           </div>
         </div>
         <div class="moon-times">
-          <div class="moon-time"><span class="mt-ico">↑</span><div><span>Ανατολή</span><strong>13:28</strong></div></div>
-          <div class="moon-time"><span class="mt-ico">↓</span><div><span>Δύση</span><strong>01:02</strong></div></div>
+          <div class="moon-time"><span class="mt-ico">↑</span><div><span>Ανατολή</span><strong id="moon-rise">—</strong></div></div>
+          <div class="moon-time"><span class="mt-ico">↓</span><div><span>Δύση</span><strong id="moon-set">—</strong></div></div>
         </div>
       </section>
       <section class="card card-scroll">
@@ -194,7 +199,7 @@
     <button class="nav-item" data-nav="settings" type="button"><span>⚙</span>ΡΥΘΜΙΣΕΙΣ</button>
   </nav>
 </div>
-<script src="data.js?v=31.0.0"></script>
-<script src="app.js?v=31.0.0"></script>
+<script src="data.js?v=31.2.0"></script>
+<script src="app.js?v=31.2.0"></script>
 </body>
 </html>

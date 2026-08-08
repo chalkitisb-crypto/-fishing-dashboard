@@ -1,4 +1,4 @@
-/* Fishing Dashboard v31.0.0 — Stage 1 live Open-Meteo */
+/* Fishing Dashboard v31.2.0 — Stage 1 live Open-Meteo */
 (function () {
   "use strict";
 
@@ -126,6 +126,20 @@
     if ($("sea-period")) $("sea-period").textContent = sea.period != null ? Math.round(sea.period) + " s" : "—";
     if ($("sea-dir")) $("sea-dir").textContent = sea.dirDeg != null && window.FDData ? window.FDData.degToCompass(sea.dirDeg) : "—";
     if ($("sea-temp")) $("sea-temp").textContent = sea.waterTemp != null ? Math.round(sea.waterTemp) + "°C" : "—";
+
+    if ($("pressure-hpa") && c.pressure != null) {
+      $("pressure-hpa").textContent = Math.round(c.pressure) + " hPa";
+    }
+    if ($("pressure-trend") && data.pressureTrend) {
+      $("pressure-trend").textContent = data.pressureTrend;
+    }
+    if (data.moon) {
+      if ($("moon-pct")) $("moon-pct").textContent = data.moon.pct + "%";
+      if ($("moon-phase")) $("moon-phase").innerHTML = data.moon.phaseHtml;
+      if ($("moon-rise") && data.moon.rise) $("moon-rise").textContent = data.moon.rise;
+      if ($("moon-set") && data.moon.set) $("moon-set").textContent = data.moon.set;
+    }
+
 
     var locEl = document.querySelector(".brand-loc");
     if (locEl && data.location) {
