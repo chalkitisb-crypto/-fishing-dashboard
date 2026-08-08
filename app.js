@@ -1,53 +1,37 @@
-/* Fishing Dashboard v29.1.0 — final locked visuals */
+/* Fishing Dashboard v31.0.0 — Stage 1 live Open-Meteo */
 (function () {
   "use strict";
 
-  var weatherHours = [
-    { t: "08:00", ico: "ico_wx_sun.png", lab: "Αίθριος", temp: 22 },
-    { t: "09:00", ico: "ico_wx_partly.png", lab: "Αραιή", temp: 23 },
-    { t: "10:00", ico: "ico_wx_haze.png", lab: "Ήπιος", temp: 24 },
-    { t: "11:00", ico: "ico_wx_cloud.png", lab: "Συννεφιά", temp: 25 },
-    { t: "12:00", ico: "ico_wx_rain.png", lab: "Βροχή", temp: 26 },
-    { t: "13:00", ico: "ico_wx_storm.png", lab: "Καταιγίδα", temp: 25 },
-    { t: "14:00", ico: "ico_wx_partly.png", lab: "Αραιή", temp: 24 }
-  ];
-
-  var windHours = [
-    { t: "08:00", deg: -35, dir: "ΝΑ", bf: 2, cls: "g" },
-    { t: "09:00", deg: -35, dir: "ΝΑ", bf: 2, cls: "g" },
-    { t: "10:00", deg: -90, dir: "Α", bf: 3, cls: "g" },
-    { t: "11:00", deg: -90, dir: "Α", bf: 3, cls: "g" },
-    { t: "12:00", deg: -90, dir: "Α", bf: 3, cls: "o" },
-    { t: "13:00", deg: -45, dir: "ΑΝΑ", bf: 4, cls: "o" },
-    { t: "14:00", deg: 0, dir: "Β", bf: 4, cls: "r" }
-  ];
-
-  var currentHours = [
-    { t: "08:00", deg: -35, dir: "ΝΑ", kn: "0.3", cls: "g" },
-    { t: "09:00", deg: -35, dir: "ΝΑ", kn: "0.4", cls: "g" },
-    { t: "10:00", deg: -90, dir: "Α", kn: "0.4", cls: "g" },
-    { t: "11:00", deg: -90, dir: "Α", kn: "0.5", cls: "g" },
-    { t: "12:00", deg: -90, dir: "Α", kn: "0.6", cls: "g" },
-    { t: "13:00", deg: -45, dir: "ΑΝΑ", kn: "0.6", cls: "o" },
-    { t: "14:00", deg: -45, dir: "ΑΝΑ", kn: "0.7", cls: "r" }
-  ];
-
-  var pressurePts = [1017, 1018, 1018, 1019, 1020, 1021, 1019];
-  var pressureTimes = ["08:00","09:00","10:00","11:00","12:00","13:00","14:00"];
+  var weatherHours = [];
+  var windHours = [];
+  var currentHours = [];
+  var pressurePts = [];
+  var pressureTimes = [];
   var tidePts = [0.15, 0.4, 0.9, 1.15, 0.7, 0.3, 0.18];
 
-  /* Stars ↔ label mapping (locked) */
   var STAR_LABEL = { 5: "Ιδανική", 4: "Πολύ καλή", 3: "Καλή", 2: "Μέτρια", 1: "Κακή" };
   function starsText(n) {
-    n = Math.max(1, Math.min(5, n|0));
+    n = Math.max(1, Math.min(5, n | 0));
     return "★★★★★".slice(0, n) + "☆☆☆☆☆".slice(0, 5 - n);
   }
 
   function $(id) { return document.getElementById(id); }
 
+  function setStatus(msg, isErr) {
+    var el = $("data-status");
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.toggle("err", !!isErr);
+    el.classList.add("show");
+  }
+
   function renderWeather() {
     var root = $("weather-hours");
     if (!root) return;
+    if (!weatherHours.length) {
+      root.innerHTML = '<article class="wh-cell"><span class="lab">Φόρτωση…</span></article>';
+      return;
+    }
     root.innerHTML = weatherHours.map(function (h) {
       return '<article class="wh-cell"><img class="wh-ico" src="' + h.ico + '" alt=""/>' +
         '<time>' + h.t + '</time><span class="lab">' + h.lab +
@@ -59,9 +43,10 @@
     var root = $("wind-hours");
     if (!root) return;
     root.innerHTML = windHours.map(function (h) {
-      return '<article class="w-cell"><time>' + h.t + '</time>' +
-        '<svg class="arr ' + h.cls + '" style="--deg:' + h.deg + 'deg" viewBox="0 0 24 24"><path d="M12 2 L22 20 L12 16 L2 20 Z"/></svg>' +
-        '<div class="dir">' + h.dir + '</div><strong>' + h.bf + '</strong></article>';
+      return '<article class="wh-cell wind-cell"><div class="wind-arrow ' + h.cls +
+        '" style="transform:rotate(' + h.deg + 'deg)">➤</div>' +
+        '<time>' + h.t + '</time><span class="lab">' + h.dir +
+        '</span><strong>' + h.bf + '</strong></article>';
     }).join("");
   }
 
@@ -69,82 +54,130 @@
     var root = $("current-hours");
     if (!root) return;
     root.innerHTML = currentHours.map(function (h) {
-      return '<article class="w-cell"><time>' + h.t + '</time>' +
-        '<svg class="arr ' + h.cls + '" style="--deg:' + h.deg + 'deg" viewBox="0 0 24 24"><path d="M12 2 L22 20 L12 16 L2 20 Z"/></svg>' +
-        '<div class="dir">' + h.dir + '</div><strong>' + h.kn + ' kn</strong></article>';
+      return '<article class="wh-cell"><div class="wind-arrow ' + h.cls +
+        '" style="transform:rotate(' + h.deg + 'deg)">➤</div>' +
+        '<time>' + h.t + '</time><span class="lab">' + h.dir +
+        '</span><strong>' + h.kn + ' kn</strong></article>';
     }).join("");
   }
 
   function drawPressure() {
-    var line = $("pressure-line"), core = $("pressure-line-core"), area = $("pressure-area"), dots = $("pressure-dots");
+    var line = $("pressure-line");
+    var area = $("pressure-area");
+    var dots = $("pressure-dots");
     if (!line || !area) return;
-    var w = 320, h = 100, padX = 18, padTop = 18, padBot = 22;
-    var min = Math.min.apply(null, pressurePts) - 2;
-    var max = Math.max.apply(null, pressurePts) + 2;
-    if (max - min < 4) { var mid = (max + min) / 2; min = mid - 3; max = mid + 3; }
-    var xs = pressurePts.map(function (_, i) { return padX + (i * (w - padX * 2)) / (pressurePts.length - 1); });
-    var ys = pressurePts.map(function (v) { return padTop + (1 - (v - min) / (max - min)) * (h - padTop - padBot); });
+    if (!pressurePts.length) return;
+    var w = 320, h = 120, padX = 12, padTop = 12, padBot = 20;
+    var min = Math.min.apply(null, pressurePts) - 1;
+    var max = Math.max.apply(null, pressurePts) + 1;
+    var xs = pressurePts.map(function (_, i) {
+      return padX + (i * (w - padX * 2)) / Math.max(1, pressurePts.length - 1);
+    });
+    var ys = pressurePts.map(function (v) {
+      return padTop + (1 - (v - min) / (max - min)) * (h - padTop - padBot);
+    });
     var pts = xs.map(function (x, i) { return x.toFixed(1) + "," + ys[i].toFixed(1); }).join(" ");
     line.setAttribute("points", pts);
-    if (core) core.setAttribute("points", pts);
-    /* Strong yellow shadow fill under line */
     area.setAttribute("d", "M" + xs[0] + "," + (h - 2) + " " + xs.map(function (x, i) {
       return "L" + x + "," + ys[i];
     }).join(" ") + " L" + xs[xs.length - 1] + "," + (h - 2) + " Z");
     if (dots) {
-      var html = "";
-      for (var i = 0; i < xs.length; i++) {
-        html += '<circle cx="' + xs[i].toFixed(1) + '" cy="' + ys[i].toFixed(1) +
-          '" r="4.5" fill="#f0c14a" stroke="#1a1200" stroke-width="1.2"/>' +
-          '<circle cx="' + xs[i].toFixed(1) + '" cy="' + ys[i].toFixed(1) +
-          '" r="8" fill="#f0c14a" opacity="0.28"/>' +
-          '<text x="' + xs[i].toFixed(1) + '" y="' + (ys[i] - 10).toFixed(1) +
-          '" text-anchor="middle" fill="#f0c14a" font-size="9" font-weight="700">' +
-          pressurePts[i] + '</text>';
-        if (pressureTimes[i]) {
-          html += '<text x="' + xs[i].toFixed(1) + '" y="' + (h - 5) +
-            '" text-anchor="middle" fill="#8aa4bc" font-size="8">' + pressureTimes[i] + '</text>';
-        }
-      }
-      dots.innerHTML = html;
+      dots.innerHTML = xs.map(function (x, i) {
+        return '<circle cx="' + x + '" cy="' + ys[i] + '" r="3"/>';
+      }).join("");
     }
   }
 
   function drawTide() {
-    var line = $("tide-line"), area = $("tide-area"), dots = $("tide-dots");
-    if (!line || !area) return;
-    var w = 280, h = 90, padX = 14, padTop = 12, padBot = 10;
-    var xs = tidePts.map(function (_, i) { return padX + (i * (w - padX * 2)) / (tidePts.length - 1); });
-    var ys = tidePts.map(function (v) { return padTop + (1 - Math.min(1.2, Math.max(0, v)) / 1.2) * (h - padTop - padBot); });
-    var d = "M" + xs[0] + "," + ys[0];
-    for (var i = 1; i < xs.length; i++) {
-      var cx = (xs[i - 1] + xs[i]) / 2;
-      d += " C" + cx + "," + ys[i - 1] + " " + cx + "," + ys[i] + " " + xs[i] + "," + ys[i];
+    var line = $("tide-line");
+    if (!line) return;
+    var w = 320, h = 100, padX = 10, padTop = 10, padBot = 16;
+    var xs = tidePts.map(function (_, i) {
+      return padX + (i * (w - padX * 2)) / Math.max(1, tidePts.length - 1);
+    });
+    var ys = tidePts.map(function (v) {
+      return padTop + (1 - Math.min(1.2, Math.max(0, v)) / 1.2) * (h - padTop - padBot);
+    });
+    line.setAttribute("points", xs.map(function (x, i) {
+      return x.toFixed(1) + "," + ys[i].toFixed(1);
+    }).join(" "));
+  }
+
+  function applyHero(data) {
+    if (!data) return;
+    var d = data.date || {};
+    var c = data.current || {};
+    var sun = data.sun || {};
+    if ($("hero-dow")) $("hero-dow").textContent = d.dow || "—";
+    if ($("hero-day")) $("hero-day").textContent = d.day || "—";
+    if ($("hero-mon")) $("hero-mon").innerHTML = d.mon || "—";
+    if ($("hero-cond")) $("hero-cond").textContent = c.cond || "—";
+    if ($("hero-temp")) $("hero-temp").innerHTML = (c.temp != null ? c.temp : "—") + "<span>°C</span>";
+    if ($("hero-desc")) $("hero-desc").textContent = c.desc || "—";
+    if ($("m-feels")) $("m-feels").textContent = (c.feels != null ? c.feels + "°C" : "—");
+    if ($("m-hum")) $("m-hum").textContent = (c.humidity != null ? c.humidity + "%" : "—");
+    if ($("m-rain")) $("m-rain").textContent = (c.rain != null ? c.rain + " mm" : "—");
+    if ($("m-uv") && window.FDData) $("m-uv").textContent = window.FDData.uvLabel(c.uv || data.uvMax || 0);
+    if ($("m-rise")) $("m-rise").textContent = sun.rise || "—";
+    if ($("m-set")) $("m-set").textContent = sun.set || "—";
+
+    var sea = data.sea || {};
+    if ($("sea-wave")) $("sea-wave").textContent = sea.wave != null ? sea.wave.toFixed(1) + " m" : "—";
+    if ($("sea-period")) $("sea-period").textContent = sea.period != null ? Math.round(sea.period) + " s" : "—";
+    if ($("sea-dir")) $("sea-dir").textContent = sea.dirDeg != null && window.FDData ? window.FDData.degToCompass(sea.dirDeg) : "—";
+    if ($("sea-temp")) $("sea-temp").textContent = sea.waterTemp != null ? Math.round(sea.waterTemp) + "°C" : "—";
+
+    var locEl = document.querySelector(".brand-loc");
+    if (locEl && data.location) {
+      locEl.textContent = "📍 " + (data.location.name || "Κάλυμνος") + ", Ελλάδα";
     }
-    line.setAttribute("d", d);
-    area.setAttribute("d", d + " L" + xs[xs.length - 1] + "," + h + " L" + xs[0] + "," + h + " Z");
-    if (dots) {
-      var peak = 0;
-      for (var j = 1; j < tidePts.length; j++) if (tidePts[j] > tidePts[peak]) peak = j;
-      var marks = [0, peak, tidePts.length - 1];
-      var html = "";
-      marks.forEach(function (idx) {
-        html += '<circle cx="' + xs[idx].toFixed(1) + '" cy="' + ys[idx].toFixed(1) +
-          '" r="5" fill="#e8f4ff" stroke="#35c8ff" stroke-width="2"/>' +
-          '<circle cx="' + xs[idx].toFixed(1) + '" cy="' + ys[idx].toFixed(1) +
-          '" r="9" fill="#35c8ff" opacity="0.3"/>';
-      });
-      dots.innerHTML = html;
+  }
+
+  function applyLive(data) {
+    weatherHours = data.weatherHours || [];
+    windHours = data.windHours || [];
+    currentHours = data.currentHours || [];
+    pressurePts = data.pressurePts || [];
+    pressureTimes = data.pressureTimes || [];
+    applyHero(data);
+    renderWeather();
+    renderWind();
+    renderCurrents();
+    drawPressure();
+  }
+
+  function loadLive() {
+    if (!window.FDData) {
+      setStatus("Λείπει data layer", true);
+      return Promise.resolve();
     }
+    setStatus("Φόρτωση Open-Meteo…");
+    return FDData.getLocation().then(function (loc) {
+      return FDData.fetchDashboard(loc);
+    }).then(function (data) {
+      applyLive(data);
+      var t = new Date(data.fetchedAt);
+      var hh = String(t.getHours()).padStart(2, "0");
+      var mm = String(t.getMinutes()).padStart(2, "0");
+      setStatus("Live · " + (data.location && data.location.name) + " · " + hh + ":" + mm + " · Open-Meteo");
+    }).catch(function (err) {
+      var cached = FDData.loadCache();
+      if (cached && cached.data) {
+        applyLive(cached.data);
+        setStatus("Offline — τελευταία αποθηκευμένα δεδομένα", true);
+      } else {
+        setStatus("Αποτυχία σύνδεσης · " + (err && err.message ? err.message : "error"), true);
+      }
+    });
   }
 
   function syncTechLabels() {
     document.querySelectorAll(".tech").forEach(function (btn) {
       var n = parseInt(btn.getAttribute("data-stars") || "3", 10);
-      var ts = btn.querySelector(".ts");
-      var tl = btn.querySelector(".tl");
-      if (ts) ts.textContent = starsText(n);
-      if (tl) tl.textContent = STAR_LABEL[n] || STAR_LABEL[3];
+      var lab = btn.querySelector(".tech-lab");
+      if (lab) lab.textContent = STAR_LABEL[n] || "";
+      var st = btn.querySelector(".tech-stars");
+      if (st) st.textContent = starsText(n);
     });
   }
 
@@ -153,34 +186,26 @@
     if (refresh) {
       refresh.addEventListener("click", function () {
         refresh.classList.add("spin");
-        setTimeout(function () { refresh.classList.remove("spin"); }, 600);
+        loadLive().finally(function () {
+          setTimeout(function () { refresh.classList.remove("spin"); }, 400);
+        });
       });
     }
     var fav = $("btn-fav");
     if (fav) {
       fav.addEventListener("click", function () {
-        var on = fav.textContent === "★";
-        fav.textContent = on ? "☆" : "★";
-        fav.style.color = on ? "" : "var(--gold)";
-        try { localStorage.setItem("fd-fav", on ? "0" : "1"); } catch (e) {}
+        fav.classList.toggle("on");
+        fav.textContent = fav.classList.contains("on") ? "★" : "☆";
       });
-      try {
-        if (localStorage.getItem("fd-fav") === "1") { fav.textContent = "★"; fav.style.color = "var(--gold)"; }
-      } catch (e) {}
     }
     var menu = $("btn-menu");
     var menuPanel = $("menu-panel");
     var menuClose = $("menu-close");
     function closeMenu() {
       if (menuPanel) menuPanel.classList.remove("open");
-      if (menu) { menu.classList.remove("active"); menu.setAttribute("aria-expanded", "false"); }
     }
     if (menu && menuPanel) {
-      menu.addEventListener("click", function () {
-        var open = menuPanel.classList.toggle("open");
-        menu.classList.toggle("active", open);
-        menu.setAttribute("aria-expanded", open ? "true" : "false");
-      });
+      menu.addEventListener("click", function () { menuPanel.classList.toggle("open"); });
     }
     if (menuClose) menuClose.addEventListener("click", closeMenu);
     if (menuPanel) {
@@ -189,14 +214,11 @@
       });
     }
 
-    /* Alerts — tappable like buttons */
     document.querySelectorAll(".alert-list li").forEach(function (li) {
       function activate() {
         li.classList.add("pressed");
         setTimeout(function () { li.classList.remove("pressed"); }, 150);
-        var title = (li.querySelector("b") || {}).textContent || "Alert";
-        /* placeholder: future detail sheet */
-        try { console.log("[alert]", title); } catch (e) {}
+        try { console.log("alert", li.innerText); } catch (e) {}
       }
       li.addEventListener("click", activate);
       li.addEventListener("keydown", function (e) {
@@ -250,13 +272,17 @@
   }
 
   function init() {
+    syncTechLabels();
+    bindUI();
     renderWeather();
     renderWind();
     renderCurrents();
-    drawPressure();
-    drawTide();
-    syncTechLabels();
-    bindUI();
+    /* try cache first for instant paint */
+    if (window.FDData) {
+      var cached = FDData.loadCache();
+      if (cached && cached.data) applyLive(cached.data);
+    }
+    loadLive();
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);

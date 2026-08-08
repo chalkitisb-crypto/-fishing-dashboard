@@ -268,3 +268,9 @@ html,body{height:100%;background:var(--bg);color:var(--text);overflow-x:hidden;
 .score-right{gap:8px!important}
 .activity-card{flex:0 0 auto!important}
 .zone-card{flex:1 1 auto!important}
+
+.data-status{font-size:10px;color:var(--muted,#8ab);padding:4px 10px;text-align:center;opacity:.85}
+.data-status.err{color:#f8a}
+.data-status.show{display:block}
+.wind-arrow{font-size:16px;display:inline-block;line-height:1;color:#35c8ff}
+.wind-arrow.g{color:#3ddc84}.wind-arrow.o{color:#f5c542}.wind-arrow.r{color:#ff6b6b}

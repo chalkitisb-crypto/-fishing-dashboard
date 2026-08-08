@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <title>Fishing Dashboard — Κάλυμνος</title>
   <link rel="manifest" href="manifest.json"/>
-  <link rel="stylesheet" href="style.css?v=29.1.0"/>
+  <link rel="stylesheet" href="style.css?v=31.0.0"/>
 </head>
 <body>
 <div class="app">
@@ -38,28 +38,29 @@
   </div>
 
   <main class="main">
+    <div id="data-status" class="data-status">Σύνδεση δεδομένων…</div>
     <!-- HERO: sun full-bleed background -->
     <section class="card hero">
       <div class="hero-bg"><img src="sun_scene.png" alt="" class="sun-img"/></div>
       <div class="hero-overlay">
         <div class="hero-date">
-          <div class="hero-dow">ΚΥΡΙΑΚΗ</div>
-          <div class="hero-day">2</div>
-          <div class="hero-mon">ΑΥΓΟΥΣΤΟΥ<br/>2026</div>
+          <div class="hero-dow" id="hero-dow">—</div>
+          <div class="hero-day" id="hero-day">—</div>
+          <div class="hero-mon" id="hero-mon">—</div>
         </div>
         <div class="hero-now">
-          <div class="hero-cond">ΗΛΙΟΦΑΝΕΙΑ</div>
-          <div class="hero-temp">22<span>°C</span></div>
-          <div class="hero-desc">Αίθριος ουρανός</div>
+          <div class="hero-cond" id="hero-cond">—</div>
+          <div class="hero-temp" id="hero-temp">—<span>°C</span></div>
+          <div class="hero-desc" id="hero-desc">Φόρτωση…</div>
         </div>
       </div>
       <div class="hero-metrics">
-        <div><span>Αισθητή</span><b>22°C</b></div>
-        <div><span>Υγρασία</span><b>56%</b></div>
-        <div><span>Βροχή</span><b>0%</b></div>
-        <div><span>UV</span><b class="uv">6 ΥΨΗΛΟΣ</b></div>
-        <div><span>Ανατολή</span><b>06:17</b></div>
-        <div><span>Δύση</span><b>20:07</b></div>
+        <div><span>Αισθητή</span><b id="m-feels">—</b></div>
+        <div><span>Υγρασία</span><b id="m-hum">—</b></div>
+        <div><span>Βροχή</span><b id="m-rain">—</b></div>
+        <div><span>UV</span><b class="uv" id="m-uv">—</b></div>
+        <div><span>Ανατολή</span><b id="m-rise">—</b></div>
+        <div><span>Δύση</span><b id="m-set">—</b></div>
       </div>
     </section>
 
@@ -106,10 +107,10 @@
       <section class="card">
         <div class="sec-title"><i class="dot"></i> ΣΥΝΘΗΚΕΣ ΘΑΛΑΣΣΑΣ</div>
         <div class="sea-grid">
-          <div><span>Κύμα</span><b>0.6 m</b></div>
-          <div><span>Περίοδος</span><b>5 s</b></div>
-          <div><span>Διεύθυνση</span><b>ΒΑ</b></div>
-          <div><span>Θερμ. νερού</span><b>19°C</b></div>
+          <div><span>Κύμα</span><b id="sea-wave">—</b></div>
+          <div><span>Περίοδος</span><b id="sea-period">—</b></div>
+          <div><span>Διεύθυνση</span><b id="sea-dir">—</b></div>
+          <div><span>Θερμ. νερού</span><b id="sea-temp">—</b></div>
         </div>
       </section>
       <section class="card">
@@ -193,6 +194,7 @@
     <button class="nav-item" data-nav="settings" type="button"><span>⚙</span>ΡΥΘΜΙΣΕΙΣ</button>
   </nav>
 </div>
-<script src="app.js?v=29.1.0"></script>
+<script src="data.js?v=31.0.0"></script>
+<script src="app.js?v=31.0.0"></script>
 </body>
 </html>
