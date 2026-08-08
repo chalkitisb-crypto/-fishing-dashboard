@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <title>Fishing Dashboard — Κάλυμνος</title>
   <link rel="manifest" href="manifest.json"/>
-  <link rel="stylesheet" href="style.css?v=19.0.0"/>
+  <link rel="stylesheet" href="style.css?v=20.0.0"/>
 </head>
 <body>
 <div class="app">
@@ -40,7 +40,6 @@
   </div>
 
   <main class="main">
-    <!-- HERO -->
     <section class="card hero">
       <div class="hero-date">
         <div class="hero-dow">ΚΥΡΙΑΚΗ</div>
@@ -63,13 +62,11 @@
       </div>
     </section>
 
-    <!-- WEATHER HOURS -->
     <section class="card">
       <div class="sec-title"><i class="dot"></i> ΣΥΝΘΗΚΕΣ ΚΑΙΡΟΥ – ΑΝΑ ΩΡΑ</div>
       <div class="h-scroll" id="weather-hours"></div>
     </section>
 
-    <!-- WIND + PRESSURE -->
     <div class="row row-2">
       <section class="card card-scroll">
         <div class="sec-title"><i class="dot"></i> ΑΝΕΜΟΣ (ΜΠΟΦΟΡ)</div>
@@ -78,7 +75,22 @@
       <section class="card">
         <div class="sec-title"><i class="dot"></i> ΒΑΡΟΜΕΤΡΙΚΗ ΠΙΕΣΗ</div>
         <div class="pressure-body">
-          <img class="chart-img" src="pressure_chart.jpg" alt=""/>
+          <div class="chart-box pressure-chart">
+            <svg viewBox="0 0 320 90" class="chart-svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="pGlow" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#f0c14a" stop-opacity="0.45"/>
+                  <stop offset="100%" stop-color="#f0c14a" stop-opacity="0"/>
+                </linearGradient>
+                <filter id="pBlur"><feGaussianBlur stdDeviation="1.4"/></filter>
+              </defs>
+              <path id="pressure-area" fill="url(#pGlow)" d=""/>
+              <polyline id="pressure-line" fill="none" stroke="#f0c14a" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round" filter="url(#pBlur)" points=""/>
+              <polyline id="pressure-line-core" fill="none" stroke="#ffe08a" stroke-width="1.4"
+                stroke-linecap="round" stroke-linejoin="round" points=""/>
+            </svg>
+          </div>
           <div class="pressure-now">
             <span>ΤΩΡΑ</span>
             <strong>1019</strong>
@@ -89,7 +101,6 @@
       </section>
     </div>
 
-    <!-- MOON + CURRENTS -->
     <div class="row row-moon">
       <section class="card moon-card">
         <div class="sec-title"><i class="dot"></i> ΦΑΣΗ ΣΕΛΗΝΗΣ</div>
@@ -111,7 +122,6 @@
       </section>
     </div>
 
-    <!-- SEA + TIDES -->
     <div class="row row-2">
       <section class="card">
         <div class="sec-title"><i class="dot"></i> ΣΥΝΘΗΚΕΣ ΘΑΛΑΣΣΑΣ</div>
@@ -124,15 +134,29 @@
       </section>
       <section class="card">
         <div class="sec-title"><i class="dot"></i> ΠΑΛΙΡΡΟΙΕΣ</div>
-        <img class="chart-img tides-img" src="tides_chart.jpg" alt=""/>
-        <div class="tide-meta">
-          <div><span class="td">−</span> Αμπώτις <b>11:40</b></div>
-          <div><span class="tu">+</span> Πλημμυρίδα <b>17:55</b></div>
+        <div class="tides-body">
+          <div class="chart-box tides-chart">
+            <svg viewBox="0 0 280 80" class="chart-svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="tFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#35c8ff" stop-opacity="0.55"/>
+                  <stop offset="100%" stop-color="#0a7cff" stop-opacity="0.15"/>
+                </linearGradient>
+                <filter id="tGlow"><feGaussianBlur stdDeviation="1.2"/></filter>
+              </defs>
+              <path id="tide-area" fill="url(#tFill)" d=""/>
+              <path id="tide-line" fill="none" stroke="#5ad0ff" stroke-width="2.4"
+                stroke-linecap="round" filter="url(#tGlow)" d=""/>
+            </svg>
+          </div>
+          <div class="tide-meta">
+            <div><span class="td">−</span> Αμπώτις <b>11:40</b></div>
+            <div><span class="tu">+</span> Πλημμυρίδα <b>17:55</b></div>
+          </div>
         </div>
       </section>
     </div>
 
-    <!-- BEST HOURS -->
     <section class="card best-card">
       <div class="sec-title"><i class="dot"></i> ΚΑΛΥΤΕΡΕΣ ΩΡΕΣ</div>
       <div class="best-line">
@@ -142,46 +166,70 @@
       </div>
     </section>
 
-    <!-- SCORE + ACTIVITY -->
     <div class="row row-score">
       <section class="card score-card">
         <div class="sec-title"><i class="dot diamond"></i> FISHING SCORE</div>
         <div class="score-wrap">
-          <img src="score_only.png" alt="85" class="score-img"/>
+          <img src="score_rod.png" alt="85" class="score-img"/>
           <div class="score-label">ΕΞΑΙΡΕΤΙΚΕΣ ΣΥΝΘΗΚΕΣ</div>
         </div>
       </section>
       <section class="card activity-card">
-        <img class="activity-panel" src="activity_clean.jpg" alt="Fish Activity"/>
+        <div class="sec-title"><i class="dot"></i> FISH ACTIVITY</div>
+        <img class="activity-panel" src="activity_body.jpg" alt="Fish Activity"/>
       </section>
     </div>
 
-    <!-- ALERTS -->
     <section class="card">
       <div class="sec-title"><i class="dot"></i> FISHING ALERTS</div>
       <ul class="alert-list">
-        <li class="a-green"><img class="a-ico" src="ico_spin.png" alt=""/><div><b>AI · SPINNING</b><span>Ιδανικές συνθήκες 08:00–10:00</span></div><i>›</i></li>
-        <li class="a-gold"><img class="a-ico" src="ico_moon.png" alt=""/><div><b>ΣΕΛΗΝΗ</b><span>72% — αυξημένη δραστηριότητα</span></div><i>›</i></li>
-        <li class="a-orange"><img class="a-ico" src="ico_wind.png" alt=""/><div><b>ΑΝΕΜΟΣ</b><span>Ενισχύεται μετά τις 14:00</span></div><i>›</i></li>
-        <li class="a-blue"><img class="a-ico" src="ico_uv.png" alt=""/><div><b>UV</b><span>Υψηλός δείκτης 11:00–16:00</span></div><i>›</i></li>
+        <li class="a-green">
+          <span class="a-ico" aria-hidden="true">🎣</span>
+          <div><b>AI · SPINNING</b><span>Ιδανικές συνθήκες 08:00–10:00</span></div>
+          <i>›</i>
+        </li>
+        <li class="a-gold">
+          <span class="a-ico" aria-hidden="true">🪝</span>
+          <div><b>ΔΟΛΩΜΑ</b><span>Ζωντανό δόλωμα προτείνεται</span></div>
+          <i>›</i>
+        </li>
+        <li class="a-cyan">
+          <span class="a-ico" aria-hidden="true">🐟</span>
+          <div><b>ΤΣΙΠΟΥΡΑ</b><span>Υψηλή δραστηριότητα — επόμενες 3 ώρες</span></div>
+          <i>›</i>
+        </li>
+        <li class="a-orange">
+          <span class="a-ico" aria-hidden="true">❗</span>
+          <div><b>ΑΝΕΜΟΣ</b><span>Ενισχύεται μετά τις 14:00</span></div>
+          <i>›</i>
+        </li>
+        <li class="a-blue">
+          <span class="a-ico" aria-hidden="true">🔔</span>
+          <div><b>ΠΕΡΙΟΧΗ</b><span>Προτίμησε νότια πλευρά</span></div>
+          <i>›</i>
+        </li>
+        <li class="a-purple">
+          <span class="a-ico" aria-hidden="true">📊</span>
+          <div><b>ΣΕΛΗΝΗ</b><span>72% — αυξημένη δραστηριότητα</span></div>
+          <i>›</i>
+        </li>
       </ul>
     </section>
 
-    <!-- TECHNIQUES -->
     <section class="card">
       <div class="sec-title"><i class="dot"></i> ΤΕΧΝΙΚΕΣ ΨΑΡΕΜΑΤΟΣ</div>
       <div class="h-scroll tech-scroll" id="tech-list">
         <button class="tech selected" data-tech="spinning" type="button">
-          <img src="tech_card_spinning.png" alt=""/><span class="tn">SPINNING</span><span class="ts">★★★★★</span><span class="tl">Ιδανική σήμερα</span>
+          <img src="tech_card_spinning.png" alt=""/><span class="tn">SPINNING</span><span class="ts">★★★★★</span><span class="tl">Ιδανική</span>
         </button>
         <button class="tech" data-tech="lrf" type="button">
-          <img src="tech_card_lrf.png" alt=""/><span class="tn">LRF</span><span class="ts">★★★☆☆</span><span class="tl">Μέτρια συνθήκες</span>
+          <img src="tech_card_lrf.png" alt=""/><span class="tn">LRF</span><span class="ts">★★★☆☆</span><span class="tl">Καλή</span>
         </button>
         <button class="tech" data-tech="english" type="button">
-          <img src="tech_card_english.png" alt=""/><span class="tn">ΕΓΓΛΕΖΙΚΟ</span><span class="ts">★★★☆☆</span><span class="tl">Καλό</span>
+          <img src="tech_card_english.png" alt=""/><span class="tn">ΕΓΓΛΕΖΙΚΟ</span><span class="ts">★★★★☆</span><span class="tl">Πολύ καλή</span>
         </button>
         <button class="tech" data-tech="shore" type="button">
-          <img src="tech_card_shore_jig.png" alt=""/><span class="tn">SHORE JIG</span><span class="ts">★★★☆☆</span><span class="tl">Καλό</span>
+          <img src="tech_card_shore_jig.png" alt=""/><span class="tn">SHORE JIG</span><span class="ts">★★☆☆☆</span><span class="tl">Μέτρια</span>
         </button>
       </div>
     </section>
@@ -196,6 +244,6 @@
     <button class="nav-item" data-nav="settings" type="button"><span>⚙</span>ΡΥΘΜΙΣΕΙΣ</button>
   </nav>
 </div>
-<script src="app.js?v=19.0.0"></script>
+<script src="app.js?v=20.0.0"></script>
 </body>
 </html>

@@ -1,15 +1,15 @@
-/* Fishing Dashboard v18.2 — full approved widgets */
+/* Fishing Dashboard v20.0.0 — rod score, SVG charts, weather icons, alerts */
 (function () {
   "use strict";
 
   var weatherHours = [
-    { t: "08:00", sky: "wx_08.jpg", lab: "Ηλιοφάνεια", temp: 22 },
-    { t: "09:00", sky: "wx_09.jpg", lab: "Αραιή συννεφιά", temp: 23 },
-    { t: "10:00", sky: "wx_10.jpg", lab: "Αραιή συννεφιά", temp: 24 },
-    { t: "11:00", sky: "wx_11.jpg", lab: "Αραιή συννεφιά", temp: 25 },
-    { t: "12:00", sky: "wx_12.jpg", lab: "Συννεφιά", temp: 25 },
-    { t: "13:00", sky: "wx_13.jpg", lab: "Συννεφιά", temp: 26 },
-    { t: "14:00", sky: "wx_14.jpg", lab: "Αραιή συννεφιά", temp: 26 }
+    { t: "08:00", ico: "☀️", lab: "Ηλιοφάνεια", temp: 22 },
+    { t: "09:00", ico: "🌤", lab: "Αραιή συννεφιά", temp: 23 },
+    { t: "10:00", ico: "🌤", lab: "Αραιή συννεφιά", temp: 24 },
+    { t: "11:00", ico: "⛅", lab: "Αραιή συννεφιά", temp: 25 },
+    { t: "12:00", ico: "☁️", lab: "Συννεφιά", temp: 25 },
+    { t: "13:00", ico: "☁️", lab: "Συννεφιά", temp: 26 },
+    { t: "14:00", ico: "🌤", lab: "Αραιή συννεφιά", temp: 26 }
   ];
 
   var windHours = [
@@ -32,8 +32,8 @@
     { t: "14:00", deg: -45, dir: "ΑΝΑ", kn: "0.7", cls: "r" }
   ];
 
-  var pressurePts = [1016, 1018, 1015, 1020, 1017, 1022, 1019, 1018, 1021, 1019];
-  var tidePts = [0.25, 0.45, 0.2, 0.75, 0.55, 0.3, 0.5];
+  var pressurePts = [1019, 1019, 1019, 1019, 1019, 1019, 1019];
+  var tidePts = [0.15, 0.35, 0.75, 1.0, 0.7, 0.35, 0.2];
 
   function $(id) { return document.getElementById(id); }
 
@@ -41,8 +41,9 @@
     var root = $("weather-hours");
     if (!root) return;
     root.innerHTML = weatherHours.map(function (h) {
-      return '<article class="wh-cell"><img class="sky" src="' + h.sky + '" alt=""/><time>' + h.t +
-        '</time><span class="lab">' + h.lab + '</span><strong>' + h.temp + '°C</strong></article>';
+      return '<article class="wh-cell"><div class="wh-ico">' + h.ico +
+        '</div><time>' + h.t + '</time><span class="lab">' + h.lab +
+        '</span><strong>' + h.temp + '°C</strong></article>';
     }).join("");
   }
 
@@ -52,7 +53,7 @@
     root.innerHTML = windHours.map(function (h) {
       return '<article class="w-cell"><time>' + h.t + '</time>' +
         '<svg class="arr ' + h.cls + '" style="--deg:' + h.deg + 'deg" viewBox="0 0 24 24"><path d="M12 2 L22 20 L12 16 L2 20 Z"/></svg>' +
-        '<div class="dir">' + h.dir + '</div><strong>' + h.bf + '</strong><small>' + h.km + ' km/h</small></article>';
+        '<div class="dir">' + h.dir + '</div><strong>' + h.bf + '</strong></article>';
     }).join("");
   }
 
@@ -60,21 +61,24 @@
     var root = $("current-hours");
     if (!root) return;
     root.innerHTML = currentHours.map(function (h) {
-      return '<article class="c-cell"><time>' + h.t + '</time>' +
+      return '<article class="w-cell"><time>' + h.t + '</time>' +
         '<svg class="arr ' + h.cls + '" style="--deg:' + h.deg + 'deg" viewBox="0 0 24 24"><path d="M12 2 L22 20 L12 16 L2 20 Z"/></svg>' +
         '<div class="dir">' + h.dir + '</div><strong>' + h.kn + ' kn</strong></article>';
     }).join("");
   }
 
   function drawPressure() {
-    var line = $("pressure-line"), area = $("pressure-area");
+    var line = $("pressure-line"), core = $("pressure-line-core"), area = $("pressure-area");
     if (!line || !area) return;
-    var w = 320, h = 90, pad = 8;
-    var min = Math.min.apply(null, pressurePts) - 2;
-    var max = Math.max.apply(null, pressurePts) + 2;
+    var w = 320, h = 90, pad = 10;
+    var min = Math.min.apply(null, pressurePts) - 3;
+    var max = Math.max.apply(null, pressurePts) + 3;
+    if (max === min) { min -= 2; max += 2; }
     var xs = pressurePts.map(function (_, i) { return pad + (i * (w - pad * 2)) / (pressurePts.length - 1); });
     var ys = pressurePts.map(function (v) { return pad + (1 - (v - min) / (max - min)) * (h - pad * 2); });
-    line.setAttribute("points", xs.map(function (x, i) { return x.toFixed(1) + "," + ys[i].toFixed(1); }).join(" "));
+    var pts = xs.map(function (x, i) { return x.toFixed(1) + "," + ys[i].toFixed(1); }).join(" ");
+    line.setAttribute("points", pts);
+    if (core) core.setAttribute("points", pts);
     area.setAttribute("d", "M" + xs[0] + "," + h + " " + xs.map(function (x, i) {
       return "L" + x + "," + ys[i];
     }).join(" ") + " L" + xs[xs.length - 1] + "," + h + " Z");
@@ -83,9 +87,9 @@
   function drawTide() {
     var line = $("tide-line"), area = $("tide-area");
     if (!line || !area) return;
-    var w = 280, h = 72, pad = 6;
+    var w = 280, h = 80, pad = 8;
     var xs = tidePts.map(function (_, i) { return pad + (i * (w - pad * 2)) / (tidePts.length - 1); });
-    var ys = tidePts.map(function (v) { return pad + (1 - v) * (h - pad * 2); });
+    var ys = tidePts.map(function (v) { return pad + (1 - Math.min(1, Math.max(0, v))) * (h - pad * 2); });
     var d = "M" + xs[0] + "," + ys[0];
     for (var i = 1; i < xs.length; i++) {
       var cx = (xs[i - 1] + xs[i]) / 2;
@@ -116,46 +120,24 @@
       } catch (e) {}
     }
     var menu = $("btn-menu");
-    if (menu) {
+    var menuPanel = $("menu-panel");
+    var menuClose = $("menu-close");
+    function closeMenu() {
+      if (menuPanel) menuPanel.classList.remove("open");
+      if (menu) { menu.classList.remove("active"); menu.setAttribute("aria-expanded", "false"); }
+    }
+    if (menu && menuPanel) {
       menu.addEventListener("click", function () {
-        var panel = $("menu-panel");
-        if (!panel) return;
-        var open = panel.classList.toggle("open");
+        var open = menuPanel.classList.toggle("open");
         menu.classList.toggle("active", open);
         menu.setAttribute("aria-expanded", open ? "true" : "false");
       });
     }
-    var menuClose = $("menu-close");
-    if (menuClose) {
-      menuClose.addEventListener("click", function () {
-        var panel = $("menu-panel");
-        if (panel) panel.classList.remove("open");
-        if (menu) { menu.classList.remove("active"); menu.setAttribute("aria-expanded", "false"); }
+    if (menuClose) menuClose.addEventListener("click", closeMenu);
+    if (menuPanel) {
+      menuPanel.addEventListener("click", function (e) {
+        if (e.target === menuPanel) closeMenu();
       });
-    }
-    document.querySelectorAll(".alert-list li").forEach(function (li) {
-      li.setAttribute("role", "button");
-      li.tabIndex = 0;
-      li.addEventListener("click", function () {
-        li.classList.add("pressed");
-        setTimeout(function () { li.classList.remove("pressed"); }, 180);
-        var title = (li.querySelector("b") || {}).textContent || "Alert";
-        var msg = (li.querySelector("span") || {}).textContent || "";
-        showToast(title + " — " + msg);
-      });
-    });
-    function showToast(text) {
-      var t = $("fd-toast");
-      if (!t) {
-        t = document.createElement("div");
-        t.id = "fd-toast";
-        t.className = "fd-toast";
-        document.body.appendChild(t);
-      }
-      t.textContent = text;
-      t.classList.add("show");
-      clearTimeout(t._timer);
-      t._timer = setTimeout(function () { t.classList.remove("show"); }, 2200);
     }
     document.querySelectorAll(".tech").forEach(function (btn) {
       btn.addEventListener("click", function () {
@@ -184,20 +166,9 @@
         document.querySelectorAll(".nav-item").forEach(function (b) {
           b.classList.toggle("active", b.dataset.nav === nav);
         });
-        var panel = $("menu-panel");
-        if (panel) panel.classList.remove("open");
-        if (menu) { menu.classList.remove("active"); menu.setAttribute("aria-expanded", "false"); }
+        closeMenu();
       });
     });
-    var menuPanel = $("menu-panel");
-    if (menuPanel) {
-      menuPanel.addEventListener("click", function (e) {
-        if (e.target === menuPanel) {
-          menuPanel.classList.remove("open");
-          if (menu) { menu.classList.remove("active"); menu.setAttribute("aria-expanded", "false"); }
-        }
-      });
-    }
     document.querySelectorAll(".h-scroll").forEach(function (strip) {
       var startX = 0, scrollL = 0, dragging = false;
       strip.addEventListener("pointerdown", function (e) {
